@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portail Pédagogique - Informatique 4e Scientifiques (Bac 2026)</title>
+
+  <!-- Métadonnées SEO & Navigation -->
+  <meta name="description"
+    content="Portail de cours et travaux pratiques d'informatique pour 4ème Année Scientifique (Tunisie - Bac 2026) : algorithmique modulaire, tableaux numpy, et implémentation Python 3.">
+
+  <!-- Dépendances locales -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+  <div id="app">
+    <!-- NAVIGATION -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <i class="bi bi-cpu-fill text-primary"></i>
+          <span>Informatique 4<sup>e</sup> SC</span>
+          <span class="brand-badge">Bac 2026</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navContent">
+          <ul class="navbar-nav ms-auto align-items-lg-center">
+            <li class="nav-item"><a class="nav-link active" href="index.html"><i class="bi bi-house-door-fill me-1"></i>
+                Accueil</a></li>
+            <li class="nav-item"><a class="nav-link" href="seance01.html"><i class="bi bi-1-circle me-1"></i> Séance
+                1</a></li>
+            <li class="nav-item"><a class="nav-link" href="seance02.html"><i class="bi bi-2-circle me-1"></i> Séance
+                2</a></li>
+            <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+              <button class="btn btn-sm btn-outline-light" onclick="window.print()">
+                <i class="bi bi-printer me-1"></i> Imprimer
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO BANNER -->
+    <header class="hero-banner">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+          <span class="badge bg-primary px-3 py-1">Pensée computationnelle & Programmation</span>
+          <span class="badge bg-info text-dark px-2 py-1">Sections Scientifiques</span>
+          <span class="badge bg-success px-2 py-1"><i class="bi bi-check-circle me-1"></i>Conventions Officielles
+            2024-2025</span>
+        </div>
+        <h1 class="hero-title">Portail d'Apprentissage & Travaux Pratiques</h1>
+        <p class="hero-subtitle">
+          Environnement numérique d'apprentissage pour les élèves de 4<sup>ème</sup> Année Scientifique (Sciences
+          Expérimentales, Mathématiques et Sciences Techniques).
+        </p>
+
+        <!-- SITUATION MOBILISATRICE FIL CONDUCTEUR -->
+        <div class="objective-box">
+          <div class="d-flex align-items-start gap-3">
+            <div class="fs-2 text-info"><i class="bi bi-flask"></i></div>
+            <div>
+              <div class="fw-bold text-white text-uppercase letter-spacing-1 small mb-1">Fil Conducteur Thématique</div>
+              <div class="text-light">
+                <strong>Système d'échantillonnage d'un laboratoire de recherche :</strong> Réception, contrôle de
+                conformité textuelle des flacons d'analyse, calculs de clés de sécurité et traitement statistique des
+                mesures chimiques par lots.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENU PRINCIPAL -->
+    <main class="container mb-5">
+
+      <!-- CHIFFRES CLES & STATS -->
+      <div class="row g-3 mb-4">
+        <div class="col-md-4">
+          <div class="section-card p-3 d-flex align-items-center gap-3 mb-0">
+            <div class="p-3 bg-primary bg-opacity-10 text-primary rounded-circle fs-3">
+              <i class="bi bi-journal-code"></i>
+            </div>
+            <div>
+              <div class="fs-4 fw-bold text-dark">2 Séances</div>
+              <div class="small text-muted">Contenus interactifs prêts</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="section-card p-3 d-flex align-items-center gap-3 mb-0">
+            <div class="p-3 bg-success bg-opacity-10 text-success rounded-circle fs-3">
+              <i class="bi bi-laptop"></i>
+            </div>
+            <div>
+              <div class="fs-4 fw-bold text-dark">100% Hors-Ligne</div>
+              <div class="small text-muted">Dépendances locales (assets/)</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="section-card p-3 d-flex align-items-center gap-3 mb-0">
+            <div class="p-3 bg-warning bg-opacity-10 text-warning rounded-circle fs-3">
+              <i class="bi bi-patch-check-fill"></i>
+            </div>
+            <div>
+              <div class="fs-4 fw-bold text-dark">Bac 2026</div>
+              <div class="small text-muted">Conventions d'examens validées</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARTES DES SEANCES -->
+      <div class="row g-4 mb-5">
+
+        <!-- CARTE SEANCE 1 -->
+        <div class="col-lg-6">
+          <div class="section-card h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="section-header">
+                <div class="d-flex align-items-center gap-2">
+                  <span class="badge bg-primary rounded-pill px-2 py-1">Séance 01</span>
+                  <span class="fw-bold text-dark">Durée : 60 min</span>
+                </div>
+                <span class="phase-pill emerald">Disponible</span>
+              </div>
+              <div class="section-body">
+                <h2 class="h5 fw-bold text-primary mb-2">
+                  Types simples & Fonctions prédéfinies
+                </h2>
+                <p class="small text-muted mb-3">
+                  Apprentissage des sous-programmes à valeur de retour (fonctions), manipulation experte des primitives
+                  sur chaînes de caractères et opérations numériques.
+                </p>
+
+                <div class="mb-3">
+                  <div class="small fw-bold text-dark mb-1"><i class="bi bi-check2-circle text-success me-1"></i>Savoirs
+                    associés & Compétences :</div>
+                  <ul class="small text-muted ps-3 mb-0">
+                    <li>Format normalisé d'identifiant d'échantillon : <code>@CH-94B</code></li>
+                    <li>Fonction <code>Valide_Code</code> : <code>Majus</code>, <code>Pos</code>,
+                      <code>Sous_chaine</code>, <code>Estnum</code>, <code>Ord</code>
+                    </li>
+                    <li>Fonction <code>Cle_Controle</code> : <code>Valeur</code>, <code>Abs</code>,
+                      <code>RacineCarré</code>, <code>Arrondi</code>, <code>Aléa</code>, <code>Convch</code>
+                    </li>
+                    <li>Formalisation formelle : <strong>TDOG</strong> et <strong>TDOL</strong></li>
+                  </ul>
+                </div>
+
+                <div class="p-2 bg-light rounded border small text-muted d-flex align-items-center gap-2 mb-3">
+                  <i class="bi bi-stars text-warning fs-5"></i>
+                  <div>
+                    <strong>Inclus :</strong> Simulateur interactif d'automate Vue.js + Quiz d'auto-évaluation.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-3 bg-light border-top text-end">
+              <a href="seance01.html" class="btn btn-primary-custom w-100">
+                Ouvrir la Séance 1 <i class="bi bi-arrow-right ms-1"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARTE SEANCE 2 -->
+        <div class="col-lg-6">
+          <div class="section-card h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="section-header">
+                <div class="d-flex align-items-center gap-2">
+                  <span class="badge bg-primary rounded-pill px-2 py-1">Séance 02</span>
+                  <span class="fw-bold text-dark">Durée : 60 min</span>
+                </div>
+                <span class="phase-pill emerald">Disponible</span>
+              </div>
+              <div class="section-body">
+                <h2 class="h5 fw-bold text-primary mb-2">
+                  Type tableau & Procédures
+                </h2>
+                <p class="small text-muted mb-3">
+                  Gestion par lots des données de laboratoire, déclaration des types composites avec le TDNT et
+                  orchestration complète à l'aide de procédures.
+                </p>
+
+                <div class="mb-3">
+                  <div class="small fw-bold text-dark mb-1"><i class="bi bi-check2-circle text-success me-1"></i>Savoirs
+                    associés & Compétences :</div>
+                  <ul class="small text-muted ps-3 mb-0">
+                    <li>Structure Tableau 1D : homogénéité, taille statique (<i>N</i> &le; 50)</li>
+                    <li>Déclaration obligatoire : <strong>TDNT</strong> (<code>TabCodes</code>, <code>TabMesures</code>)
+                      et <strong>TDOG</strong></li>
+                    <li>Passage par adresse avec <strong><code>@</code></strong> (<code>@T : TabCodes</code>)</li>
+                    <li>Procédure <code>Nettoyer_Codes</code> avec la primitive officielle
+                      <code>Effacer(T[i], 0, 1)</code>
+                    </li>
+                    <li>Implémentation Python avec la bibliothèque obligatoire <strong><code>numpy</code></strong></li>
+                  </ul>
+                </div>
+
+                <div class="p-2 bg-light rounded border small text-muted d-flex align-items-center gap-2 mb-3">
+                  <i class="bi bi-stars text-warning fs-5"></i>
+                  <div>
+                    <strong>Inclus :</strong> Simulateur de mémoire vive de lot Vue.js + Quiz d'auto-évaluation.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-3 bg-light border-top text-end">
+              <a href="seance02.html" class="btn btn-primary-custom w-100">
+                Ouvrir la Séance 2 <i class="bi bi-arrow-right ms-1"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- MODULE INTERACTIF : AIDE-MEMOIRE DES CONVENTIONS OFFICIELLES (VUE.JS) -->
+      <section class="section-card">
+        <div class="section-header">
+          <h3 class="h5 mb-0 fw-bold text-dark"><i class="bi bi-bookmark-star text-primary me-2"></i>Aide-mémoire &
+            Primitives Officielles 2024-2025</h3>
+          <span class="phase-pill purple">Fiche Express</span>
+        </div>
+        <div class="section-body">
+
+          <!-- BARRE DE RECHERCHE DYNAMIQUE -->
+          <div class="row g-3 mb-3">
+            <div class="col-md-6">
+              <div class="input-group">
+                <span class="input-group-text bg-white"><i class="bi bi-search text-muted"></i></span>
+                <input type="text" class="form-control" v-model="searchQuery"
+                  placeholder="Rechercher une fonction (ex: Pos, Effacer, RacineCarré, Arrondi)...">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="d-flex flex-wrap gap-1">
+                <button class="btn btn-sm" :class="filterCategory === 'all' ? 'btn-primary' : 'btn-outline-secondary'"
+                  @click="filterCategory = 'all'">Toutes</button>
+                <button class="btn btn-sm"
+                  :class="filterCategory === 'chaine' ? 'btn-primary' : 'btn-outline-secondary'"
+                  @click="filterCategory = 'chaine'">Chaînes & Caractères</button>
+                <button class="btn btn-sm" :class="filterCategory === 'num' ? 'btn-primary' : 'btn-outline-secondary'"
+                  @click="filterCategory = 'num'">Numériques & Maths</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- TABLEAU FILTRABLE DES FONCTIONS -->
+          <div class="table-responsive">
+            <table class="table table-hover table-bordered align-middle">
+              <thead class="table-dark">
+                <tr>
+                  <th style="width: 25%;">Algorithmique (2024)</th>
+                  <th style="width: 28%;">Équivalent Python 3</th>
+                  <th>Rôle & Remarques</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(fn, idx) in filteredFunctions" :key="idx">
+                  <td>
+                    <span class="fw-bold font-monospace text-primary">{{ fn.algo }}</span>
+                  </td>
+                  <td>
+                    <span class="font-monospace text-dark bg-light px-2 py-1 rounded border">{{ fn.python }}</span>
+                  </td>
+                  <td class="small text-muted">{{ fn.role }}</td>
+                </tr>
+                <tr v-if="filteredFunctions.length === 0">
+                  <td colspan="3" class="text-center text-muted py-3">
+                    Aucune fonction ne correspond à votre recherche "{{ searchQuery }}".
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- CADRE DIDACTIQUE & RECOMMANDATIONS OFFICIELLES -->
+      <section class="section-card">
+        <div class="section-header">
+          <h3 class="h5 mb-0 fw-bold text-dark"><i class="bi bi-info-circle text-primary me-2"></i>Directives &
+            Recommandations Officielles (Baccalauréat)</h3>
+          <span class="phase-pill amber">À retenir</span>
+        </div>
+        <div class="section-body">
+          <div class="row g-4">
+            <div class="col-md-6">
+              <div class="p-3 bg-light rounded border h-100">
+                <h4 class="h6 fw-bold text-dark mb-2"><i class="bi bi-check-circle-fill text-success me-1"></i>En
+                  Algorithmique :</h4>
+                <ul class="small text-muted mb-0 ps-3">
+                  <li>L'indice du 1<sup>er</sup> élément d'une chaîne et d'un tableau est <strong>0</strong>.</li>
+                  <li>Le passage par adresse s'écrit avec le préfixe <strong><code>@</code></strong> devant le nom du
+                    paramètre formel (ex: <code>@T : TabCodes</code>).</li>
+                  <li>Une <strong>fonction</strong> retourne un résultat unique de type simple via
+                    <code>Retourner Résultat</code>.
+                  </li>
+                  <li>Les nouveaux types de tableaux doivent impérativement figurer dans le <strong>TDNT</strong>.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="p-3 bg-light rounded border h-100">
+                <h4 class="h6 fw-bold text-dark mb-2"><i
+                    class="bi bi-exclamation-triangle-fill text-warning me-1"></i>En Programmation Python :</h4>
+                <ul class="small text-muted mb-0 ps-3">
+                  <li>Les tableaux sont obligatoirement implémentés avec
+                    <strong><code>from numpy import array</code></strong>.
+                  </li>
+                  <li>L'affichage d'un tableau doit se faire <strong>élément par élément</strong> (l'instruction
+                    <code>print(T)</code> est proscrite).
+                  </li>
+                  <li><strong>Interdiction formelle</strong> d'utiliser l'instruction <code>break</code> pour forcer
+                    l'arrêt des boucles <code>for</code> ou <code>while</code>.</li>
+                  <li>Interdiction d'utiliser des fonctions ne figurant pas dans la liste officielle des conventions.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer-custom">
+      <div class="container text-center">
+        <div class="row g-3 align-items-center mb-3">
+          <div class="col-md-6 text-md-start">
+            <div class="fw-bold text-white fs-6">Ministère de l'Éducation &bull; Tunisie</div>
+            <div class="small">Direction Générale des Programmes et de la Formation Continue</div>
+          </div>
+          <div class="col-md-6 text-md-end">
+            <span class="badge bg-secondary p-2">Année scolaire : 2024 / 2025 &bull; Bac 2026</span>
+          </div>
+        </div>
+        <hr class="border-secondary my-3">
+        <div class="small text-muted">
+          Support pédagogique conçu pour les sections Sciences Expérimentales, Mathématiques et Sciences Techniques.
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- SCRIPTS LOCAUX -->
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/vue.global.prod.js"></script>
+
+  <script src="assets/apps/index.js"></script>
+
+</body>
+
+</html>
