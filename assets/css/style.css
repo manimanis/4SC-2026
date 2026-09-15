@@ -731,6 +731,72 @@ body {
   gap: 0.75rem;
 }
 
+/* COMPOSANTS COMMUNS : CONSOLE TERMINALE SIMULÉE */
+.terminal-window {
+  background-color: #0f172a;
+  border: 1px solid #334155;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.terminal-header {
+  background-color: #1e293b;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid #334155;
+}
+
+.terminal-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot-red {
+  background-color: #ef4444;
+}
+
+.dot-yellow {
+  background-color: #f59e0b;
+}
+
+.dot-green {
+  background-color: #10b981;
+}
+
+.terminal-body {
+  padding: 1rem;
+  color: #38bdf8;
+  font-size: 0.92rem;
+  white-space: pre-wrap;
+}
+
+/* COMPOSANTS COMMUNS : CARTES DE QUESTIONNEMENT ORAL */
+.oral-card {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: white;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.oral-card:hover {
+  border-color: var(--primary-color);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.oral-answer-box {
+  background: #f8fafc;
+  border-left: 4px solid var(--accent-emerald);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 0.85rem;
+}
+
 @media print {
   .navbar-custom, .copy-btn, .btn-primary-custom, .footer-custom, .floating-menu-wrapper, .phase-nav-footer {
     display: none !important;

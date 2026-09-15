@@ -1,442 +1,429 @@
 /**
  * assets/apps/seance01.js
- * Logique applicative JavaScript pour seance01.html
+ * Logique applicative JavaScript (Vue 3) pour seance01.html
+ * Séance 1 : Types scalaires, fonctions prédéfinies arithmétiques & TDO standard
+ * Conforme aux programmes et conventions officielles 2024-2025
  */
 
 const { createApp } = Vue;
 
-    createApp({
-      data() {
-        return {
-          currentPhase: 1,
-          isMenuOpen: false,
-          phases: [
-            { title: "Mise en situation & Analyse de l'identifiant flacon", shortTitle: "Phase 1 : Mise en situation", duration: "10 min" },
-            { title: "Activité modulaire 1 – Validation textuelle (Valide_Code)", shortTitle: "Phase 2 : Valide_Code", duration: "25 min" },
-            { title: "Activité modulaire 2 – Calcul de clé numérique (Cle_Controle)", shortTitle: "Phase 3 : Cle_Controle", duration: "15 min" },
-            { title: "Formalisation & Appel principal (Labo_Echantillons)", shortTitle: "Phase 4 : Formalisation", duration: "10 min" },
-            { title: "Simulateur d'Automate d'Analyse (Laboratoire)", shortTitle: "Simulateur Automate", duration: "Atelier" },
-            { title: "Auto-évaluation & Acquis", shortTitle: "Auto-évaluation", duration: "Quiz" }
+createApp({
+  data() {
+    return {
+      currentPhase: 1,
+      isMenuOpen: false,
+
+      // Phases d'apprentissage
+      phases: [
+        { title: "Accroche & Réactivation (Situation-problème)", shortTitle: "Phase 1 : Accroche", duration: "10 min" },
+        { title: "Synthèse des correspondances Algo ↔ Python", shortTitle: "Phase 2 : Normes Algo/Python", duration: "15 min" },
+        { title: "Élaboration de l'Algorithme & TDO standard", shortTitle: "Phase 3 : Algo & TDO", duration: "20 min" },
+        { title: "Implémentation sur machine, Débogage & Laboratoire", shortTitle: "Phase 4 : Machine & Débogage", duration: "20 min" },
+        { title: "Bilan & Auto-évaluation (Contrôle oral & Quiz)", shortTitle: "Phase 5 : Bilan & Quiz", duration: "5 min" }
+      ],
+
+      // État des questions orales de la phase 1
+      oralQuestions: [
+        {
+          id: 1,
+          question: "Comment exprimer le quotient et le reste d'une division entière ?",
+          algoAns: "Quotient : Div (ex: 14 Div 3 = 4) | Reste : Mod (ex: 14 Mod 3 = 2)",
+          pyAns: "Quotient : // (ex: 14 // 3 == 4) | Reste : % (ex: 14 % 3 == 2)",
+          isOpen: false
+        },
+        {
+          id: 2,
+          question: "Comment extraire une racine carrée ou générer un entier aléatoire sans réécrire l'algorithme ?",
+          algoAns: "On utilise les fonctions prédéfinies : RacineCarré(x) et Aléa(vi, vf).",
+          pyAns: "On importe depuis la bibliothèque standard : from math import sqrt et from random import randint.",
+          isOpen: false
+        },
+        {
+          id: 3,
+          question: "Quelle est la différence fondamentale entre la division réelle (/) et la division entière (Div / //) ?",
+          algoAns: "a / b produit toujours un Réel (ex: 14 / 3 ≈ 4.666...), alors que a Div b produit un Entier (la part entière du quotient sans virgule).",
+          pyAns: "14 / 3 donne un float (4.666666666666667), alors que 14 // 3 donne un int (4).",
+          isOpen: false
+        }
+      ],
+
+      // État des questions flash de la phase 5 (clôture)
+      flashQuestions: [
+        {
+          expr: "14 Div 3",
+          resAlgo: "4",
+          resPy: "14 // 3 -> 4",
+          type: "Entier",
+          isOpen: false
+        },
+        {
+          expr: "14 Mod 3",
+          resAlgo: "2",
+          resPy: "14 % 3 -> 2",
+          type: "Entier",
+          isOpen: false
+        },
+        {
+          expr: "RacineCarré(49)",
+          resAlgo: "7.0",
+          resPy: "sqrt(49) -> 7.0",
+          type: "Réel",
+          isOpen: false
+        },
+        {
+          expr: "Arrondi(7.6) vs Ent(7.6)",
+          resAlgo: "Arrondi(7.6) = 8 | Ent(7.6) = 7",
+          resPy: "round(7.6) -> 8 | int(7.6) -> 7",
+          type: "Entier",
+          isOpen: false
+        },
+        {
+          expr: "Abs(-15.4)",
+          resAlgo: "15.4",
+          resPy: "abs(-15.4) -> 15.4",
+          type: "Réel",
+          isOpen: false
+        },
+        {
+          expr: "7 Mod 2 = 0",
+          resAlgo: "Faux",
+          resPy: "7 % 2 == 0 -> False",
+          type: "Booléen",
+          isOpen: false
+        }
+      ],
+
+      // Simulateur de laboratoire (Phase 4)
+      simPoint: {
+        x: 3,
+        y: 4
+      },
+      simAnimation: false,
+      copyStatus: 'Copier le script Python',
+
+      // Auto-évaluation / Quiz (Phase 5)
+      quizActiveCount: 10,
+      quizQuestions: [],
+      quizScore: 0,
+      allQuestions: [
+        {
+          question: "En algorithmique selon la norme 2024-2025, quel opérateur calcule le reste de la division entière ?",
+          options: [
+            "Div",
+            "Mod",
+            "%",
+            "Reste()"
           ],
-          testCode: '@CH-94B',
-          allQuestions: [
-            {
-              question: "Selon les conventions algorithmiques officielles 2024-2025, quel est l'indice du premier caractère d'une chaîne Ch ?",
-              options: [
-                "1 (comme dans les anciennes versions)",
-                "0 (l'indexation démarre à 0)",
-                "-1",
-                "Indéfini"
-              ],
-              correct: 1,
-              explanation: "L'indice du premier caractère d'une chaîne de caractères Ch est obligatoirement 0 (notation Ch[i] avec 0 ≤ i < Long(Ch))."
-            },
-            {
-              question: "Que retourne la primitive Pos('-', '@CH-94B') selon les conventions algorithmiques 2024 ?",
-              options: [
-                "3 (L'indice débute à 0 : @ est à 0, C à 1, H à 2, - à 3)",
-                "4 (L'indice débute à 1)",
-                "Vrai",
-                "-1"
-              ],
-              correct: 0,
-              explanation: "Le caractère '@' est à l'indice 0, 'C' à 1, 'H' à 2 et '-' est à l'indice 3."
-            },
-            {
-              question: "Que retourne la primitive Pos(ch1, ch2) si la chaîne ch1 n'est pas présente dans ch2 ?",
-              options: [
-                "0",
-                "Faux",
-                "-1",
-                "Une chaîne vide \"\""
-              ],
-              correct: 2,
-              explanation: "La spécification officielle indique : 'Retourne la première position de la chaîne ch1 dans la chaîne ch2, sinon elle retourne -1'."
-            },
-            {
-              question: "Quelle est la particularité fondamentale de la primitive Sous_chaine(ch, d, f) ?",
-              options: [
-                "Elle inclut obligatoirement le caractère à la position finale f",
-                "Le caractère à la position finale f est exclu (de d à f - 1)",
-                "Elle modifie directement la chaîne ch d'origine en mémoire",
-                "Elle supprime les caractères de d à f"
-              ],
-              correct: 1,
-              explanation: "Sous_chaine(ch, d, f) retourne une portion de chaîne de la position d à la position f (f exclue), ce qui correspond à ch[d:f] en Python."
-            },
-            {
-              question: "Si ch = \"@CH-94B\", quelle est la valeur retournée par Sous_chaine(ch, 4, 6) ?",
-              options: [
-                "\"-94\"",
-                "\"94B\"",
-                "\"4B\"",
-                "\"94\""
-              ],
-              correct: 3,
-              explanation: "L'indice 4 correspond à '9', l'indice 5 à '4', et l'indice 6 ('B') est exclu. Le résultat est donc \"94\"."
-            },
-            {
-              question: "À quoi sert la primitive Estnum(ch) avant d'invoquer Valeur(ch) ?",
-              options: [
-                "À vérifier que la chaîne ne contient que des chiffres pour éviter une erreur d'exécution",
-                "À compter le nombre de chiffres présents dans la chaîne",
-                "À convertir la chaîne en majuscules",
-                "À générer une clé de sécurité aléatoire"
-              ],
-              correct: 0,
-              explanation: "Estnum(ch) retourne Vrai si la chaîne ch est convertible en une valeur numérique et Faux sinon, sécurisant l'appel à Valeur(ch)."
-            },
-            {
-              question: "En Python, comment traduit-on officiellement la primitive Estnum(ch) pour une chaîne de chiffres ?",
-              options: [
-                "isnum(ch)",
-                "ch.isdecimal() (ou ch.isdigit())",
-                "int(ch) == True",
-                "ch.isnumeric_value()"
-              ],
-              correct: 1,
-              explanation: "Selon les conventions d'implémentation 2024, Estnum(ch) pour des entiers positifs se traduit par ch.isdecimal() ou ch.isdigit()."
-            },
-            {
-              question: "Quelle fonction prédéfinie retourne le code ASCII d'un caractère c en pseudo-code ?",
-              options: [
-                "Asc(c)",
-                "Chr(c)",
-                "Ord(c)",
-                "Code(c)"
-              ],
-              correct: 2,
-              explanation: "Ord(c) retourne le code ASCII du caractère c (ex: Ord('A') = 65). Sa réciproque est Chr(d)."
-            },
-            {
-              question: "Que retourne l'expression algorithmique Chr(66) ?",
-              options: [
-                "Le caractère 'B'",
-                "L'entier 66",
-                "La chaîne '66'",
-                "Faux"
-              ],
-              correct: 0,
-              explanation: "Chr(d) retourne le caractère dont le code ASCII est d. Puisque 65 est 'A', 66 est le caractère 'B'."
-            },
-            {
-              question: "Parmi ces instructions Python, laquelle traduit rigoureusement 'Ent(RacineCarré(x))' selon les conventions 2024 ?",
-              options: [
-                "floor(sqrt(x))",
-                "int(sqrt(x)) avec 'from math import sqrt'",
-                "int(math.sqrt(x)) sans import préalable",
-                "x ** 0.5"
-              ],
-              correct: 1,
-              explanation: "Les conventions 2024 imposent l'importation 'from math import sqrt', l'appel direct sqrt(x), et Ent(x) correspond à int(x)."
-            },
-            {
-              question: "Combien de valeurs une 'Fonction' peut-elle retourner selon les conventions pédagogiques 2024 ?",
-              options: [
-                "Un seul résultat de type simple (entier, réel, booléen, caractère, chaîne)",
-                "Plusieurs résultats sous forme de tuple",
-                "Aucun résultat direct (comme une procédure)",
-                "Deux résultats obligatoirement"
-              ],
-              correct: 0,
-              explanation: "Règle officielle : 'Une fonction retourne un seul résultat de type simple (entier, réel, booléen, caractère, chaîne)'."
-            },
-            {
-              question: "Quelle est la syntaxe normalisée pour terminer une fonction et renvoyer son résultat en pseudo-code ?",
-              options: [
-                "Renvoyer Resultat",
-                "Sortie(Resultat)",
-                "Retourner Resultat",
-                "Nom_Fonction ← Resultat"
-              ],
-              correct: 2,
-              explanation: "La syntaxe officielle 2024 est 'Retourner Résultat' (traduit par 'return resultat' en Python)."
-            },
-            {
-              question: "Que produit l'expression algorithmique 'Aléa(10, 99)' ?",
-              options: [
-                "Un réel aléatoire entre 10.0 et 99.0",
-                "Un entier aléatoire de l'intervalle fermé [10, 99]",
-                "Un entier entre 10 inclus et 99 exclu",
-                "Un booléen aléatoire"
-              ],
-              correct: 1,
-              explanation: "Aléa(vi, vf) retourne un entier aléatoire de l'intervalle fermé [vi, vf]. En Python : randint(10, 99) après 'from random import randint'."
-            },
-            {
-              question: "Quelle est la différence entre les primitives Arrondi(x) et Ent(x) pour x = 5.8 ?",
-              options: [
-                "Arrondi(5.8) vaut 6 et Ent(5.8) vaut 5",
-                "Arrondi(5.8) vaut 5 et Ent(5.8) vaut 6",
-                "Les deux retournent toujours 5",
-                "Arrondi retourne un réel et Ent un entier"
-              ],
-              correct: 0,
-              explanation: "Arrondi(x) retourne l'entier le plus proche (6 pour 5.8), alors que Ent(x) extrait la partie entière tronquée (5 pour 5.8)."
-            },
-            {
-              question: "Quel est le rôle de la primitive Convch(x) ?",
-              options: [
-                "Convertir une chaîne en nombre entier",
-                "Calculer la taille d'une chaîne",
-                "Convertir une chaîne en majuscules",
-                "Convertir un nombre x en une chaîne de caractères"
-              ],
-              correct: 3,
-              explanation: "Convch(x) convertit une valeur numérique en chaîne de caractères (équivalent de str(x) en Python)."
-            },
-            {
-              question: "Quel est le symbole officiel d'affectation en algorithmique tunisienne ?",
-              options: [
-                ":=",
-                "← (flèche vers la gauche)",
-                "==",
-                "="
-              ],
-              correct: 1,
-              explanation: "L'affectation s'écrit obligatoirement avec la flèche orientée vers la gauche : Objet ← Expression."
-            },
-            {
-              question: "Quel symbole algorithmique représente l'inégalité ('différent de') dans les conventions 2024 ?",
-              options: [
-                "<>",
-                "!=",
-                "≠",
-                "~="
-              ],
-              correct: 2,
-              explanation: "En pseudo-code tunisien officiel, on écrit le symbole mathématique '≠' (qui sera transcrit par '!=' en Python)."
-            },
-            {
-              question: "Comment s'écrivent les opérateurs logiques dans les algorithmes tunisiens ?",
-              options: [
-                "Non, Et, Ou (avec une majuscule initiale)",
-                "NOT, AND, OR",
-                "!, &&, ||",
-                "non, et, sinon"
-              ],
-              correct: 0,
-              explanation: "Les conventions officielles 2024 stipulent les opérateurs logiques avec majuscule : 'Non', 'Et', 'Ou'."
-            },
-            {
-              question: "Où déclare-t-on les objets internes utilisés exclusivement dans une fonction ?",
-              options: [
-                "Dans le TDOG (Objets Globaux)",
-                "Dans le TDNT (Nouveaux Types)",
-                "Dans le TDOL (Objets Locaux)",
-                "Nulle part, la déclaration locale est facultative"
-              ],
-              correct: 2,
-              explanation: "Le TDOL (Tableau de Déclaration des Objets Locaux) est dédié aux variables internes propres à un sous-programme."
-            },
-            {
-              question: "Quel opérateur permet de concaténer deux chaînes de caractères en algorithmique ?",
-              options: [
-                "&",
-                "+",
-                "Concat()",
-                "||"
-              ],
-              correct: 1,
-              explanation: "Note officielle : 'On utilise l'opérateur + pour concaténer des chaînes et/ou des caractères'."
-            },
-            {
-              question: "Que retourne la primitive Abs(x) pour x = -42.5 ?",
-              options: [
-                "42.5",
-                "-42.5",
-                "42",
-                "Vrai"
-              ],
-              correct: 0,
-              explanation: "Abs(x) retourne la valeur absolue de x. Pour x = -42.5, Abs(-42.5) retourne 42.5."
-            },
-            {
-              question: "Quelle instruction algorithmique affiche des données puis effectue un saut de ligne automatique ?",
-              options: [
-                "Écrire (...)",
-                "Afficher_nl (...)",
-                "Écrire_nl (...)",
-                "Sortie (...)"
-              ],
-              correct: 2,
-              explanation: "Écrire_nl (...) affiche les messages ou variables puis retourne à la ligne, correspondant à print() par défaut en Python."
-            }
+          correct: 1,
+          explanation: "En algorithmique tunisienne, 'Mod' désigne l'opérateur du reste de la division entière, alors que 'Div' désigne le quotient entier."
+        },
+        {
+          question: "Quel est l'équivalent en Python de l'opération algorithmique : r ← a Mod b ?",
+          options: [
+            "r = a mod b",
+            "r = a // b",
+            "r = a % b",
+            "r = a.mod(b)"
           ],
-          questions: []
-        };
-      },
-      created() {
-        this.initQuiz();
-      },
-      computed: {
-        simulationResult() {
-          const raw = this.testCode || '';
-          const ch = raw.toUpperCase();
-          const L = ch.length;
-          const p = ch.indexOf('-');
-
-          const hasMinLength = L >= 6;
-          const startsWithAt = ch.length > 0 && ch[0] === '@';
-          const hasDash = p > 1 && (p + 3 < L);
-
-          let numPart = '';
-          let isNumValid = false;
-          let letter = '';
-          let letterCode = 0;
-          let isLetterValid = false;
-          let numValue = 0;
-          let ecart = 0;
-          let derive = 0;
-          let base = 0;
-          let secu = 42;
-          let key = '';
-
-          if (hasDash) {
-            numPart = ch.substring(p + 1, p + 3);
-            isNumValid = numPart.length === 2 && /^\d+$/.test(numPart);
-            letter = ch.charAt(p + 3);
-            letterCode = letter ? letter.charCodeAt(0) : 0;
-            isLetterValid = letterCode >= 65 && letterCode <= 90; // A-Z
-          }
-
-          const isValid = hasMinLength && startsWithAt && hasDash && isNumValid && isLetterValid;
-
-          if (isValid) {
-            numValue = parseInt(numPart, 10);
-            ecart = Math.abs(numValue - 50);
-            derive = Math.sqrt(ecart);
-            base = Math.round(derive * 10);
-            secu = (numValue * 7) % 90 + 10; // Pseudo-aléatoire stable pour l'affichage
-            key = (base * 100 + secu).toString();
-          }
-
-          return {
-            hasMinLength,
-            startsWithAt,
-            dashPos: p,
-            hasDash,
-            numPart,
-            isNumValid,
-            letter,
-            letterCode,
-            isLetterValid,
-            isValid,
-            numValue,
-            ecart,
-            derive,
-            base,
-            secu,
-            key
-          };
+          correct: 2,
+          explanation: "En Python, l'opérateur modulo est '%' (pour le reste) et l'opérateur de quotient entier est '//'."
         },
-        quizScore() {
-          return this.questions.filter(q => q.showAnswer && q.selected === q.correct).length;
+        {
+          question: "Quelle est la valeur de l'expression algorithmique : 17 Div 5 ?",
+          options: [
+            "3.4",
+            "3",
+            "2",
+            "1"
+          ],
+          correct: 1,
+          explanation: "17 = 5 * 3 + 2. Le quotient entier (Div) est 3, le reste (Mod) est 2."
+        },
+        {
+          question: "Quelle instruction Python est indispensable avant d'utiliser la fonction sqrt(x) ?",
+          options: [
+            "import math.sqrt",
+            "from math import sqrt",
+            "include <math.h>",
+            "load sqrt"
+          ],
+          correct: 1,
+          explanation: "En Python, la fonction racine carrée réside dans le module 'math' et s'importe usuellement par 'from math import sqrt'."
+        },
+        {
+          question: "Que retourne la fonction algorithmique Aléa(-5, 5) ?",
+          options: [
+            "Un nombre réel aléatoire entre -5 et 5",
+            "Un entier aléatoire appartenant à l'intervalle [-5, 5] (bornes incluses)",
+            "Un entier aléatoire entre -5 et 4 (5 exclu)",
+            "Une chaîne de caractères aléatoire"
+          ],
+          correct: 1,
+          explanation: "Aléa(vi, vf) retourne un entier aléatoire dans l'intervalle [vi, vf], bornes vi et vf comprises."
+        },
+        {
+          question: "Quel module Python fournit la fonction randint(a, b) conforme à Aléa(a, b) ?",
+          options: [
+            "math",
+            "random",
+            "numpy",
+            "os"
+          ],
+          correct: 1,
+          explanation: "randint(a, b) provient du module 'random' (from random import randint). Il inclut bien les deux bornes a et b."
+        },
+        {
+          question: "Quelle est la différence entre Arrondi(x) et Ent(x) pour x = 8.75 ?",
+          options: [
+            "Arrondi(8.75) = 8 et Ent(8.75) = 8",
+            "Arrondi(8.75) = 9 et Ent(8.75) = 8",
+            "Arrondi(8.75) = 8.7 et Ent(8.75) = 9",
+            "Arrondi(8.75) = 9 et Ent(8.75) = 9"
+          ],
+          correct: 1,
+          explanation: "Arrondi(x) retourne l'entier le plus proche (ici 9 car 8.75 ≥ 8.5), alors que Ent(x) tronque et retourne la partie entière (8)."
+        },
+        {
+          question: "Quelle est la syntaxe Python pour obtenir la partie entière tronquée d'un réel x ?",
+          options: [
+            "ent(x)",
+            "trunc(x)",
+            "int(x)",
+            "integer(x)"
+          ],
+          correct: 2,
+          explanation: "En Python, la conversion explicite int(x) pour un réel positif ou négatif extrait sa partie entière en tronquant les décimales."
+        },
+        {
+          question: "En algorithmique, où doit-on obligatoirement déclarer les variables d'un algorithme principal ?",
+          options: [
+            "Dans le TDOL (Tableau de Déclaration des Objets Locaux)",
+            "Dans le TDO (Tableau de Déclaration des Objets)",
+            "Au moment de leur première affectation sans tableau",
+            "Dans les commentaires"
+          ],
+          correct: 1,
+          explanation: "Dans un algorithme non modulaire (ou dans le programme principal), les variables sont recensées dans le TDO (Tableau de Déclaration des Objets)."
+        },
+        {
+          question: "Quelle est la nature du typage des variables en langage Python ?",
+          options: [
+            "Typage statique obligatoire (déclaration avant affectation)",
+            "Typage dynamique (le type est automatiquement déduit de la valeur affectée)",
+            "Pas de typage : toutes les variables sont des chaînes",
+            "Typage binaire fixé à la compilation"
+          ],
+          correct: 1,
+          explanation: "En Python, les variables ne sont pas déclarées préalablement : leur type est assigné dynamiquement lors de l'affectation."
+        },
+        {
+          question: "Quel opérateur de comparaison traduit l'égalité algorithmique '=' en Python ?",
+          options: [
+            "=",
+            "==",
+            "===",
+            ":="
+          ],
+          correct: 1,
+          explanation: "En Python, le test d'égalité s'écrit avec un double signe '==' ; le signe '=' simple étant réservé à l'affectation."
+        },
+        {
+          question: "Que vaut l'expression booléenne (18 Mod 2 = 0) en algorithmique ?",
+          options: [
+            "0",
+            "1",
+            "Vrai",
+            "Faux"
+          ],
+          correct: 2,
+          explanation: "18 Mod 2 donne 0. La comparaison 0 = 0 est vérifiée, l'expression retourne la valeur Booléenne 'Vrai'."
+        },
+        {
+          question: "Quel est le résultat de l'exécution de : abs(-12.8) en Python ?",
+          options: [
+            "-12.8",
+            "12",
+            "12.8",
+            "13"
+          ],
+          correct: 2,
+          explanation: "La fonction prédéfinie abs(x) retourne la valeur absolue de x (la distance à zéro), soit 12.8 pour -12.8."
+        },
+        {
+          question: "Que se passe-t-il si un élève écrit 'Round(d)' au lieu de 'round(d)' en Python ?",
+          options: [
+            "Python convertit automatiquement en minuscules sans erreur",
+            "Une erreur d'exécution 'NameError: name 'Round' is not defined' est levée car Python est sensible à la casse",
+            "Le résultat est arrondi à deux décimales au lieu d'une",
+            "Le programme affiche un avertissement sans planter"
+          ],
+          correct: 1,
+          explanation: "Python est strictement sensible à la casse (case-sensitive) : les identificateurs 'round' et 'Round' sont distincts."
+        },
+        {
+          question: "Dans le TDO de l'algorithme DistancePoint, quel est le type de la variable 'est_pair' ?",
+          options: [
+            "Entier",
+            "Réel",
+            "Booléen",
+            "Chaîne de caractères"
+          ],
+          correct: 2,
+          explanation: "'est_pair' stocke le résultat de l'évaluation d'une condition (d_arrondi Mod 2 = 0). C'est donc un Booléen (Vrai ou Faux)."
+        },
+        {
+          question: "Si x = -3 et y = 4, quelle est la distance d = RacineCarré(x * x + y * y) ?",
+          options: [
+            "7.0",
+            "5.0",
+            "1.0",
+            "25.0"
+          ],
+          correct: 1,
+          explanation: "(-3)² + 4² = 9 + 16 = 25. RacineCarré(25) = 5.0 (triplet pythagoricien 3, 4, 5)."
         }
-      },
-      methods: {
-        readPhaseFromUrl() {
-          const hash = (window.location.hash || '').toLowerCase();
-          if (hash.includes('all')) return 'all';
-          const matchHash = hash.match(/\d+/);
-          if (matchHash) {
-            const num = parseInt(matchHash[0], 10);
-            if (num >= 1 && num <= this.phases.length) return num;
-          }
+      ]
+    };
+  },
 
-          try {
-            const params = new URLSearchParams(window.location.search);
-            const qp = params.get('phase');
-            if (qp) {
-              if (qp.toLowerCase() === 'all') return 'all';
-              const num = parseInt(qp, 10);
-              if (num >= 1 && num <= this.phases.length) return num;
-            }
-          } catch (e) {}
+  computed: {
+    // Calculs de la simulation en temps réel
+    simSumSq() {
+      return (this.simPoint.x * this.simPoint.x) + (this.simPoint.y * this.simPoint.y);
+    },
+    simDist() {
+      return Math.sqrt(this.simSumSq);
+    },
+    simDistRounded() {
+      return Math.round(this.simDist);
+    },
+    simIsEven() {
+      return (this.simDistRounded % 2) === 0;
+    },
+    // Coordonnées pour le repère SVG (dimensions 320x320, centre (160, 160), échelle 12px par unité)
+    svgPoint() {
+      const centerX = 160;
+      const centerY = 160;
+      const scale = 13; // 10 unités = 130px
+      return {
+        cx: centerX + (this.simPoint.x * scale),
+        cy: centerY - (this.simPoint.y * scale) // Axe Y inversé en SVG
+      };
+    }
+  },
 
-          return 1;
-        },
-        syncUrl(p) {
-          const hash = p === 'all' ? '#phase-all' : '#phase-' + p;
-          try {
-            if (window.history && window.history.pushState) {
-              window.history.pushState({ phase: p }, '', hash);
-            } else {
-              window.location.hash = hash;
-            }
-          } catch (e) {
-            window.location.hash = hash;
-          }
-        },
-        setPhase(p, updateUrl = true) {
-          this.currentPhase = p;
-          this.isMenuOpen = false;
-          if (updateUrl) {
-            this.syncUrl(p);
-          }
-          window.scrollTo({ top: 220, behavior: 'smooth' });
-          this.$nextTick(() => {
-            if (window.hljs) {
-              hljs.highlightAll();
-            }
-          });
-        },
-        nextPhase() {
-          if (this.currentPhase < this.phases.length) {
-            this.setPhase(this.currentPhase + 1);
-          }
-        },
-        prevPhase() {
-          if (this.currentPhase > 1) {
-            this.setPhase(this.currentPhase - 1);
-          }
-        },
-        toggleViewMode() {
-          const nextMode = this.currentPhase === 'all' ? 1 : 'all';
-          this.setPhase(nextMode);
-        },
-        initQuiz() {
-          // Tirage aléatoire (Fisher-Yates) de 10 questions parmi la banque
-          const pool = this.allQuestions.map(q => ({
-            ...q,
-            selected: null,
-            showAnswer: false
-          }));
-          for (let i = pool.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [pool[i], pool[j]] = [pool[j], pool[i]];
-          }
-          this.questions = pool.slice(0, 10);
-        },
-        selectOption(qIdx, oIdx) {
-          const q = this.questions[qIdx];
-          q.selected = oIdx;
-          q.showAnswer = true;
-        },
-        copyCode(id) {
-          const text = document.getElementById(id).innerText;
-          navigator.clipboard.writeText(text).then(() => {
-            alert('Code copié dans le presse-papier !');
-          });
-        }
-      },
-      mounted() {
-        const initialPhase = this.readPhaseFromUrl();
-        if (initialPhase !== 1) {
-          this.currentPhase = initialPhase;
-        }
+  mounted() {
+    this.initQuiz();
+    this.highlightAll();
+  },
 
-        window.addEventListener('popstate', () => {
-          const p = this.readPhaseFromUrl();
-          this.setPhase(p, false);
-        });
-        window.addEventListener('hashchange', () => {
-          const p = this.readPhaseFromUrl();
-          this.setPhase(p, false);
-        });
+  methods: {
+    setPhase(p) {
+      this.currentPhase = p;
+      this.isMenuOpen = false;
+      this.$nextTick(() => {
+        this.highlightAll();
+        window.scrollTo({ top: 120, behavior: 'smooth' });
+      });
+    },
 
-        if (window.hljs) {
-          hljs.highlightAll();
-        }
+    nextPhase() {
+      if (this.currentPhase < this.phases.length) {
+        this.setPhase(this.currentPhase + 1);
       }
-    }).mount('#app');
+    },
+
+    prevPhase() {
+      if (this.currentPhase > 1) {
+        this.setPhase(this.currentPhase - 1);
+      }
+    },
+
+    toggleViewMode() {
+      const nextMode = this.currentPhase === 'all' ? 1 : 'all';
+      this.setPhase(nextMode);
+    },
+
+    toggleOral(item) {
+      item.isOpen = !item.isOpen;
+    },
+
+    toggleFlash(item) {
+      item.isOpen = !item.isOpen;
+    },
+
+    // Tirage d'un nouveau point aléatoire dans [-10, 10]
+    randomizePoint() {
+      this.simAnimation = true;
+      this.simPoint.x = Math.floor(Math.random() * 21) - 10;
+      this.simPoint.y = Math.floor(Math.random() * 21) - 10;
+      setTimeout(() => {
+        this.simAnimation = false;
+      }, 400);
+    },
+
+    // Copie du code Python dans le presse-papier
+    copyPythonCode() {
+      const code = `from math import sqrt
+from random import randint
+
+# Tirage aléatoire des coordonnées entre -10 et 10
+x = randint(-10, 10)
+y = randint(-10, 10)
+
+# Traitement arithmétique
+d = sqrt(x * x + y * y)
+d_arrondi = round(d)
+est_pair = (d_arrondi % 2 == 0)
+
+# Affichage des résultats
+print("Coordonnées : (", x, ",", y, ")")
+print("Distance réelle :", d)
+print("Distance arrondie :", d_arrondi)
+print("Distance paire ? :", est_pair)`;
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(code).then(() => {
+          this.copyStatus = 'Copié avec succès !';
+          setTimeout(() => {
+            this.copyStatus = 'Copier le script Python';
+          }, 2500);
+        });
+      } else {
+        alert("Code copié dans votre presse-papier !");
+      }
+    },
+
+    // Initialisation et tirage aléatoire du Quiz
+    initQuiz() {
+      // Mélange de la banque de questions (Fisher-Yates)
+      const shuffled = [...this.allQuestions].sort(() => 0.5 - Math.random());
+      this.quizQuestions = shuffled.slice(0, this.quizActiveCount).map(q => ({
+        ...q,
+        selected: null,
+        showAnswer: false
+      }));
+      this.quizScore = 0;
+    },
+
+    selectQuizOption(qIdx, oIdx) {
+      const q = this.quizQuestions[qIdx];
+      if (q.showAnswer) return; // Déjà répondu
+
+      q.selected = oIdx;
+      q.showAnswer = true;
+      if (oIdx === q.correct) {
+        this.quizScore++;
+      }
+    },
+
+    // Déclenchement de la coloration syntaxique Highlight.js
+    highlightAll() {
+      if (window.hljs) {
+        document.querySelectorAll('pre code').forEach((block) => {
+          window.hljs.highlightElement(block);
+        });
+      }
+    }
+  }
+}).mount('#app');

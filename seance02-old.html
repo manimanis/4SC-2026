@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Séance 2 : Type tableau & Procédures - 4e Scientifiques</title>
+
+  <!-- Dépendances locales -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/atom-one-dark.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+  <div id="app">
+    <!-- NAVIGATION -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <i class="bi bi-cpu-fill text-primary"></i>
+          <span>Informatique 4<sup>e</sup> SC</span>
+          <span class="brand-badge">Bac 2026</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navContent">
+          <ul class="navbar-nav ms-auto align-items-lg-center">
+            <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house-door me-1"></i> Accueil</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="seance01.html"><i
+                  class="bi bi-1-circle me-1"></i> Séance 1</a></li>
+            <li class="nav-item"><a class="nav-link active" href="seance02-old.html"><i
+                  class="bi bi-2-circle-fill me-1"></i> Séance 2 (Archive)</a></li>
+            <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+              <button class="btn btn-sm btn-outline-light" onclick="window.print()">
+                <i class="bi bi-printer me-1"></i> Imprimer la fiche
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO BANNER -->
+    <header class="hero-banner">
+      <div class="container">
+        <div class="d-flex align-items-center gap-2 mb-2">
+          <span class="badge bg-primary px-3 py-1">Pensée computationnelle et programmation</span>
+          <span class="badge bg-secondary px-2 py-1">Sections Scientifiques</span>
+        </div>
+        <h1 class="hero-title">Séance 2 : Type tableau & Procédures</h1>
+        <p class="hero-subtitle">
+          Structuration des données avec le TDNT, passage de paramètres par adresse et orchestration modulaire.
+        </p>
+        <div class="objective-box">
+          <div class="d-flex align-items-start gap-2">
+            <i class="bi bi-bullseye fs-4 text-info"></i>
+            <div>
+              <strong>Objectif opérationnel :</strong> Déclarer des structures composites (Tableau) à l'aide du TDNT et
+              orchestrer le traitement complet d'un lot d'échantillons à l'aide de procédures modifiant l'état global
+              des données.
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENU PRINCIPAL -->
+    <main class="container mb-5">
+
+      <!-- MENU FLOTTANT RÉTRACTABLE (EN BAS À DROITE) -->
+      <div class="floating-menu-wrapper">
+        <!-- Panneau déroulant des phases (au-dessus du bouton) -->
+        <nav class="floating-menu-panel" v-show="isMenuOpen">
+          <div class="floating-menu-header">
+            <span><i class="bi bi-compass-fill text-primary me-1"></i> MENU DES PHASES</span>
+            <div class="d-flex align-items-center gap-1">
+              <span class="badge bg-secondary" style="font-size: 0.65rem;">{{ currentPhase === 'all' ? 'TOUTES' :
+                currentPhase + '/' + phases.length }}</span>
+              <button class="floating-menu-close-btn ms-1" @click="isMenuOpen = false" title="Fermer le menu">
+                <i class="bi bi-x-lg"></i>
+              </button>
+            </div>
+          </div>
+
+          <button v-for="(p, idx) in phases" :key="idx" class="floating-menu-item"
+            :class="{ 'active': currentPhase === idx + 1 }" @click="setPhase(idx + 1)" :title="p.title">
+            <span class="floating-badge-num">{{ idx + 1 }}</span>
+            <span class="text-truncate" style="max-width: 140px;">{{ p.shortTitle }}</span>
+            <span class="badge bg-dark bg-opacity-50 text-white-50 ms-auto small" style="font-size: 0.65rem;"
+              v-if="p.duration">{{ p.duration }}</span>
+          </button>
+
+          <hr class="my-1 border-secondary border-opacity-50">
+
+          <!-- Bouton Tout Afficher -->
+          <button class="floating-menu-item" :class="{ 'active': currentPhase === 'all' }" @click="toggleViewMode"
+            title="Afficher toutes les phases ensemble">
+            <span class="floating-badge-num"><i class="bi bi-view-stacked"></i></span>
+            <span>{{ currentPhase === 'all' ? 'Mode pas-à-pas' : 'Tout afficher' }}</span>
+          </button>
+        </nav>
+
+        <!-- Bouton déclencheur flottant en bas à droite -->
+        <button class="floating-menu-trigger" @click="isMenuOpen = !isMenuOpen" title="Changer de phase">
+          <i class="bi bi-compass-fill text-primary fs-5"></i>
+          <span>Phases</span>
+          <span class="phase-chip">{{ currentPhase === 'all' ? 'Toutes' : currentPhase + '/' + phases.length }}</span>
+          <i class="bi" :class="isMenuOpen ? 'bi-chevron-down' : 'bi-chevron-up'"></i>
+        </button>
+      </div>
+
+      <!-- BANDEAU INDICATEUR DE PHASE DANS LE CONTENU -->
+      <div class="d-flex align-items-center justify-content-between p-3 bg-white border rounded shadow-sm mb-4">
+        <div class="d-flex align-items-center gap-3">
+          <span class="badge bg-primary fs-6 px-3 py-2 rounded-pill">
+            <i class="bi bi-layers-fill me-1"></i> Phase {{ currentPhase === 'all' ? 'Toutes' : currentPhase + ' / ' +
+            phases.length }}
+          </span>
+          <div>
+            <div class="text-muted small text-uppercase fw-bold">Phase active :</div>
+            <div class="h5 mb-0 fw-bold text-dark">
+              {{ currentPhase === 'all' ? 'Vue complète (Toutes les phases affichées)' : phases[currentPhase - 1].title
+              }}
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-sm btn-outline-primary" @click="isMenuOpen = !isMenuOpen">
+          <i class="bi bi-list-task me-1"></i> Changer de phase
+        </button>
+      </div>
+
+      <!-- ========================================================
+         PHASE 1 : MISE EN SITUATION & RAPPEL AU LOT D'ÉCHANTILLONS
+         ======================================================== -->
+      <div v-show="currentPhase === 1 || currentPhase === 'all'">
+        <!-- SITUATION MOBILISATRICE - EXTENSION -->
+        <div class="situation-callout">
+          <span class="badge-context"><i class="bi bi-boxes me-1"></i> Situation mobilisatrice &bull; Étape 2</span>
+          <h3 class="h4 text-primary fw-bold mb-2">Traitement d'un lot d'échantillons par l'automate de laboratoire</h3>
+          <p class="mb-2">
+            Dans la séance précédente, nous avons validé un échantillon isolé. En conditions réelles, le laboratoire de
+            recherche reçoit quotidiennement des <strong>lots de <i>N</i> flacons</strong> (5 &le; <i>N</i> &le; 50).
+            L'automate doit :
+          </p>
+          <div class="row g-3 mt-1">
+            <div class="col-md-4">
+              <div class="p-3 bg-white rounded border h-100">
+                <div class="fw-bold text-primary mb-1"><i class="bi bi-1-square me-2"></i>1. Réception & Saisie</div>
+                <p class="small text-muted mb-0">Enregistrer les identifiants bruts des flacons saisis par le technicien
+                  dans un tableau indexé.</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="p-3 bg-white rounded border h-100">
+                <div class="fw-bold text-warning mb-1"><i class="bi bi-2-square me-2"></i>2. Nettoyage préliminaire
+                </div>
+                <p class="small text-muted mb-0">Retirer le préfixe parasite <code>@</code> au début de chaque cellule
+                  avec la primitive <code>Effacer</code>.</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="p-3 bg-white rounded border h-100">
+                <div class="fw-bold text-success mb-1"><i class="bi bi-3-square me-2"></i>3. Rapport d'analyse</div>
+                <p class="small text-muted mb-0">Valider chaque flacon et afficher le relevé complet des mesures et
+                  concentrations chimiques.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PHASE 1 SECTION -->
+        <section class="section-card">
+          <div class="section-header">
+            <h2 class="h5 mb-0 fw-bold text-dark"><i class="bi bi-arrow-repeat text-primary me-2"></i>Phase 1 : Rappel
+              et extension au lot d'échantillons (5 min)</h2>
+            <span class="phase-pill">Pourquoi le tableau ?</span>
+          </div>
+          <div class="section-body">
+            <div class="row align-items-center g-4">
+              <div class="col-lg-7">
+                <p>
+                  Imaginez devoir manipuler 50 flacons avec des variables simples : il faudrait déclarer
+                  <code>code1, code2, ..., code50</code>. Cela rendrait l'écriture des boucles impossible et le code
+                  ingérable.
+                </p>
+                <p>
+                  Pour résoudre ce problème, on recourt à la structure de données <strong>Tableau à une
+                    dimension</strong> :
+                </p>
+                <ul class="text-muted small">
+                  <li><strong>Homogène :</strong> Tous les éléments stockés sont strictement de même type (ex: 50
+                    chaînes ou 50 réels).</li>
+                  <li><strong>Statique :</strong> Sa taille maximale est définie dès la déclaration (50 cases mémoires
+                    allouées).</li>
+                  <li><strong>Indexé :</strong> Chaque cellule est accessible directement en temps constant grâce à son
+                    indice <i>i</i> (0 &le; <i>i</i> &lt; <i>N</i>). En conventions 2024, le premier indice est
+                    <strong>0</strong>.
+                  </li>
+                </ul>
+              </div>
+              <div class="col-lg-5">
+                <div class="p-3 bg-light rounded border text-center">
+                  <div class="text-muted small mb-2 fw-bold">Représentation mémoire du tableau indexé :</div>
+                  <div class="d-flex justify-content-center gap-1 font-monospace">
+                    <div class="border rounded bg-white p-2">
+                      <div class="badge bg-secondary mb-1">T[0]</div>
+                      <div class="small fw-bold text-primary">"@CH-94B"</div>
+                    </div>
+                    <div class="border rounded bg-white p-2">
+                      <div class="badge bg-secondary mb-1">T[1]</div>
+                      <div class="small fw-bold text-primary">"@AC-12D"</div>
+                    </div>
+                    <div class="border rounded bg-white p-2">
+                      <div class="badge bg-secondary mb-1">...</div>
+                      <div class="small text-muted">...</div>
+                    </div>
+                    <div class="border rounded bg-white p-2">
+                      <div class="badge bg-secondary mb-1">T[N-1]</div>
+                      <div class="small fw-bold text-primary">"@BA-78K"</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="alert alert-info mt-3 mb-0 small">
+              <i class="bi bi-info-circle-fill me-1"></i>
+              <strong>Règle d'indexation en Python 3 :</strong> Tout comme les conventions algorithmiques 2024, le
+              premier élément d'un tableau est obligatoirement à l'indice <code>0</code> (soit <code>T[0]</code>), et
+              le dernier élément d'un lot de <i>N</i> flacons est situé à l'indice <code>N - 1</code> (soit
+              <code>T[N - 1]</code>).
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ========================================================
+         PHASE 2 : STRUCTURATION DES DONNEES (TDNT & TDOG)
+         ======================================================== -->
+      <div v-show="currentPhase === 2 || currentPhase === 'all'">
+        <section class="section-card">
+          <div class="section-header">
+            <h2 class="h5 mb-0 fw-bold text-dark"><i class="bi bi-diagram-2 text-primary me-2"></i>Phase 2 :
+              Structuration des données (TDNT & TDOG) (15 min)</h2>
+            <span class="phase-pill emerald">Formalisation des types</span>
+          </div>
+          <div class="section-body">
+            <p>
+              Lorsqu'une structure de tableau est passée entre plusieurs modules ou réutilisée, la convention tunisienne
+              impose la définition d'un <strong>Nouveau Type</strong> dans le <strong>TDNT</strong> (Tableau de
+              Déclaration des Nouveaux Types).
+            </p>
+
+            <div class="row g-4">
+              <!-- TDNT -->
+              <div class="col-lg-6">
+                <div class="p-3 bg-light rounded border h-100">
+                  <h3 class="h6 fw-bold text-primary mb-2"><i class="bi bi-tags me-1"></i>TDNT (Tableau de Déclaration
+                    des Nouveaux Types)</h3>
+                  <table class="convention-table mb-0">
+                    <thead>
+                      <tr>
+                        <th>Type</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><code>TabMesures</code></td>
+                        <td><span class="type-badge">Tableau de 50 réel</span></td>
+                      </tr>
+                      <tr>
+                        <td><code>TabCodes</code></td>
+                        <td><span class="type-badge">Tableau de 50 chaîne</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="small text-muted mt-2">
+                    <i class="bi bi-info-circle text-primary me-1"></i> La dimension <code>50</code> représente la
+                    capacité maximale de flacons pouvant être traités par lot.
+                  </div>
+                </div>
+              </div>
+
+              <!-- TDOG -->
+              <div class="col-lg-6">
+                <div class="p-3 bg-light rounded border h-100">
+                  <h3 class="h6 fw-bold text-primary mb-2"><i class="bi bi-globe me-1"></i>TDOG (Tableau de Déclaration
+                    des Objets Globaux)</h3>
+                  <table class="convention-table mb-0">
+                    <thead>
+                      <tr>
+                        <th>Objet</th>
+                        <th>Type / Nature</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><code>N</code></td>
+                        <td><span class="type-badge">Entier</span> (Nombre d'échantillons reçus)</td>
+                      </tr>
+                      <tr>
+                        <td><code>T_mes</code></td>
+                        <td><span class="type-badge">TabMesures</span></td>
+                      </tr>
+                      <tr>
+                        <td><code>T_cod</code></td>
+                        <td><span class="type-badge">TabCodes</span></td>
+                      </tr>
+                      <tr>
+                        <td><code>Saisir_Lot</code></td>
+                        <td><span class="type-badge proc">Procédure</span></td>
+                      </tr>
+                      <tr>
+                        <td><code>Nettoyer_Codes</code></td>
+                        <td><span class="type-badge proc">Procédure</span></td>
+                      </tr>
+                      <tr>
+                        <td><code>Afficher_Rapport</code></td>
+                        <td><span class="type-badge proc">Procédure</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- IMPLÉMENTATION PYTHON AVEC NUMPY -->
+            <div class="alert alert-warning mt-4 mb-0">
+              <h4 class="h6 fw-bold text-dark"><i class="bi bi-exclamation-triangle-fill text-warning me-2"></i>Règle
+                stricte d'implémentation des tableaux en Python (Conventions 2024-2025) :</h4>
+              <p class="small mb-2">
+                En Python pour les sections scientifiques tunisiennes, les tableaux sont obligatoirement créés avec la
+                bibliothèque <strong><code>numpy</code></strong> (et <em>non</em> pas des listes standards Python) :
+              </p>
+              <div class="code-container my-2">
+                <div class="code-header">
+                  <span class="code-lang-tag"><i class="bi bi-terminal"></i> Déclaration officielle Python avec
+                    numpy</span>
+                  <button class="copy-btn" @click="copyCode('code-numpy')"><i class="bi bi-clipboard"></i>
+                    Copier</button>
+                </div>
+                <pre><code class="language-python" id="code-numpy">from numpy import array
+
+# Déclaration d'un tableau de 50 chaînes initialisées à vide
+T_cod = array([''] * 50, dtype='U20')
+
+# Déclaration d'un tableau de 50 réels initialisés à 0.0
+T_mes = array([float()] * 50)</code></pre>
+              </div>
+            </div>
+
+          </div>
+        </section>
+      </div>
+
+      <!-- ========================================================
+         PHASE 3 : ACTIVITÉ MODULAIRE 3 (PROCÉDURES)
+         ======================================================== -->
+      <div v-show="currentPhase === 3 || currentPhase === 'all'">
+        <section class="section-card">
+          <div class="section-header">
+            <h2 class="h5 mb-0 fw-bold text-dark"><i class="bi bi-gear-wide text-primary me-2"></i>Phase 3 : Activité
+              modulaire 3 – Procédures de saisie et nettoyage (20 min)</h2>
+            <span class="phase-pill amber">Procédures & Effacer</span>
+          </div>
+          <div class="section-body">
+
+            <!-- FOCUS DIDACTIQUE : FONCTION VS PROCEDURE & PASSAGE PAR REFERENCE -->
+            <div class="p-3 bg-light rounded border mb-4">
+              <h3 class="h6 fw-bold text-primary mb-2"><i class="bi bi-mortarboard-fill me-1"></i>Focus Didactique :
+                Fonctions vs Procédures & Passage de paramètres</h3>
+              <div class="row g-3 small text-muted">
+                <div class="col-md-6">
+                  <div class="p-2 bg-white rounded border">
+                    <strong class="text-dark">Fonction :</strong>
+                    <p class="mb-0 mt-1">Calcule et retourne <strong>une seule valeur simple</strong> avec
+                      <code>Retourner</code>. Appelée au sein d'une expression ou d'une affectation (ex:
+                      <code>res &larr; Valide_Code(code)</code>).
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="p-2 bg-white rounded border">
+                    <strong class="text-dark">Procédure :</strong>
+                    <p class="mb-0 mt-1">Exécute une suite d'instructions et peut <strong>modifier plusieurs variables
+                        ou un tableau</strong>. Appelée comme une instruction autonome (ex:
+                      <code>Nettoyer_Codes(T, N)</code>).
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-2 small">
+                <strong>Mode de passage par adresse :</strong>
+                En algorithmique 2024, pour qu'un module modifie directement la variable passée par l'appelant, on
+                ajoute le symbole <strong><code>@</code></strong> devant le nom du paramètre (ex:
+                <code>@T : TabCodes</code>). En Python, les tableaux <code>numpy</code> sont <strong>automatiquement
+                  passés par adresse</strong> !
+              </div>
+            </div>
+
+            <!-- PROCEDURES : SAISIR_LOT & NETTOYER_CODES -->
+            <div class="row g-4">
+              <!-- SAISIR_LOT -->
+              <div class="col-lg-6">
+                <div class="border rounded p-3 bg-white h-100 d-flex flex-column">
+                  <h4 class="h6 fw-bold text-dark"><i class="bi bi-box-arrow-in-right text-primary me-1"></i>1.
+                    Procédure <code>Saisir_Lot</code></h4>
+                  <p class="small text-muted">
+                    Lit le nombre d'échantillons <i>N</i> avec contrôle de saisie (5 &le; <i>N</i> &le; 50), puis
+                    remplit le tableau <i>T</i> avec les identifiants bruts.
+                  </p>
+                  <div class="small fw-bold text-secondary mb-1">TDOL Saisir_Lot :</div>
+                  <table class="convention-table mb-2">
+                    <thead>
+                      <tr>
+                        <th>Objet</th>
+                        <th>Type</th>
+                        <th>Rôle</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><code>i</code></td>
+                        <td><span class="type-badge">Entier</span></td>
+                        <td>Compteur de parcours (0 à N - 1)</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <!-- TABS SAISIR_LOT -->
+                  <ul class="nav nav-tabs mt-auto" id="tabSaisir" role="tablist">
+                    <li class="nav-item">
+                      <button class="nav-link active text-primary" data-bs-toggle="tab" data-bs-target="#algo-saisir">
+                        <i class="bi bi-file-earmark-code me-1"></i> Algorithme
+                      </button>
+                    </li>
+                    <li class="nav-item">
+                      <button class="nav-link text-warning" data-bs-toggle="tab" data-bs-target="#py-saisir">
+                        <i class="bi bi-filetype-py me-1"></i> Code Python 3
+                      </button>
+                    </li>
+                  </ul>
+                  <div class="tab-content p-2 mb-2">
+                    <!-- ALGO TAB -->
+                    <div class="tab-pane fade show active" id="algo-saisir">
+                      <div class="code-container">
+                        <div class="code-header">
+                          <span class="code-lang-tag"><i class="bi bi-code-slash"></i> Algorithme Saisir_Lot</span>
+                          <button class="copy-btn" @click="copyCode('code-saisir')"><i class="bi bi-clipboard"></i>
+                            Copier</button>
+                        </div>
+                        <pre><code class="language-algo" id="code-saisir">Procédure Saisir_Lot (@T : TabCodes, @N : entier)
+DEBUT
+    Répéter
+        Écrire ("Donner la taille du lot (5 à 50) : ")
+        Lire (N)
+    Jusqu'à (N ≥ 5) Et (N ≤ 50)
+    
+    Pour i de 0 à N - 1 Faire
+        Écrire ("Identifiant du flacon N° ", i + 1, " : ")
+        Lire (T[i])
+    Fin Pour
+FIN</code></pre>
+                      </div>
+                    </div>
+
+                    <!-- PYTHON TAB -->
+                    <div class="tab-pane fade" id="py-saisir">
+                      <div class="code-container">
+                        <div class="code-header">
+                          <span class="code-lang-tag"><i class="bi bi-terminal"></i> Implémentation Python Saisir_Lot</span>
+                          <button class="copy-btn" @click="copyCode('code-py-saisir')"><i class="bi bi-clipboard"></i>
+                            Copier</button>
+                        </div>
+                        <pre><code class="language-python" id="code-py-saisir">def Saisir_Lot(T):
+    taille = 0
+    # Contrôle de saisie : boucle Répéter ... Jusqu'à
+    while taille not in range(5, 51):
+        taille = int(input("Donner la taille du lot (5 à 50) : "))
+    
+    # Remplissage itératif du tableau numpy T
+    for i in range(taille):
+        T[i] = input("Identifiant du flacon N° " + str(i + 1) + " : ")
+        
+    return taille</code></pre>
+                      </div>
+                      <div class="small text-muted mt-1 px-1">
+                        <i class="bi bi-info-circle text-primary me-1"></i>
+                        Le tableau <code>T</code> est modifié par adresse en mémoire. L'entier scalaire étant immuable en Python, la taille est retournée.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- NETTOYER_CODES -->
+              <div class="col-lg-6">
+                <div class="border rounded p-3 bg-white h-100 d-flex flex-column">
+                  <h4 class="h6 fw-bold text-dark"><i class="bi bi-eraser text-danger me-1"></i>2. Procédure
+                    <code>Nettoyer_Codes</code>
+                  </h4>
+                  <p class="small text-muted">
+                    Parcourt le tableau. Si une cellule commence par le préfixe parasite <code>@</code>, elle le
+                    supprime avec la primitive officielle <strong><code>Effacer(ch, d, f)</code></strong>.
+                  </p>
+                  <div class="small fw-bold text-secondary mb-1">TDOL Nettoyer_Codes :</div>
+                  <table class="convention-table mb-2">
+                    <thead>
+                      <tr>
+                        <th>Objet</th>
+                        <th>Type</th>
+                        <th>Rôle</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><code>i</code></td>
+                        <td><span class="type-badge">Entier</span></td>
+                        <td>Compteur d'itération (0 à N - 1)</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <!-- TABS NETTOYER_CODES -->
+                  <ul class="nav nav-tabs mt-auto" id="tabNettoyer" role="tablist">
+                    <li class="nav-item">
+                      <button class="nav-link active text-primary" data-bs-toggle="tab" data-bs-target="#algo-nettoyer">
+                        <i class="bi bi-file-earmark-code me-1"></i> Algorithme
+                      </button>
+                    </li>
+                    <li class="nav-item">
+                      <button class="nav-link text-warning" data-bs-toggle="tab" data-bs-target="#py-nettoyer">
+                        <i class="bi bi-filetype-py me-1"></i> Code Python 3
+                      </button>
+                    </li>
+                  </ul>
+                  <div class="tab-content p-2 mb-2">
+                    <!-- ALGO TAB -->
+                    <div class="tab-pane fade show active" id="algo-nettoyer">
+                      <div class="code-container">
+                        <div class="code-header">
+                          <span class="code-lang-tag"><i class="bi bi-code-slash"></i> Algorithme Nettoyer_Codes</span>
+                          <button class="copy-btn" @click="copyCode('code-nettoyer')"><i class="bi bi-clipboard"></i>
+                            Copier</button>
+                        </div>
+                        <pre><code class="language-algo" id="code-nettoyer">Procédure Nettoyer_Codes (@T : TabCodes, N : entier)
+DEBUT
+    Pour i de 0 à N - 1 Faire
+        Si (Long(T[i]) > 0) Et (T[i][0] = "@") Alors
+            // Suppression du 1er caractère (position 0, indice 1 exclu)
+            T[i] ← Effacer(T[i], 0, 1)
+        Fin Si
+    Fin Pour
+FIN</code></pre>
+                      </div>
+                    </div>
+
+                    <!-- PYTHON TAB -->
+                    <div class="tab-pane fade" id="py-nettoyer">
+                      <div class="code-container">
+                        <div class="code-header">
+                          <span class="code-lang-tag"><i class="bi bi-terminal"></i> Implémentation Python Nettoyer_Codes</span>
+                          <button class="copy-btn" @click="copyCode('code-py-nettoyer')"><i class="bi bi-clipboard"></i>
+                            Copier</button>
+                        </div>
+                        <pre><code class="language-python" id="code-py-nettoyer">def Nettoyer_Codes(T, N):
+    for i in range(N):
+        # Vérifier si la cellule commence par le caractère parasite '@'
+        if len(T[i]) > 0 and T[i][0] == "@":
+            # Traduction officielle de Effacer(T[i], 0, 1) :
+            # Découpage par tranche en conservant dès l'indice 1
+            T[i] = T[i][1:]</code></pre>
+                      </div>
+                      <div class="small text-muted mt-1 px-1">
+                        <i class="bi bi-info-circle text-primary me-1"></i>
+                        Le passage par adresse natif de <code>T</code> permet la modification directe des flacons en mémoire.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- REMARQUE SUR EFFACER EN PYTHON -->
+            <div class="p-3 bg-light rounded border mt-3 small">
+              <i class="bi bi-info-circle-fill text-primary me-1"></i>
+              <strong>Traduction Python de la primitive Effacer :</strong>
+              Selon les conventions officielles 2024, <code>Effacer(ch, d, f)</code> correspond en Python à la
+              concaténation des tranches <code>ch = ch[:d] + ch[f:]</code>. Pour supprimer le caractère en position 0,
+              on a <code>T[i] = T[i][:0] + T[i][1:]</code>, soit simplement <code>T[i] = T[i][1:]</code>.
+            </div>
+
+          </div>
+        </section>
+      </div>
+
+      <!-- ========================================================
+         PHASE 4 : SYNTHÈSE ET INTÉGRATION ALGORITHMIQUE
+         ======================================================== -->
+      <div v-show="currentPhase === 4 || currentPhase === 'all'">
+        <section class="section-card">
+          <div class="section-header">
+            <h2 class="h5 mb-0 fw-bold text-dark"><i class="bi bi-cpu text-primary me-2"></i>Phase 4 : Synthèse et
+              intégration algorithmique (20 min)</h2>
+            <span class="phase-pill purple">Programme Principal Orchestrateur</span>
+          </div>
+          <div class="section-body">
+            <p>
+              Le programme principal <code>Controle_Lot_Echantillons</code> coordonne l'enchaînement séquentiel :
+              <span class="badge bg-light text-dark border">Saisir_Lot</span> &rarr;
+              <span class="badge bg-light text-dark border">Nettoyer_Codes</span> &rarr;
+              <span class="badge bg-light text-dark border">Validation & Mesures</span> &rarr;
+              <span class="badge bg-light text-dark border">Afficher_Rapport</span>.
+            </p>
+
+            <!-- 1. PROCEDURE AFFICHER_RAPPORT -->
+            <div class="border rounded p-3 bg-white mb-4">
+              <h3 class="h6 fw-bold text-dark mb-2"><i class="bi bi-card-text text-primary me-1"></i>3. Procédure
+                <code>Afficher_Rapport</code> :
+              </h3>
+              <p class="small text-muted">
+                Parcourt les <i>N</i> flacons du lot, évalue si leur concentration se situe dans l'intervalle conforme
+                [10.0, 50.0] mg/L et affiche le rapport formaté ligne par ligne.
+              </p>
+              <div class="small fw-bold text-secondary mb-1">TDOL Afficher_Rapport :</div>
+              <table class="convention-table mb-2">
+                <thead>
+                  <tr>
+                    <th>Objet</th>
+                    <th>Type</th>
+                    <th>Rôle</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><code>i</code></td>
+                    <td><span class="type-badge">Entier</span></td>
+                    <td>Compteur de parcours (0 à N - 1)</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <!-- TABS AFFICHER_RAPPORT -->
+              <ul class="nav nav-tabs mt-3" id="tabRapport" role="tablist">
+                <li class="nav-item">
+                  <button class="nav-link active text-primary" data-bs-toggle="tab" data-bs-target="#algo-rapport">
+                    <i class="bi bi-file-earmark-code me-1"></i> Algorithme (Conventions 2024)
+                  </button>
+                </li>
+                <li class="nav-item">
+                  <button class="nav-link text-warning" data-bs-toggle="tab" data-bs-target="#py-rapport">
+                    <i class="bi bi-filetype-py me-1"></i> Code Python 3
+                  </button>
+                </li>
+              </ul>
+              <div class="tab-content p-3 mb-2">
+                <!-- ALGO TAB -->
+                <div class="tab-pane fade show active" id="algo-rapport">
+                  <div class="code-container">
+                    <div class="code-header">
+                      <span class="code-lang-tag"><i class="bi bi-code-slash"></i> Algorithme Procédure Afficher_Rapport</span>
+                      <button class="copy-btn" @click="copyCode('code-rapport')"><i class="bi bi-clipboard"></i>
+                        Copier</button>
+                    </div>
+                    <pre><code class="language-algo" id="code-rapport">Procédure Afficher_Rapport (T_cod : TabCodes, T_mes : TabMesures, N : entier)
+DEBUT
+    Écrire_nl ("=== RAPPORT DE CONTRÔLE DU LABORATOIRE ===")
+    Écrire_nl ("Flacon | Concentration (mg/L) | Statut")
+    Écrire_nl ("-----------------------------------------")
+    Pour i de 0 à N - 1 Faire
+        // Un flacon est valide si sa concentration est entre 10 et 50 mg/L
+        Si (T_mes[i] ≥ 10.0) Et (T_mes[i] ≤ 50.0) Alors
+            Écrire_nl (T_cod[i], " | ", T_mes[i], " | CONFORME")
+        Sinon
+            Écrire_nl (T_cod[i], " | ", T_mes[i], " | ANOMALIE DOSAGE")
+        Fin Si
+    Fin Pour
+FIN</code></pre>
+                  </div>
+                </div>
+
+                <!-- PYTHON TAB -->
+                <div class="tab-pane fade" id="py-rapport">
+                  <div class="code-container">
+                    <div class="code-header">
+                      <span class="code-lang-tag"><i class="bi bi-terminal"></i> Implémentation Python Afficher_Rapport</span>
+                      <button class="copy-btn" @click="copyCode('code-py-rapport')"><i class="bi bi-clipboard"></i>
+                        Copier</button>
+                    </div>
+                    <pre><code class="language-python" id="code-py-rapport">def Afficher_Rapport(T_cod, T_mes, N):
+    print("\n=== RAPPORT DE CONTRÔLE DU LABORATOIRE ===")
+    print("Flacon\t| Concentration (mg/L)\t| Statut")
+    print("-----------------------------------------")
+    for i in range(N):
+        if 10.0 <= T_mes[i] <= 50.0:
+            statut = "CONFORME"
+        else:
+            statut = "ANOMALIE DOSAGE"
+        # Affichage élément par élément (recommandation officielle)
+        print(T_cod[i], "\t|", T_mes[i], "\t\t|", statut)</code></pre>
+                  </div>
+                  <div class="small text-muted mt-1 px-1">
+                    <i class="bi bi-info-circle text-primary me-1"></i>
+                    Conformément aux directives officielles d'inspection, l'affichage des tableaux en Python doit obligatoirement être effectué élément par élément à l'aide d'une boucle <code>for</code>.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. SYNTHESE & PROGRAMME PRINCIPAL ORCHESTRATEUR -->
+            <h3 class="h6 fw-bold text-secondary mb-2 mt-4"><i class="bi bi-diagram-3 text-primary me-1"></i>Programme
+              Principal Orchestrateur : <code>Controle_Lot_Echantillons</code></h3>
+            <p class="small text-muted">
+              Le programme principal coordonne l'enchaînement séquentiel complet :
+              <span class="badge bg-light text-dark border">Saisir_Lot</span> &rarr;
+              <span class="badge bg-light text-dark border">Nettoyer_Codes</span> &rarr;
+              <span class="badge bg-light text-dark border">Mesures</span> &rarr;
+              <span class="badge bg-light text-dark border">Afficher_Rapport</span>.
+            </p>
+
+            <ul class="nav nav-tabs mt-3" id="tabOrchestration" role="tablist">
+              <li class="nav-item">
+                <button class="nav-link active text-primary" data-bs-toggle="tab" data-bs-target="#algo-orchestre">
+                  <i class="bi bi-file-earmark-code me-1"></i> Algorithme Orchestrateur
+                </button>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link text-warning" data-bs-toggle="tab" data-bs-target="#py-orchestre">
+                  <i class="bi bi-filetype-py me-1"></i> Programme Python Intégral (exécutable)
+                </button>
+              </li>
+            </ul>
+            <div class="tab-content p-3 mb-4">
+              <!-- ALGO TAB -->
+              <div class="tab-pane fade show active" id="algo-orchestre">
+                <div class="code-container">
+                  <div class="code-header">
+                    <span class="code-lang-tag"><i class="bi bi-code-slash"></i> Algorithme principal : Controle_Lot_Echantillons</span>
+                    <button class="copy-btn" @click="copyCode('code-algo-seance2')"><i class="bi bi-clipboard"></i>
+                      Copier</button>
+                  </div>
+                  <pre><code class="language-algo" id="code-algo-seance2">ALGORITHME Controle_Lot_Echantillons
+DEBUT
+    // 1. Saisie de N et des identifiants bruts
+    Saisir_Lot (T_cod, N)
+    
+    // 2. Nettoyage des préfixes @ parasites
+    Nettoyer_Codes (T_cod, N)
+    
+    // 3. Traitement des mesures et concentrations
+    Pour i de 0 à N - 1 Faire
+        Écrire ("Entrer la concentration mesurée pour le flacon ", T_cod[i], " (mg/L) : ")
+        Lire (T_mes[i])
+    Fin Pour
+    
+    // 4. Affichage du rapport récapitulatif
+    Afficher_Rapport (T_cod, T_mes, N)
+FIN</code></pre>
+                </div>
+              </div>
+
+              <!-- PYTHON TAB -->
+              <div class="tab-pane fade" id="py-orchestre">
+                <div class="code-container">
+                  <div class="code-header">
+                    <span class="code-lang-tag"><i class="bi bi-terminal"></i> Script Python complet (Python 3.12 + numpy)</span>
+                    <button class="copy-btn" @click="copyCode('code-py-full2')"><i class="bi bi-clipboard"></i>
+                      Copier</button>
+                  </div>
+                  <pre><code class="language-python" id="code-py-full2">from numpy import array
+
+# ====================================================
+# 1. Procédure de saisie de la taille et remplissage
+# ====================================================
+def Saisir_Lot(T):
+    taille = 0
+    while taille not in range(5, 51):
+        taille = int(input("Donner la taille du lot (5 à 50) : "))
+    
+    for i in range(taille):
+        T[i] = input("Identifiant du flacon N° " + str(i + 1) + " : ")
+    return taille
+
+# ====================================================
+# 2. Procédure de nettoyage : suppression de '@' initial
+# ====================================================
+def Nettoyer_Codes(T, N):
+    for i in range(N):
+        if len(T[i]) > 0 and T[i][0] == "@":
+            T[i] = T[i][1:]
+
+# ====================================================
+# 3. Procédure d'affichage du rapport élément par élément
+# ====================================================
+def Afficher_Rapport(T_cod, T_mes, N):
+    print("\n=== RAPPORT DE CONTRÔLE DU LABORATOIRE ===")
+    print("Flacon\t| Concentration (mg/L)\t| Statut")
+    print("-----------------------------------------")
+    for i in range(N):
+        if 10.0 <= T_mes[i] <= 50.0:
+            statut = "CONFORME"
+        else:
+            statut = "ANOMALIE DOSAGE"
+        print(T_cod[i], "\t|", T_mes[i], "\t\t|", statut)
+
+# ====================================================
+# PROGRAMME PRINCIPAL
+# ====================================================
+# Déclaration officielle des tableaux numpy
+T_cod = array([''] * 50, dtype='U20')
+T_mes = array([float()] * 50)
+
+# 1. Saisie du lot
+N = Saisir_Lot(T_cod)
+
+# 2. Nettoyage des flacons
+Nettoyer_Codes(T_cod, N)
+
+# 3. Mesures de concentration
+for i in range(N):
+    T_mes[i] = float(input("Concentration mesurée pour " + T_cod[i] + " (mg/L) : "))
+
+# 4. Rapport d'analyse final
+Afficher_Rapport(T_cod, T_mes, N)</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ========================================================
+         PHASE 5 : SIMULATEUR INTERACTIF DU LOT
+         ======================================================== -->
+      <div v-show="currentPhase === 5 || currentPhase === 'all'">
+        <section class="interactive-card">
+          <div class="interactive-title">
+            <i class="bi bi-ui-checks-grid fs-3 text-primary"></i>
+            <span>Simulateur Interactif de Traitement du Lot (Laboratoire)</span>
+          </div>
+          <p class="text-muted small">
+            Visualisez l'état du tableau <code>T_cod</code> en mémoire, déclenchez la procédure
+            <code>Nettoyer_Codes</code> pour supprimer les caractères <code>@</code> résiduels avec
+            <code>Effacer</code>, puis générez le rapport d'analyse en direct.
+          </p>
+
+          <div class="d-flex flex-wrap gap-2 mb-3">
+            <button class="btn btn-outline-primary btn-sm" @click="loadSampleBatch">
+              <i class="bi bi-arrow-clockwise me-1"></i> Charger lot d'exemples
+            </button>
+            <button class="btn btn-warning btn-sm text-dark fw-bold" :disabled="isCleaned" @click="cleanBatch">
+              <i class="bi bi-eraser-fill me-1"></i> Exécuter Nettoyer_Codes (Effacer)
+            </button>
+            <button class="btn btn-success btn-sm" :disabled="!isCleaned" @click="generateReport">
+              <i class="bi bi-clipboard2-data-fill me-1"></i> Générer Rapport d'Analyse
+            </button>
+          </div>
+
+          <!-- TABLEAU EN MEMOIRE -->
+          <div class="table-responsive bg-white rounded border p-2 mb-3">
+            <div class="fw-bold text-dark small mb-2"><i class="bi bi-memory me-1 text-primary"></i>État actuel des
+              cases mémoires du tableau <code>T_cod</code> :</div>
+            <table class="table table-bordered table-sm text-center mb-0 align-middle">
+              <thead class="table-light">
+                <tr>
+                  <th v-for="(item, idx) in batch" :key="idx" class="small">T[{{ idx }}]</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td v-for="(item, idx) in batch" :key="idx" class="font-monospace fw-bold"
+                    :class="item.cleaned ? 'text-success' : 'text-danger'">
+                    {{ item.code }}
+                  </td>
+                </tr>
+                <tr class="small text-muted">
+                  <td v-for="(item, idx) in batch" :key="idx">
+                    {{ item.conc }} mg/L
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- RESULTAT DU RAPPORT -->
+          <div v-if="reportGenerated" class="p-3 bg-light rounded border border-success border-opacity-50">
+            <h4 class="h6 fw-bold text-success mb-2"><i class="bi bi-file-earmark-check-fill me-1"></i>Rapport Officiel
+              Généré par l'Automate :</h4>
+            <div class="table-responsive">
+              <table class="table table-striped table-sm bg-white border mb-0">
+                <thead>
+                  <tr class="table-dark">
+                    <th>Flacon Nettoyé</th>
+                    <th>Concentration (mg/L)</th>
+                    <th>Statut Qualité</th>
+                    <th>Recommandation</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(item, idx) in batch" :key="idx">
+                    <td class="font-monospace fw-bold">{{ item.code }}</td>
+                    <td>{{ item.conc }}</td>
+                    <td>
+                      <span class="badge" :class="item.conc >= 10 && item.conc <= 50 ? 'bg-success' : 'bg-danger'">
+                        {{ item.conc >= 10 && item.conc <= 50 ? 'CONFORME' : 'ANOMALIE DOSAGE' }} </span>
+                    </td>
+                    <td class="small text-muted">
+                      {{ item.conc >= 10 && item.conc <= 50 ? 'Validé pour archivage' : 'À redoser immédiatement' }}
+                        </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ========================================================
+         PHASE 6 : AUTO-ÉVALUATION & QUIZ
+         ======================================================== -->
+      <div v-show="currentPhase === 6 || currentPhase === 'all'">
+        <section class="section-card">
+          <div class="section-header">
+            <h2 class="h5 mb-0 fw-bold text-dark"><i class="bi bi-patch-question text-primary me-2"></i>Auto-évaluation
+              : Maîtrise des Tableaux & Procédures</h2>
+            <div class="d-flex align-items-center gap-2">
+              <span class="phase-pill">Score : {{ quizScore }} / {{ questions.length }}</span>
+              <button class="btn btn-sm btn-outline-primary" @click="initQuiz"
+                title="Tirer 10 nouvelles questions au sort">
+                <i class="bi bi-shuffle me-1"></i> Nouveau tirage (10 questions)
+              </button>
+            </div>
+          </div>
+          <div class="section-body">
+            <div
+              class="alert alert-info py-2 px-3 small mb-3 d-flex align-items-center justify-content-between flex-wrap gap-2">
+              <div>
+                <i class="bi bi-shuffle text-primary me-1"></i>
+                <strong>Tirage aléatoire actif :</strong> 10 questions ont été sélectionnées au sort parmi une banque de
+                {{ allQuestions.length }} questions.
+              </div>
+              <span class="badge bg-primary rounded-pill">10 questions actives</span>
+            </div>
+            <div v-for="(q, idx) in questions" :key="idx" class="quiz-card">
+              <div class="fw-bold text-dark mb-2">Q{{ idx + 1 }}. {{ q.question }}</div>
+              <div class="d-flex flex-column">
+                <div v-for="(opt, oIdx) in q.options" :key="oIdx" class="quiz-option" :class="{
+                  'selected': q.selected === oIdx,
+                  'correct': q.showAnswer && oIdx === q.correct,
+                  'incorrect': q.showAnswer && q.selected === oIdx && oIdx !== q.correct
+                }" @click="selectOption(idx, oIdx)">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span>{{ opt }}</span>
+                    <i v-if="q.showAnswer && oIdx === q.correct" class="bi bi-check-circle-fill text-success"></i>
+                    <i v-if="q.showAnswer && q.selected === oIdx && oIdx !== q.correct"
+                      class="bi bi-x-circle-fill text-danger"></i>
+                  </div>
+                </div>
+              </div>
+              <div v-if="q.showAnswer" class="mt-2 p-2 bg-light rounded small border">
+                <i class="bi bi-lightbulb-fill text-warning me-1"></i><strong>Explication :</strong> {{ q.explanation }}
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- NAVIGATION INTER-PHASES FOOTER PERSISTANT -->
+      <div class="phase-nav-footer" v-if="currentPhase !== 'all'">
+        <button class="btn btn-outline-secondary" :disabled="currentPhase === 1" @click="prevPhase">
+          <i class="bi bi-arrow-left me-1"></i> Phase précédente
+        </button>
+        <div class="text-center">
+          <span class="fw-bold text-primary">Étape {{ currentPhase }} sur {{ phases.length }}</span>
+          <span class="text-muted small d-block">{{ phases[currentPhase - 1].shortTitle }}</span>
+        </div>
+        <button class="btn btn-primary-custom" v-if="currentPhase < phases.length" @click="nextPhase">
+          Phase suivante : {{ phases[currentPhase].shortTitle }} <i class="bi bi-arrow-right ms-1"></i>
+        </button>
+        <button class="btn btn-success" v-else @click="setPhase(1)">
+          <i class="bi bi-arrow-repeat me-1"></i> Recommencer le parcours
+        </button>
+      </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer-custom">
+      <div class="container text-center">
+        <div class="mb-2">
+          <span class="fw-bold text-white">Informatique 4<sup>e</sup> Année Scientifique</span>
+        </div>
+        <div class="small">
+          Proposé & Révisé par Mohamed Anis MANI </div>
+        <div class="mt-3">
+          <a href="seance01.html" class="btn btn-outline-light btn-sm me-2">
+            <i class="bi bi-arrow-left me-1"></i> Revoir Séance 1
+          </a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- SCRIPTS LOCAUX -->
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/vue.global.prod.js"></script>
+  <script src="assets/js/highlight.min.js"></script>
+  <script src="assets/js/python.min.js"></script>
+  <script src="assets/js/algo-highlight.js"></script>
+
+  <script src="assets/apps/seance02-old.js"></script>
+
+</body>
+
+</html>

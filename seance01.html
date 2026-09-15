@@ -4,13 +4,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Séance 1 : Types simples, fonctions prédéfinies et sous-programmes - 4e Scientifiques</title>
+  <title>Séance 1 : Types scalaires, fonctions prédéfinies arithmétiques & TDO - 4e Scientifiques</title>
+
+  <!-- Métadonnées SEO & Description -->
+  <meta name="description"
+    content="Séance 1 d'Informatique pour 4ème Année Scientifique (Bac 2026) : Types scalaires, division euclidienne, fonctions prédéfinies arithmétiques, TDO standard et implémentation Python.">
 
   <!-- Dépendances locales -->
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/css/bootstrap-icons.min.css">
   <link rel="stylesheet" href="assets/css/atom-one-dark.min.css">
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/seance01.css">
 </head>
 
 <body>
@@ -33,8 +38,10 @@
             </li>
             <li class="nav-item"><a class="nav-link active" href="seance01.html"><i
                   class="bi bi-1-circle-fill me-1"></i> Séance 1</a></li>
-            <li class="nav-item"><a class="nav-link" href="seance02.html"><i class="bi bi-2-circle me-1"></i> Séance
-                2</a></li>
+            <li class="nav-item"><a class="nav-link" href="seance02.html"><i
+                  class="bi bi-2-circle me-1"></i> Séance 2</a></li>
+            <li class="nav-item"><a class="nav-link" href="seance02-old.html"><i class="bi bi-archive me-1"></i>
+                Archives</a></li>
             <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
               <button class="btn btn-sm btn-outline-light" onclick="window.print()">
                 <i class="bi bi-printer me-1"></i> Imprimer la fiche
@@ -48,21 +55,36 @@
     <!-- HERO BANNER -->
     <header class="hero-banner">
       <div class="container">
-        <div class="d-flex align-items-center gap-2 mb-2">
-          <span class="badge bg-primary px-3 py-1">Pensée computationnelle et programmation</span>
-          <span class="badge bg-secondary px-2 py-1">Sections Scientifiques</span>
+        <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+          <span class="badge bg-primary px-3 py-1"><i class="bi bi-layers-fill me-1"></i>Axe : Données</span>
+          <span class="badge bg-secondary px-2 py-1">Sections : Sc. Expérimentales, Mathématiques & Sc.
+            Techniques</span>
+          <span class="badge bg-success px-2 py-1"><i class="bi bi-clock-history me-1"></i>Durée : 70 min</span>
+          <span class="badge bg-info text-dark px-2 py-1"><i class="bi bi-bookmark-check-fill me-1"></i>Conventions
+            2024-2025</span>
         </div>
-        <h1 class="hero-title">Séance 1 : Types simples & Fonctions prédéfinies</h1>
+        <h1 class="hero-title">Séance 1 : Types numériques & fonctions arithmétiques</h1>
         <p class="hero-subtitle">
-          Conception modulaire d'algorithmes et implémentation en Python.
+          Résolution algorithmique d'un problème géométrique, manipulation des fonctions prédéfinies et passage direct
+          au code Python.
         </p>
         <div class="objective-box">
-          <div class="d-flex align-items-start gap-2">
-            <i class="bi bi-bullseye fs-4 text-info"></i>
+          <div class="d-flex align-items-start gap-3">
+            <i class="bi bi-bullseye fs-3 text-info mt-1"></i>
             <div>
-              <strong>Objectif opérationnel :</strong> Manipuler les types scalaires et les chaînes de caractères au
-              sein de sous-programmes à valeur de retour (fonctions) pour valider des identifiants et générer des codes
-              de sécurité.
+              <div class="fw-bold text-white text-uppercase letter-spacing-1 small mb-1">Objectifs didactiques de la
+                séance :</div>
+              <ul class="text-light mb-0 ps-3 small">
+                <li>Manipuler avec aisance les types simples (<strong>Entier</strong>, <strong>Réel</strong>,
+                  <strong>Booléen</strong>) et renseigner un <strong>TDO standard</strong>.</li>
+                <li>Maîtriser la division euclidienne (opérateurs <code>Div</code> / <code>Mod</code> en algorithmique
+                  et <code>//</code> / <code>%</code> en Python).</li>
+                <li>Utiliser les fonctions arithmétiques prédéfinies (<code>RacineCarré</code>, <code>Arrondi</code>,
+                  <code>Ent</code>, <code>Abs</code>, <code>Aléa</code>) et leurs équivalents Python (<code>sqrt</code>,
+                  <code>round</code>, <code>int</code>, <code>abs</code>, <code>randint</code>).</li>
+                <li>Traduire un algorithme simple en script Python exécutable sans faute de syntaxe (importations et
+                  sensibilité à la casse).</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -135,295 +157,248 @@
       </div>
 
       <!-- ========================================================
-         PHASE 1 : MISE EN SITUATION
+         PHASE 1 : ACCROCHE ET RÉACTIVATION (10 MIN)
          ======================================================== -->
       <div v-show="currentPhase === 1 || currentPhase === 'all'">
-        <!-- SITUATION MOBILISATRICE -->
-        <div class="situation-callout">
-          <span class="badge-context"><i class="bi bi-flask me-1"></i> Situation mobilisatrice</span>
-          <h3 class="h4 text-primary fw-bold mb-2">Système d'échantillonnage d'un laboratoire de recherche</h3>
-          <p class="mb-2">
-            Au sein d'un laboratoire d'analyses biomédicales, chaque échantillon biologique ou chimique prélevé reçoit
-            un identifiant sécurisé apposé sur son flacon. Avant tout dosage et traitement statistique des
-            concentrations, l'automate doit impérativement <strong>contrôler la syntaxe de l'identifiant</strong> et lui
-            associer une <strong>clé numérique de contrôle</strong>.
-          </p>
-          <div class="row g-3 mt-1">
-            <div class="col-md-6">
-              <div class="p-3 bg-white rounded border">
-                <div class="fw-bold text-dark mb-1"><i class="bi bi-upc-scan text-primary me-2"></i>Format officiel du
-                  code flacon :</div>
-                <div
-                  class="fs-4 text-center text-primary font-monospace my-2 bg-light p-2 rounded border border-primary border-opacity-25">
-                  @CH-94B
-                </div>
-                <ul class="small text-muted mb-0 ps-3">
-                  <li>Commence obligatoirement par le préfixe <code>@</code></li>
-                  <li>Comporte un nom de réactif (ex : <code>CH</code> pour Chlorure)</li>
-                  <li>Contient un tiret de séparation <code>-</code></li>
-                  <li>Suivi d'un nombre à deux chiffres (ex : <code>94</code>)</li>
-                  <li>Se termine par une lettre majuscule de contrôle (ex : <code>B</code>)</li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="p-3 bg-white rounded border h-100 d-flex flex-column justify-content-between">
-                <div>
-                  <div class="fw-bold text-dark mb-1"><i class="bi bi-shield-check text-success me-2"></i>Enjeu
-                    informatique :</div>
-                  <p class="small text-muted mb-2">
-                    Éviter la duplication de code et fiabiliser le système grâce à la <strong>modularité</strong> :
-                  </p>
-                  <div class="d-flex flex-column gap-1 small">
-                    <span class="badge bg-light text-dark text-start border"><i
-                        class="bi bi-gear text-primary me-1"></i> Module 1 : <code>Valide_Code(ch)</code> (Validation
-                      textuelle)</span>
-                    <span class="badge bg-light text-dark text-start border"><i
-                        class="bi bi-shield-lock text-success me-1"></i> Module 2 : <code>Cle_Controle(ch_num)</code>
-                      (Génération numérique)</span>
-                  </div>
-                </div>
-                <div class="alert alert-info py-1 px-2 mb-0 small mt-2">
-                  <i class="bi bi-info-circle me-1"></i> Durée estimée : 60 min (4 phases interactives)
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- PHASE 1 SECTION -->
         <section class="section-card">
           <div class="section-header">
-            <h2 class="h5 mb-0 fw-bold text-dark"><i class="bi bi-stopwatch text-primary me-2"></i>Phase 1 : Mise en
-              situation (10 min)</h2>
-            <span class="phase-pill">Analyse du problème</span>
-          </div>
-          <div class="section-body">
-            <p>
-              Examinons les contraintes formelles appliquées à une chaîne <code>ch</code> représentant l'identifiant du
-              flacon :
-            </p>
-            <div class="table-responsive">
-              <table class="table table-bordered table-sm align-middle">
-                <thead class="table-light">
-                  <tr>
-                    <th>Composant</th>
-                    <th>Spécification</th>
-                    <th>Exemple valide</th>
-                    <th>Contre-exemples invalides</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><strong>Symbole de début</strong></td>
-                    <td>Premier caractère égal à <code>"@"</code></td>
-                    <td><code><mark>@</mark>CH-94B</code></td>
-                    <td><span class="text-danger">CH-94B</span> (manque l'@)</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Séparateur</strong></td>
-                    <td>Présence du caractère tiret <code>"-"</code> après le préfixe</td>
-                    <td><code>@CH<mark>-</mark>94B</code></td>
-                    <td><span class="text-danger">@CH_94B</span>, <span class="text-danger">@CH94B</span></td>
-                  </tr>
-                  <tr>
-                    <td><strong>Partie numérique</strong></td>
-                    <td>Exactement 2 caractères décimaux <code>[0-9]</code> après le tiret</td>
-                    <td><code>@CH-<mark>94</mark>B</code></td>
-                    <td><span class="text-danger">@CH-9B</span> (1 seul chiffre), <span
-                        class="text-danger">@CH-945B</span> (3 chiffres)</td>
-                  </tr>
-                  <tr>
-                    <td><strong>Lettre de contrôle</strong></td>
-                    <td>Dernier caractère alphabétique majuscule <code>[A-Z]</code></td>
-                    <td><code>@CH-94<mark>B</mark></code></td>
-                    <td><span class="text-danger">@CH-94b</span> (minuscule), <span class="text-danger">@CH-948</span>
-                      (chiffre)</td>
-                  </tr>
-                </tbody>
-              </table>
+            <div class="d-flex align-items-center gap-2">
+              <span class="badge bg-primary rounded-pill px-2 py-1">Étape 1</span>
+              <h2 class="h5 mb-0 fw-bold text-dark">Accroche et réactivation didactique</h2>
             </div>
+            <span class="phase-pill emerald"><i class="bi bi-clock me-1"></i>10 minutes</span>
+          </div>
+
+          <div class="section-body">
+            <!-- SITUATION-PROBLÈME OFFICIELLE -->
+            <div class="p-4 rounded border-start border-4 border-primary bg-light mb-4">
+              <div class="d-flex align-items-center gap-2 text-primary fw-bold text-uppercase small mb-2">
+                <i class="bi bi-lightbulb-fill"></i> Situation-problème au tableau
+              </div>
+              <blockquote class="fs-5 text-dark fw-semibold mb-2 fst-italic">
+                « Calculer la distance euclidienne entre l'origine (0,0) et un point (X, Y) généré aléatoirement entre
+                -10 et 10, puis déterminer si son arrondi entier est un nombre pair. »
+              </blockquote>
+              <div class="small text-muted">
+                Cette situation concrète permet de mobiliser les coordonnées cartésiennes, la génération aléatoire, le
+                calcul de puissances, la racine carrée, l'arrondi et le test de divisibilité par 2.
+              </div>
+            </div>
+
+            <!-- SCHÉMA CONCEPTUEL -->
+            <div class="row g-4 align-items-center mb-4">
+              <div class="col-md-6">
+                <div class="p-3 bg-white border rounded shadow-sm">
+                  <h6 class="fw-bold text-primary mb-3"><i class="bi bi-diagram-3-fill me-2"></i>Décomposition de la
+                    résolution :</h6>
+                  <ul class="list-unstyled mb-0">
+                    <li class="d-flex align-items-start gap-2 mb-2 pb-2 border-bottom">
+                      <span class="badge bg-info text-dark rounded-pill">1</span>
+                      <div>
+                        <strong>Génération aléatoire :</strong> <i>X</i> &in; [-10, 10] et <i>Y</i> &in; [-10, 10].
+                      </div>
+                    </li>
+                    <li class="d-flex align-items-start gap-2 mb-2 pb-2 border-bottom">
+                      <span class="badge bg-info text-dark rounded-pill">2</span>
+                      <div>
+                        <strong>Distance euclidienne :</strong> Formule mathématique <i>d</i> = &radic;(<i>X</i><sup>2</sup> + <i>Y</i><sup>2</sup>).
+                      </div>
+                    </li>
+                    <li class="d-flex align-items-start gap-2 mb-2 pb-2 border-bottom">
+                      <span class="badge bg-info text-dark rounded-pill">3</span>
+                      <div>
+                        <strong>Arrondi entier :</strong> Rapprochement à l'entier le plus proche (<code>d_arrondi</code>).
+                      </div>
+                    </li>
+                    <li class="d-flex align-items-start gap-2">
+                      <span class="badge bg-info text-dark rounded-pill">4</span>
+                      <div>
+                        <strong>Test de parité :</strong> Vérification si <code>d_arrondi Mod 2 = 0</code>.
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="p-3 bg-dark text-white rounded shadow-sm text-center">
+                  <div class="text-uppercase small text-white-50 mb-2">Formule Mathématique</div>
+                  <div class="fs-4 fw-bold text-info mb-2 font-monospace">
+                    <i>d</i> = &radic;(<i>x</i><sup>2</sup> + <i>y</i><sup>2</sup>)
+                  </div>
+                  <div class="small text-white-50 font-monospace">
+                    <code>est_pair</code> &hArr; (<code>Arrondi</code>(<i>d</i>) Mod 2 = 0)
+                  </div>
+                  <div class="mt-3">
+                    <span class="badge bg-primary px-3 py-1"><i class="bi bi-shield-check me-1"></i>Modèle Pythagoricien
+                      dans le plan cartésien (&reals;<sup>2</sup>)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- QUESTIONS ORALES DE RÉACTIVATION -->
+            <h5 class="fw-bold text-dark mt-4 mb-3">
+              <i class="bi bi-question-circle-fill text-primary me-2"></i>Questions orales d'accroche (cliquez pour
+              afficher la réponse didactique) :
+            </h5>
+
+            <div class="row g-3">
+              <div v-for="q in oralQuestions" :key="q.id" class="col-12">
+                <div class="oral-card p-3" @click="toggleOral(q)">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="fw-bold text-dark"><i class="bi bi-chat-left-dots text-primary me-2"></i>{{ q.question
+                      }}</span>
+                    <i class="bi" :class="q.isOpen ? 'bi-chevron-up text-primary' : 'bi-chevron-down text-muted'"></i>
+                  </div>
+                  <div v-if="q.isOpen" class="oral-answer-box mt-3">
+                    <div class="row g-2">
+                      <div class="col-md-6">
+                        <span class="badge bg-primary mb-1">En Algorithmique :</span>
+                        <div class="small text-dark font-monospace">{{ q.algoAns }}</div>
+                      </div>
+                      <div class="col-md-6">
+                        <span class="badge bg-warning text-dark mb-1">En Python 3 :</span>
+                        <div class="small text-dark font-monospace">{{ q.pyAns }}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </section>
       </div>
 
       <!-- ========================================================
-         PHASE 2 : ACTIVITÉ MODULAIRE 1 (VALIDATION TEXTUELLE)
+         PHASE 2 : SYNTHÈSE DES CORRESPONDANCES ALGO <-> PYTHON (15 MIN)
          ======================================================== -->
       <div v-show="currentPhase === 2 || currentPhase === 'all'">
         <section class="section-card">
           <div class="section-header">
-            <h2 class="h5 mb-0 fw-bold text-dark"><i class="bi bi-puzzle text-primary me-2"></i>Phase 2 : Activité
-              modulaire 1 – Validation textuelle (25 min)</h2>
-            <span class="phase-pill emerald">Module : Valide_Code</span>
+            <div class="d-flex align-items-center gap-2">
+              <span class="badge bg-primary rounded-pill px-2 py-1">Étape 2</span>
+              <h2 class="h5 mb-0 fw-bold text-dark">Synthèse des correspondances normatives : Algorithmique ↔ Python
+              </h2>
+            </div>
+            <span class="phase-pill emerald"><i class="bi bi-clock me-1"></i>15 minutes</span>
           </div>
+
           <div class="section-body">
-            <p>
-              Pour résoudre ce problème de manière modulaire, nous concevons une fonction <code>Valide_Code</code> qui
-              reçoit la chaîne à tester et retourne un booléen (<code>Vrai</code> ou <code>Faux</code>).
+            <p class="text-muted mb-3">
+              Présentation au tableau des équivalences normatives officielles issues des conventions 2024-2025 de
+              l'Inspection Générale :
             </p>
 
-            <!-- TABLEAU DES FONCTIONS PREDEFINIES SUR LES CHAINES -->
-            <h3 class="h6 fw-bold text-secondary mb-2"><i class="bi bi-tools text-primary me-1"></i>Primitives
-              officielles exploitées (Conventions 2024-2025) :</h3>
+            <!-- TABLEAU COMPARATIF OFFICIEL -->
             <div class="table-responsive mb-4">
-              <table class="table table-hover table-sm border align-middle">
+              <table class="table table-hover align-middle border shadow-sm">
                 <thead class="table-dark">
                   <tr>
-                    <th>Fonction en Algorithmique</th>
-                    <th>Rôle & Comportement</th>
-                    <th>Équivalent en Python</th>
+                    <th scope="col" style="width: 25%;">Notion / Opération</th>
+                    <th scope="col" style="width: 35%;">Algorithmique (Norme Officielle)</th>
+                    <th scope="col" style="width: 40%;">Python (Conventions 2024-2025)</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td><code>Majus (ch)</code></td>
-                    <td>Convertit la chaîne <code>ch</code> en majuscules</td>
-                    <td><code>ch.upper()</code></td>
+                    <td><strong>Entrée / Sortie</strong></td>
+                    <td><code>Lire(x)</code><br><code>Écrire(x)</code></td>
+                    <td><code>x = int(input())</code> / <code>x = float(input())</code><br><code>print(x)</code></td>
                   </tr>
                   <tr>
-                    <td><code>Long (ch)</code></td>
-                    <td>Retourne le nombre de caractères de <code>ch</code></td>
-                    <td><code>len(ch)</code></td>
+                    <td><strong>Division entière & Reste</strong></td>
+                    <td><code>q ← a Div b</code><br><code>r ← a Mod b</code></td>
+                    <td><code>q = a // b</code><br><code>r = a % b</code></td>
                   </tr>
                   <tr>
-                    <td><code>Pos (ch1, ch2)</code></td>
-                    <td>Retourne la 1<sup>ère</sup> position de <code>ch1</code> dans <code>ch2</code>, ou
-                      <code>-1</code>
-                    </td>
-                    <td><code>ch2.find(ch1)</code></td>
+                    <td><strong>Racine carrée</strong></td>
+                    <td><code>RacineCarré(x)</code></td>
+                    <td><code>sqrt(x)</code> <span class="badge bg-warning text-dark small ms-1">via from math import
+                        sqrt</span></td>
                   </tr>
                   <tr>
-                    <td><code>Sous_chaine (ch, d, f)</code></td>
-                    <td>Extrait la sous-chaîne de l'indice <code>d</code> à <code>f</code> (<em>f exclu</em>, indices à
-                      partir de 0)</td>
-                    <td><code>ch[d:f]</code></td>
+                    <td><strong>Entier aléatoire</strong></td>
+                    <td><code>Aléa(vi, vf)</code></td>
+                    <td><code>randint(vi, vf)</code> <span class="badge bg-warning text-dark small ms-1">via from random
+                        import randint</span></td>
                   </tr>
                   <tr>
-                    <td><code>Estnum (ch)</code></td>
-                    <td>Retourne <code>Vrai</code> si la chaîne est convertible en valeur numérique positive</td>
-                    <td><code>ch.isdecimal()</code></td>
+                    <td><strong>Arrondi / Partie entière</strong></td>
+                    <td><code>Arrondi(x)</code><br><code>Ent(x)</code></td>
+                    <td><code>round(x)</code><br><code>int(x)</code></td>
                   </tr>
                   <tr>
-                    <td><code>Ord (c)</code> / <code>Chr (d)</code></td>
-                    <td>Retourne le code ASCII de <code>c</code> / retourne le caractère du code ASCII <code>d</code>
-                    </td>
-                    <td><code>ord(c)</code> / <code>chr(d)</code></td>
+                    <td><strong>Valeur absolue</strong></td>
+                    <td><code>Abs(x)</code></td>
+                    <td><code>abs(x)</code></td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
-            <!-- TDOL DE VALIDE_CODE -->
-            <h3 class="h6 fw-bold text-secondary mb-2"><i class="bi bi-table text-primary me-1"></i>Tableau de
-              Déclaration des Objets Locaux (TDOL) :</h3>
-            <table class="convention-table">
-              <thead>
-                <tr>
-                  <th style="width: 25%;">Objet</th>
-                  <th style="width: 35%;">Type / Nature</th>
-                  <th>Rôle / Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><code>p</code></td>
-                  <td><span class="type-badge">Entier</span></td>
-                  <td>Position du tiret <code>"-"</code> dans la chaîne</td>
-                </tr>
-                <tr>
-                  <td><code>L</code></td>
-                  <td><span class="type-badge">Entier</span></td>
-                  <td>Longueur totale de la chaîne</td>
-                </tr>
-                <tr>
-                  <td><code>ch_num</code></td>
-                  <td><span class="type-badge">Chaîne</span></td>
-                  <td>Sous-chaîne numérique à deux chiffres</td>
-                </tr>
-                <tr>
-                  <td><code>lettre</code></td>
-                  <td><span class="type-badge">Caractère</span></td>
-                  <td>Lettre finale de contrôle</td>
-                </tr>
-                <tr>
-                  <td><code>valide</code></td>
-                  <td><span class="type-badge">Booléen</span></td>
-                  <td>Indicateur de validité de l'identifiant</td>
-                </tr>
-              </tbody>
-            </table>
+            <!-- CARTE DU RAPPEL CLÉ FONDAMENTAL -->
+            <div
+              class="alert alert-warning border-start border-4 border-warning d-flex align-items-start gap-3 p-3 mb-4">
+              <i class="bi bi-exclamation-triangle-fill fs-3 text-warning"></i>
+              <div>
+                <h6 class="fw-bold mb-1 text-dark">Rappel clé fondamental (Différence conceptuelle majeure) :</h6>
+                <p class="mb-0 small text-dark">
+                  Toute variable manipulée en <strong>algorithmique</strong> doit impérativement être recensée et typée
+                  dans le <strong>T.D.O.</strong> (Tableau de Déclaration des Objets).<br>
+                  À l'inverse, en <strong>Python</strong>, les variables ne sont pas déclarées au préalable : c'est
+                  l'<strong>affectation dynamique</strong> qui définit automatiquement leur type en mémoire selon la
+                  valeur reçue.
+                </p>
+              </div>
+            </div>
 
-            <!-- ALGORITHME & PYTHON TABS -->
-            <ul class="nav nav-tabs mt-3" id="tabCode1" role="tablist">
-              <li class="nav-item">
-                <button class="nav-link active text-primary" data-bs-toggle="tab" data-bs-target="#algo-valide">
-                  <i class="bi bi-file-earmark-code me-1"></i> Algorithme (Conventions 2024)
-                </button>
-              </li>
-              <li class="nav-item">
-                <button class="nav-link text-warning" data-bs-toggle="tab" data-bs-target="#py-valide">
-                  <i class="bi bi-filetype-py me-1"></i> Code Python 3
-                </button>
-              </li>
-            </ul>
-            <div class="tab-content p-3 mb-4">
-              <!-- ALGO TAB -->
-              <div class="tab-pane fade show active" id="algo-valide">
-                <div class="code-container">
-                  <div class="code-header">
-                    <span class="code-lang-tag"><i class="bi bi-code-slash"></i> Algorithme fonction Valide_Code</span>
-                    <button class="copy-btn" @click="copyCode('code-algo-1')"><i class="bi bi-clipboard"></i>
-                      Copier</button>
+            <!-- ZOOM SUR LES FONCTIONS PRÉDÉFINIES -->
+            <h5 class="fw-bold text-dark mb-3"><i class="bi bi-box-seam text-primary me-2"></i>Détails et subtilités
+              d'usage :</h5>
+
+            <div class="row g-3">
+              <div class="col-md-4">
+                <div class="card h-100 border p-3">
+                  <div class="fw-bold text-primary mb-1"><i class="bi bi-dice-5 me-1"></i>Aléa(vi, vf) vs randint</div>
+                  <p class="small text-muted mb-2">
+                    L'intervalle est <strong>fermé</strong> : les deux bornes <code>vi</code> et <code>vf</code> font
+                    partie intégrante des valeurs possibles.
+                  </p>
+                  <div class="p-2 bg-light font-monospace small rounded">
+                    # -10 et 10 peuvent être tirés :<br>
+                    x = randint(-10, 10)
                   </div>
-                  <pre><code class="language-algo" id="code-algo-1">Fonction Valide_Code (ch : chaîne) : booléen
-DEBUT
-    ch ← Majus(ch)
-    valide ← Faux
-    p ← Pos("-", ch)
-    L ← Long(ch)
-    
-    // Le code doit avoir au moins 6 caractères, commencer par @
-    // et avoir le tiret après le préfixe
-    Si (L ≥ 6) Et (ch[0] = "@") Et (p > 1) Et (p + 3 < L) Alors
-        ch_num ← Sous_chaine(ch, p + 1, p + 3)
-        lettre ← ch[p + 3]
-        
-        // Vérification de la partie numérique et de la lettre finale majuscule
-        Si (Long(ch_num) = 2) Et Estnum(ch_num) Et (Ord(lettre) ≥ Ord("A")) Et (Ord(lettre) ≤ Ord("Z")) Alors
-            valide ← Vrai
-        FinSi
-    FinSi
-    
-    Retourner valide
-FIN</code></pre>
                 </div>
               </div>
 
-              <!-- PYTHON TAB -->
-              <div class="tab-pane fade" id="py-valide">
-                <div class="code-container">
-                  <div class="code-header">
-                    <span class="code-lang-tag"><i class="bi bi-terminal"></i> Implémentation Python Valide_Code</span>
-                    <button class="copy-btn" @click="copyCode('code-py-1')"><i class="bi bi-clipboard"></i>
-                      Copier</button>
+              <div class="col-md-4">
+                <div class="card h-100 border p-3">
+                  <div class="fw-bold text-primary mb-1"><i class="bi bi-arrows-collapse me-1"></i>Arrondi(x) vs Ent(x)
                   </div>
-                  <pre><code class="language-python" id="code-py-1">def Valide_Code(ch):
-    ch = ch.upper()
-    valide = False
-    p = ch.find("-")
-    L = len(ch)
-    
-    # Vérification structurelle : préfixe, tiret et positionnement
-    if L >= 6 and ch[0] == "@" and p > 1 and p + 3 < L:
-        ch_num = ch[p + 1 : p + 3]
-        lettre = ch[p + 3]
-        
-        # Validation des deux chiffres et du caractère de contrôle [A-Z]
-        if len(ch_num) == 2 and ch_num.isdecimal() and (ord("A") <= ord(lettre) <= ord("Z")):
-            valide = True
-            
-    return valide</code></pre>
+                  <p class="small text-muted mb-2">
+                    <code>Arrondi(x)</code> cherche l'entier le plus proche, alors que <code>Ent(x)</code> tronque la
+                    partie décimale.
+                  </p>
+                  <div class="p-2 bg-light font-monospace small rounded">
+                    Arrondi(4.6) = 5 &nbsp;|&nbsp; round(4.6) = 5<br>
+                    Ent(4.6) = 4 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp; int(4.6) = 4
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="card h-100 border p-3">
+                  <div class="fw-bold text-primary mb-1"><i class="bi bi-percent me-1"></i>Div / Mod vs // / %</div>
+                  <p class="small text-muted mb-2">
+                    La division euclidienne dans les entiers relie dividende, diviseur, quotient et reste :
+                    <code>a = b * q + r</code>.
+                  </p>
+                  <div class="p-2 bg-light font-monospace small rounded">
+                    14 Div 3 = 4 &nbsp;|&nbsp; 14 // 3 = 4<br>
+                    14 Mod 3 = 2 &nbsp;|&nbsp; 14 % 3 = 2
+                  </div>
                 </div>
               </div>
             </div>
@@ -433,194 +408,95 @@ FIN</code></pre>
       </div>
 
       <!-- ========================================================
-         PHASE 3 : ACTIVITÉ MODULAIRE 2 (CLÉ NUMÉRIQUE)
+         PHASE 3 : ÉLABORATION DE L'ALGORITHME ET TDO (20 MIN)
          ======================================================== -->
       <div v-show="currentPhase === 3 || currentPhase === 'all'">
         <section class="section-card">
           <div class="section-header">
-            <h2 class="h5 mb-0 fw-bold text-dark"><i class="bi bi-calculator text-primary me-2"></i>Phase 3 : Activité
-              modulaire 2 – Calcul de clé numérique (15 min)</h2>
-            <span class="phase-pill amber">Module : Cle_Controle</span>
+            <div class="d-flex align-items-center gap-2">
+              <span class="badge bg-primary rounded-pill px-2 py-1">Étape 3</span>
+              <h2 class="h5 mb-0 fw-bold text-dark">Élaboration de l'Algorithme et du T.D.O. Standard</h2>
+            </div>
+            <span class="phase-pill emerald"><i class="bi bi-clock me-1"></i>20 minutes</span>
           </div>
+
           <div class="section-body">
-            <p>
-              Une fois le code validé, l'automate de laboratoire génère une <strong>clé de contrôle numérique</strong> à
-              partir de la valeur entière des deux chiffres <code>ch_num</code>.
+            <p class="text-muted mb-3">
+              Construction collective au tableau : écriture formelle respectant la casse, l'indentation et la
+              nomenclature conventionnelle.
             </p>
 
-            <!-- TABLEAU DES FONCTIONS NUMERIQUES -->
-            <h3 class="h6 fw-bold text-secondary mb-2"><i class="bi bi-tools text-primary me-1"></i>Primitives
-              numériques officielles (Conventions 2024-2025) :</h3>
-            <div class="table-responsive mb-4">
-              <table class="table table-hover table-sm border align-middle">
-                <thead class="table-dark">
-                  <tr>
-                    <th>Fonction en Algorithmique</th>
-                    <th>Rôle & Comportement</th>
-                    <th>Équivalent en Python</th>
-                    <th>Bibliothèque requise</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><code>Valeur (ch)</code></td>
-                    <td>Convertit une chaîne numérique en entier ou réel</td>
-                    <td><code>int(ch)</code> ou <code>float(ch)</code></td>
-                    <td><em>Standard</em></td>
-                  </tr>
-                  <tr>
-                    <td><code>Abs (x)</code></td>
-                    <td>Retourne la valeur absolue |<i>x</i>|</td>
-                    <td><code>abs(x)</code></td>
-                    <td><em>Standard</em></td>
-                  </tr>
-                  <tr>
-                    <td><code>RacineCarré (x)</code></td>
-                    <td>Retourne la racine carrée &radic;<i>x</i> pour <i>x</i> &ge; 0</td>
-                    <td><code>sqrt(x)</code></td>
-                    <td><code>from math import sqrt</code></td>
-                  </tr>
-                  <tr>
-                    <td><code>Arrondi (x)</code> / <code>Ent (x)</code></td>
-                    <td>Entier le plus proche / Partie entière</td>
-                    <td><code>round(x)</code> / <code>int(x)</code></td>
-                    <td><em>Standard</em></td>
-                  </tr>
-                  <tr>
-                    <td><code>Aléa (vi, vf)</code></td>
-                    <td>Entier aléatoire dans l'intervalle [<i>vi</i>, <i>vf</i>]</td>
-                    <td><code>randint(vi, vf)</code></td>
-                    <td><code>from random import randint</code></td>
-                  </tr>
-                  <tr>
-                    <td><code>Convch (x)</code></td>
-                    <td>Convertit un nombre <i>x</i> en chaîne de caractères</td>
-                    <td><code>str(x)</code></td>
-                    <td><em>Standard</em></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <!-- FORMULATION DU CALCUL -->
-            <div class="p-3 bg-light rounded border mb-3">
-              <h4 class="h6 fw-bold text-dark"><i class="bi bi-gear-wide-connected text-primary me-2"></i>Règle de
-                calcul de la clé :</h4>
-              <ol class="small text-muted mb-0">
-                <li>Conversion du nombre : <i>x</i> &larr; Valeur(<i>ch_num</i>) (ex : 94).</li>
-                <li>Calcul d'écart avec la médiane 50 : <i>ecart</i> &larr; Abs(<i>x</i> - 50) (ex : |94 - 50| = 44).
-                </li>
-                <li>Calcul de dérive : <i>derive</i> &larr; RacineCarré(<i>ecart</i>) (ex : &radic;44 &approx; 6.633).
-                </li>
-                <li>Approximation mise à l'échelle : <i>base</i> &larr; Arrondi(<i>derive</i> &times; 10) (ex : 66).
-                </li>
-                <li>Ajout d'un jeton aléatoire de sécurité : <i>secu</i> &larr; Aléa(10, 99) (ex : 73).</li>
-                <li>Combinaison finale : <i>res</i> &larr; <i>base</i> &times; 100 + <i>secu</i> (ex : 6673).</li>
-                <li>Retour de la clé sous forme de chaîne textuelle grâce à Convch(<i>res</i>).</li>
-              </ol>
-            </div>
-
-            <!-- TDOL DE CLE_CONTROLE -->
-            <h3 class="h6 fw-bold text-secondary mb-2"><i class="bi bi-table text-primary me-1"></i>Tableau de
-              Déclaration des Objets Locaux (TDOL) :</h3>
-            <table class="convention-table">
-              <thead>
-                <tr>
-                  <th style="width: 25%;">Objet</th>
-                  <th style="width: 35%;">Type / Nature</th>
-                  <th>Rôle / Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><code>x</code></td>
-                  <td><span class="type-badge">Entier</span></td>
-                  <td>Valeur numérique extraite</td>
-                </tr>
-                <tr>
-                  <td><code>ecart</code></td>
-                  <td><span class="type-badge">Entier</span></td>
-                  <td>Écart absolu par rapport au repère 50</td>
-                </tr>
-                <tr>
-                  <td><code>derive</code></td>
-                  <td><span class="type-badge">Réel</span></td>
-                  <td>Racine carrée de l'écart</td>
-                </tr>
-                <tr>
-                  <td><code>base</code></td>
-                  <td><span class="type-badge">Entier</span></td>
-                  <td>Composante de dérive arrondie</td>
-                </tr>
-                <tr>
-                  <td><code>secu</code></td>
-                  <td><span class="type-badge">Entier</span></td>
-                  <td>Nombre aléatoire de sécurité [10..99]</td>
-                </tr>
-                <tr>
-                  <td><code>res</code></td>
-                  <td><span class="type-badge">Entier</span></td>
-                  <td>Clé numérique finale concaténée</td>
-                </tr>
-              </tbody>
-            </table>
-
-            <!-- ALGORITHME & PYTHON TABS CLE -->
-            <ul class="nav nav-tabs mt-3" id="tabCode2" role="tablist">
-              <li class="nav-item">
-                <button class="nav-link active text-primary" data-bs-toggle="tab" data-bs-target="#algo-cle">
-                  <i class="bi bi-file-earmark-code me-1"></i> Algorithme (Conventions 2024)
-                </button>
-              </li>
-              <li class="nav-item">
-                <button class="nav-link text-warning" data-bs-toggle="tab" data-bs-target="#py-cle">
-                  <i class="bi bi-filetype-py me-1"></i> Code Python 3
-                </button>
-              </li>
-            </ul>
-            <div class="tab-content p-3 mb-4">
-              <!-- ALGO TAB -->
-              <div class="tab-pane fade show active" id="algo-cle">
-                <div class="code-container">
-                  <div class="code-header">
-                    <span class="code-lang-tag"><i class="bi bi-code-slash"></i> Algorithme fonction Cle_Controle</span>
-                    <button class="copy-btn" @click="copyCode('code-algo-2')"><i class="bi bi-clipboard"></i>
-                      Copier</button>
+            <div class="row g-4">
+              <!-- CARTE ALGORITHME -->
+              <div class="col-lg-7">
+                <div class="card border h-100 shadow-sm">
+                  <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                    <span class="font-monospace fw-bold"><i class="bi bi-code-square me-2 text-info"></i>ALGORITHME
+                      DistancePoint</span>
+                    <span class="badge bg-primary">Algorithme Principal</span>
                   </div>
-                  <pre><code class="language-algo" id="code-algo-2">Fonction Cle_Controle (ch_num : chaîne) : chaîne
+                  <div class="card-body p-0">
+                    <pre class="m-0 p-3"
+                      style="background-color: #1e1e2e; border-radius: 0 0 var(--radius-sm) var(--radius-sm);"><code class="language-algo">ALGORITHME DistancePoint
 DEBUT
-    x ← Valeur(ch_num)
-    ecart ← Abs(x - 50)
-    derive ← RacineCarré(ecart)
-    base ← Arrondi(derive * 10)
-    secu ← Aléa(10, 99)
-    res ← base * 100 + secu
-    
-    Retourner Convch(res)
+    x ← Aléa(-10, 10)
+    y ← Aléa(-10, 10)
+    d ← RacineCarré(x * x + y * y)
+    d_arrondi ← Arrondi(d)
+    est_pair ← (d_arrondi Mod 2 = 0)
+    Écrire("Coordonnées : (", x, ", ", y, ")")
+    Écrire("Distance réelle : ", d)
+    Écrire("Distance arrondie : ", d_arrondi)
+    Écrire("Distance paire ? ", est_pair)
 FIN</code></pre>
+                  </div>
                 </div>
               </div>
 
-              <!-- PYTHON TAB -->
-              <div class="tab-pane fade" id="py-cle">
-                <div class="code-container">
-                  <div class="code-header">
-                    <span class="code-lang-tag"><i class="bi bi-terminal"></i> Implémentation Python Cle_Controle</span>
-                    <button class="copy-btn" @click="copyCode('code-py-2')"><i class="bi bi-clipboard"></i>
-                      Copier</button>
+              <!-- CARTE T.D.O. -->
+              <div class="col-lg-5">
+                <div class="card border h-100 shadow-sm">
+                  <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
+                    <span class="fw-bold"><i class="bi bi-table me-2"></i>T.D.O. Standard</span>
+                    <span class="badge bg-light text-dark">Déclaration formelle</span>
                   </div>
-                  <pre><code class="language-python" id="code-py-2">from math import sqrt
-from random import randint
+                  <div class="card-body p-0">
+                    <div class="table-responsive">
+                      <table class="table table-striped table-bordered m-0 align-middle">
+                        <thead class="table-light">
+                          <tr>
+                            <th scope="col" style="width: 45%;">Objet</th>
+                            <th scope="col" style="width: 55%;">Type / Nature</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><strong class="font-monospace text-primary">x, y, d_arrondi</strong></td>
+                            <td><span class="badge bg-success">Entier</span></td>
+                          </tr>
+                          <tr>
+                            <td><strong class="font-monospace text-primary">d</strong></td>
+                            <td><span class="badge bg-info text-dark">Réel</span></td>
+                          </tr>
+                          <tr>
+                            <td><strong class="font-monospace text-primary">est_pair</strong></td>
+                            <td><span class="badge bg-warning text-dark">Booléen</span></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
 
-def Cle_Controle(ch_num):
-    x = int(ch_num)
-    ecart = abs(x - 50)
-    derive = sqrt(ecart)
-    base = round(derive * 10)
-    secu = randint(10, 99)
-    res = base * 100 + secu
-    
-    return str(res)</code></pre>
+                    <div class="p-3 bg-light border-top">
+                      <div class="small fw-bold text-dark mb-1"><i
+                          class="bi bi-info-circle text-primary me-1"></i>Analyse des types scalaires :</div>
+                      <ul class="small text-muted ps-3 mb-0">
+                        <li><strong>Entier :</strong> Coordonnées aléatoires sans virgule et distance arrondie.</li>
+                        <li><strong>Réel :</strong> La racine carrée peut donner un nombre décimal flottant.</li>
+                        <li><strong>Booléen :</strong> Résultat d'une assertion logique ne prenant que <code>Vrai</code>
+                          ou <code>Faux</code>.</li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -630,310 +506,275 @@ def Cle_Controle(ch_num):
       </div>
 
       <!-- ========================================================
-         PHASE 4 : FORMALISATION & APPEL PRINCIPAL
+         PHASE 4 : IMPLÉMENTATION SUR MACHINE & DÉBOGAGE (20 MIN)
          ======================================================== -->
       <div v-show="currentPhase === 4 || currentPhase === 'all'">
         <section class="section-card">
           <div class="section-header">
-            <h2 class="h5 mb-0 fw-bold text-dark"><i class="bi bi-diagram-3 text-primary me-2"></i>Phase 4 :
-              Formalisation & Appel principal (10 min)</h2>
-            <span class="phase-pill purple">Intégration & TDOG</span>
-          </div>
-          <div class="section-body">
-            <div class="row g-4 mb-4">
-              <div class="col-lg-6">
-                <div class="p-3 bg-light rounded border h-100">
-                  <h3 class="h6 fw-bold text-primary mb-2"><i class="bi bi-card-checklist me-1"></i>En-tête et
-                    définition d'une fonction :</h3>
-                  <p class="small text-muted">
-                    Une <strong>fonction</strong> est un sous-programme qui calcule et <strong>retourne une valeur
-                      unique</strong> de type simple.
-                  </p>
-                  <div class="bg-white p-2 rounded border small font-monospace mb-2">
-                    Fonction Nom (pf1 : type1, pf2 : type2) : Type_retour
-                  </div>
-                  <ul class="small text-muted mb-0 ps-3">
-                    <li><strong>Paramètres formels</strong> : variables déclarées dans l'en-tête (ex:
-                      <code>ch : chaîne</code>).
-                    </li>
-                    <li><strong>Paramètres effectifs</strong> : valeurs réelles transmises lors de l'appel (ex:
-                      <code>code_flacon</code>).
-                    </li>
-                    <li><strong>Portée locale</strong> : les objets déclarés dans le TDOL n'existent qu'au cours de
-                      l'exécution de la fonction.</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <!-- TDOG -->
-                <div class="p-3 bg-light rounded border h-100">
-                  <h3 class="h6 fw-bold text-primary mb-2"><i class="bi bi-globe me-1"></i>Tableau de Déclaration des
-                    Objets Globaux (TDOG) :</h3>
-                  <table class="convention-table mb-0">
-                    <thead>
-                      <tr>
-                        <th>Objet</th>
-                        <th>Type / Nature</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td><code>code_flacon</code></td>
-                        <td><span class="type-badge">Chaîne</span></td>
-                      </tr>
-                      <tr>
-                        <td><code>num_extrait</code></td>
-                        <td><span class="type-badge">Chaîne</span></td>
-                      </tr>
-                      <tr>
-                        <td><code>cle_generee</code></td>
-                        <td><span class="type-badge">Chaîne</span></td>
-                      </tr>
-                      <tr>
-                        <td><code>Valide_Code</code></td>
-                        <td><span class="type-badge func">Fonction</span></td>
-                      </tr>
-                      <tr>
-                        <td><code>Cle_Controle</code></td>
-                        <td><span class="type-badge func">Fonction</span></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
+            <div class="d-flex align-items-center gap-2">
+              <span class="badge bg-primary rounded-pill px-2 py-1">Étape 4</span>
+              <h2 class="h5 mb-0 fw-bold text-dark">Implémentation sur machine, Débogage & Laboratoire</h2>
             </div>
+            <span class="phase-pill emerald"><i class="bi bi-clock me-1"></i>20 minutes</span>
+          </div>
 
-            <!-- ALGORITHME & PYTHON TABS PRINCIPAL -->
-            <ul class="nav nav-tabs mt-4" id="tabCode3" role="tablist">
-              <li class="nav-item">
-                <button class="nav-link active text-primary" data-bs-toggle="tab" data-bs-target="#algo-principal">
-                  <i class="bi bi-file-earmark-code me-1"></i> Algorithme Appelant (Labo_Echantillons)
-                </button>
-              </li>
-              <li class="nav-item">
-                <button class="nav-link text-warning" data-bs-toggle="tab" data-bs-target="#py-principal">
-                  <i class="bi bi-filetype-py me-1"></i> Programme Python Complet
-                </button>
-              </li>
-            </ul>
-            <div class="tab-content p-3 mb-4">
-              <!-- ALGO TAB -->
-              <div class="tab-pane fade show active" id="algo-principal">
-                <div class="code-container">
-                  <div class="code-header">
-                    <span class="code-lang-tag"><i class="bi bi-code-slash"></i> Algorithme principal : Labo_Echantillons</span>
-                    <button class="copy-btn" @click="copyCode('code-algo-main')"><i class="bi bi-clipboard"></i>
-                      Copier</button>
-                  </div>
-                  <pre><code class="language-algo" id="code-algo-main">ALGORITHME Labo_Echantillons
-DEBUT
-    Écrire ("Entrer le code de l'échantillon (@CH-94B) : ")
-    Lire (code_flacon)
-    
-    Si Valide_Code(code_flacon) Alors
-        // Extraction de la tranche numérique pour la clé
-        p ← Pos("-", code_flacon)
-        num_extrait ← Sous_chaine(code_flacon, p + 1, p + 3)
-        cle_generee ← Cle_Controle(num_extrait)
-        
-        Écrire ("Échantillon conforme. Clé de sécurité : ", cle_generee)
-    Sinon
-        Écrire ("Erreur : Le code de l'échantillon est invalide !")
-    FinSi
-FIN</code></pre>
-                </div>
-              </div>
+          <div class="section-body">
+            <p class="text-muted mb-3">
+              Les élèves saisissent et exécutent le code Python dans leur IDE (Thonny, VS Code ou IDLE).
+            </p>
 
-              <!-- PYTHON TAB -->
-              <div class="tab-pane fade" id="py-principal">
-                <div class="code-container">
-                  <div class="code-header">
-                    <span class="code-lang-tag"><i class="bi bi-terminal"></i> Script Python complet (conventions 2024-2025)</span>
-                    <button class="copy-btn" @click="copyCode('code-py-full')"><i class="bi bi-clipboard"></i>
-                      Copier</button>
+            <div class="row g-4 mb-4">
+              <!-- SCRIPT PYTHON OFFICIEL -->
+              <div class="col-lg-6">
+                <div class="card border h-100 shadow-sm">
+                  <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                    <span class="font-monospace fw-bold"><i
+                        class="bi bi-file-earmark-code text-warning me-2"></i>distance_point.py</span>
+                    <button class="btn btn-sm btn-outline-info" @click="copyPythonCode">
+                      <i class="bi bi-clipboard me-1"></i>{{ copyStatus }}
+                    </button>
                   </div>
-                  <pre><code class="language-python" id="code-py-full"># Programme du laboratoire d'échantillonnage
-from math import sqrt
+                  <div class="card-body p-0">
+                    <pre class="m-0 p-3"
+                      style="background-color: #1e1e2e; border-radius: 0 0 var(--radius-sm) var(--radius-sm);"><code class="language-python">from math import sqrt
 from random import randint
 
-# Définition de la fonction Valide_Code
-def Valide_Code(ch):
-    ch = ch.upper()
-    valide = False
-    p = ch.find("-")
-    L = len(ch)
-    
-    if L >= 6 and ch[0] == "@" and p > 1 and p + 3 < L:
-        ch_num = ch[p + 1 : p + 3]
-        lettre = ch[p + 3]
-        if len(ch_num) == 2 and ch_num.isdecimal() and (ord("A") <= ord(lettre) <= ord("Z")):
-            valide = True
-    return valide
+# Tirage aléatoire des coordonnées entre -10 et 10
+x = randint(-10, 10)
+y = randint(-10, 10)
 
-# Définition de la fonction Cle_Controle
-def Cle_Controle(ch_num):
-    x = int(ch_num)
-    ecart = abs(x - 50)
-    derive = sqrt(ecart)
-    base = round(derive * 10)
-    secu = randint(10, 99)
-    res = base * 100 + secu
-    return str(res)
+# Traitement arithmétique
+d = sqrt(x * x + y * y)
+d_arrondi = round(d)
+est_pair = (d_arrondi % 2 == 0)
 
-# Programme principal
-code_flacon = input("Entrer le code de l'échantillon (@CH-94B) : ")
+# Affichage des résultats
+print("Coordonnées : (", x, ",", y, ")")
+print("Distance réelle :", d)
+print("Distance arrondie :", d_arrondi)
+print("Distance paire ? :", est_pair)</code></pre>
+                  </div>
+                </div>
+              </div>
 
-if Valide_Code(code_flacon):
-    p = code_flacon.find("-")
-    num_extrait = code_flacon[p + 1 : p + 3]
-    cle_generee = Cle_Controle(num_extrait)
-    print("Échantillon conforme. Clé de sécurité :", cle_generee)
-else:
-    print("Erreur : Le code de l'échantillon est invalide !")</code></pre>
+              <!-- PIÈGES FRÉQUENTS & INTERVENTIONS CIBLÉES -->
+              <div class="col-lg-6">
+                <div class="card border h-100 shadow-sm">
+                  <div class="card-header bg-danger text-white">
+                    <span class="fw-bold"><i class="bi bi-bug-fill me-2"></i>Pièges fréquents & Intervention de
+                      l'enseignant</span>
+                  </div>
+                  <div class="card-body">
+                    <div class="d-flex align-items-start gap-2 mb-3 pb-2 border-bottom">
+                      <i class="bi bi-x-circle-fill text-danger fs-5"></i>
+                      <div>
+                        <strong>Oubli des importations :</strong><br>
+                        <span class="small text-danger font-monospace">NameError: name 'sqrt' is not defined</span><br>
+                        <span class="small text-muted">&rarr; Correction : Ajouter impérativement
+                          <code>from math import sqrt</code> et <code>from random import randint</code> en haut de
+                          fichier.</span>
+                      </div>
+                    </div>
+
+                    <div class="d-flex align-items-start gap-2 mb-3 pb-2 border-bottom">
+                      <i class="bi bi-x-circle-fill text-danger fs-5"></i>
+                      <div>
+                        <strong>Erreurs de casse (Sensibilité à la casse) :</strong><br>
+                        <span class="small text-danger font-monospace">NameError: name 'Round' is not defined</span><br>
+                        <span class="small text-muted">&rarr; Correction : Python distingue strictement
+                          minuscules et majuscules. Écrire <code>round</code>, <code>sqrt</code>, <code>abs</code> en
+                          minuscules.</span>
+                      </div>
+                    </div>
+
+                    <div class="d-flex align-items-start gap-2">
+                      <i class="bi bi-x-circle-fill text-danger fs-5"></i>
+                      <div>
+                        <strong>Confusion d'opérateurs (= vs == et / vs //) :</strong><br>
+                        <span class="small text-muted">&rarr; Le test d'égalité s'écrit <code>==</code> et non
+                          <code>=</code>. Le reste s'exprime avec <code>%</code> et non <code>mod</code>.</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
+
+            <!-- SIMULATEUR D'EXÉCUTION INTERACTIF (ATELIER MACHINE) -->
+            <div class="card border-primary shadow-sm mb-4">
+              <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                <span class="fw-bold"><i class="bi bi-play-circle-fill me-2"></i>Simulateur Interactif : Repère
+                  Cartésien & Calculs en temps réel</span>
+                <button class="btn btn-sm btn-light text-primary fw-bold" @click="randomizePoint">
+                  <i class="bi bi-dice-5-fill me-1"></i>Nouveau Tirage Aléatoire [-10, 10]
+                </button>
+              </div>
+
+              <div class="card-body">
+                <div class="row g-4 align-items-center">
+                  <!-- GRAPHIQUE CARTÉSIEN SVG -->
+                  <div class="col-lg-5 text-center">
+                    <div class="cartesian-container">
+                      <svg class="cartesian-svg" width="320" height="320" viewBox="0 0 320 320">
+                        <!-- Grille d'arrière-plan -->
+                        <g v-for="i in 21" :key="'gx'+i">
+                          <line :x1="(i-1)*15 + 10" y1="10" :x2="(i-1)*15 + 10" y2="310" class="grid-line" />
+                          <line x1="10" :y1="(i-1)*15 + 10" x2="310" :y2="(i-1)*15 + 10" class="grid-line" />
+                        </g>
+                        <!-- Axes X et Y (centre à 160, 160) -->
+                        <line x1="10" y1="160" x2="310" y2="160" class="axis-line" />
+                        <line x1="160" y1="10" x2="160" y2="310" class="axis-line" />
+                        <text x="300" y="152" fill="#94a3b8" font-size="12" font-family="sans-serif">X</text>
+                        <text x="168" y="24" fill="#94a3b8" font-size="12" font-family="sans-serif">Y</text>
+                        <circle cx="160" cy="160" r="3" fill="#cbd5e1" />
+                        <text x="145" y="175" fill="#64748b" font-size="10">(0,0)</text>
+
+                        <!-- Lignes de projection orthogonale -->
+                        <line :x1="svgPoint.cx" :y1="160" :x2="svgPoint.cx" :y2="svgPoint.cy"
+                          stroke="rgba(244, 63, 94, 0.4)" stroke-dasharray="3" />
+                        <line :x1="160" :y1="svgPoint.cy" :x2="svgPoint.cx" :y2="svgPoint.cy"
+                          stroke="rgba(244, 63, 94, 0.4)" stroke-dasharray="3" />
+
+                        <!-- Segment distance euclidienne -->
+                        <line x1="160" y1="160" :x2="svgPoint.cx" :y2="svgPoint.cy" class="vector-line" />
+
+                        <!-- Point (X, Y) -->
+                        <circle :cx="svgPoint.cx" :cy="svgPoint.cy" r="6" class="point-dot" />
+                        <text :x="svgPoint.cx + 8" :y="svgPoint.cy - 8" fill="#ffffff" font-size="11" font-weight="bold"
+                          font-family="monospace">
+                          ({{ simPoint.x }}, {{ simPoint.y }})
+                        </text>
+                      </svg>
+                    </div>
+                    <div class="small text-muted mt-2">
+                      Repère orthonormé [-10, 10] &times; [-10, 10].
+                    </div>
+                  </div>
+
+                  <!-- TRACE DES CALCULS EN TEMPS RÉEL -->
+                  <div class="col-lg-7">
+                    <div class="row g-3 mb-3">
+                      <div class="col-6">
+                        <label class="form-label fw-bold small text-dark mb-1">Coordonnée X :</label>
+                        <input type="number" class="form-control form-control-sm font-monospace"
+                          v-model.number="simPoint.x" min="-10" max="10">
+                      </div>
+                      <div class="col-6">
+                        <label class="form-label fw-bold small text-dark mb-1">Coordonnée Y :</label>
+                        <input type="number" class="form-control form-control-sm font-monospace"
+                          v-model.number="simPoint.y" min="-10" max="10">
+                      </div>
+                    </div>
+
+                    <div class="p-3 bg-light rounded border mb-3">
+                      <div class="d-flex justify-content-between align-items-center mb-2 pb-1 border-bottom">
+                        <span class="small text-muted">Somme des carrés (<i>x</i><sup>2</sup> + <i>y</i><sup>2</sup>) :</span>
+                        <strong class="font-monospace">({{ simPoint.x }})² + ({{ simPoint.y }})² = {{ simSumSq
+                          }}</strong>
+                      </div>
+                      <div class="d-flex justify-content-between align-items-center mb-2 pb-1 border-bottom">
+                        <span class="small text-muted">Distance réelle (<i>d</i> = &radic;(<i>x</i><sup>2</sup> + <i>y</i><sup>2</sup>)) :</span>
+                        <strong class="font-monospace text-primary">{{ simDist.toFixed(4) }}</strong>
+                      </div>
+                      <div class="d-flex justify-content-between align-items-center mb-2 pb-1 border-bottom">
+                        <span class="small text-muted">Arrondi entier (<code>d_arrondi = round(d)</code>) :</span>
+                        <strong class="font-monospace fs-5 text-dark">{{ simDistRounded }}</strong>
+                      </div>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span class="small text-muted">Parité (<code>d_arrondi % 2 == 0</code>) :</span>
+                        <span class="badge" :class="simIsEven ? 'bg-success' : 'bg-warning text-dark'">
+                          <i class="bi" :class="simIsEven ? 'bi-check-circle-fill' : 'bi-dash-circle-fill'"></i>
+                          {{ simIsEven ? 'PAIR (Vrai / True)' : 'IMPAIR (Faux / False)' }}
+                        </span>
+                      </div>
+                    </div>
+
+                    <!-- SORTIE TERMINALE SIMULÉE -->
+                    <div class="terminal-window">
+                      <div class="terminal-header">
+                        <span class="terminal-dot dot-red"></span>
+                        <span class="terminal-dot dot-yellow"></span>
+                        <span class="terminal-dot dot-green"></span>
+                        <span class="text-white-50 small ms-2 font-monospace">Sortie console Python (Terminal)</span>
+                      </div>
+                      <div class="terminal-body">Coordonnées : ( {{ simPoint.x }} , {{ simPoint.y }} )
+                        Distance réelle : {{ simDist }}
+                        Distance arrondie : {{ simDistRounded }}
+                        Distance paire ? : {{ simIsEven ? 'True' : 'False' }}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </section>
       </div>
 
       <!-- ========================================================
-         PHASE 5 : SIMULATEUR INTERACTIF (LABORATOIRE)
+         PHASE 5 : BILAN & AUTO-ÉVALUATION (5 MIN)
          ======================================================== -->
       <div v-show="currentPhase === 5 || currentPhase === 'all'">
-        <section class="interactive-card">
-          <div class="interactive-title">
-            <i class="bi bi-robot fs-3 text-primary"></i>
-            <span>Simulateur d'Automate d'Analyse (Laboratoire)</span>
-          </div>
-          <p class="text-muted small">
-            Saisissez un code flacon ci-dessous pour observer en temps réel la décomposition opératoire effectuée par
-            les fonctions <code>Valide_Code</code> et <code>Cle_Controle</code> :
-          </p>
-
-          <div class="row g-3 align-items-center">
-            <div class="col-md-7">
-              <div class="input-group">
-                <span class="input-group-text bg-white"><i class="bi bi-upc"></i></span>
-                <input type="text" class="form-control form-control-lg font-monospace" v-model="testCode"
-                  placeholder="Ex: @CH-94B, @BIO-12Z, CH-94B...">
-                <button class="btn btn-outline-secondary" type="button" @click="testCode = '@CH-94B'">Exemple
-                  valide</button>
-                <button class="btn btn-outline-secondary" type="button" @click="testCode = 'CH-94B'">Sans @</button>
-              </div>
-            </div>
-            <div class="col-md-5">
-              <div class="d-flex align-items-center gap-2">
-                <span class="badge" :class="simulationResult.isValid ? 'bg-success fs-6' : 'bg-danger fs-6'">
-                  <i class="bi" :class="simulationResult.isValid ? 'bi-check-circle-fill' : 'bi-x-circle-fill'"></i>
-                  {{ simulationResult.isValid ? 'Identifiant Conforme' : 'Identifiant Non Conforme' }}
-                </span>
-                <span v-if="simulationResult.isValid" class="badge bg-primary fs-6">
-                  Clé : {{ simulationResult.key }}
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <!-- TRACE OPERATOIRE DETAILLEE -->
-          <div class="step-trace">
-            <div class="step-item" :class="simulationResult.hasMinLength ? 'success' : 'fail'">
-              <div>
-                <strong>1. Longueur totale :</strong> <code>Long(ch) = {{ testCode.length }}</code>
-              </div>
-              <span class="badge" :class="simulationResult.hasMinLength ? 'bg-success' : 'bg-danger'">
-                {{ simulationResult.hasMinLength ? '≥ 6 caractères (OK)' : '< 6 caractères' }} </span>
-            </div>
-
-            <div class="step-item" :class="simulationResult.startsWithAt ? 'success' : 'fail'">
-              <div>
-                <strong>2. Préfixe arobase :</strong> <code>ch[0] = "{{ testCode[0] || '' }}"</code>
-              </div>
-              <span class="badge" :class="simulationResult.startsWithAt ? 'bg-success' : 'bg-danger'">
-                {{ simulationResult.startsWithAt ? 'Commence par @ (OK)' : 'Doit commencer par @' }}
-              </span>
-            </div>
-
-            <div class="step-item" :class="simulationResult.hasDash ? 'success' : 'fail'">
-              <div>
-                <strong>3. Séparateur tiret :</strong> <code>Pos("-", ch) = {{ simulationResult.dashPos }}</code>
-              </div>
-              <span class="badge" :class="simulationResult.hasDash ? 'bg-success' : 'bg-danger'">
-                {{ simulationResult.hasDash ? 'Tiret trouvé à position valide' : 'Tiret absent ou mal placé' }}
-              </span>
-            </div>
-
-            <div class="step-item" :class="simulationResult.isNumValid ? 'success' : 'fail'">
-              <div>
-                <strong>4. Tranche numérique :</strong>
-                <code>Sous_chaine(ch, p+1, p+3) = "{{ simulationResult.numPart }}"</code>
-              </div>
-              <span class="badge" :class="simulationResult.isNumValid ? 'bg-success' : 'bg-danger'">
-                {{ simulationResult.isNumValid ? '2 chiffres valides (Estnum = Vrai)' : 'Erreur numérique' }}
-              </span>
-            </div>
-
-            <div class="step-item" :class="simulationResult.isLetterValid ? 'success' : 'fail'">
-              <div>
-                <strong>5. Lettre de contrôle :</strong> <code>lettre = "{{ simulationResult.letter }}"</code>
-                (Code ASCII : {{ simulationResult.letterCode }})
-              </div>
-              <span class="badge" :class="simulationResult.isLetterValid ? 'bg-success' : 'bg-danger'">
-                {{ simulationResult.isLetterValid ? 'Majuscule [A-Z] (OK)' : 'Non majuscule' }}
-              </span>
-            </div>
-
-            <!-- DETAIL CALCUL CLE -->
-            <div v-if="simulationResult.isValid"
-              class="p-3 bg-light rounded border border-primary border-opacity-25 mt-2">
-              <div class="fw-bold text-primary mb-1"><i class="bi bi-magic me-1"></i>Détail du calcul de la clé :</div>
-              <div class="small font-monospace text-dark">
-                Valeur = {{ simulationResult.numValue }} |
-                Écart |{{ simulationResult.numValue }} - 50| = {{ simulationResult.ecart }} |
-                Dérive &radic;{{ simulationResult.ecart }} = {{ simulationResult.derive.toFixed(3) }} |
-                Base arrondie = {{ simulationResult.base }} |
-                Jeton aléatoire = {{ simulationResult.secu }} &rarr;
-                <strong>Clé finale = {{ simulationResult.key }}</strong>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-
-      <!-- ========================================================
-         PHASE 6 : AUTO-ÉVALUATION & QUIZ
-         ======================================================== -->
-      <div v-show="currentPhase === 6 || currentPhase === 'all'">
         <section class="section-card">
           <div class="section-header">
-            <h2 class="h5 mb-0 fw-bold text-dark"><i class="bi bi-patch-question text-primary me-2"></i>Auto-évaluation
-              : Vérifiez vos acquis</h2>
             <div class="d-flex align-items-center gap-2">
-              <span class="phase-pill">Score : {{ quizScore }} / {{ questions.length }}</span>
-              <button class="btn btn-sm btn-outline-primary" @click="initQuiz"
-                title="Tirer 10 nouvelles questions au sort">
-                <i class="bi bi-shuffle me-1"></i> Nouveau tirage (10 questions)
-              </button>
+              <span class="badge bg-primary rounded-pill px-2 py-1">Étape 5</span>
+              <h2 class="h5 mb-0 fw-bold text-dark">Bilan, Clôture et Auto-évaluation</h2>
             </div>
+            <span class="phase-pill emerald"><i class="bi bi-clock me-1"></i>5 minutes</span>
           </div>
+
           <div class="section-body">
-            <div
-              class="alert alert-info py-2 px-3 small mb-3 d-flex align-items-center justify-content-between flex-wrap gap-2">
-              <div>
-                <i class="bi bi-shuffle text-primary me-1"></i>
-                <strong>Tirage aléatoire actif :</strong> 10 questions ont été sélectionnées au sort parmi une banque de
-                {{ allQuestions.length }} questions.
+            <!-- CONTRÔLE ORAL RAPIDE (QUESTIONS FLASH) -->
+            <h5 class="fw-bold text-dark mb-3"><i class="bi bi-lightning-charge-fill text-warning me-2"></i>Contrôle
+              oral rapide (Questions Flash de clôture) :</h5>
+            <div class="row g-3 mb-4">
+              <div v-for="(f, fIdx) in flashQuestions" :key="fIdx" class="col-md-4 col-sm-6">
+                <div class="card h-100 border p-3 cursor-pointer text-center" @click="toggleFlash(f)"
+                  style="cursor: pointer;">
+                  <div class="small text-muted text-uppercase fw-bold mb-1">Expression</div>
+                  <div class="fs-5 font-monospace text-primary fw-bold mb-2">{{ f.expr }}</div>
+                  <div v-if="!f.isOpen" class="btn btn-sm btn-outline-secondary">
+                    <i class="bi bi-eye me-1"></i>Afficher la solution
+                  </div>
+                  <div v-else class="p-2 bg-light rounded font-monospace small">
+                    <div class="text-dark fw-bold">Algo : {{ f.resAlgo }}</div>
+                    <div class="text-success">{{ f.resPy }}</div>
+                    <div class="badge bg-secondary mt-1">{{ f.type }}</div>
+                  </div>
+                </div>
               </div>
-              <span class="badge bg-primary rounded-pill">10 questions actives</span>
             </div>
-            <div v-for="(q, idx) in questions" :key="idx" class="quiz-card">
+
+            <hr class="my-4">
+
+            <!-- QUIZ D'AUTO-ÉVALUATION INTERACTIF -->
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+              <div>
+                <h4 class="h5 fw-bold text-dark mb-1"><i class="bi bi-patch-question-fill text-primary me-2"></i>Quiz
+                  d'auto-évaluation interactif</h4>
+                <div class="small text-muted">Testez vos compétences sur les types scalaires, la division euclidienne et
+                  les fonctions arithmétiques.</div>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <span class="badge bg-primary px-3 py-2 fs-6">Score : {{ quizScore }} / {{ quizQuestions.length
+                  }}</span>
+                <button class="btn btn-sm btn-outline-primary" @click="initQuiz"
+                  title="Tirer 10 nouvelles questions au sort">
+                  <i class="bi bi-shuffle me-1"></i> Nouveau tirage (10 questions)
+                </button>
+              </div>
+            </div>
+
+            <!-- CARTE DU QUIZ -->
+            <div v-for="(q, idx) in quizQuestions" :key="idx" class="quiz-card mb-3">
               <div class="fw-bold text-dark mb-2">Q{{ idx + 1 }}. {{ q.question }}</div>
               <div class="d-flex flex-column">
                 <div v-for="(opt, oIdx) in q.options" :key="oIdx" class="quiz-option" :class="{
                   'selected': q.selected === oIdx,
                   'correct': q.showAnswer && oIdx === q.correct,
                   'incorrect': q.showAnswer && q.selected === oIdx && oIdx !== q.correct
-                }" @click="selectOption(idx, oIdx)">
+                }" @click="selectQuizOption(idx, oIdx)">
                   <div class="d-flex justify-content-between align-items-center">
                     <span>{{ opt }}</span>
                     <i v-if="q.showAnswer && oIdx === q.correct" class="bi bi-check-circle-fill text-success"></i>
@@ -943,9 +784,11 @@ else:
                 </div>
               </div>
               <div v-if="q.showAnswer" class="mt-2 p-2 bg-light rounded small border">
-                <i class="bi bi-lightbulb-fill text-warning me-1"></i><strong>Explication :</strong> {{ q.explanation }}
+                <i class="bi bi-lightbulb-fill text-warning me-1"></i><strong>Explication didactique :</strong> {{
+                q.explanation }}
               </div>
             </div>
+
           </div>
         </section>
       </div>
@@ -953,17 +796,17 @@ else:
       <!-- NAVIGATION INTER-PHASES FOOTER PERSISTANT -->
       <div class="phase-nav-footer" v-if="currentPhase !== 'all'">
         <button class="btn btn-outline-secondary" :disabled="currentPhase === 1" @click="prevPhase">
-          <i class="bi bi-arrow-left me-1"></i> Phase précédente
+          <i class="bi bi-arrow-left me-1"></i> Étape précédente
         </button>
         <div class="text-center">
           <span class="fw-bold text-primary">Étape {{ currentPhase }} sur {{ phases.length }}</span>
           <span class="text-muted small d-block">{{ phases[currentPhase - 1].shortTitle }}</span>
         </div>
         <button class="btn btn-primary-custom" v-if="currentPhase < phases.length" @click="nextPhase">
-          Phase suivante : {{ phases[currentPhase].shortTitle }} <i class="bi bi-arrow-right ms-1"></i>
+          Étape suivante : {{ phases[currentPhase].shortTitle }} <i class="bi bi-arrow-right ms-1"></i>
         </button>
         <button class="btn btn-success" v-else @click="setPhase(1)">
-          <i class="bi bi-arrow-repeat me-1"></i> Recommencer le parcours
+          <i class="bi bi-arrow-repeat me-1"></i> Recommencer la séance
         </button>
       </div>
 
@@ -974,10 +817,16 @@ else:
       <div class="container text-center">
         <div class="mb-2">
           <span class="fw-bold text-white">Informatique 4<sup>e</sup> Année Scientifique</span>
+          <span class="mx-2 text-white-50">|</span>
+          <span class="text-light">Bac 2026</span>
         </div>
-        <div class="small">
-          Proposé & Révisé par Mohamed Anis MANI </div>
+        <div class="small text-white-50">
+          Conformité pédagogique aux programmes et conventions officielles 2024-2025
+        </div>
         <div class="mt-3">
+          <a href="index.html" class="btn btn-outline-light btn-sm me-2">
+            <i class="bi bi-house-door me-1"></i> Retour à l'accueil
+          </a>
           <a href="seance02.html" class="btn btn-primary-custom btn-sm">
             Passer à la Séance 2 <i class="bi bi-arrow-right ms-1"></i>
           </a>
@@ -993,6 +842,7 @@ else:
   <script src="assets/js/python.min.js"></script>
   <script src="assets/js/algo-highlight.js"></script>
 
+  <!-- APPLICATION VUE 3 -->
   <script src="assets/apps/seance01.js"></script>
 
 </body>
