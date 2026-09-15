@@ -4,24 +4,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Séance 2 : Types caractère & chaîne de caractères, fonctions prédéfinies & TDO - 4e Scientifiques</title>
+  <title>Séance 4 : Structures itératives (Pour, Tant que, Répéter...Jusqu'à) & TDO - 4e Scientifiques</title>
 
   <!-- Métadonnées SEO & Description -->
   <meta name="description"
-    content="Séance 2 d'Informatique pour 4ème Année Scientifique (Bac 2026) : Indiçage base 0, fonctions prédéfinies textuelles (Long, Pos, Sous_chaine, Effacer, Majus, Convch, Estnum, Valeur, Ord, Chr), slicing Python et TDO standard.">
+    content="Séance 4 d'Informatique pour 4ème Année Scientifique (Bac 2026) : Boucle complète (Pour / for range), boucles à condition d'arrêt (Tant que / Répéter...Jusqu'à / while), transposition sans break et TDO standard.">
 
   <!-- Dépendances locales -->
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/css/bootstrap-icons.min.css">
   <link rel="stylesheet" href="assets/css/atom-one-dark.min.css">
   <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/seance02.css">
+  <link rel="stylesheet" href="assets/css/seance04.css">
 </head>
 
 <body>
 
   <div id="app">
-    <!-- NAVIGATION -->
+    <!-- NAVIGATION (SEULE LA SÉANCE 4 EST AFFICHÉE CONFORMÉMENT AUX DIRECTIVES) -->
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top">
       <div class="container">
         <a class="navbar-brand" href="index.html">
@@ -35,7 +35,7 @@
         <div class="collapse navbar-collapse" id="navContent">
           <ul class="navbar-nav ms-auto align-items-lg-center">
             <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house-door me-1"></i> Accueil</a></li>
-            <li class="nav-item"><a class="nav-link active" href="seance02.html"><i class="bi bi-2-circle-fill me-1"></i> Séance 2</a></li>
+            <li class="nav-item"><a class="nav-link active" href="seance04.html"><i class="bi bi-4-circle-fill me-1"></i> Séance 4</a></li>
             <li class="nav-item"><a class="nav-link" href="seance02-old.html"><i class="bi bi-archive me-1"></i> Archives</a></li>
             <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
               <button class="btn btn-sm btn-outline-light" onclick="window.print()">
@@ -51,14 +51,14 @@
     <header class="hero-banner">
       <div class="container">
         <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
-          <span class="badge bg-primary px-3 py-1"><i class="bi bi-fonts me-1"></i>Axe : Textes</span>
+          <span class="badge bg-primary px-3 py-1"><i class="bi bi-arrow-repeat me-1"></i>Axe : Boucles</span>
           <span class="badge bg-secondary px-2 py-1">Sections : Sc. Expérimentales, Mathématiques & Sc. Techniques</span>
           <span class="badge bg-success px-2 py-1"><i class="bi bi-clock-history me-1"></i>Durée : 70 min</span>
           <span class="badge bg-info text-dark px-2 py-1"><i class="bi bi-bookmark-check-fill me-1"></i>Conventions 2024-2025</span>
         </div>
-        <h1 class="hero-title">Séance 2 : Types caractère & chaîne de caractères</h1>
+        <h1 class="hero-title">Séance 4 : Structures itératives (Pour, Tant que, Répéter...Jusqu'à)</h1>
         <p class="hero-subtitle">
-          Indiçage base 0, fonctions prédéfinies textuelles, découpage par slicing et traitement de chaînes en Python.
+          Boucle complète, boucles à condition de continuation ou d'arrêt, transcription en Python 3 sans instruction break et formalisation TDO.
         </p>
         <div class="objective-box">
           <div class="d-flex align-items-start gap-3">
@@ -66,10 +66,10 @@
             <div>
               <div class="fw-bold text-white text-uppercase letter-spacing-1 small mb-1">Objectifs didactiques de la séance :</div>
               <ul class="text-light mb-0 ps-3 small">
-                <li>Maîtriser l'indiçage base 0 des chaînes de caractères (0 &le; <i>i</i> &lt; Long(<i>Ch</i>)).</li>
-                <li>Employer les fonctions prédéfinies textuelles (<code>Long</code>, <code>Pos</code>, <code>Sous_chaine</code>, <code>Effacer</code>, <code>Majus</code>, <code>Convch</code>, <code>Estnum</code>, <code>Valeur</code>, <code>Ord</code>, <code>Chr</code>).</li>
-                <li>Traduire ces traitements textuels en Python selon les conventions officielles (<code>len</code>, <code>.find</code>, slicing <code>[d:f]</code>, <code>.upper()</code>, <code>.isdecimal()</code>, <code>str()</code>, <code>int()</code>, etc.).</li>
-                <li>Formaliser l'algorithme avec son TDO et exécuter le script sans erreur de syntaxe.</li>
+                <li>Maîtriser la boucle complète <code>Pour</code> en algorithmique et sa transcription avec <code>for in range(Début, Fin + 1, Pas)</code> en Python.</li>
+                <li>Différencier et manipuler les boucles à condition d'arrêt : <code>Tant que</code> (condition de continuation) et <code>Répéter ... Jusqu'à</code> (condition de sortie).</li>
+                <li>Traduire les structures itératives conditionnelles en Python à l'aide de l'instruction <code>while</code> sans jamais recourir à l'instruction <code>break</code>.</li>
+                <li>Élaborer le TDO et valider l'exécution sans boucle infinie.</li>
               </ul>
             </div>
           </div>
@@ -82,7 +82,7 @@
 
       <!-- MENU FLOTTANT RÉTRACTABLE (EN BAS À DROITE) -->
       <div class="floating-menu-wrapper">
-        <!-- Panneau déroulant des phases (au-dessus du bouton) -->
+        <!-- Panneau déroulant des phases -->
         <nav class="floating-menu-panel" v-show="isMenuOpen">
           <div class="floating-menu-header">
             <span><i class="bi bi-compass-fill text-primary me-1"></i> MENU DES PHASES</span>
@@ -112,7 +112,7 @@
           </button>
         </nav>
 
-        <!-- Bouton déclencheur flottant en bas à droite -->
+        <!-- Bouton déclencheur flottant -->
         <button class="floating-menu-trigger" @click="isMenuOpen = !isMenuOpen" title="Changer de phase">
           <i class="bi bi-compass-fill text-primary fs-5"></i>
           <span>Phases</span>
@@ -121,7 +121,7 @@
         </button>
       </div>
 
-      <!-- BANDEAU INDICATEUR DE PHASE DANS LE CONTENU -->
+      <!-- BANDEAU INDICATEUR DE PHASE -->
       <div class="d-flex align-items-center justify-content-between p-3 bg-white border rounded shadow-sm mb-4">
         <div class="d-flex align-items-center gap-3">
           <span class="badge bg-primary fs-6 px-3 py-2 rounded-pill">
@@ -153,65 +153,71 @@
           </div>
 
           <div class="section-body">
-            <!-- ÉNONCÉ DE LA SITUATION-PROBLÈME OFFICIELLE -->
+            <!-- ÉNONCÉ OFFICIEL AU TABLEAU -->
             <div class="p-4 rounded border-start border-4 border-primary bg-light mb-4">
               <div class="d-flex align-items-center gap-2 text-primary fw-bold text-uppercase small mb-2">
                 <i class="bi bi-lightbulb-fill"></i> Énoncé au tableau
               </div>
               <blockquote class="fs-5 text-dark fw-semibold mb-2 fst-italic">
-                « Une application reçoit un code d'inscription sous la forme d'une chaîne, par exemple "info-2026". On souhaite vérifier si le suffixe après le tiret "-" est bien composé uniquement de chiffres, mettre le préfixe en majuscules ("INFO"), convertir l'année en entier pour calculer l'année suivante, puis afficher le code mis à jour sous la forme "INFO-2027". »
+                « On souhaite saisir un entier N strictement compris entre 2 et 100 (la saisie doit être répétée tant qu'elle n'est pas conforme). On calcule ensuite la somme de ses diviseurs stricts pour tester si le nombre est parfait (un nombre est parfait s'il est égal à cette somme). Enfin, on compte combien de divisions successives entières par 2 ce nombre peut subir tant qu'il reste pair. »
               </blockquote>
               <div class="small text-muted">
-                Cette situation permet de mobiliser les traitements textuels fondamentaux : recherche de séparateur, extraction de tranches, validation numérique, conversion de types et assemblage par concaténation.
+                Cette situation-problème fédère de manière exemplaire les trois grandes formes de structures itératives : la boucle post-test avec au moins une saisie, la boucle à compteur à nombre d'itérations fixé, et la boucle pré-test dépendante d'un prédicat de calcul.
               </div>
             </div>
 
-            <!-- SCHÉMA DE DÉCOMPOSITION DU TRAITEMENT -->
-            <div class="row g-4 align-items-center mb-4">
-              <div class="col-md-7">
-                <div class="p-3 bg-white border rounded shadow-sm">
-                  <h6 class="fw-bold text-primary mb-3"><i class="bi bi-diagram-3-fill me-2"></i>Décomposition du traitement textuel :</h6>
-                  <ul class="list-unstyled mb-0">
-                    <li class="d-flex align-items-start gap-2 mb-2 pb-2 border-bottom">
-                      <span class="badge bg-info text-dark rounded-pill">1</span>
-                      <div>
-                        <strong>Localisation du séparateur :</strong> Recherche de la position du tiret <code>"-"</code> avec <code>Pos</code> / <code>.find()</code>.
-                      </div>
-                    </li>
-                    <li class="d-flex align-items-start gap-2 mb-2 pb-2 border-bottom">
-                      <span class="badge bg-info text-dark rounded-pill">2</span>
-                      <div>
-                        <strong>Découpage préfixe / suffixe :</strong> Extraction sans boucle avec <code>Sous_chaine</code> / slicing <code>[d:f]</code>.
-                      </div>
-                    </li>
-                    <li class="d-flex align-items-start gap-2 mb-2 pb-2 border-bottom">
-                      <span class="badge bg-info text-dark rounded-pill">3</span>
-                      <div>
-                        <strong>Validation & Conversion de l'année :</strong> Vérification avec <code>Estnum</code> / <code>isdecimal()</code>, conversion via <code>Valeur</code> / <code>int()</code> et incrémentation (+ 1).
-                      </div>
-                    </li>
-                    <li class="d-flex align-items-start gap-2">
-                      <span class="badge bg-info text-dark rounded-pill">4</span>
-                      <div>
-                        <strong>Recomposition du nouveau code :</strong> Majuscules avec <code>Majus</code> / <code>.upper()</code>, conversion avec <code>Convch</code> / <code>str()</code> et concaténation <code>+</code>.
-                      </div>
-                    </li>
-                  </ul>
+            <!-- SCHÉMA D'ARTICULATION DES TROIS BOUCLES -->
+            <div class="row g-4 align-items-stretch mb-4">
+              <div class="col-md-4">
+                <div class="p-3 bg-white border rounded shadow-sm h-100 border-top border-4 border-info">
+                  <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="badge bg-info text-dark rounded-pill">Boucle 1</span>
+                    <h6 class="fw-bold text-dark mb-0">Contrôle de saisie</h6>
+                  </div>
+                  <p class="small text-muted mb-2">
+                    <strong>Structure post-test :</strong> <code>Répéter ... Jusqu'à</code>.
+                  </p>
+                  <div class="p-2 bg-light font-monospace small rounded mb-2">
+                    Jusqu'à (n > 2) Et (n < 100)
+                  </div>
+                  <div class="small text-muted">
+                    Garantit au moins une première saisie avant vérification de la condition d'arrêt.
+                  </div>
                 </div>
               </div>
 
-              <div class="col-md-5">
-                <div class="p-3 bg-dark text-white rounded shadow-sm text-center">
-                  <div class="text-uppercase small text-white-50 mb-2">Transformation Visuelle</div>
-                  <div class="d-flex justify-content-center align-items-center gap-2 fs-5 font-monospace mb-3">
-                    <span class="badge bg-secondary">"info-2026"</span>
-                    <i class="bi bi-arrow-right text-warning"></i>
-                    <span class="badge bg-success">"INFO-2027"</span>
+              <div class="col-md-4">
+                <div class="p-3 bg-white border rounded shadow-sm h-100 border-top border-4 border-primary">
+                  <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="badge bg-primary rounded-pill">Boucle 2</span>
+                    <h6 class="fw-bold text-dark mb-0">Somme des diviseurs</h6>
                   </div>
-                  <div class="small text-white-50 text-start ps-3">
-                    <div>• Préfixe : <code>"info"</code> &rarr; <code>"INFO"</code></div>
-                    <div>• Séparateur : <code>"-"</code> (indice 4)</div>
-                    <div>• Suffixe : <code>"2026"</code> &rarr; <code>2026 + 1 = 2027</code></div>
+                  <p class="small text-muted mb-2">
+                    <strong>Boucle complète :</strong> <code>Pour i de 1 à n-1</code>.
+                  </p>
+                  <div class="p-2 bg-light font-monospace small rounded mb-2">
+                    Pour i de 1 à n - 1 Faire
+                  </div>
+                  <div class="small text-muted">
+                    Le nombre d'itérations est exactement <code>n - 1</code>, connu et fixé dès le départ.
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="p-3 bg-white border rounded shadow-sm h-100 border-top border-4 border-warning">
+                  <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="badge bg-warning text-dark rounded-pill">Boucle 3</span>
+                    <h6 class="fw-bold text-dark mb-0">Divisions par 2</h6>
+                  </div>
+                  <p class="small text-muted mb-2">
+                    <strong>Boucle préalable :</strong> <code>Tant que</code>.
+                  </p>
+                  <div class="p-2 bg-light font-monospace small rounded mb-2">
+                    Tant que temp Mod 2 = 0 Faire
+                  </div>
+                  <div class="small text-muted">
+                    Condition de continuation évaluée avant chaque division entière par 2.
                   </div>
                 </div>
               </div>
@@ -264,119 +270,89 @@
 
           <div class="section-body">
             <p class="text-muted mb-3">
-              Mise au point sur les équivalences normatives officielles pour les caractères et les chaînes de caractères (Conventions 2024-2025) :
+              Mise au point sur les règles officielles des structures itératives (Conventions 2024-2025) :
             </p>
 
-            <!-- TABLEAU COMPARATIF OFFICIEL -->
+            <!-- TABLEAU COMPARATIF OFFICIEL DES STRUCTURES ITÉRATIVES -->
             <div class="table-responsive mb-4">
               <table class="table table-hover align-middle border shadow-sm">
                 <thead class="table-dark">
                   <tr>
-                    <th scope="col" style="width: 25%;">Notion / Opération</th>
-                    <th scope="col" style="width: 35%;">Algorithmique (Norme)</th>
+                    <th scope="col" style="width: 22%;">Structure</th>
+                    <th scope="col" style="width: 38%;">Algorithmique (Norme)</th>
                     <th scope="col" style="width: 40%;">Python (Conventions 2024-2025)</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td><strong>Longueur</strong></td>
-                    <td><code>Long(ch)</code></td>
-                    <td><code>len(ch)</code></td>
+                    <td><strong>Boucle complète</strong></td>
+                    <td><code>Pour i de D à F [Pas = p] Faire<br>&nbsp;&nbsp;Traitement<br>Fin Pour</code></td>
+                    <td><code>for i in range(D, F + 1, p):<br>&nbsp;&nbsp;&nbsp;&nbsp;Traitement</code><br><span class="badge bg-info text-dark mt-1">Borne F+1 exclue en Python</span></td>
                   </tr>
                   <tr>
-                    <td><strong>Recherche de position</strong></td>
-                    <td><code>Pos(ch1, ch2)</code> <span class="text-muted small">(retourne -1 si absent)</span></td>
-                    <td><code>ch2.find(ch1)</code></td>
+                    <td><strong>Boucle préalable</strong></td>
+                    <td><code>Tant que Condition Faire<br>&nbsp;&nbsp;Traitement<br>Fin Tant que</code></td>
+                    <td><code>while Condition:<br>&nbsp;&nbsp;&nbsp;&nbsp;Traitement</code><br><span class="badge bg-secondary mt-1">Condition de maintien / continuation</span></td>
                   </tr>
                   <tr>
-                    <td><strong>Extraction (slicing)</strong></td>
-                    <td><code>Sous_chaine(ch, d, f)</code> <span class="badge bg-info text-dark small ms-1">position f exclue</span></td>
-                    <td><code>ch[d:f]</code></td>
-                  </tr>
-                  <tr>
-                    <td><strong>Suppression</strong></td>
-                    <td><code>Effacer(ch, d, f)</code></td>
-                    <td><code>ch = ch[:d] + ch[f:]</code></td>
-                  </tr>
-                  <tr>
-                    <td><strong>Passage en majuscules</strong></td>
-                    <td><code>Majus(ch)</code></td>
-                    <td><code>ch.upper()</code></td>
-                  </tr>
-                  <tr>
-                    <td><strong>Test numérique</strong></td>
-                    <td><code>Estnum(ch)</code></td>
-                    <td><code>ch.isdecimal()</code></td>
-                  </tr>
-                  <tr>
-                    <td><strong>Conversion en nombre</strong></td>
-                    <td><code>Valeur(ch)</code></td>
-                    <td><code>int(ch)</code> ou <code>float(ch)</code></td>
-                  </tr>
-                  <tr>
-                    <td><strong>Conversion en chaîne</strong></td>
-                    <td><code>Convch(x)</code></td>
-                    <td><code>str(x)</code></td>
-                  </tr>
-                  <tr>
-                    <td><strong>Code ASCII / Caractère</strong></td>
-                    <td><code>Ord(c)</code><br><code>Chr(d)</code></td>
-                    <td><code>ord(c)</code><br><code>chr(d)</code></td>
+                    <td><strong>Boucle post-test</strong></td>
+                    <td><code>Répéter<br>&nbsp;&nbsp;Traitement<br>Jusqu'à Condition</code></td>
+                    <td><code>while not (Condition):<br>&nbsp;&nbsp;&nbsp;&nbsp;Traitement</code><br><span class="badge bg-warning text-dark mt-1">Négation de la condition d'arrêt</span></td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
             <!-- CARTE DU RAPPEL FONDAMENTAL -->
-            <div class="alert alert-warning border-start border-4 border-warning d-flex align-items-start gap-3 p-3 mb-4">
-              <i class="bi bi-exclamation-triangle-fill fs-3 text-warning"></i>
+            <div class="alert alert-danger border-start border-4 border-danger d-flex align-items-start gap-3 p-3 mb-4">
+              <i class="bi bi-exclamation-octagon-fill fs-3 text-danger"></i>
               <div>
-                <h6 class="fw-bold mb-1 text-dark">Rappels didactiques majeurs :</h6>
+                <h6 class="fw-bold mb-1 text-dark">Consignes officielles impératives (Interdictions formelles) :</h6>
                 <ul class="mb-0 small text-dark ps-3">
-                  <li><strong>Indiçage en base 0 :</strong> Le premier caractère d'une chaîne <code>Ch</code> est situé à l'indice <strong>0</strong> (notation <code>Ch[i]</code> avec 0 &le; <i>i</i> &lt; Long(<i>Ch</i>)).</li>
-                  <li><strong>Borne finale exclue :</strong> Tant en algorithmique (<code>Sous_chaine(ch, d, f)</code>) qu'en Python (<code>ch[d:f]</code>), le caractère à la position finale <strong>f est toujours exclu</strong>.</li>
-                  <li><strong>Type unique en Python :</strong> En Python, il n'existe pas de type <i>caractère</i> distinct : un caractère est simplement représenté comme une chaîne de longueur 1 de type <strong><code>str</code></strong>.</li>
+                  <li><strong>Proscription absolue du <code>break</code> :</strong> L'utilisation de l'instruction <code>break</code> pour forcer la sortie d'une boucle <code>for</code> ou <code>while</code> est formellement interdite.</li>
+                  <li><strong>Intégrité du compteur de boucle <code>Pour</code> :</strong> La valeur de la variable de contrôle d'une boucle <code>Pour</code> ne doit jamais être modifiée manuellement dans le traitement.</li>
+                  <li><strong>Division entière :</strong> Les calculs de parité et de division itérative doivent employer l'opérateur euclidien <code>//</code> (et non pas <code>/</code>) pour préserver le type <code>int</code>.</li>
                 </ul>
               </div>
             </div>
 
-            <!-- ZOOM SUR TROIS SUBTILITÉS FRÉQUENTES -->
+            <!-- ZOOM SUR TROIS SUBTILITÉS MAJEURES -->
             <div class="row g-3">
               <div class="col-md-4">
                 <div class="card h-100 border p-3">
-                  <div class="fw-bold text-primary mb-1"><i class="bi bi-search me-1"></i>Pos vs .find()</div>
+                  <div class="fw-bold text-primary mb-1"><i class="bi bi-slash-circle me-1"></i>Pas négatif dans range</div>
                   <p class="small text-muted mb-2">
-                    Si la sous-chaîne n'est pas trouvée, <code>Pos</code> et <code>.find()</code> retournent impérativement <strong>-1</strong> (et non 0).
+                    Pour compter à rebours en Python, la borne finale doit être <code>F - 1</code> pour s'arrêter à <code>F</code>.
                   </p>
                   <div class="p-2 bg-light font-monospace small rounded">
-                    Pos("x", "bac") = -1<br>
-                    "bac".find("x") == -1
+                    # De 10 à 0 décroissant :<br>
+                    range(10, -1, -2)
                   </div>
                 </div>
               </div>
 
               <div class="col-md-4">
                 <div class="card h-100 border p-3">
-                  <div class="fw-bold text-primary mb-1"><i class="bi bi-scissors me-1"></i>Sous_chaine vs [d:f]</div>
+                  <div class="fw-bold text-primary mb-1"><i class="bi bi-shield-x me-1"></i>Inversion de condition</div>
                   <p class="small text-muted mb-2">
-                    L'extraction de <code>d</code> à <code>f</code> comporte <code>f - d</code> caractères.
+                    La condition de <code>Jusqu'à</code> indique quand <em>sortir</em>. En Python, le <code>while</code> continue tant que la condition est <em>vraie</em>.
                   </p>
                   <div class="p-2 bg-light font-monospace small rounded">
-                    Sous_chaine("info", 1, 3) = "nf"<br>
-                    "info"[1:3] == "nf"
+                    Jusqu'à (n > 2)<br>
+                    while not (n > 2): # ou n &lt;= 2
                   </div>
                 </div>
               </div>
 
               <div class="col-md-4">
                 <div class="card h-100 border p-3">
-                  <div class="fw-bold text-primary mb-1"><i class="bi bi-eraser me-1"></i>Effacer vs Immuabilité</div>
+                  <div class="fw-bold text-primary mb-1"><i class="bi bi-infinity me-1"></i>Prévention de boucle infinie</div>
                   <p class="small text-muted mb-2">
-                    En Python, les chaînes étant immuables, on découpe et concatène sans la tranche supprimée.
+                    Dans une boucle <code>while</code>, une variable de la condition doit impérativement être modifiée à chaque itération.
                   </p>
                   <div class="p-2 bg-light font-monospace small rounded">
-                    # Supprime de 0 à 4 exclu :<br>
-                    ch = ch[:0] + ch[4:]
+                    temp = temp // 2<br>
+                    nb_div2 = nb_div2 + 1
                   </div>
                 </div>
               </div>
@@ -401,7 +377,7 @@
 
           <div class="section-body">
             <p class="text-muted mb-3">
-              Élaboration collective de la solution au tableau : respect strict de la syntaxe officielle et des types de données.
+              Construction guidée au tableau articulant les trois familles d'itérations en un algorithme cohérent :
             </p>
 
             <div class="row g-4">
@@ -409,27 +385,38 @@
               <div class="col-lg-7">
                 <div class="card border h-100 shadow-sm">
                   <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
-                    <span class="font-monospace fw-bold"><i class="bi bi-code-square me-2 text-info"></i>ALGORITHME MajCode</span>
+                    <span class="font-monospace fw-bold"><i class="bi bi-code-square me-2 text-info"></i>ALGORITHME AnalyseNombre</span>
                     <span class="badge bg-primary">Algorithme Principal</span>
                   </div>
                   <div class="card-body p-0">
-                    <pre class="m-0 p-3" style="background-color: #1e1e2e; border-radius: 0 0 var(--radius-sm) var(--radius-sm);"><code class="language-algo">ALGORITHME MajCode
+                    <pre class="m-0 p-3" style="background-color: #1e1e2e; border-radius: 0 0 var(--radius-sm) var(--radius-sm);"><code class="language-algo">ALGORITHME AnalyseNombre
 DEBUT
-    Écrire("Donner le code (ex: info-2026) : ")
-    Lire(code)
+    // 1. Contrôle de saisie post-test
+    Répéter
+        Écrire("Donner un entier N (2 à 100) : ")
+        Lire(n)
+    Jusqu'à (n > 2) Et (n < 100)
     
-    p ← Pos("-", code)
-    prefixe ← Sous_chaine(code, 0, p)
-    suffixe ← Sous_chaine(code, p + 1, Long(code))
+    // 2. Boucle complète : somme des diviseurs stricts
+    somme_div ← 0
+    Pour i de 1 à n - 1 Faire
+        Si n Mod i = 0 Alors
+            somme_div ← somme_div + i
+        FinSi
+    Fin Pour
     
-    valide ← Estnum(suffixe)
-    annee ← Valeur(suffixe)
-    nouvelle_annee ← annee + 1
+    est_parfait ← (somme_div = n)
+    Écrire("Le nombre est-il parfait ? ", est_parfait)
     
-    nouveau_code ← Majus(prefixe) + "-" + Convch(nouvelle_annee)
+    // 3. Boucle préalable : divisions successives par 2
+    temp ← n
+    nb_div2 ← 0
+    Tant que temp Mod 2 = 0 Faire
+        temp ← temp Div 2
+        nb_div2 ← nb_div2 + 1
+    Fin Tant que
     
-    Écrire("Suffixe numérique valide : ", valide)
-    Écrire("Nouveau code : ", nouveau_code)
+    Écrire("Nombre de divisions par 2 possibles : ", nb_div2)
 FIN</code></pre>
                   </div>
                 </div>
@@ -453,15 +440,11 @@ FIN</code></pre>
                         </thead>
                         <tbody>
                           <tr>
-                            <td><strong class="font-monospace text-primary">code, prefixe, suffixe, nouveau_code</strong></td>
-                            <td><span class="badge bg-primary">Chaîne de caractères</span></td>
-                          </tr>
-                          <tr>
-                            <td><strong class="font-monospace text-primary">p, annee, nouvelle_annee</strong></td>
+                            <td><strong class="font-monospace text-primary">n, somme_div, i, temp, nb_div2</strong></td>
                             <td><span class="badge bg-success">Entier</span></td>
                           </tr>
                           <tr>
-                            <td><strong class="font-monospace text-primary">valide</strong></td>
+                            <td><strong class="font-monospace text-primary">est_parfait</strong></td>
                             <td><span class="badge bg-warning text-dark">Booléen</span></td>
                           </tr>
                         </tbody>
@@ -469,11 +452,13 @@ FIN</code></pre>
                     </div>
 
                     <div class="p-3 bg-light border-top">
-                      <div class="small fw-bold text-dark mb-1"><i class="bi bi-info-circle text-primary me-1"></i>Commentaires méthodologiques :</div>
+                      <div class="small fw-bold text-dark mb-1"><i class="bi bi-info-circle text-primary me-1"></i>Rôles des variables dans les boucles :</div>
                       <ul class="small text-muted ps-3 mb-0">
-                        <li><strong><code>p</code> :</strong> Position du tiret (Entier &ge; 0).</li>
-                        <li><strong><code>valide</code> :</strong> Booléen résultant de <code>Estnum(suffixe)</code>.</li>
-                        <li><strong><code>annee</code> :</strong> Converti en Entier pour autoriser l'addition arithmétique <code>+ 1</code>.</li>
+                        <li><strong><code>n</code> :</strong> Entier saisi contrôlé dans ]2, 100[.</li>
+                        <li><strong><code>i</code> :</strong> Compteur automatique de la boucle <code>Pour</code> (de 1 à n-1).</li>
+                        <li><strong><code>somme_div</code> :</strong> Accumulateur de somme, initialisé à 0 avant la boucle.</li>
+                        <li><strong><code>temp</code> :</strong> Copie de travail de <code>n</code> pour éviter d'altérer la valeur initiale.</li>
+                        <li><strong><code>nb_div2</code> :</strong> Compteur incrémenté à chaque division valide par 2.</li>
                       </ul>
                     </div>
                   </div>
@@ -500,7 +485,7 @@ FIN</code></pre>
 
           <div class="section-body">
             <p class="text-muted mb-3">
-              Saisie individuelle du script Python par les élèves dans leur environnement de travail (Thonny, VS Code ou IDLE) :
+              Implémentation individuelle du script en respectant les conventions d'écriture Python officielles :
             </p>
 
             <div class="row g-4 mb-4">
@@ -508,31 +493,32 @@ FIN</code></pre>
               <div class="col-lg-6">
                 <div class="card border h-100 shadow-sm">
                   <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
-                    <span class="font-monospace fw-bold"><i class="bi bi-file-earmark-code text-warning me-2"></i>maj_code.py</span>
+                    <span class="font-monospace fw-bold"><i class="bi bi-file-earmark-code text-warning me-2"></i>analyse_nombre.py</span>
                     <button class="btn btn-sm btn-outline-info" @click="copyPythonCode">
                       <i class="bi bi-clipboard me-1"></i>{{ copyStatus }}
                     </button>
                   </div>
                   <div class="card-body p-0">
-                    <pre class="m-0 p-3" style="background-color: #1e1e2e; border-radius: 0 0 var(--radius-sm) var(--radius-sm);"><code class="language-python"># Saisie du code initial
-code = input("Donner le code (ex: info-2026) : ")
+                    <pre class="m-0 p-3" style="background-color: #1e1e2e; border-radius: 0 0 var(--radius-sm) var(--radius-sm);"><code class="language-python"># 1. Contrôle de saisie émulant 'Répéter ... Jusqu'à' sans break
+n = 0
+while not (2 < n < 100):
+    n = int(input("Donner un entier N (2 à 100) : "))
 
-# Recherche du séparateur et extraction
-p = code.find("-")
-prefixe = code[0:p]
-suffixe = code[p + 1:len(code)]
+# 2. Somme des diviseurs avec 'for in range' (borne n incluse dans le range via n)
+somme_div = 0
+for i in range(1, n):
+    if n % i == 0:
+        somme_div = somme_div + i
+est_parfait = (somme_div == n)
+print("Le nombre est-il parfait ? :", est_parfait)
 
-# Vérification et conversions
-valide = suffixe.isdecimal()
-annee = int(suffixe)
-nouvelle_annee = annee + 1
-
-# Formatage final
-nouveau_code = prefixe.upper() + "-" + str(nouvelle_annee)
-
-# Affichage
-print("Suffixe numérique valide :", valide)
-print("Nouveau code :", nouveau_code)</code></pre>
+# 3. Divisions successives par 2 avec 'while'
+temp = n
+nb_div2 = 0
+while temp % 2 == 0:
+    temp = temp // 2
+    nb_div2 = nb_div2 + 1
+print("Nombre de divisions par 2 possibles :", nb_div2)</code></pre>
                   </div>
                 </div>
               </div>
@@ -545,26 +531,26 @@ print("Nouveau code :", nouveau_code)</code></pre>
                   </div>
                   <div class="card-body">
                     <div class="d-flex align-items-start gap-2 mb-3 pb-2 border-bottom">
-                      <i class="bi bi-exclamation-octagon-fill text-danger fs-5"></i>
+                      <i class="bi bi-bounding-box text-danger fs-5"></i>
                       <div>
-                        <strong>Gestion des indices du slicing :</strong><br>
-                        <span class="small text-muted">Vérifier l'expression <code>code[p + 1:len(code)]</code> ou la forme équivalente <code>code[p + 1:]</code>. La position <code>p</code> (le tiret) doit être sautée (+ 1).</span>
+                        <strong>Vérification de la borne supérieure dans <code>range(1, n)</code> :</strong><br>
+                        <span class="small text-muted">Pour tester les diviseurs stricts jusqu'à <code>n - 1</code>, la borne passée à <code>range</code> doit impérativement être <code>n</code> (puisque la fin est exclue).</span>
                       </div>
                     </div>
 
                     <div class="d-flex align-items-start gap-2 mb-3 pb-2 border-bottom">
-                      <i class="bi bi-shield-x text-danger fs-5"></i>
+                      <i class="bi bi-slash-square text-danger fs-5"></i>
                       <div>
-                        <strong>Interdiction des fonctions hors convention :</strong><br>
-                        <span class="small text-muted">Veiller à ce que les élèves n'emploient aucune fonction non agréée : utiliser exclusivement <code>isdecimal()</code> (et non pas <code>isdigit()</code>), et proscrire formellement la méthode <code>.replace()</code>.</span>
+                        <strong>Usage de la division entière <code>//</code> :</strong><br>
+                        <span class="small text-muted">S'assurer que les élèves utilisent <code>temp = temp // 2</code> et non <code>temp / 2</code>, sous peine de convertir <code>temp</code> en nombre flottant.</span>
                       </div>
                     </div>
 
                     <div class="d-flex align-items-start gap-2">
-                      <i class="bi bi-arrow-repeat text-danger fs-5"></i>
+                      <i class="bi bi-x-octagon-fill text-danger fs-5"></i>
                       <div>
-                        <strong>Sécurisation avant conversion :</strong><br>
-                        <span class="small text-muted">Rappeler l'intérêt majeur de <code>isdecimal()</code> avant <code>int()</code> pour éviter une erreur fatale <code>ValueError</code> lors de la saisie d'un suffixe contenant des lettres.</span>
+                        <strong>Interdiction stricte de <code>while True</code> + <code>break</code> :</strong><br>
+                        <span class="small text-muted">Rappeler l'obligation normative de pré-initialiser <code>n = 0</code> pour amorcer la boucle <code>while not (2 &lt; n &lt; 100):</code>.</span>
                       </div>
                     </div>
                   </div>
@@ -572,106 +558,131 @@ print("Nouveau code :", nouveau_code)</code></pre>
               </div>
             </div>
 
-            <!-- SIMULATEUR D'EXÉCUTION INTERACTIF (ATELIER MACHINE) -->
+            <!-- SIMULATEUR D'EXÉCUTION INTERACTIF -->
             <div class="card border-primary shadow-sm mb-4">
               <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center flex-wrap gap-2">
-                <span class="fw-bold"><i class="bi bi-play-circle-fill me-2"></i>Simulateur Interactif : Décomposition indicée & Traitement en direct</span>
-                <div class="d-flex align-items-center gap-1">
-                  <span class="small text-white-50 me-1">Exemples :</span>
-                  <button v-for="ex in exampleCodes" :key="ex" class="btn btn-xs btn-outline-light py-0 px-2 small"
-                    @click="setExample(ex)">{{ ex }}</button>
+                <span class="fw-bold"><i class="bi bi-play-circle-fill me-2"></i>Simulateur Interactif : Décomposition des 3 Boucles en Direct</span>
+                <div class="d-flex align-items-center gap-1 flex-wrap">
+                  <span class="small text-white-50 me-1">Cas d'école :</span>
+                  <button v-for="pr in presets" :key="pr.name" class="btn btn-xs btn-outline-light py-0 px-2 small"
+                    @click="setPreset(pr)" :title="pr.desc">{{ pr.name }}</button>
                 </div>
               </div>
 
               <div class="card-body">
-                <!-- CHAMP DE SAISIE -->
-                <div class="mb-3">
-                  <label class="form-label fw-bold text-dark small mb-1">Entrez un code à tester (ex: info-2026) :</label>
-                  <div class="input-group">
-                    <span class="input-group-text font-monospace bg-light">code =</span>
-                    <input type="text" class="form-control font-monospace" v-model="simInputCode" placeholder="ex: info-2026">
+                <!-- FORMULAIRE DE SAISIE DE N -->
+                <div class="row g-3 mb-4">
+                  <div class="col-md-6">
+                    <label class="form-label fw-bold text-dark small mb-1">
+                      <i class="bi bi-123 text-primary me-1"></i>Saisir la valeur de N :
+                    </label>
+                    <div class="input-group mb-2">
+                      <span class="input-group-text font-monospace bg-light">n =</span>
+                      <input type="number" min="0" max="150" class="form-control font-monospace" v-model.number="simN">
+                    </div>
+                    <input type="range" class="form-range" min="1" max="120" v-model.number="simN">
                   </div>
-                </div>
 
-                <!-- DÉCOMPOSITION INDICÉE DES CARACTÈRES -->
-                <div class="mb-4">
-                  <div class="small fw-bold text-dark mb-2"><i class="bi bi-layout-three-columns text-primary me-1"></i>Décomposition indicée des caractères (Base 0) :</div>
-                  <div class="char-pill-container">
-                    <div v-for="(item, idx) in charList" :key="idx" class="char-cell"
-                      :class="{
-                        'is-prefix': hasSep && idx < sepIndex,
-                        'is-sep': hasSep && idx === sepIndex,
-                        'is-suffix': hasSep && idx > sepIndex
-                      }">
-                      <span class="char-val">{{ item.char === ' ' ? '␣' : item.char }}</span>
-                      <span class="char-idx">{{ item.index }}</span>
+                  <div class="col-md-6">
+                    <label class="form-label fw-bold text-dark small mb-1">Contrôle de conformité de saisie :</label>
+                    <div class="p-3 border rounded" :class="isValidInput ? 'bg-success bg-opacity-10 border-success' : 'bg-danger bg-opacity-10 border-danger'">
+                      <div class="d-flex align-items-center gap-2 mb-1">
+                        <i class="bi" :class="isValidInput ? 'bi-check-circle-fill text-success fs-5' : 'bi-exclamation-triangle-fill text-danger fs-5'"></i>
+                        <span class="fw-bold" :class="isValidInput ? 'text-success' : 'text-danger'">
+                          {{ isValidInput ? 'Saisie Valide (2 < N < 100)' : 'Saisie Hors Bornes !' }}
+                        </span>
+                      </div>
+                      <div class="small text-muted">
+                        {{ isValidInput ? 'La boucle post-test s\'arrête avec succès.' : 'La boucle post-test continue de redemander la saisie.' }}
+                      </div>
                     </div>
                   </div>
-                  <div class="d-flex justify-content-center gap-4 mt-2 small text-muted">
-                    <span><i class="bi bi-square-fill text-info me-1"></i>Préfixe [0:p]</span>
-                    <span><i class="bi bi-square-fill text-danger me-1"></i>Séparateur (p)</span>
-                    <span><i class="bi bi-square-fill text-success me-1"></i>Suffixe [p+1:len]</span>
-                  </div>
                 </div>
 
-                <!-- CALCUL PAS À PAS -->
-                <div class="row g-3">
-                  <div class="col-lg-6">
-                    <div class="p-3 bg-light rounded border h-100">
-                      <h6 class="fw-bold text-dark mb-3"><i class="bi bi-calculator text-primary me-2"></i>Résultats des étapes :</h6>
-
-                      <div class="d-flex justify-content-between align-items-center mb-2 pb-1 border-bottom">
-                        <span class="small text-muted">Longueur totale (<code>len(code)</code>) :</span>
-                        <strong class="font-monospace">{{ cleanInput.length }} caractères</strong>
+                <!-- DÉCOMPOSITION VISUELLE DES 3 BOUCLES -->
+                <div class="loop-visualizer-container mb-4">
+                  <div class="row g-3">
+                    <!-- BOUCLE 2 : DIVISEURS & NOMBRE PARFAIT -->
+                    <div class="col-lg-6">
+                      <div class="loop-header-badge">
+                        <i class="bi bi-calculator-fill text-info"></i>
+                        <span>Boucle 2 (Pour) : Parcours des diviseurs stricts de 1 à {{ nVal - 1 }}</span>
                       </div>
 
-                      <div class="d-flex justify-content-between align-items-center mb-2 pb-1 border-bottom">
-                        <span class="small text-muted">Position du tiret (<code>code.find("-")</code>) :</span>
-                        <strong class="font-monospace" :class="hasSep ? 'text-primary' : 'text-danger'">
-                          {{ hasSep ? sepIndex : '-1 (absent)' }}
-                        </strong>
-                      </div>
-
-                      <div class="d-flex justify-content-between align-items-center mb-2 pb-1 border-bottom">
-                        <span class="small text-muted">Préfixe extrait (<code>code[0:p]</code>) :</span>
-                        <strong class="font-monospace text-info">"{{ prefixeExtrait }}" &rarr; "{{ prefixeExtrait.toUpperCase() }}"</strong>
-                      </div>
-
-                      <div class="d-flex justify-content-between align-items-center mb-2 pb-1 border-bottom">
-                        <span class="small text-muted">Suffixe extrait (<code>code[p+1:]</code>) :</span>
-                        <strong class="font-monospace text-success">"{{ suffixeExtrait }}"</strong>
-                      </div>
-
-                      <div class="d-flex justify-content-between align-items-center mb-2 pb-1 border-bottom">
-                        <span class="small text-muted">Validité numérique (<code>isdecimal()</code>) :</span>
-                        <span class="badge" :class="isSuffixNumeric ? 'bg-success' : 'bg-danger'">
-                          {{ isSuffixNumeric ? 'Vrai / True (chiffres uniquement)' : 'Faux / False' }}
+                      <div class="divisors-grid mb-3">
+                        <span v-for="d in divisorsList" :key="d" class="divisor-chip">
+                          <i class="bi bi-check-lg"></i> {{ d }}
+                        </span>
+                        <span v-if="divisorsList.length === 0" class="text-white-50 small fst-italic p-2">
+                          Aucun diviseur strict disponible.
                         </span>
                       </div>
 
-                      <div class="d-flex justify-content-between align-items-center">
-                        <span class="small text-muted">Incrémentation d'année :</span>
-                        <strong class="font-monospace" :class="isSuffixNumeric ? 'text-dark' : 'text-muted'">
-                          {{ isSuffixNumeric ? parsedYear + ' + 1 = ' + nextYear : 'Impossible (non numérique)' }}
-                        </strong>
+                      <div class="p-2 bg-dark rounded border border-secondary text-white small mb-3">
+                        <div><strong>Somme des diviseurs stricts :</strong></div>
+                        <div class="font-monospace text-info mt-1">
+                          {{ divisorsList.join(' + ') || '0' }} = <strong class="fs-6 text-warning">{{ sommeDiv }}</strong>
+                        </div>
                       </div>
-                    </div>
-                  </div>
 
-                  <!-- CONSOLE TERMINALE SIMULÉE -->
-                  <div class="col-lg-6">
-                    <div class="terminal-window h-100">
-                      <div class="terminal-header">
-                        <span class="terminal-dot dot-red"></span>
-                        <span class="terminal-dot dot-yellow"></span>
-                        <span class="terminal-dot dot-green"></span>
-                        <span class="text-white-50 small ms-2 font-monospace">Sortie console Python (Terminal)</span>
+                      <div class="perfect-status-box" :class="isPerfect ? 'is-perfect' : 'not-perfect'">
+                        <div class="perfect-badge-icon">
+                          <i class="bi" :class="isPerfect ? 'bi-award-fill text-success' : 'bi-x-circle text-muted'"></i>
+                        </div>
+                        <div class="fw-bold text-white fs-6">
+                          {{ isPerfect ? 'NOMBRE PARFAIT ! (somme = n)' : 'Nombre Non Parfait (somme ≠ n)' }}
+                        </div>
+                        <div class="small text-white-50 mt-1">
+                          {{ isPerfect ? (sommeDiv + ' == ' + nVal + ' -> est_parfait = True') : (sommeDiv + ' ≠ ' + nVal + ' -> est_parfait = False') }}
+                        </div>
                       </div>
-                      <div class="terminal-body">Donner le code (ex: info-2026) : {{ cleanInput }}
-Suffixe numérique valide : {{ isSuffixNumeric ? 'True' : 'False' }}
-Nouveau code : {{ nouveauCode }}</div>
+                    </div>
+
+                    <!-- BOUCLE 3 : DIVISIONS SUCCESSIVES PAR 2 -->
+                    <div class="col-lg-6">
+                      <div class="loop-header-badge">
+                        <i class="bi bi-arrow-repeat text-warning"></i>
+                        <span>Boucle 3 (Tant que) : Divisions successives par 2 (temp // 2)</span>
+                      </div>
+
+                      <div class="division-chain-wrapper mb-3">
+                        <div class="chain-step">
+                          <span class="chain-val">{{ nVal }}</span>
+                          <span class="chain-label">temp initial</span>
+                        </div>
+
+                        <template v-for="(step, sIdx) in divisionSteps" :key="sIdx">
+                          <i class="bi bi-arrow-right chain-arrow"></i>
+                          <div class="chain-step">
+                            <span class="chain-val text-warning">{{ step.after }}</span>
+                            <span class="chain-label">Div #{{ sIdx + 1 }}</span>
+                          </div>
+                        </template>
+                      </div>
+
+                      <div class="p-3 bg-dark rounded border border-secondary text-white small">
+                        <div class="d-flex justify-content-between align-items-center mb-1 pb-1 border-bottom border-secondary">
+                          <span class="text-white-50">Valeur finale restante (impaire) :</span>
+                          <strong class="font-monospace text-info fs-6">{{ lastOddNumber }}</strong>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                          <span class="text-white-50">Nombre total de divisions (<code>nb_div2</code>) :</span>
+                          <span class="badge bg-primary fs-6 font-monospace">{{ nbDiv2 }}</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
+                </div>
+
+                <!-- CONSOLE TERMINALE SIMULÉE -->
+                <div class="terminal-window">
+                  <div class="terminal-header">
+                    <span class="terminal-dot dot-red"></span>
+                    <span class="terminal-dot dot-yellow"></span>
+                    <span class="terminal-dot dot-green"></span>
+                    <span class="text-white-50 small ms-2 font-monospace">Sortie console Python (Terminal)</span>
+                  </div>
+                  <div class="terminal-body">{{ terminalOutput }}</div>
                 </div>
 
               </div>
@@ -720,7 +731,7 @@ Nouveau code : {{ nouveauCode }}</div>
             <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
               <div>
                 <h4 class="h5 fw-bold text-dark mb-1"><i class="bi bi-patch-question-fill text-primary me-2"></i>Quiz d'auto-évaluation interactif</h4>
-                <div class="small text-muted">Testez vos acquis sur l'indiçage base 0, les primitives textuelles et les équivalents Python.</div>
+                <div class="small text-muted">Testez vos compétences sur les boucles Pour, Tant que, Répéter et leur implémentation sans break.</div>
               </div>
               <div class="d-flex align-items-center gap-2">
                 <span class="badge bg-primary px-3 py-2 fs-6">Score : {{ quizScore }} / {{ quizQuestions.length }}</span>
@@ -789,11 +800,11 @@ Nouveau code : {{ nouveauCode }}</div>
           <a href="index.html" class="btn btn-outline-light btn-sm me-2">
             <i class="bi bi-house-door me-1"></i> Accueil
           </a>
-          <a href="seance01.html" class="btn btn-outline-light btn-sm me-2">
-            <i class="bi bi-arrow-left me-1"></i> Revoir Séance 1
+          <a href="seance03.html" class="btn btn-outline-light btn-sm me-2">
+            <i class="bi bi-arrow-left me-1"></i> Revoir Séance 3
           </a>
-          <a href="seance03.html" class="btn btn-primary-custom btn-sm">
-            Passer à la Séance 3 <i class="bi bi-arrow-right ms-1"></i>
+          <a href="seance02-old.html" class="btn btn-primary-custom btn-sm">
+            Voir les archives <i class="bi bi-arrow-right ms-1"></i>
           </a>
         </div>
       </div>
@@ -808,7 +819,7 @@ Nouveau code : {{ nouveauCode }}</div>
   <script src="assets/js/algo-highlight.js"></script>
 
   <!-- APPLICATION VUE 3 -->
-  <script src="assets/apps/seance02.js"></script>
+  <script src="assets/apps/seance04.js"></script>
 
 </body>
 

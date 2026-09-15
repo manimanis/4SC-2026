@@ -4,18 +4,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Séance 2 : Types caractère & chaîne de caractères, fonctions prédéfinies & TDO - 4e Scientifiques</title>
+  <title>Séance 3 : Structures conditionnelles, choix multiples (Selon / match-case) & TDO - 4e Scientifiques</title>
 
   <!-- Métadonnées SEO & Description -->
   <meta name="description"
-    content="Séance 2 d'Informatique pour 4ème Année Scientifique (Bac 2026) : Indiçage base 0, fonctions prédéfinies textuelles (Long, Pos, Sous_chaine, Effacer, Majus, Convch, Estnum, Valeur, Ord, Chr), slicing Python et TDO standard.">
+    content="Séance 3 d'Informatique pour 4ème Année Scientifique (Bac 2026) : Structures conditionnelles simples, alternatives, généralisées, choix multiple (Selon / match-case), opérateurs relationnels et logiques, TDO standard.">
 
   <!-- Dépendances locales -->
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/css/bootstrap-icons.min.css">
   <link rel="stylesheet" href="assets/css/atom-one-dark.min.css">
   <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/seance02.css">
+  <link rel="stylesheet" href="assets/css/seance03.css">
 </head>
 
 <body>
@@ -35,7 +35,7 @@
         <div class="collapse navbar-collapse" id="navContent">
           <ul class="navbar-nav ms-auto align-items-lg-center">
             <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house-door me-1"></i> Accueil</a></li>
-            <li class="nav-item"><a class="nav-link active" href="seance02.html"><i class="bi bi-2-circle-fill me-1"></i> Séance 2</a></li>
+            <li class="nav-item"><a class="nav-link active" href="seance03.html"><i class="bi bi-3-circle-fill me-1"></i> Séance 3</a></li>
             <li class="nav-item"><a class="nav-link" href="seance02-old.html"><i class="bi bi-archive me-1"></i> Archives</a></li>
             <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
               <button class="btn btn-sm btn-outline-light" onclick="window.print()">
@@ -51,14 +51,14 @@
     <header class="hero-banner">
       <div class="container">
         <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
-          <span class="badge bg-primary px-3 py-1"><i class="bi bi-fonts me-1"></i>Axe : Textes</span>
+          <span class="badge bg-primary px-3 py-1"><i class="bi bi-diagram-2 me-1"></i>Axe : Conditions</span>
           <span class="badge bg-secondary px-2 py-1">Sections : Sc. Expérimentales, Mathématiques & Sc. Techniques</span>
           <span class="badge bg-success px-2 py-1"><i class="bi bi-clock-history me-1"></i>Durée : 70 min</span>
           <span class="badge bg-info text-dark px-2 py-1"><i class="bi bi-bookmark-check-fill me-1"></i>Conventions 2024-2025</span>
         </div>
-        <h1 class="hero-title">Séance 2 : Types caractère & chaîne de caractères</h1>
+        <h1 class="hero-title">Séance 3 : Structures conditionnelles & Choix multiples</h1>
         <p class="hero-subtitle">
-          Indiçage base 0, fonctions prédéfinies textuelles, découpage par slicing et traitement de chaînes en Python.
+          Formes simple, alternative, généralisée, structure à choix multiples (Selon / match-case), opérateurs relationnels et logiques.
         </p>
         <div class="objective-box">
           <div class="d-flex align-items-start gap-3">
@@ -66,10 +66,11 @@
             <div>
               <div class="fw-bold text-white text-uppercase letter-spacing-1 small mb-1">Objectifs didactiques de la séance :</div>
               <ul class="text-light mb-0 ps-3 small">
-                <li>Maîtriser l'indiçage base 0 des chaînes de caractères (0 &le; <i>i</i> &lt; Long(<i>Ch</i>)).</li>
-                <li>Employer les fonctions prédéfinies textuelles (<code>Long</code>, <code>Pos</code>, <code>Sous_chaine</code>, <code>Effacer</code>, <code>Majus</code>, <code>Convch</code>, <code>Estnum</code>, <code>Valeur</code>, <code>Ord</code>, <code>Chr</code>).</li>
-                <li>Traduire ces traitements textuels en Python selon les conventions officielles (<code>len</code>, <code>.find</code>, slicing <code>[d:f]</code>, <code>.upper()</code>, <code>.isdecimal()</code>, <code>str()</code>, <code>int()</code>, etc.).</li>
-                <li>Formaliser l'algorithme avec son TDO et exécuter le script sans erreur de syntaxe.</li>
+                <li>Maîtriser les structures conditionnelles simples, alternatives et généralisées (<code>Si ... Sinon Si ... Sinon</code>).</li>
+                <li>Employer la structure conditionnelle à choix multiples (<code>Selon</code>).</li>
+                <li>Manipuler les opérateurs relationnels (<code>=</code>, <code>≠</code>, <code>&lt;</code>, <code>&le;</code>, <code>&gt;</code>, <code>&ge;</code>, <code>&isin;</code>) et logiques (<code>Non</code>, <code>Et</code>, <code>Ou</code>).</li>
+                <li>Traduire rigoureusement ces structures en Python (<code>if</code>, <code>elif</code>, <code>else</code> et <code>match ... case</code>).</li>
+                <li>Établir le TDO correspondant et exécuter le script sans faute d'indentation.</li>
               </ul>
             </div>
           </div>
@@ -159,59 +160,93 @@
                 <i class="bi bi-lightbulb-fill"></i> Énoncé au tableau
               </div>
               <blockquote class="fs-5 text-dark fw-semibold mb-2 fst-italic">
-                « Une application reçoit un code d'inscription sous la forme d'une chaîne, par exemple "info-2026". On souhaite vérifier si le suffixe après le tiret "-" est bien composé uniquement de chiffres, mettre le préfixe en majuscules ("INFO"), convertir l'année en entier pour calculer l'année suivante, puis afficher le code mis à jour sous la forme "INFO-2027". »
+                « Un centre sportif calcule le tarif d'un accès journalier (tarif de base : 20 DT). Le client fournit son âge et un code de formule sous forme d'un caractère : 'P' (Piscine : +5 DT), 'M' (Musculation : +10 DT) ou 'T' (Total : +15 DT). Tout autre code entraîne un message d'erreur. De plus, une remise est accordée selon l'âge : gratuit pour les moins de 12 ans, 50% de réduction pour les juniors (12 à 17 ans inclus) et 20% pour les seniors (60 ans et plus). Calculer et afficher le prix net à payer. »
               </blockquote>
               <div class="small text-muted">
-                Cette situation permet de mobiliser les traitements textuels fondamentaux : recherche de séparateur, extraction de tranches, validation numérique, conversion de types et assemblage par concaténation.
+                Cette situation permet de mobiliser les deux types d'arbres décisionnels : le choix multiple sur valeurs discrètes (sélecteur caractère) et la décision en cascade sur intervalles numériques continus (tranches d'âge).
               </div>
             </div>
 
-            <!-- SCHÉMA DE DÉCOMPOSITION DU TRAITEMENT -->
-            <div class="row g-4 align-items-center mb-4">
-              <div class="col-md-7">
-                <div class="p-3 bg-white border rounded shadow-sm">
-                  <h6 class="fw-bold text-primary mb-3"><i class="bi bi-diagram-3-fill me-2"></i>Décomposition du traitement textuel :</h6>
+            <!-- SCHÉMA DES FORMULES ET DES REMISES -->
+            <div class="row g-4 align-items-stretch mb-4">
+              <div class="col-md-6">
+                <div class="p-3 bg-white border rounded shadow-sm h-100">
+                  <h6 class="fw-bold text-primary mb-3">
+                    <i class="bi bi-tag-fill me-2"></i>1. Formules & Suppléments (Choix multiple) :
+                  </h6>
                   <ul class="list-unstyled mb-0">
-                    <li class="d-flex align-items-start gap-2 mb-2 pb-2 border-bottom">
-                      <span class="badge bg-info text-dark rounded-pill">1</span>
+                    <li class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom">
                       <div>
-                        <strong>Localisation du séparateur :</strong> Recherche de la position du tiret <code>"-"</code> avec <code>Pos</code> / <code>.find()</code>.
+                        <span class="badge bg-dark font-monospace me-2">'P' ou 'p'</span>
+                        <strong>Piscine</strong>
                       </div>
+                      <span class="badge bg-info text-dark font-monospace fs-6">+5 DT</span>
                     </li>
-                    <li class="d-flex align-items-start gap-2 mb-2 pb-2 border-bottom">
-                      <span class="badge bg-info text-dark rounded-pill">2</span>
+                    <li class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom">
                       <div>
-                        <strong>Découpage préfixe / suffixe :</strong> Extraction sans boucle avec <code>Sous_chaine</code> / slicing <code>[d:f]</code>.
+                        <span class="badge bg-dark font-monospace me-2">'M' ou 'm'</span>
+                        <strong>Musculation</strong>
                       </div>
+                      <span class="badge bg-info text-dark font-monospace fs-6">+10 DT</span>
                     </li>
-                    <li class="d-flex align-items-start gap-2 mb-2 pb-2 border-bottom">
-                      <span class="badge bg-info text-dark rounded-pill">3</span>
+                    <li class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom">
                       <div>
-                        <strong>Validation & Conversion de l'année :</strong> Vérification avec <code>Estnum</code> / <code>isdecimal()</code>, conversion via <code>Valeur</code> / <code>int()</code> et incrémentation (+ 1).
+                        <span class="badge bg-dark font-monospace me-2">'T' ou 't'</span>
+                        <strong>Accès Total</strong>
                       </div>
+                      <span class="badge bg-info text-dark font-monospace fs-6">+15 DT</span>
                     </li>
-                    <li class="d-flex align-items-start gap-2">
-                      <span class="badge bg-info text-dark rounded-pill">4</span>
+                    <li class="d-flex justify-content-between align-items-center">
                       <div>
-                        <strong>Recomposition du nouveau code :</strong> Majuscules avec <code>Majus</code> / <code>.upper()</code>, conversion avec <code>Convch</code> / <code>str()</code> et concaténation <code>+</code>.
+                        <span class="badge bg-danger font-monospace me-2">Autre code</span>
+                        <span class="text-danger fw-bold">Code non reconnu</span>
                       </div>
+                      <span class="badge bg-danger font-monospace fs-6">Erreur</span>
                     </li>
                   </ul>
+                  <div class="small text-muted mt-3 pt-2 border-top">
+                    Tarif brut = Tarif de base (20 DT) + Supplément.
+                  </div>
                 </div>
               </div>
 
-              <div class="col-md-5">
-                <div class="p-3 bg-dark text-white rounded shadow-sm text-center">
-                  <div class="text-uppercase small text-white-50 mb-2">Transformation Visuelle</div>
-                  <div class="d-flex justify-content-center align-items-center gap-2 fs-5 font-monospace mb-3">
-                    <span class="badge bg-secondary">"info-2026"</span>
-                    <i class="bi bi-arrow-right text-warning"></i>
-                    <span class="badge bg-success">"INFO-2027"</span>
-                  </div>
-                  <div class="small text-white-50 text-start ps-3">
-                    <div>• Préfixe : <code>"info"</code> &rarr; <code>"INFO"</code></div>
-                    <div>• Séparateur : <code>"-"</code> (indice 4)</div>
-                    <div>• Suffixe : <code>"2026"</code> &rarr; <code>2026 + 1 = 2027</code></div>
+              <div class="col-md-6">
+                <div class="p-3 bg-white border rounded shadow-sm h-100">
+                  <h6 class="fw-bold text-success mb-3">
+                    <i class="bi bi-percent me-2"></i>2. Remises par Tranche d'Âge (Conditions continues) :
+                  </h6>
+                  <ul class="list-unstyled mb-0">
+                    <li class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom">
+                      <div>
+                        <span class="badge bg-success me-2">&lt; 12 ans</span>
+                        <strong>Enfants</strong>
+                      </div>
+                      <span class="badge bg-success fs-6">Gratuit (100% remise)</span>
+                    </li>
+                    <li class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom">
+                      <div>
+                        <span class="badge bg-primary me-2">12 à 17 ans</span>
+                        <strong>Juniors</strong>
+                      </div>
+                      <span class="badge bg-primary fs-6">-50% (prix &times; 0.5)</span>
+                    </li>
+                    <li class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom">
+                      <div>
+                        <span class="badge bg-warning text-dark me-2">&ge; 60 ans</span>
+                        <strong>Seniors</strong>
+                      </div>
+                      <span class="badge bg-warning text-dark fs-6">-20% (prix &times; 0.8)</span>
+                    </li>
+                    <li class="d-flex justify-content-between align-items-center">
+                      <div>
+                        <span class="badge bg-secondary me-2">18 à 59 ans</span>
+                        <strong>Adultes</strong>
+                      </div>
+                      <span class="badge bg-secondary fs-6">Tarif plein (100%)</span>
+                    </li>
+                  </ul>
+                  <div class="small text-muted mt-3 pt-2 border-top">
+                    Évalué avec une structure conditionnelle généralisée (<code>Si ... Sinon Si ... Sinon</code>).
                   </div>
                 </div>
               </div>
@@ -264,64 +299,49 @@
 
           <div class="section-body">
             <p class="text-muted mb-3">
-              Mise au point sur les équivalences normatives officielles pour les caractères et les chaînes de caractères (Conventions 2024-2025) :
+              Mise au point sur les équivalences normatives officielles pour les structures conditionnelles et les opérateurs (Conventions 2024-2025) :
             </p>
 
-            <!-- TABLEAU COMPARATIF OFFICIEL -->
+            <!-- TABLEAU COMPARATIF OFFICIEL DES STRUCTURES CONDITIONNELLES -->
             <div class="table-responsive mb-4">
               <table class="table table-hover align-middle border shadow-sm">
                 <thead class="table-dark">
                   <tr>
-                    <th scope="col" style="width: 25%;">Notion / Opération</th>
+                    <th scope="col" style="width: 25%;">Structure / Opération</th>
                     <th scope="col" style="width: 35%;">Algorithmique (Norme)</th>
                     <th scope="col" style="width: 40%;">Python (Conventions 2024-2025)</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td><strong>Longueur</strong></td>
-                    <td><code>Long(ch)</code></td>
-                    <td><code>len(ch)</code></td>
+                    <td><strong>Forme simple</strong></td>
+                    <td><code>Si Condition Alors<br>&nbsp;&nbsp;Traitement<br>FinSi</code></td>
+                    <td><code>if Condition :<br>&nbsp;&nbsp;&nbsp;&nbsp;Traitement</code></td>
                   </tr>
                   <tr>
-                    <td><strong>Recherche de position</strong></td>
-                    <td><code>Pos(ch1, ch2)</code> <span class="text-muted small">(retourne -1 si absent)</span></td>
-                    <td><code>ch2.find(ch1)</code></td>
+                    <td><strong>Forme alternative</strong></td>
+                    <td><code>Si Condition Alors<br>&nbsp;&nbsp;Traitement1<br>Sinon<br>&nbsp;&nbsp;Traitement2<br>FinSi</code></td>
+                    <td><code>if Condition :<br>&nbsp;&nbsp;&nbsp;&nbsp;Traitement1<br>else :<br>&nbsp;&nbsp;&nbsp;&nbsp;Traitement2</code></td>
                   </tr>
                   <tr>
-                    <td><strong>Extraction (slicing)</strong></td>
-                    <td><code>Sous_chaine(ch, d, f)</code> <span class="badge bg-info text-dark small ms-1">position f exclue</span></td>
-                    <td><code>ch[d:f]</code></td>
+                    <td><strong>Forme généralisée</strong></td>
+                    <td><code>Si C1 Alors ...<br>Sinon Si C2 Alors ...<br>Sinon ...<br>FinSi</code></td>
+                    <td><code>if C1 : ...<br>elif C2 : ...<br>else : ...</code></td>
                   </tr>
                   <tr>
-                    <td><strong>Suppression</strong></td>
-                    <td><code>Effacer(ch, d, f)</code></td>
-                    <td><code>ch = ch[:d] + ch[f:]</code></td>
+                    <td><strong>Choix multiple</strong></td>
+                    <td><code>Selon Sélecteur<br>&nbsp;&nbsp;val1 : T1<br>&nbsp;&nbsp;val2, val3 : T2<br>&nbsp;&nbsp;[Sinon TN]<br>Fin Selon</code></td>
+                    <td><code>match Sélecteur :<br>&nbsp;&nbsp;&nbsp;&nbsp;case val1 : T1<br>&nbsp;&nbsp;&nbsp;&nbsp;case val2 | val3 : T2<br>&nbsp;&nbsp;&nbsp;&nbsp;case _ : TN</code></td>
                   </tr>
                   <tr>
-                    <td><strong>Passage en majuscules</strong></td>
-                    <td><code>Majus(ch)</code></td>
-                    <td><code>ch.upper()</code></td>
+                    <td><strong>Opérateurs logiques</strong></td>
+                    <td><code>Non</code>, <code>Et</code>, <code>Ou</code></td>
+                    <td><code>not</code>, <code>and</code>, <code>or</code></td>
                   </tr>
                   <tr>
-                    <td><strong>Test numérique</strong></td>
-                    <td><code>Estnum(ch)</code></td>
-                    <td><code>ch.isdecimal()</code></td>
-                  </tr>
-                  <tr>
-                    <td><strong>Conversion en nombre</strong></td>
-                    <td><code>Valeur(ch)</code></td>
-                    <td><code>int(ch)</code> ou <code>float(ch)</code></td>
-                  </tr>
-                  <tr>
-                    <td><strong>Conversion en chaîne</strong></td>
-                    <td><code>Convch(x)</code></td>
-                    <td><code>str(x)</code></td>
-                  </tr>
-                  <tr>
-                    <td><strong>Code ASCII / Caractère</strong></td>
-                    <td><code>Ord(c)</code><br><code>Chr(d)</code></td>
-                    <td><code>ord(c)</code><br><code>chr(d)</code></td>
+                    <td><strong>Opérateurs de comparaison</strong></td>
+                    <td><code>=</code>, <code>≠</code>, <code>&lt;</code>, <code>&le;</code>, <code>&gt;</code>, <code>&ge;</code>, <code>&isin;</code></td>
+                    <td><code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&le;</code>, <code>&gt;</code>, <code>&ge;</code>, <code>in</code></td>
                   </tr>
                 </tbody>
               </table>
@@ -331,11 +351,11 @@
             <div class="alert alert-warning border-start border-4 border-warning d-flex align-items-start gap-3 p-3 mb-4">
               <i class="bi bi-exclamation-triangle-fill fs-3 text-warning"></i>
               <div>
-                <h6 class="fw-bold mb-1 text-dark">Rappels didactiques majeurs :</h6>
+                <h6 class="fw-bold mb-1 text-dark">Rappels didactiques et normatifs majeurs :</h6>
                 <ul class="mb-0 small text-dark ps-3">
-                  <li><strong>Indiçage en base 0 :</strong> Le premier caractère d'une chaîne <code>Ch</code> est situé à l'indice <strong>0</strong> (notation <code>Ch[i]</code> avec 0 &le; <i>i</i> &lt; Long(<i>Ch</i>)).</li>
-                  <li><strong>Borne finale exclue :</strong> Tant en algorithmique (<code>Sous_chaine(ch, d, f)</code>) qu'en Python (<code>ch[d:f]</code>), le caractère à la position finale <strong>f est toujours exclu</strong>.</li>
-                  <li><strong>Type unique en Python :</strong> En Python, il n'existe pas de type <i>caractère</i> distinct : un caractère est simplement représenté comme une chaîne de longueur 1 de type <strong><code>str</code></strong>.</li>
+                  <li><strong>Type scalaire obligatoire pour le <code>Selon</code> :</strong> Le sélecteur de la structure <code>Selon</code> doit être impérativement de type <strong>Entier</strong> ou <strong>Caractère</strong>.</li>
+                  <li><strong>Clause par défaut en Python :</strong> Dans le bloc <code>match-case</code>, le tiret de soulignement <code>case _ :</code> représente la clause par défaut équivalente au <code>Sinon</code> du <code>Selon</code>.</li>
+                  <li><strong>Indentation syntaxique obligatoire :</strong> En Python, l'indentation (4 espaces) remplace impérativement les délimiteurs textuels (<code>FinSi</code>, <code>Fin Selon</code>).</li>
                 </ul>
               </div>
             </div>
@@ -344,39 +364,40 @@
             <div class="row g-3">
               <div class="col-md-4">
                 <div class="card h-100 border p-3">
-                  <div class="fw-bold text-primary mb-1"><i class="bi bi-search me-1"></i>Pos vs .find()</div>
+                  <div class="fw-bold text-primary mb-1"><i class="bi bi-check2-all me-1"></i>Test d'égalité : = vs ==</div>
                   <p class="small text-muted mb-2">
-                    Si la sous-chaîne n'est pas trouvée, <code>Pos</code> et <code>.find()</code> retournent impérativement <strong>-1</strong> (et non 0).
+                    En algorithmique, l'égalité se note <code>=</code> (l'affectation étant <code>&larr;</code>). En Python, le test d'égalité s'écrit obligatoirement <code>==</code>.
                   </p>
                   <div class="p-2 bg-light font-monospace small rounded">
-                    Pos("x", "bac") = -1<br>
-                    "bac".find("x") == -1
+                    valide ← (age = 18)<br>
+                    valide = (age == 18)
                   </div>
                 </div>
               </div>
 
               <div class="col-md-4">
                 <div class="card h-100 border p-3">
-                  <div class="fw-bold text-primary mb-1"><i class="bi bi-scissors me-1"></i>Sous_chaine vs [d:f]</div>
+                  <div class="fw-bold text-primary mb-1"><i class="bi bi-pipe me-1"></i>Alternative match-case (|)</div>
                   <p class="small text-muted mb-2">
-                    L'extraction de <code>d</code> à <code>f</code> comporte <code>f - d</code> caractères.
+                    Pour grouper plusieurs valeurs dans un <code>case</code> en Python, on emploie le symbole <strong>pipe <code>|</code></strong> et <em>jamais</em> la virgule.
                   </p>
                   <div class="p-2 bg-light font-monospace small rounded">
-                    Sous_chaine("info", 1, 3) = "nf"<br>
-                    "info"[1:3] == "nf"
+                    # Valide en Python 3 :<br>
+                    case "P" | "p":<br>
+                    # INTERDIT : case "P", "p":
                   </div>
                 </div>
               </div>
 
               <div class="col-md-4">
                 <div class="card h-100 border p-3">
-                  <div class="fw-bold text-primary mb-1"><i class="bi bi-eraser me-1"></i>Effacer vs Immuabilité</div>
+                  <div class="fw-bold text-primary mb-1"><i class="bi bi-arrows-expand me-1"></i>Encadrement numérique</div>
                   <p class="small text-muted mb-2">
-                    En Python, les chaînes étant immuables, on découpe et concatène sans la tranche supprimée.
+                    En algorithmique, l'encadrement nécessite <code>Et</code>. En Python, la double comparaison chaînée est directement acceptée.
                   </p>
                   <div class="p-2 bg-light font-monospace small rounded">
-                    # Supprime de 0 à 4 exclu :<br>
-                    ch = ch[:0] + ch[4:]
+                    (age ≥ 12) Et (age ≤ 17)<br>
+                    12 &lt;= age &lt;= 17
                   </div>
                 </div>
               </div>
@@ -401,7 +422,7 @@
 
           <div class="section-body">
             <p class="text-muted mb-3">
-              Élaboration collective de la solution au tableau : respect strict de la syntaxe officielle et des types de données.
+              Construction guidée de la solution au tableau : articulation rigoureuse entre la structure à choix multiple et les conditions généralisées.
             </p>
 
             <div class="row g-4">
@@ -409,27 +430,45 @@
               <div class="col-lg-7">
                 <div class="card border h-100 shadow-sm">
                   <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
-                    <span class="font-monospace fw-bold"><i class="bi bi-code-square me-2 text-info"></i>ALGORITHME MajCode</span>
+                    <span class="font-monospace fw-bold"><i class="bi bi-code-square me-2 text-info"></i>ALGORITHME TarifAcces</span>
                     <span class="badge bg-primary">Algorithme Principal</span>
                   </div>
                   <div class="card-body p-0">
-                    <pre class="m-0 p-3" style="background-color: #1e1e2e; border-radius: 0 0 var(--radius-sm) var(--radius-sm);"><code class="language-algo">ALGORITHME MajCode
+                    <pre class="m-0 p-3" style="background-color: #1e1e2e; border-radius: 0 0 var(--radius-sm) var(--radius-sm);"><code class="language-algo">ALGORITHME TarifAcces
 DEBUT
-    Écrire("Donner le code (ex: info-2026) : ")
-    Lire(code)
+    Écrire("Donner l'âge du client : ")
+    Lire(age)
+    Écrire("Donner le code de formule (P, M ou T) : ")
+    Lire(formule)
     
-    p ← Pos("-", code)
-    prefixe ← Sous_chaine(code, 0, p)
-    suffixe ← Sous_chaine(code, p + 1, Long(code))
+    supplement ← 0
+    valide ← Vrai
     
-    valide ← Estnum(suffixe)
-    annee ← Valeur(suffixe)
-    nouvelle_annee ← annee + 1
+    Selon formule
+        "P", "p" : supplement ← 5
+        "M", "m" : supplement ← 10
+        "T", "t" : supplement ← 15
+        Sinon
+            valide ← Faux
+    Fin Selon
     
-    nouveau_code ← Majus(prefixe) + "-" + Convch(nouvelle_annee)
-    
-    Écrire("Suffixe numérique valide : ", valide)
-    Écrire("Nouveau code : ", nouveau_code)
+    Si Non valide Alors
+        Écrire("Formule invalide !")
+    Sinon
+        prix_brut ← 20 + supplement
+        
+        Si age < 12 Alors
+            prix_net ← 0
+        Sinon Si (age ≥ 12) Et (age ≤ 17) Alors
+            prix_net ← prix_brut * 0.5
+        Sinon Si age ≥ 60 Alors
+            prix_net ← prix_brut * 0.8
+        Sinon
+            prix_net ← prix_brut
+        FinSi
+        
+        Écrire("Montant net à payer : ", prix_net, " DT")
+    FinSi
 FIN</code></pre>
                   </div>
                 </div>
@@ -453,12 +492,16 @@ FIN</code></pre>
                         </thead>
                         <tbody>
                           <tr>
-                            <td><strong class="font-monospace text-primary">code, prefixe, suffixe, nouveau_code</strong></td>
-                            <td><span class="badge bg-primary">Chaîne de caractères</span></td>
+                            <td><strong class="font-monospace text-primary">age, supplement</strong></td>
+                            <td><span class="badge bg-success">Entier</span></td>
                           </tr>
                           <tr>
-                            <td><strong class="font-monospace text-primary">p, annee, nouvelle_annee</strong></td>
-                            <td><span class="badge bg-success">Entier</span></td>
+                            <td><strong class="font-monospace text-primary">prix_brut, prix_net</strong></td>
+                            <td><span class="badge bg-info text-dark">Réel</span></td>
+                          </tr>
+                          <tr>
+                            <td><strong class="font-monospace text-primary">formule</strong></td>
+                            <td><span class="badge bg-primary">Caractère</span></td>
                           </tr>
                           <tr>
                             <td><strong class="font-monospace text-primary">valide</strong></td>
@@ -471,9 +514,9 @@ FIN</code></pre>
                     <div class="p-3 bg-light border-top">
                       <div class="small fw-bold text-dark mb-1"><i class="bi bi-info-circle text-primary me-1"></i>Commentaires méthodologiques :</div>
                       <ul class="small text-muted ps-3 mb-0">
-                        <li><strong><code>p</code> :</strong> Position du tiret (Entier &ge; 0).</li>
-                        <li><strong><code>valide</code> :</strong> Booléen résultant de <code>Estnum(suffixe)</code>.</li>
-                        <li><strong><code>annee</code> :</strong> Converti en Entier pour autoriser l'addition arithmétique <code>+ 1</code>.</li>
+                        <li><strong><code>formule</code> :</strong> Variable de type <strong>Caractère</strong> servant de sélecteur scalaire au <code>Selon</code>.</li>
+                        <li><strong><code>valide</code> :</strong> Drapeau booléen (flag) pour stopper proprement l'évaluation en cas d'erreur de saisie.</li>
+                        <li><strong><code>prix_net</code> :</strong> Déclaré comme <strong>Réel</strong> pour accueillir les valeurs après calcul des réductions en pourcentage.</li>
                       </ul>
                     </div>
                   </div>
@@ -500,7 +543,7 @@ FIN</code></pre>
 
           <div class="section-body">
             <p class="text-muted mb-3">
-              Saisie individuelle du script Python par les élèves dans leur environnement de travail (Thonny, VS Code ou IDLE) :
+              Saisie individuelle du script Python par les élèves en appliquant rigoureusement les conventions officielles (Python 3.10+) :
             </p>
 
             <div class="row g-4 mb-4">
@@ -508,31 +551,43 @@ FIN</code></pre>
               <div class="col-lg-6">
                 <div class="card border h-100 shadow-sm">
                   <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
-                    <span class="font-monospace fw-bold"><i class="bi bi-file-earmark-code text-warning me-2"></i>maj_code.py</span>
+                    <span class="font-monospace fw-bold"><i class="bi bi-file-earmark-code text-warning me-2"></i>tarif_acces.py</span>
                     <button class="btn btn-sm btn-outline-info" @click="copyPythonCode">
                       <i class="bi bi-clipboard me-1"></i>{{ copyStatus }}
                     </button>
                   </div>
                   <div class="card-body p-0">
-                    <pre class="m-0 p-3" style="background-color: #1e1e2e; border-radius: 0 0 var(--radius-sm) var(--radius-sm);"><code class="language-python"># Saisie du code initial
-code = input("Donner le code (ex: info-2026) : ")
+                    <pre class="m-0 p-3" style="background-color: #1e1e2e; border-radius: 0 0 var(--radius-sm) var(--radius-sm);"><code class="language-python"># Entrées
+age = int(input("Donner l'âge du client : "))
+formule = input("Donner le code de formule (P, M ou T) : ")
 
-# Recherche du séparateur et extraction
-p = code.find("-")
-prefixe = code[0:p]
-suffixe = code[p + 1:len(code)]
+# Structure à choix multiples (match / case)
+supplement = 0
+valide = True
+match formule:
+    case "P" | "p":
+        supplement = 5
+    case "M" | "m":
+        supplement = 10
+    case "T" | "t":
+        supplement = 15
+    case _:
+        valide = False
 
-# Vérification et conversions
-valide = suffixe.isdecimal()
-annee = int(suffixe)
-nouvelle_annee = annee + 1
-
-# Formatage final
-nouveau_code = prefixe.upper() + "-" + str(nouvelle_annee)
-
-# Affichage
-print("Suffixe numérique valide :", valide)
-print("Nouveau code :", nouveau_code)</code></pre>
+# Traitement conditionnel imbriqué et généralisé
+if not valide:
+    print("Formule invalide !")
+else:
+    prix_brut = 20 + supplement
+    if age < 12:
+        prix_net = 0.0
+    elif 12 <= age <= 17:
+        prix_net = prix_brut * 0.5
+    elif age >= 60:
+        prix_net = prix_brut * 0.8
+    else:
+        prix_net = float(prix_brut)
+    print("Montant net à payer :", prix_net, "DT")</code></pre>
                   </div>
                 </div>
               </div>
@@ -547,24 +602,24 @@ print("Nouveau code :", nouveau_code)</code></pre>
                     <div class="d-flex align-items-start gap-2 mb-3 pb-2 border-bottom">
                       <i class="bi bi-exclamation-octagon-fill text-danger fs-5"></i>
                       <div>
-                        <strong>Gestion des indices du slicing :</strong><br>
-                        <span class="small text-muted">Vérifier l'expression <code>code[p + 1:len(code)]</code> ou la forme équivalente <code>code[p + 1:]</code>. La position <code>p</code> (le tiret) doit être sautée (+ 1).</span>
+                        <strong>Respect de l'opérateur pipe <code>|</code> dans <code>case</code> :</strong><br>
+                        <span class="small text-muted">Vérifier l'utilisation impérative de la barre verticale <code>case "P" | "p":</code> pour l'alternative. La virgule <code>,</code> est une faute de syntaxe dans ce contexte.</span>
                       </div>
                     </div>
 
                     <div class="d-flex align-items-start gap-2 mb-3 pb-2 border-bottom">
                       <i class="bi bi-shield-x text-danger fs-5"></i>
                       <div>
-                        <strong>Interdiction des fonctions hors convention :</strong><br>
-                        <span class="small text-muted">Veiller à ce que les élèves n'emploient aucune fonction non agréée : utiliser exclusivement <code>isdecimal()</code> (et non pas <code>isdigit()</code>), et proscrire formellement la méthode <code>.replace()</code>.</span>
+                        <strong>Différenciation stricte de l'affectation et de l'égalité :</strong><br>
+                        <span class="small text-muted">Veiller à ce que l'opérateur de comparaison <code>==</code> ne soit jamais confondu avec l'affectation <code>=</code> dans les expressions booléennes.</span>
                       </div>
                     </div>
 
                     <div class="d-flex align-items-start gap-2">
-                      <i class="bi bi-arrow-repeat text-danger fs-5"></i>
+                      <i class="bi bi-text-indent-left text-danger fs-5"></i>
                       <div>
-                        <strong>Sécurisation avant conversion :</strong><br>
-                        <span class="small text-muted">Rappeler l'intérêt majeur de <code>isdecimal()</code> avant <code>int()</code> pour éviter une erreur fatale <code>ValueError</code> lors de la saisie d'un suffixe contenant des lettres.</span>
+                        <strong>Rigueur absolue des niveaux d'indentation :</strong><br>
+                        <span class="small text-muted">Contrôler l'alignement des sous-blocs : le bloc intérieur au <code>match</code>, puis l'imbrication du <code>if-elif-else</code> à l'intérieur du <code>else</code> principal.</span>
                       </div>
                     </div>
                   </div>
@@ -575,84 +630,185 @@ print("Nouveau code :", nouveau_code)</code></pre>
             <!-- SIMULATEUR D'EXÉCUTION INTERACTIF (ATELIER MACHINE) -->
             <div class="card border-primary shadow-sm mb-4">
               <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center flex-wrap gap-2">
-                <span class="fw-bold"><i class="bi bi-play-circle-fill me-2"></i>Simulateur Interactif : Décomposition indicée & Traitement en direct</span>
-                <div class="d-flex align-items-center gap-1">
-                  <span class="small text-white-50 me-1">Exemples :</span>
-                  <button v-for="ex in exampleCodes" :key="ex" class="btn btn-xs btn-outline-light py-0 px-2 small"
-                    @click="setExample(ex)">{{ ex }}</button>
+                <span class="fw-bold"><i class="bi bi-play-circle-fill me-2"></i>Simulateur Interactif : Arbre de Décision & Tarification en direct</span>
+                <div class="d-flex align-items-center gap-1 flex-wrap">
+                  <span class="small text-white-50 me-1">Cas types :</span>
+                  <button v-for="pr in presets" :key="pr.name" class="btn btn-xs btn-outline-light py-0 px-2 small"
+                    @click="setPreset(pr)" :title="pr.desc">{{ pr.name }}</button>
                 </div>
               </div>
 
               <div class="card-body">
-                <!-- CHAMP DE SAISIE -->
-                <div class="mb-3">
-                  <label class="form-label fw-bold text-dark small mb-1">Entrez un code à tester (ex: info-2026) :</label>
-                  <div class="input-group">
-                    <span class="input-group-text font-monospace bg-light">code =</span>
-                    <input type="text" class="form-control font-monospace" v-model="simInputCode" placeholder="ex: info-2026">
+                <!-- FORMULAIRE DE TEST ENTRÉES -->
+                <div class="row g-3 mb-4">
+                  <!-- SAISIE DE L'ÂGE -->
+                  <div class="col-md-6">
+                    <label class="form-label fw-bold text-dark small mb-1">
+                      <i class="bi bi-person-fill text-primary me-1"></i>Âge du client (Entier &ge; 0) :
+                    </label>
+                    <div class="input-group mb-2">
+                      <span class="input-group-text font-monospace bg-light">age =</span>
+                      <input type="number" min="0" max="120" class="form-control font-monospace" v-model.number="simAge">
+                      <span class="input-group-text">ans</span>
+                    </div>
+                    <input type="range" class="form-range" min="0" max="100" v-model.number="simAge">
                   </div>
-                </div>
 
-                <!-- DÉCOMPOSITION INDICÉE DES CARACTÈRES -->
-                <div class="mb-4">
-                  <div class="small fw-bold text-dark mb-2"><i class="bi bi-layout-three-columns text-primary me-1"></i>Décomposition indicée des caractères (Base 0) :</div>
-                  <div class="char-pill-container">
-                    <div v-for="(item, idx) in charList" :key="idx" class="char-cell"
-                      :class="{
-                        'is-prefix': hasSep && idx < sepIndex,
-                        'is-sep': hasSep && idx === sepIndex,
-                        'is-suffix': hasSep && idx > sepIndex
-                      }">
-                      <span class="char-val">{{ item.char === ' ' ? '␣' : item.char }}</span>
-                      <span class="char-idx">{{ item.index }}</span>
+                  <!-- SAISIE DE LA FORMULE -->
+                  <div class="col-md-6">
+                    <label class="form-label fw-bold text-dark small mb-1">
+                      <i class="bi bi-bookmark-fill text-primary me-1"></i>Code de formule (Caractère) :
+                    </label>
+                    <div class="formula-selector-group mb-2">
+                      <button type="button" class="formula-btn" :class="{ 'active': formuleUpper === 'P' }" @click="simFormule = 'P'">
+                        <span class="badge-formula">P / p</span>
+                        <span class="small">Piscine (+5 DT)</span>
+                      </button>
+                      <button type="button" class="formula-btn" :class="{ 'active': formuleUpper === 'M' }" @click="simFormule = 'M'">
+                        <span class="badge-formula">M / m</span>
+                        <span class="small">Muscu (+10 DT)</span>
+                      </button>
+                      <button type="button" class="formula-btn" :class="{ 'active': formuleUpper === 'T' }" @click="simFormule = 'T'">
+                        <span class="badge-formula">T / t</span>
+                        <span class="small">Total (+15 DT)</span>
+                      </button>
+                      <button type="button" class="formula-btn btn-invalid" :class="{ 'active btn-invalid': !isFormuleValid }" @click="simFormule = 'X'">
+                        <span class="badge-formula">Autre</span>
+                        <span class="small">Code Erroné</span>
+                      </button>
+                    </div>
+                    <div class="input-group input-group-sm">
+                      <span class="input-group-text font-monospace bg-light">Saisie libre :</span>
+                      <input type="text" maxlength="5" class="form-control font-monospace" v-model="simFormule" placeholder="ex: P, M, T...">
                     </div>
                   </div>
-                  <div class="d-flex justify-content-center gap-4 mt-2 small text-muted">
-                    <span><i class="bi bi-square-fill text-info me-1"></i>Préfixe [0:p]</span>
-                    <span><i class="bi bi-square-fill text-danger me-1"></i>Séparateur (p)</span>
-                    <span><i class="bi bi-square-fill text-success me-1"></i>Suffixe [p+1:len]</span>
+                </div>
+
+                <!-- VISUALISEUR DE CHEMIN DÉCISIONNEL (ARBRE CONDITIONNEL) -->
+                <div class="decision-flow-container mb-4">
+                  <div class="row g-3">
+                    <!-- ÉTAPE A : SÉLECTEUR DE FORMULE (MATCH-CASE) -->
+                    <div class="col-lg-6">
+                      <div class="flow-step-header">
+                        <i class="bi bi-signpost-split-fill text-info"></i>
+                        <span>Branche A : Structure match formule (Choix Multiple)</span>
+                      </div>
+                      <div class="d-flex flex-column gap-2">
+                        <div class="decision-branch-card" :class="{ 'is-active is-success': formuleUpper === 'P' }">
+                          <div class="branch-condition">
+                            <span>case "P" | "p":</span>
+                            <span v-if="formuleUpper === 'P'" class="badge bg-success">Active</span>
+                          </div>
+                          <div class="branch-outcome">supplement = 5 DT | Formule Piscine</div>
+                        </div>
+
+                        <div class="decision-branch-card" :class="{ 'is-active is-success': formuleUpper === 'M' }">
+                          <div class="branch-condition">
+                            <span>case "M" | "m":</span>
+                            <span v-if="formuleUpper === 'M'" class="badge bg-success">Active</span>
+                          </div>
+                          <div class="branch-outcome">supplement = 10 DT | Formule Musculation</div>
+                        </div>
+
+                        <div class="decision-branch-card" :class="{ 'is-active is-success': formuleUpper === 'T' }">
+                          <div class="branch-condition">
+                            <span>case "T" | "t":</span>
+                            <span v-if="formuleUpper === 'T'" class="badge bg-success">Active</span>
+                          </div>
+                          <div class="branch-outcome">supplement = 15 DT | Formule Totale</div>
+                        </div>
+
+                        <div class="decision-branch-card" :class="{ 'is-active is-error': !isFormuleValid }">
+                          <div class="branch-condition">
+                            <span>case _: (Sinon)</span>
+                            <span v-if="!isFormuleValid" class="badge bg-danger">Active (Erreur)</span>
+                          </div>
+                          <div class="branch-outcome">valide = False | Code de formule invalide !</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- ÉTAPE B : TRANCHE D'ÂGE (IF-ELIF-ELSE) -->
+                    <div class="col-lg-6">
+                      <div class="flow-step-header">
+                        <i class="bi bi-filter-circle-fill text-warning"></i>
+                        <span>Branche B : Structure if-elif-else sur l'âge (Conditions continues)</span>
+                      </div>
+                      <div class="d-flex flex-column gap-2">
+                        <div class="decision-branch-card" :class="{ 'is-active': isFormuleValid && ageBranch === 'child' }">
+                          <div class="branch-condition">
+                            <span>if age &lt; 12:</span>
+                            <span v-if="isFormuleValid && ageBranch === 'child'" class="badge bg-info text-dark">Active</span>
+                          </div>
+                          <div class="branch-outcome">prix_net = 0.0 DT | Enfant (&lt; 12 ans) : Gratuit (100%)</div>
+                        </div>
+
+                        <div class="decision-branch-card" :class="{ 'is-active': isFormuleValid && ageBranch === 'junior' }">
+                          <div class="branch-condition">
+                            <span>elif 12 &le; age &le; 17:</span>
+                            <span v-if="isFormuleValid && ageBranch === 'junior'" class="badge bg-info text-dark">Active</span>
+                          </div>
+                          <div class="branch-outcome">prix_net = brut &times; 0.5 | Junior (12-17 ans) : Remise de 50%</div>
+                        </div>
+
+                        <div class="decision-branch-card" :class="{ 'is-active': isFormuleValid && ageBranch === 'senior' }">
+                          <div class="branch-condition">
+                            <span>elif age &ge; 60:</span>
+                            <span v-if="isFormuleValid && ageBranch === 'senior'" class="badge bg-info text-dark">Active</span>
+                          </div>
+                          <div class="branch-outcome">prix_net = brut &times; 0.8 | Senior (&ge; 60 ans) : Remise de 20%</div>
+                        </div>
+
+                        <div class="decision-branch-card" :class="{ 'is-active': isFormuleValid && ageBranch === 'adult' }">
+                          <div class="branch-condition">
+                            <span>else:</span>
+                            <span v-if="isFormuleValid && ageBranch === 'adult'" class="badge bg-info text-dark">Active</span>
+                          </div>
+                          <div class="branch-outcome">prix_net = brut | Adulte (18-59 ans) : Plein tarif standard</div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                <!-- CALCUL PAS À PAS -->
+                <!-- CARTES DE SYNTHÈSE DES VALEURS & TERMINAL -->
                 <div class="row g-3">
+                  <!-- BLOC MÉTRIQUES -->
                   <div class="col-lg-6">
                     <div class="p-3 bg-light rounded border h-100">
-                      <h6 class="fw-bold text-dark mb-3"><i class="bi bi-calculator text-primary me-2"></i>Résultats des étapes :</h6>
+                      <h6 class="fw-bold text-dark mb-3"><i class="bi bi-calculator text-primary me-2"></i>Détail du calcul pas-à-pas :</h6>
 
                       <div class="d-flex justify-content-between align-items-center mb-2 pb-1 border-bottom">
-                        <span class="small text-muted">Longueur totale (<code>len(code)</code>) :</span>
-                        <strong class="font-monospace">{{ cleanInput.length }} caractères</strong>
+                        <span class="small text-muted">Tarif de base journalier :</span>
+                        <strong class="font-monospace">20.0 DT</strong>
                       </div>
 
                       <div class="d-flex justify-content-between align-items-center mb-2 pb-1 border-bottom">
-                        <span class="small text-muted">Position du tiret (<code>code.find("-")</code>) :</span>
-                        <strong class="font-monospace" :class="hasSep ? 'text-primary' : 'text-danger'">
-                          {{ hasSep ? sepIndex : '-1 (absent)' }}
-                        </strong>
+                        <span class="small text-muted">Formule choisie :</span>
+                        <strong class="font-monospace text-primary">{{ formuleNom }}</strong>
                       </div>
 
                       <div class="d-flex justify-content-between align-items-center mb-2 pb-1 border-bottom">
-                        <span class="small text-muted">Préfixe extrait (<code>code[0:p]</code>) :</span>
-                        <strong class="font-monospace text-info">"{{ prefixeExtrait }}" &rarr; "{{ prefixeExtrait.toUpperCase() }}"</strong>
-                      </div>
-
-                      <div class="d-flex justify-content-between align-items-center mb-2 pb-1 border-bottom">
-                        <span class="small text-muted">Suffixe extrait (<code>code[p+1:]</code>) :</span>
-                        <strong class="font-monospace text-success">"{{ suffixeExtrait }}"</strong>
-                      </div>
-
-                      <div class="d-flex justify-content-between align-items-center mb-2 pb-1 border-bottom">
-                        <span class="small text-muted">Validité numérique (<code>isdecimal()</code>) :</span>
-                        <span class="badge" :class="isSuffixNumeric ? 'bg-success' : 'bg-danger'">
-                          {{ isSuffixNumeric ? 'Vrai / True (chiffres uniquement)' : 'Faux / False' }}
+                        <span class="small text-muted">Validité (<code>valide</code>) :</span>
+                        <span class="badge" :class="isFormuleValid ? 'bg-success' : 'bg-danger'">
+                          {{ isFormuleValid ? 'Vrai / True' : 'Faux / False (Invalide)' }}
                         </span>
                       </div>
 
-                      <div class="d-flex justify-content-between align-items-center">
-                        <span class="small text-muted">Incrémentation d'année :</span>
-                        <strong class="font-monospace" :class="isSuffixNumeric ? 'text-dark' : 'text-muted'">
-                          {{ isSuffixNumeric ? parsedYear + ' + 1 = ' + nextYear : 'Impossible (non numérique)' }}
+                      <div class="d-flex justify-content-between align-items-center mb-2 pb-1 border-bottom">
+                        <span class="small text-muted">Prix brut calculé (20 + supp) :</span>
+                        <strong class="font-monospace">{{ isFormuleValid ? (prixBrut + '.0 DT') : 'Non calculé' }}</strong>
+                      </div>
+
+                      <div class="d-flex justify-content-between align-items-center mb-2 pb-1 border-bottom">
+                        <span class="small text-muted">Remise appliquée sur l'âge :</span>
+                        <span class="badge" :class="reductionBadgeClass">{{ isFormuleValid ? reductionLabel : 'Aucune' }}</span>
+                      </div>
+
+                      <div class="d-flex justify-content-between align-items-center pt-2">
+                        <span class="fw-bold text-dark">Montant net final à payer :</span>
+                        <strong class="fs-5 font-monospace" :class="isFormuleValid ? 'text-success' : 'text-danger'">
+                          {{ isFormuleValid ? prixNetFormatted : 'Erreur formule' }}
                         </strong>
                       </div>
                     </div>
@@ -667,9 +823,7 @@ print("Nouveau code :", nouveau_code)</code></pre>
                         <span class="terminal-dot dot-green"></span>
                         <span class="text-white-50 small ms-2 font-monospace">Sortie console Python (Terminal)</span>
                       </div>
-                      <div class="terminal-body">Donner le code (ex: info-2026) : {{ cleanInput }}
-Suffixe numérique valide : {{ isSuffixNumeric ? 'True' : 'False' }}
-Nouveau code : {{ nouveauCode }}</div>
+                      <div class="terminal-body">{{ terminalOutput }}</div>
                     </div>
                   </div>
                 </div>
@@ -720,7 +874,7 @@ Nouveau code : {{ nouveauCode }}</div>
             <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
               <div>
                 <h4 class="h5 fw-bold text-dark mb-1"><i class="bi bi-patch-question-fill text-primary me-2"></i>Quiz d'auto-évaluation interactif</h4>
-                <div class="small text-muted">Testez vos acquis sur l'indiçage base 0, les primitives textuelles et les équivalents Python.</div>
+                <div class="small text-muted">Testez vos acquis sur les structures conditionnelles, match-case, les opérateurs logiques et le TDO.</div>
               </div>
               <div class="d-flex align-items-center gap-2">
                 <span class="badge bg-primary px-3 py-2 fs-6">Score : {{ quizScore }} / {{ quizQuestions.length }}</span>
@@ -789,11 +943,11 @@ Nouveau code : {{ nouveauCode }}</div>
           <a href="index.html" class="btn btn-outline-light btn-sm me-2">
             <i class="bi bi-house-door me-1"></i> Accueil
           </a>
-          <a href="seance01.html" class="btn btn-outline-light btn-sm me-2">
-            <i class="bi bi-arrow-left me-1"></i> Revoir Séance 1
+          <a href="seance02.html" class="btn btn-outline-light btn-sm me-2">
+            <i class="bi bi-arrow-left me-1"></i> Revoir Séance 2
           </a>
-          <a href="seance03.html" class="btn btn-primary-custom btn-sm">
-            Passer à la Séance 3 <i class="bi bi-arrow-right ms-1"></i>
+          <a href="seance02-old.html" class="btn btn-primary-custom btn-sm">
+            Voir les archives <i class="bi bi-arrow-right ms-1"></i>
           </a>
         </div>
       </div>
@@ -808,7 +962,7 @@ Nouveau code : {{ nouveauCode }}</div>
   <script src="assets/js/algo-highlight.js"></script>
 
   <!-- APPLICATION VUE 3 -->
-  <script src="assets/apps/seance02.js"></script>
+  <script src="assets/apps/seance03.js"></script>
 
 </body>
 

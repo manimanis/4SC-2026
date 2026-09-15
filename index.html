@@ -34,12 +34,6 @@
           <ul class="navbar-nav ms-auto align-items-lg-center">
             <li class="nav-item"><a class="nav-link active" href="index.html"><i class="bi bi-house-door-fill me-1"></i>
                 Accueil</a></li>
-            <li class="nav-item"><a class="nav-link" href="seance01.html"><i class="bi bi-1-circle me-1"></i> Séance
-                1</a></li>
-            <li class="nav-item"><a class="nav-link" href="seance02.html"><i class="bi bi-2-circle me-1"></i> Séance
-                2</a></li>
-            <li class="nav-item"><a class="nav-link" href="seance02-old.html"><i class="bi bi-archive me-1"></i>
-                Archives</a></li>
             <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
               <button class="btn btn-sm btn-outline-light" onclick="window.print()">
                 <i class="bi bi-printer me-1"></i> Imprimer
@@ -89,7 +83,7 @@
       <div class="row g-4 mb-5">
 
         <!-- CARTE SEANCE 1 -->
-        <div class="col-lg-6">
+        <div class="col-md-6 col-lg-3">
           <div class="section-card h-100 d-flex flex-column justify-content-between">
             <div>
               <div class="section-header">
@@ -143,7 +137,7 @@
         </div>
 
         <!-- CARTE SEANCE 2 -->
-        <div class="col-lg-6">
+        <div class="col-md-6 col-lg-3">
           <div class="section-card h-100 d-flex flex-column justify-content-between">
             <div>
               <div class="section-header">
@@ -191,6 +185,101 @@
             <div class="p-3 bg-light border-top text-end">
               <a href="seance02.html" class="btn btn-primary-custom w-100">
                 Ouvrir la Séance 2 <i class="bi bi-arrow-right ms-1"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARTE SEANCE 3 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="section-card h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="section-header">
+                <div class="d-flex align-items-center gap-2">
+                  <span class="badge bg-primary rounded-pill px-2 py-1">Séance 03</span>
+                  <span class="fw-bold text-dark">Durée : 70 min</span>
+                </div>
+                <span class="phase-pill emerald">Programme Officiel</span>
+              </div>
+              <div class="section-body">
+                <h2 class="h5 fw-bold text-primary mb-2">
+                  Structures conditionnelles & Choix multiples
+                </h2>
+                <p class="small text-muted mb-3">
+                  Formes simple, alternative, généralisée, structure à choix multiples (<code>Selon</code> /
+                  <code>match-case</code>), opérateurs relationnels et logiques.
+                </p>
+
+                <div class="mb-3">
+                  <div class="small fw-bold text-dark mb-1"><i class="bi bi-check2-circle text-success me-1"></i>Savoirs
+                    associés & Compétences :</div>
+                  <ul class="small text-muted ps-3 mb-0">
+                    <li>Structures : <code>Si...FinSi</code>, <code>Si...Sinon...</code></li>
+                    <li>Choix multiple : <code>Selon</code> & <code>match-case</code></li>
+                    <li>Opérateurs : <code>Non</code>, <code>Et</code>, <code>Ou</code></li>
+                    <li>T.D.O. Standard</li>
+                  </ul>
+                </div>
+
+                <div class="p-2 bg-light rounded border small text-muted d-flex align-items-center gap-2 mb-3">
+                  <i class="bi bi-stars text-warning fs-5"></i>
+                  <div>
+                    <strong>Inclus :</strong> Arbre de décision interactif + Quiz.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-3 bg-light border-top text-end">
+              <a href="seance03.html" class="btn btn-primary-custom w-100">
+                Ouvrir la Séance 3 <i class="bi bi-arrow-right ms-1"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARTE SEANCE 4 -->
+        <div class="col-md-6 col-lg-3">
+          <div class="section-card h-100 d-flex flex-column justify-content-between">
+            <div>
+              <div class="section-header">
+                <div class="d-flex align-items-center gap-2">
+                  <span class="badge bg-primary rounded-pill px-2 py-1">Séance 04</span>
+                  <span class="fw-bold text-dark">Durée : 70 min</span>
+                </div>
+                <span class="phase-pill emerald">Programme Officiel</span>
+              </div>
+              <div class="section-body">
+                <h2 class="h5 fw-bold text-primary mb-2">
+                  Structures itératives (Pour, Tant que, Répéter)
+                </h2>
+                <p class="small text-muted mb-3">
+                  Boucle complète, boucles conditionnelles de maintien ou d'arrêt, détection de nombres parfaits, divisions par 2 et proscription du <code>break</code>.
+                </p>
+
+                <div class="mb-3">
+                  <div class="small fw-bold text-dark mb-1"><i class="bi bi-check2-circle text-success me-1"></i>Savoirs
+                    associés & Compétences :</div>
+                  <ul class="small text-muted ps-3 mb-0">
+                    <li>Boucle complète : <code>Pour</code> & <code>for in range</code></li>
+                    <li>Boucles conditionnelles : <code>Tant que</code>, <code>Répéter</code></li>
+                    <li>Interdiction stricte du <code>break</code></li>
+                    <li>Division entière <code>//</code> & T.D.O.</li>
+                  </ul>
+                </div>
+
+                <div class="p-2 bg-light rounded border small text-muted d-flex align-items-center gap-2 mb-3">
+                  <i class="bi bi-stars text-warning fs-5"></i>
+                  <div>
+                    <strong>Inclus :</strong> Décomposition des 3 boucles en direct + Quiz.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-3 bg-light border-top text-end">
+              <a href="seance04.html" class="btn btn-primary-custom w-100">
+                Ouvrir la Séance 4 <i class="bi bi-arrow-right ms-1"></i>
               </a>
             </div>
           </div>
