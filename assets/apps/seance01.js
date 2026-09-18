@@ -1,8 +1,11 @@
 /**
  * assets/apps/seance01.js
  * Logique applicative JavaScript (Vue 3) pour seance01.html
- * Séance 1 : Types scalaires, fonctions prédéfinies arithmétiques & TDO standard
- * Conforme aux programmes et conventions officielles 2024-2025
+ * Séance 1 : Structures de données (Types numériques & textuels)
+ * Séquence pédagogique en deux problèmes consécutifs :
+ *   - Problème 1 : Types numériques, fonctions arithmétiques & repère 2D (Phases 1 à 5)
+ *   - Problème 2 : Types textuels, primitives de chaînes & analyseur indicé (Phases 1 à 5)
+ * Conforme aux conventions officielles tunisiennes 2024-2025 (Bac 2026)
  */
 
 const { createApp } = Vue;
@@ -10,20 +13,33 @@ const { createApp } = Vue;
 createApp({
   data() {
     return {
-      currentPhase: 1,
+      currentProblem: 1, // 1 ou 2
+      currentPhase: 1,   // 1, 2, 3, 4, 5 ou 'all'
       isMenuOpen: false,
 
-      // Phases d'apprentissage
-      phases: [
-        { title: "Accroche & Réactivation (Situation-problème)", shortTitle: "Phase 1 : Accroche", duration: "10 min" },
-        { title: "Synthèse des correspondances Algo ↔ Python", shortTitle: "Phase 2 : Normes Algo/Python", duration: "15 min" },
-        { title: "Élaboration de l'Algorithme & TDO standard", shortTitle: "Phase 3 : Algo & TDO", duration: "20 min" },
-        { title: "Implémentation sur machine, Débogage & Laboratoire", shortTitle: "Phase 4 : Machine & Débogage", duration: "20 min" },
-        { title: "Bilan & Auto-évaluation (Contrôle oral & Quiz)", shortTitle: "Phase 5 : Bilan & Quiz", duration: "5 min" }
+      // ==========================================
+      // PHASES PÉDAGOGIQUES PAR PROBLÈME
+      // ==========================================
+      phasesP1: [
+        { title: "Accroche & Réactivation (Distance euclidienne)", shortTitle: "Phase 1 : Accroche", duration: "10 min" },
+        { title: "Fonctions Prédéfinies Arithmétiques", shortTitle: "Phase 2 : Fonctions Prédéfinies", duration: "15 min" },
+        { title: "Conception & TDO (ALGORITHME DistanceEuclidienne)", shortTitle: "Phase 3 : Algo & TDO", duration: "20 min" },
+        { title: "Machine & Laboratoire (Repère cartésien 2D)", shortTitle: "Phase 4 : Labo 2D", duration: "20 min" },
+        { title: "Bilan & Auto-évaluation (Questions flash & Quiz arithmétique)", shortTitle: "Phase 5 : Bilan & Quiz", duration: "5 min" }
       ],
 
-      // État des questions orales de la phase 1
-      oralQuestions: [
+      phasesP2: [
+        { title: "Accroche & Situation-problème (Code d'inscription)", shortTitle: "Phase 1 : Accroche", duration: "10 min" },
+        { title: "Fonctions Prédéfinies Textuelles", shortTitle: "Phase 2 : Fonctions Prédéfinies", duration: "15 min" },
+        { title: "Conception & TDO (ALGORITHME MajCode)", shortTitle: "Phase 3 : Algo & TDO", duration: "20 min" },
+        { title: "Machine & Laboratoire (Analyseur indicé de chaînes)", shortTitle: "Phase 4 : Labo Chaînes", duration: "20 min" },
+        { title: "Bilan & Auto-évaluation (Questions flash & Quiz textuel)", shortTitle: "Phase 5 : Bilan & Quiz", duration: "5 min" }
+      ],
+
+      // ==========================================
+      // PROBLÈME 1 : ARITHMÉTIQUE & SCALAIRES
+      // ==========================================
+      oralQuestionsP1: [
         {
           id: 1,
           question: "Comment exprimer le quotient et le reste d'une division entière ?",
@@ -34,121 +50,59 @@ createApp({
         {
           id: 2,
           question: "Comment extraire une racine carrée ou générer un entier aléatoire sans réécrire l'algorithme ?",
-          algoAns: "On utilise les fonctions prédéfinies : RacineCarré(x) et Aléa(vi, vf).",
+          algoAns: "On utilise les fonctions prédéfinies : Racine(x) et Aléa(vi, vf).",
           pyAns: "On importe depuis la bibliothèque standard : from math import sqrt et from random import randint.",
           isOpen: false
         },
         {
           id: 3,
           question: "Quelle est la différence fondamentale entre la division réelle (/) et la division entière (Div / //) ?",
-          algoAns: "a / b produit toujours un Réel (ex: 14 / 3 ≈ 4.666...), alors que a Div b produit un Entier (la part entière du quotient sans virgule).",
+          algoAns: "a / b produit toujours un Réel (ex: 14 / 3 ≈ 4.666...), alors que a Div b produit un Entier (la part entière sans virgule).",
           pyAns: "14 / 3 donne un float (4.666666666666667), alors que 14 // 3 donne un int (4).",
           isOpen: false
         }
       ],
 
-      // État des questions flash de la phase 5 (clôture)
-      flashQuestions: [
-        {
-          expr: "14 Div 3",
-          resAlgo: "4",
-          resPy: "14 // 3 -> 4",
-          type: "Entier",
-          isOpen: false
-        },
-        {
-          expr: "14 Mod 3",
-          resAlgo: "2",
-          resPy: "14 % 3 -> 2",
-          type: "Entier",
-          isOpen: false
-        },
-        {
-          expr: "RacineCarré(49)",
-          resAlgo: "7.0",
-          resPy: "sqrt(49) -> 7.0",
-          type: "Réel",
-          isOpen: false
-        },
-        {
-          expr: "Arrondi(7.6) vs Ent(7.6)",
-          resAlgo: "Arrondi(7.6) = 8 | Ent(7.6) = 7",
-          resPy: "round(7.6) -> 8 | int(7.6) -> 7",
-          type: "Entier",
-          isOpen: false
-        },
-        {
-          expr: "Abs(-15.4)",
-          resAlgo: "15.4",
-          resPy: "abs(-15.4) -> 15.4",
-          type: "Réel",
-          isOpen: false
-        },
-        {
-          expr: "7 Mod 2 = 0",
-          resAlgo: "Faux",
-          resPy: "7 % 2 == 0 -> False",
-          type: "Booléen",
-          isOpen: false
-        }
+      flashQuestionsP1: [
+        { expr: "14 Div 3", resAlgo: "4", resPy: "14 // 3 -> 4", type: "Entier (Quotient)", isOpen: false },
+        { expr: "14 Mod 3", resAlgo: "2", resPy: "14 % 3 -> 2", type: "Entier (Reste)", isOpen: false },
+        { expr: "Racine(49)", resAlgo: "7.0", resPy: "sqrt(49) -> 7.0", type: "Réel", isOpen: false },
+        { expr: "Arrondi(7.6) vs Ent(7.6)", resAlgo: "Arrondi(7.6) = 8 | Ent(7.6) = 7", resPy: "round(7.6) -> 8 | int(7.6) -> 7", type: "Entiers", isOpen: false },
+        { expr: "Abs(-15.4)", resAlgo: "15.4", resPy: "abs(-15.4) -> 15.4", type: "Réel", isOpen: false },
+        { expr: "7 Mod 2 = 0", resAlgo: "Faux", resPy: "7 % 2 == 0 -> False", type: "Booléen", isOpen: false }
       ],
 
-      // Simulateur de laboratoire (Phase 4)
-      simPoint: {
-        x: 3,
-        y: 4
-      },
+      simPoint: { x: 3, y: 4 },
       simAnimation: false,
-      copyStatus: 'Copier le script Python',
+      copyStatusMath: 'Copier le script Python (Distance)',
 
-      // Auto-évaluation / Quiz (Phase 5)
-      quizActiveCount: 10,
-      quizQuestions: [],
-      quizScore: 0,
-      allQuestions: [
+      quizP1Count: 5,
+      quizP1Questions: [],
+      quizP1Score: 0,
+      allQuestionsP1: [
         {
           question: "En algorithmique selon la norme 2024-2025, quel opérateur calcule le reste de la division entière ?",
-          options: [
-            "Div",
-            "Mod",
-            "%",
-            "Reste()"
-          ],
+          options: ["Div", "Mod", "%", "Reste()"],
           correct: 1,
-          explanation: "En algorithmique tunisienne, 'Mod' désigne l'opérateur du reste de la division entière, alors que 'Div' désigne le quotient entier."
+          explanation: "'Mod' désigne l'opérateur du reste de la division entière, et 'Div' désigne le quotient entier."
         },
         {
           question: "Quel est l'équivalent en Python de l'opération algorithmique : r ← a Mod b ?",
-          options: [
-            "r = a mod b",
-            "r = a // b",
-            "r = a % b",
-            "r = a.mod(b)"
-          ],
+          options: ["r = a mod b", "r = a // b", "r = a % b", "r = a.mod(b)"],
           correct: 2,
-          explanation: "En Python, l'opérateur modulo est '%' (pour le reste) et l'opérateur de quotient entier est '//'."
+          explanation: "En Python, l'opérateur modulo est '%' (reste) et le quotient entier est '//'."
         },
         {
           question: "Quelle est la valeur de l'expression algorithmique : 17 Div 5 ?",
-          options: [
-            "3.4",
-            "3",
-            "2",
-            "1"
-          ],
+          options: ["3.4", "3", "2", "1"],
           correct: 1,
           explanation: "17 = 5 * 3 + 2. Le quotient entier (Div) est 3, le reste (Mod) est 2."
         },
         {
           question: "Quelle instruction Python est indispensable avant d'utiliser la fonction sqrt(x) ?",
-          options: [
-            "import math.sqrt",
-            "from math import sqrt",
-            "include <math.h>",
-            "load sqrt"
-          ],
+          options: ["import math.sqrt", "from math import sqrt", "include <math.h>", "load sqrt"],
           correct: 1,
-          explanation: "En Python, la fonction racine carrée réside dans le module 'math' et s'importe usuellement par 'from math import sqrt'."
+          explanation: "La fonction racine carrée réside dans le module 'math' et s'importe par 'from math import sqrt'."
         },
         {
           question: "Que retourne la fonction algorithmique Aléa(-5, 5) ?",
@@ -159,18 +113,7 @@ createApp({
             "Une chaîne de caractères aléatoire"
           ],
           correct: 1,
-          explanation: "Aléa(vi, vf) retourne un entier aléatoire dans l'intervalle [vi, vf], bornes vi et vf comprises."
-        },
-        {
-          question: "Quel module Python fournit la fonction randint(a, b) conforme à Aléa(a, b) ?",
-          options: [
-            "math",
-            "random",
-            "numpy",
-            "os"
-          ],
-          correct: 1,
-          explanation: "randint(a, b) provient du module 'random' (from random import randint). Il inclut bien les deux bornes a et b."
+          explanation: "Aléa(vi, vf) retourne un entier aléatoire dans [vi, vf], bornes comprises."
         },
         {
           question: "Quelle est la différence entre Arrondi(x) et Ent(x) pour x = 8.75 ?",
@@ -181,167 +124,280 @@ createApp({
             "Arrondi(8.75) = 9 et Ent(8.75) = 9"
           ],
           correct: 1,
-          explanation: "Arrondi(x) retourne l'entier le plus proche (ici 9 car 8.75 ≥ 8.5), alors que Ent(x) tronque et retourne la partie entière (8)."
-        },
-        {
-          question: "Quelle est la syntaxe Python pour obtenir la partie entière tronquée d'un réel x ?",
-          options: [
-            "ent(x)",
-            "trunc(x)",
-            "int(x)",
-            "integer(x)"
-          ],
-          correct: 2,
-          explanation: "En Python, la conversion explicite int(x) pour un réel positif ou négatif extrait sa partie entière en tronquant les décimales."
-        },
-        {
-          question: "En algorithmique, où doit-on obligatoirement déclarer les variables d'un algorithme principal ?",
-          options: [
-            "Dans le TDOL (Tableau de Déclaration des Objets Locaux)",
-            "Dans le TDO (Tableau de Déclaration des Objets)",
-            "Au moment de leur première affectation sans tableau",
-            "Dans les commentaires"
-          ],
-          correct: 1,
-          explanation: "Dans un algorithme non modulaire (ou dans le programme principal), les variables sont recensées dans le TDO (Tableau de Déclaration des Objets)."
-        },
-        {
-          question: "Quelle est la nature du typage des variables en langage Python ?",
-          options: [
-            "Typage statique obligatoire (déclaration avant affectation)",
-            "Typage dynamique (le type est automatiquement déduit de la valeur affectée)",
-            "Pas de typage : toutes les variables sont des chaînes",
-            "Typage binaire fixé à la compilation"
-          ],
-          correct: 1,
-          explanation: "En Python, les variables ne sont pas déclarées préalablement : leur type est assigné dynamiquement lors de l'affectation."
+          explanation: "Arrondi(x) retourne l'entier le plus proche (9), alors que Ent(x) tronque et retourne la partie entière (8)."
         },
         {
           question: "Quel opérateur de comparaison traduit l'égalité algorithmique '=' en Python ?",
-          options: [
-            "=",
-            "==",
-            "===",
-            ":="
-          ],
+          options: ["=", "==", "===", ":="],
           correct: 1,
-          explanation: "En Python, le test d'égalité s'écrit avec un double signe '==' ; le signe '=' simple étant réservé à l'affectation."
+          explanation: "En Python, l'égalité se teste avec '==', le signe '=' étant réservé à l'affectation."
         },
         {
-          question: "Que vaut l'expression booléenne (18 Mod 2 = 0) en algorithmique ?",
-          options: [
-            "0",
-            "1",
-            "Vrai",
-            "Faux"
-          ],
+          question: "Quel est le résultat de : abs(-12.8) en Python ?",
+          options: ["-12.8", "12", "12.8", "13"],
           correct: 2,
-          explanation: "18 Mod 2 donne 0. La comparaison 0 = 0 est vérifiée, l'expression retourne la valeur Booléenne 'Vrai'."
+          explanation: "abs(x) renvoie la valeur absolue |x|, soit 12.8."
+        }
+      ],
+
+      // ==========================================
+      // PROBLÈME 2 : TEXTUEL & CHAÎNES
+      // ==========================================
+      oralQuestionsP2: [
+        {
+          id: 1,
+          question: "Comment localiser le séparateur '-' dans une chaîne ?",
+          algoAns: "On utilise Pos(ch1, ch2) : p ← Pos('-', code). Elle renvoie la 1ère position trouvée ou -1 si absent.",
+          pyAns: "On utilise la méthode .find() : p = code.find('-'). Elle retourne l'indice ou -1 si absent.",
+          isOpen: false
         },
         {
-          question: "Quel est le résultat de l'exécution de : abs(-12.8) en Python ?",
-          options: [
-            "-12.8",
-            "12",
-            "12.8",
-            "13"
-          ],
-          correct: 2,
-          explanation: "La fonction prédéfinie abs(x) retourne la valeur absolue de x (la distance à zéro), soit 12.8 pour -12.8."
+          id: 2,
+          question: "Comment extraire une portion de chaîne et quelle est la règle de la borne de fin ?",
+          algoAns: "On utilise Sous_chaine(ch, d, f). La position finale f est STRICTEMENT EXCLUE (indices extraits de d à f - 1).",
+          pyAns: "On utilise le slicing ch[d:f], où l'indice f est exclu.",
+          isOpen: false
         },
         {
-          question: "Que se passe-t-il si un élève écrit 'Round(d)' au lieu de 'round(d)' en Python ?",
-          options: [
-            "Python convertit automatiquement en minuscules sans erreur",
-            "Une erreur d'exécution 'NameError: name 'Round' is not defined' est levée car Python est sensible à la casse",
-            "Le résultat est arrondi à deux décimales au lieu d'une",
-            "Le programme affiche un avertissement sans planter"
-          ],
+          id: 3,
+          question: "Quel est l'indice du premier caractère d'une chaîne selon les conventions officielles 2024-2025 ?",
+          algoAns: "L'indice du 1er caractère est obligatoirement 0 (0 ≤ i < Long(Ch)).",
+          pyAns: "En Python, l'indiçage démarre toujours à 0 (ch[0]).",
+          isOpen: false
+        }
+      ],
+
+      flashQuestionsP2: [
+        { expr: 'Si ch = "bac", indices & Pos("x", ch) ?', resAlgo: 'ch[0]="b", ch[2]="c" | Pos("x", ch) = -1', resPy: 'ch[0]=="b" | ch.find("x") == -1', type: "Indice & Recherche", isOpen: false },
+        { expr: 'Sous_chaine("informatique", 2, 5)', resAlgo: '"for"', resPy: '"informatique"[2:5] -> "for"', type: "Extraction (borne 5 exclue)", isOpen: false },
+        { expr: 'Estnum("2026") vs Estnum("2026a")', resAlgo: 'Vrai pour "2026" | Faux pour "2026a"', resPy: '"2026".isdecimal() -> True | "2026a".isdecimal() -> False', type: "Test numérique", isOpen: false },
+        { expr: 'Ord("A") et Chr(65)', resAlgo: 'Ord("A") = 65 | Chr(65) = "A"', resPy: 'ord("A") -> 65 | chr(65) -> "A"', type: "Code ASCII & Caractère", isOpen: false },
+        { expr: 'Effacer("bac-2026", 0, 4)', resAlgo: '"2026"', resPy: 'ch[:0] + ch[4:] -> "2026"', type: "Suppression de tranche", isOpen: false },
+        { expr: 'Valeur("2026") + 1', resAlgo: "2027", resPy: 'int("2026") + 1 -> 2027', type: "Conversion & calcul", isOpen: false }
+      ],
+
+      simInputCode: 'info-2026',
+      exampleCodes: ['info-2026', 'bac-2025', 'sc-2024', 'math-2023', 'tech-2027', 'erreur-abc'],
+      copyStatusText: 'Copier le script Python (Chaînes)',
+
+      quizP2Count: 5,
+      quizP2Questions: [],
+      quizP2Score: 0,
+      allQuestionsP2: [
+        {
+          question: "Selon les conventions officielles 2024-2025, quel est l'indice du premier caractère d'une chaîne Ch ?",
+          options: ["1 (ancienne convention)", "0 (l'indexation démarre obligatoirement à 0)", "-1", "N'importe quel entier"],
           correct: 1,
-          explanation: "Python est strictement sensible à la casse (case-sensitive) : les identificateurs 'round' et 'Round' sont distincts."
+          explanation: "La norme 2024-2025 stipule : 'L’indice du premier élément d’une chaîne de caractères est 0'."
         },
         {
-          question: "Dans le TDO de l'algorithme DistancePoint, quel est le type de la variable 'est_pair' ?",
-          options: [
-            "Entier",
-            "Réel",
-            "Booléen",
-            "Chaîne de caractères"
-          ],
-          correct: 2,
-          explanation: "'est_pair' stocke le résultat de l'évaluation d'une condition (d_arrondi Mod 2 = 0). C'est donc un Booléen (Vrai ou Faux)."
+          question: "Que retourne la primitive algorithmique Pos('-', 'info-2026') ?",
+          options: ["4 (indices : 'i'=0, 'n'=1, 'f'=2, 'o'=3, '-'=4)", "5 (en comptant à 1)", "Vrai", "-1"],
+          correct: 0,
+          explanation: "En base 0 : 'i'(0), 'n'(1), 'f'(2), 'o'(3) et le tiret '-' est à l'indice 4."
         },
         {
-          question: "Si x = -3 et y = 4, quelle est la distance d = RacineCarré(x * x + y * y) ?",
-          options: [
-            "7.0",
-            "5.0",
-            "1.0",
-            "25.0"
-          ],
+          question: "Quelle valeur renvoie Pos(ch1, ch2) si la sous-chaîne ch1 n'existe pas dans ch2 ?",
+          options: ["0", "-1", "Faux", "Une chaîne vide ''"],
           correct: 1,
-          explanation: "(-3)² + 4² = 9 + 16 = 25. RacineCarré(25) = 5.0 (triplet pythagoricien 3, 4, 5)."
+          explanation: "Pos retourne la première position de ch1 dans ch2, sinon elle retourne impérativement -1."
+        },
+        {
+          question: "Quel est l'équivalent Python officiel de Pos(ch1, ch2) ?",
+          options: ["ch2.index(ch1)", "ch2.find(ch1)", "pos(ch1, ch2)", "ch1 in ch2"],
+          correct: 1,
+          explanation: "En Python, la méthode ch2.find(ch1) renvoie l'indice trouvé ou -1 si absent, conforme au contrat de Pos."
+        },
+        {
+          question: "Quelle est la valeur de Sous_chaine('informatique', 2, 5) ?",
+          options: ["'for'", "'form'", "'nfo'", "'info'"],
+          correct: 0,
+          explanation: "Indices : 'i'(0), 'n'(1), 'f'(2), 'o'(3), 'r'(4), 'm'(5). De 2 à 5 exclu extrait les indices 2, 3 et 4, soit 'for'."
+        },
+        {
+          question: "Comment traduit-on Sous_chaine(ch, 0, p) en Python par slicing ?",
+          options: ["ch[0:p]", "ch[0..p]", "ch.substring(0, p)", "ch[0:p+1]"],
+          correct: 0,
+          explanation: "Le slicing ch[0:p] extrait du caractère 0 jusqu'à p - 1, ce qui équivaut à Sous_chaine(ch, 0, p)."
+        },
+        {
+          question: "Quelle méthode Python officielle traduit la primitive Estnum(ch) ?",
+          options: ["ch.isdecimal()", "ch.isdigit()", "ch.isnumber()", "isnum(ch)"],
+          correct: 0,
+          explanation: "Selon les conventions 2024-2025, la traduction officielle de Estnum(ch) est ch.isdecimal()."
+        },
+        {
+          question: "Que retourne l'expression 'info-2026'.upper() en Python ?",
+          options: ["'INFO-2026'", "'Info-2026'", "'INFO'", "Une erreur d'exécution"],
+          correct: 0,
+          explanation: ".upper() convertit les lettres alphabétiques en majuscules : 'INFO-2026'."
         }
       ]
     };
   },
 
   computed: {
-    // Calculs de la simulation en temps réel
-    simSumSq() {
-      return (this.simPoint.x * this.simPoint.x) + (this.simPoint.y * this.simPoint.y);
+    // Phases actives en fonction du problème courant
+    currentPhasesList() {
+      return this.currentProblem === 1 ? this.phasesP1 : this.phasesP2;
     },
-    simDist() {
-      return Math.sqrt(this.simSumSq);
+    currentProblemTitle() {
+      return this.currentProblem === 1
+        ? "Problème 1 : Types numériques, fonctions arithmétiques & repère 2D"
+        : "Problème 2 : Types textuels, primitives de chaînes & analyseur indicé";
     },
-    simDistRounded() {
-      return Math.round(this.simDist);
+    currentProblemSubtitle() {
+      return this.currentProblem === 1
+        ? "Partie 1 : Types numériques & Arithmétique"
+        : "Partie 2 : Types textuels & Chaînes de caractères";
+    },
+    currentPhaseTitle() {
+      if (this.currentPhase === 'all') {
+        return "Vue complète (Toutes les phases du problème)";
+      }
+      return this.currentPhasesList[this.currentPhase - 1] ? this.currentPhasesList[this.currentPhase - 1].title : '';
+    },
+    viewModeButtonText() {
+      return this.currentPhase === 'all'
+        ? 'Mode pas-à-pas'
+        : 'Tout afficher (Problème ' + this.currentProblem + ')';
+    },
+    phaseChipText() {
+      return 'P' + this.currentProblem + '-' + (this.currentPhase === 'all' ? 'All' : this.currentPhase + '/5');
+    },
+
+    // Calculs en direct du simulateur cartésien 2D (Problème 1)
+    simDistance() {
+      return Math.sqrt(this.simPoint.x * this.simPoint.x + this.simPoint.y * this.simPoint.y);
+    },
+    simRounded() {
+      return Math.round(this.simDistance);
     },
     simIsEven() {
-      return (this.simDistRounded % 2) === 0;
+      return (this.simRounded % 2 === 0);
     },
-    // Coordonnées pour le repère SVG (dimensions 320x320, centre (160, 160), échelle 12px par unité)
-    svgPoint() {
-      const centerX = 160;
-      const centerY = 160;
-      const scale = 13; // 10 unités = 130px
-      return {
-        cx: centerX + (this.simPoint.x * scale),
-        cy: centerY - (this.simPoint.y * scale) // Axe Y inversé en SVG
-      };
+    svgX() {
+      return 150 + this.simPoint.x * 12;
+    },
+    svgY() {
+      return 150 - this.simPoint.y * 12;
+    },
+
+    // Calculs en direct de l'analyseur indicé de chaînes (Problème 2)
+    cleanInput() {
+      return this.simInputCode ? this.simInputCode.trim() : '';
+    },
+    charList() {
+      return this.cleanInput.split('').map((c, i) => ({
+        char: c,
+        index: i
+      }));
+    },
+    sepIndex() {
+      return this.cleanInput.indexOf('-');
+    },
+    hasSep() {
+      return this.sepIndex !== -1;
+    },
+    prefixeExtrait() {
+      if (!this.hasSep) return this.cleanInput;
+      return this.cleanInput.substring(0, this.sepIndex);
+    },
+    suffixeExtrait() {
+      if (!this.hasSep) return '';
+      return this.cleanInput.substring(this.sepIndex + 1);
+    },
+    isSuffixNumeric() {
+      if (!this.suffixeExtrait) return false;
+      return /^\d+$/.test(this.suffixeExtrait);
+    },
+    parsedYear() {
+      if (!this.isSuffixNumeric) return null;
+      return parseInt(this.suffixeExtrait, 10);
+    },
+    nextYear() {
+      if (this.parsedYear === null) return null;
+      return this.parsedYear + 1;
+    },
+    nouveauCode() {
+      const majPrefix = this.prefixeExtrait.toUpperCase();
+      if (!this.hasSep) return majPrefix;
+      if (!this.isSuffixNumeric) return majPrefix + '-' + this.suffixeExtrait;
+      return majPrefix + '-' + this.nextYear;
     }
   },
 
   mounted() {
-    this.initQuiz();
+    this.initQuiz1();
+    this.initQuiz2();
     this.highlightAll();
   },
 
   methods: {
-    setPhase(p) {
-      this.currentPhase = p;
+    // Sélecteur de problème
+    setProblem(probNum, phaseNum = 1) {
+      this.currentProblem = probNum;
+      this.currentPhase = phaseNum;
       this.isMenuOpen = false;
       this.$nextTick(() => {
         this.highlightAll();
-        window.scrollTo({ top: 120, behavior: 'smooth' });
+        window.scrollTo({ top: 180, behavior: 'smooth' });
       });
     },
 
+    // Sélecteur de phase pour le problème actif
+    setPhase(phaseNum) {
+      this.currentPhase = phaseNum;
+      this.isMenuOpen = false;
+      this.$nextTick(() => {
+        this.highlightAll();
+        window.scrollTo({ top: 220, behavior: 'smooth' });
+      });
+    },
+
+    // Navigation séquentielle globale (P1 Phase 1-5 puis P2 Phase 1-5)
     nextPhase() {
-      if (this.currentPhase < this.phases.length) {
+      if (this.currentPhase === 'all') {
+        if (this.currentProblem === 1) {
+          this.setProblem(2, 1);
+        }
+        return;
+      }
+
+      if (this.currentPhase < 5) {
         this.setPhase(this.currentPhase + 1);
+      } else if (this.currentPhase === 5 && this.currentProblem === 1) {
+        // Fin du problème 1 -> passage séquentiel au problème 2 !
+        this.setProblem(2, 1);
       }
     },
 
     prevPhase() {
+      if (this.currentPhase === 'all') {
+        if (this.currentProblem === 2) {
+          this.setProblem(1, 1);
+        }
+        return;
+      }
+
       if (this.currentPhase > 1) {
         this.setPhase(this.currentPhase - 1);
+      } else if (this.currentPhase === 1 && this.currentProblem === 2) {
+        // Début du problème 2 -> retour vers la phase 5 du problème 1
+        this.setProblem(1, 5);
       }
     },
 
     toggleViewMode() {
-      const nextMode = this.currentPhase === 'all' ? 1 : 'all';
-      this.setPhase(nextMode);
+      if (this.currentPhase === 'all') {
+        this.currentPhase = 1;
+      } else {
+        this.currentPhase = 'all';
+      }
+      this.isMenuOpen = false;
+      this.$nextTick(() => {
+        this.highlightAll();
+      });
     },
 
     toggleOral(item) {
@@ -352,7 +408,6 @@ createApp({
       item.isOpen = !item.isOpen;
     },
 
-    // Tirage d'un nouveau point aléatoire dans [-10, 10]
     randomizePoint() {
       this.simAnimation = true;
       this.simPoint.x = Math.floor(Math.random() * 21) - 10;
@@ -362,8 +417,7 @@ createApp({
       }, 400);
     },
 
-    // Copie du code Python dans le presse-papier
-    copyPythonCode() {
+    copyPythonCodeMath() {
       const code = `from math import sqrt
 from random import randint
 
@@ -382,42 +436,93 @@ print("Distance réelle :", d)
 print("Distance arrondie :", d_arrondi)
 print("Distance paire ? :", est_pair)`;
 
+      this.executeClipboardCopy(code, 'copyStatusMath', 'Copier le script Python (Distance)');
+    },
+
+    copyPythonCodeText() {
+      const code = `# Saisie du code d'inscription
+code = input("Donner le code (ex: info-2026) : ")
+
+# Recherche de la position du tiret séparateur
+p = code.find('-')
+
+if p != -1:
+    prefixe = code[0:p]
+    suffixe = code[p + 1:]
+    
+    # Mise en majuscules du préfixe
+    prefixe_maj = prefixe.upper()
+    
+    # Test numérique et incrémentation de l'année
+    if suffixe.isdecimal():
+        annee = int(suffixe)
+        nouvelle_annee = annee + 1
+        nouveau_code = prefixe_maj + "-" + str(nouvelle_annee)
+    else:
+        nouveau_code = prefixe_maj + "-" + suffixe
+else:
+    nouveau_code = code.upper()
+
+print("Nouveau code généré :", nouveau_code)`;
+
+      this.executeClipboardCopy(code, 'copyStatusText', 'Copier le script Python (Chaînes)');
+    },
+
+    executeClipboardCopy(text, statusProp, defaultText) {
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(code).then(() => {
-          this.copyStatus = 'Copié avec succès !';
+        navigator.clipboard.writeText(text).then(() => {
+          this[statusProp] = 'Copié avec succès !';
           setTimeout(() => {
-            this.copyStatus = 'Copier le script Python';
+            this[statusProp] = defaultText;
           }, 2500);
         });
       } else {
-        alert("Code copié dans votre presse-papier !");
+        alert("Code copié dans le presse-papier !");
       }
     },
 
-    // Initialisation et tirage aléatoire du Quiz
-    initQuiz() {
-      // Mélange de la banque de questions (Fisher-Yates)
-      const shuffled = [...this.allQuestions].sort(() => 0.5 - Math.random());
-      this.quizQuestions = shuffled.slice(0, this.quizActiveCount).map(q => ({
+    initQuiz1() {
+      const shuffled = [...this.allQuestionsP1].sort(() => 0.5 - Math.random());
+      this.quizP1Questions = shuffled.slice(0, this.quizP1Count).map(q => ({
         ...q,
         selected: null,
         showAnswer: false
       }));
-      this.quizScore = 0;
+      this.quizP1Score = 0;
     },
 
-    selectQuizOption(qIdx, oIdx) {
-      const q = this.quizQuestions[qIdx];
-      if (q.showAnswer) return; // Déjà répondu
+    selectQuizOption1(qIdx, oIdx) {
+      const q = this.quizP1Questions[qIdx];
+      if (q.showAnswer) return;
 
       q.selected = oIdx;
       q.showAnswer = true;
       if (oIdx === q.correct) {
-        this.quizScore++;
+        this.quizP1Score++;
       }
     },
 
-    // Déclenchement de la coloration syntaxique Highlight.js
+    initQuiz2() {
+      const shuffled = [...this.allQuestionsP2].sort(() => 0.5 - Math.random());
+      this.quizP2Questions = shuffled.slice(0, this.quizP2Count).map(q => ({
+        ...q,
+        selected: null,
+        showAnswer: false
+      }));
+      this.quizP2Score = 0;
+    },
+
+    selectQuizOption2(qIdx, oIdx) {
+      const q = this.quizP2Questions[qIdx];
+      if (q.showAnswer) return;
+
+      q.selected = oIdx;
+      q.showAnswer = true;
+      if (oIdx === q.correct) {
+        this.quizP2Score++;
+      }
+    },
+
     highlightAll() {
       if (window.hljs) {
         document.querySelectorAll('pre code').forEach((block) => {

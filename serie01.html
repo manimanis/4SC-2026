@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Série N°1 : Les structures de données - Informatique 4SC (Bac 2026)</title>
+
+  <!-- Dépendances locales -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/atom-one-dark.min.css">
+  <link rel="stylesheet" href="assets/css/style.css?v=2">
+  <link rel="stylesheet" href="assets/css/katex.min.css">
+  <link rel="stylesheet" href="assets/css/serie01.css?v=2">
+</head>
+
+<body>
+
+  <!-- Header / Navigation -->
+  <header class="modern-header d-print-none sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+      <div class="container-fluid px-md-4">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+          <i class="bi bi-cpu-fill text-primary"></i>
+          <span>Informatique 4<sup>e</sup> SC</span>
+          <span class="brand-badge">Bac 2026</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#aside_navbar"
+          aria-controls="aside_navbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="aside_navbar">
+          <!-- Le menu déroulant des exercices est généré automatiquement par pages.js -->
+        </div>
+        <div class="d-flex align-items-center gap-2 ms-auto mt-2 mt-lg-0">
+          <button id="theme-toggle-btn" class="btn btn-outline-secondary btn-sm rounded-pill px-3 py-1" type="button">
+            🌙 <span class="d-none d-sm-inline ms-1">Mode Sombre</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section text-center d-print-none py-4 mb-3">
+    <div class="container">
+      <div class="d-flex justify-content-center flex-wrap gap-2 mb-2">
+        <span class="badge bg-primary px-3 py-1"><i class="bi bi-layers-fill me-1"></i>Axe : Données & Types</span>
+        <span class="badge bg-secondary px-2 py-1">Sections : Sc. Expérimentales, Mathématiques & Sc. Techniques</span>
+        <span class="badge bg-info text-dark px-2 py-1"><i class="bi bi-bookmark-check-fill me-1"></i>Conventions
+          2024-2025</span>
+      </div>
+      <h1 class="hero-title display-6 fw-bold mb-2">Série N°1 : Les structures de données</h1>
+    </div>
+  </section>
+
+  <!-- Contenu principal : 11 Exercices -->
+  <main class="container my-4">
+    <article>
+      <h2 class="border-bottom pb-2 mb-4">Série N°1</h2>
+
+      <!-- EXERCICE 1 -->
+      <section id="exercice-1" class="mb-5 exercise-section" data-ex-id="ex1">
+        <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+          <h3 class="h4 text-primary m-0">Exercice 1 : Identificateurs, Aléa & Tableaux</h3>
+          <div class="d-flex gap-2">
+            <span class="badge badge-difficulty-easy rounded-pill px-3 py-2">🟢 Facile</span>
+            <span class="badge bg-primary rounded-pill px-3 py-2">Bac 2016 adapté</span>
+          </div>
+        </div>
+
+        <!-- Rappel de cours -->
+        <div class="alert alert-light border-start border-primary border-4 shadow-sm my-3 d-print-none">
+          <div class="d-flex align-items-center gap-2 fw-bold text-primary mb-1">
+            💡 <span>Rappel de cours : Identificateurs & Fonction Aléa</span>
+          </div>
+          <ul class="mb-0 small text-muted ps-3">
+            <li>Un identificateur commence par une lettre ou un souligné <code>_</code> (pas de chiffre initial, pas
+              d'espaces ni de tirets).</li>
+            <li>En Algorithme, <code>Aléa(a, b)</code> génère un entier aléatoire dans l'intervalle fermé
+              <code>[a, b]</code>.
+            </li>
+            <li>En Python, un tableau est représenté par un <code>array</code> NumPy dont les indices commencent
+              obligatoirement par <code>0</code>.</li>
+          </ul>
+        </div>
+
+        <p class="fw-bold text-secondary mb-3">Cocher les bonnes réponses :</p>
+
+        <div class="qcm-exercise no-page-break-inside" data-correct="1,3" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 1</h5>
+          <div class="question">
+            <p>L’identificateur d’une variable :</p>
+          </div>
+          <ul class="propositions">
+            <li>Ne doit pas commencer par un chiffre</li>
+            <li>Peut contenir un espace</li>
+            <li>Peut contenir le caractère souligné « _ »</li>
+          </ul>
+        </div>
+
+        <div class="qcm-exercise no-page-break-inside" data-correct="2, 3" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 2</h5>
+          <div class="question">
+            <p>L’instruction qui permet d’affecter à une variable X, une valeur aléatoire de l’intervalle [2, 10] est :
+            </p>
+          </div>
+          <ul class="propositions">
+            <li>X &larr; 2 + Aléa(0, 10)</li>
+            <li>X &larr; 2 + Aléa(0, 8)</li>
+            <li>X &larr; Aléa(2, 10)</li>
+            <li>X &larr; Aléa(2, 11)</li>
+          </ul>
+        </div>
+
+        <div class="qcm-exercise no-page-break-inside" data-correct="3,4" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 3</h5>
+          <div class="question">
+            <p>Une structure de données tableau peut :</p>
+          </div>
+          <ul class="propositions">
+            <li>Contenir des éléments de types différents</li>
+            <li>Etre déclarée avec une taille maximale variable</li>
+            <li>Avoir des indices négatifs</li>
+            <li>Avoir des indices commençant par 0</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- EXERCICE 2 -->
+      <section id="exercice-2" class="mb-5 exercise-section" data-ex-id="ex2">
+        <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+          <h3 class="h4 text-primary m-0">Exercice 2 : Fonctions Standards sur Chaînes & Nombres</h3>
+          <div class="d-flex gap-2">
+            <span class="badge badge-difficulty-easy rounded-pill px-3 py-2">🟢 Facile</span>
+            <span class="badge bg-primary rounded-pill px-3 py-2">Bac 2013 adapté</span>
+          </div>
+        </div>
+
+        <!-- Rappel de cours -->
+        <div class="alert alert-light border-start border-primary border-4 shadow-sm my-3 d-print-none">
+          <div class="d-flex align-items-center gap-2 fw-bold text-primary mb-1">
+            💡 <span>Rappel de cours : Fonctions prédéfinies</span>
+          </div>
+          <ul class="mb-0 small text-muted ps-3">
+            <li><code>sous_chaine(ch, debut, fin)</code> extrait <code>fin-debut</code> caractères à partir du rang
+              <code>debut</code>. Le résultat est toujours de type <strong>chaîne</strong>.
+            </li>
+            <li><code>Arrondi(x)</code> retourne l'entier le plus proche de la valeur réelle <code>x</code>.</li>
+          </ul>
+        </div>
+
+        <p class="fw-bold text-secondary mb-3">Cocher les bonnes réponses :</p>
+
+        <div class="qcm-exercise no-page-break-inside" data-correct="1,3" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 1</h5>
+          <div class="question">
+            <p>Soit l’instruction C &larr; sous_chaine("Baccalauréat", 3, 4) :</p>
+          </div>
+          <ul class="propositions">
+            <li>Elle permet d’affecter le caractère "c" à la variable C</li>
+            <li>La variable C doit être déclarée de type caractère</li>
+            <li>La variable C doit être déclarée de type chaîne</li>
+          </ul>
+        </div>
+
+        <div class="qcm-exercise no-page-break-inside" data-correct="2" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 2</h5>
+          <div class="question">
+            <p>L’instruction X &larr; Aléa(0, 6) + 4 permet d’affecter à la variable X une valeur aléatoire de
+              l’intervalle :</p>
+          </div>
+          <ul class="propositions">
+            <li>[4, 6]</li>
+            <li>[4, 10]</li>
+            <li>[4, 9]</li>
+          </ul>
+        </div>
+
+        <div class="qcm-exercise no-page-break-inside" data-correct="1" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 3</h5>
+          <div class="question">
+            <p>L’instruction R &larr; Arrondi(12.4) permet d’affecter à la variable R :</p>
+          </div>
+          <ul class="propositions">
+            <li>L’entier 12</li>
+            <li>L’entier 13</li>
+            <li>Le réel 13.0</li>
+            <li>Le réel 12.0</li>
+          </ul>
+        </div>
+
+        <div class="qcm-exercise no-page-break-inside" data-correct="2,4" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 4</h5>
+          <div class="question">
+            <p>Soit l’affectation C &larr; Majus("?") :</p>
+          </div>
+          <ul class="propositions">
+            <li>Elle permet d’affecter à la variable C le caractère "?" en gras</li>
+            <li>Elle permet d’affecter à la variable C le caractère "?"</li>
+            <li>La variable C doit être de type caractère</li>
+            <li>La variable C doit être de type chaîne</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- EXERCICE 3 -->
+      <section id="exercice-3" class="mb-5 exercise-section" data-ex-id="ex3">
+        <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+          <h3 class="h4 text-primary m-0">Exercice 3 : Découpage & Concaténation de Chaînes</h3>
+          <div class="d-flex gap-2">
+            <span class="badge badge-difficulty-medium rounded-pill px-3 py-2">🟡 Moyen</span>
+            <span class="badge bg-primary rounded-pill px-3 py-2">Bac 2013</span>
+          </div>
+        </div>
+
+        <!-- Rappel de cours -->
+        <div class="alert alert-light border-start border-primary border-4 shadow-sm my-3 d-print-none">
+          <div class="d-flex align-items-center gap-2 fw-bold text-primary mb-1">
+            💡 <span>Rappel de cours : Tranches de chaînes en Python (Slicing)</span>
+          </div>
+          <ul class="mb-0 small text-muted ps-3">
+            <li>En Python, <code>ch[debut:fin]</code> extrait les caractères de l'indice <code>debut</code> jusqu'à
+              <code>fin - 1</code>.
+            </li>
+            <li>La fonction <code>len(ch)</code> retourne le nombre total de caractères de la chaîne.</li>
+            <li>La fonction <code>int(ch)</code> convertit une chaîne représentant un nombre en entier.</li>
+          </ul>
+        </div>
+
+        <p class="mb-2">Soit la partie déclarative suivante d’un programme Pascal / Python :</p>
+
+        <div class="my-3">
+          <pre><code class="language-python"># Program composer
+# Constantes
+MOT1 = "Informatique"
+MOT2 = "3D"
+# Variables
+mot3 = ""
+mot4 = ""
+n = 0
+m = 0</code></pre>
+        </div>
+
+        <p class="fw-bold text-secondary mb-3">Cocher les bonnes réponses :</p>
+
+        <div class="qcm-exercise no-page-break-inside" data-correct="1,3,4" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 1</h5>
+          <div class="question">
+            <p>À partir de la constante MOT1, mettre dans la variable mot3 le terme 'format' :</p>
+          </div>
+          <ul class="propositions">
+            <li>mot3 = MOT1[2:8]</li>
+            <li>mot3 = MOT1[2:9]</li>
+            <li>mot3 = MOT1[2:5] + MOT1[5:8]</li>
+            <li>mot3 = MOT1[2]+MOT1[3]+MOT1[4]+MOT1[5]+MOT1[6]+MOT1[7]</li>
+          </ul>
+        </div>
+
+        <div class="qcm-exercise no-page-break-inside" data-correct="1,4" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 2</h5>
+          <div class="question">
+            <p>À partir de mot3 et mot2, mettre dans la variable mot4 le terme 'format 3D' :</p>
+          </div>
+          <ul class="propositions">
+            <li>mot4 = mot3[0:6] + ' ' + MOT2[0] + MOT2[1]</li>
+            <li>mot4 = MOT2 + ' ' + mot3</li>
+            <li>mot4 = mot3 + MOT2</li>
+            <li>mot4 = mot3 + ' ' + MOT2</li>
+          </ul>
+        </div>
+
+        <div class="qcm-exercise no-page-break-inside" data-correct="2,3" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 3</h5>
+          <div class="question">
+            <p>Mettre dans n la longueur de la chaîne mot4 :</p>
+          </div>
+          <ul class="propositions">
+            <li>n &larr; len(mot4)</li>
+            <li>n = len(mot4)</li>
+            <li>n = len(MOT2) + len(mot3) + 1</li>
+          </ul>
+        </div>
+
+        <div class="qcm-exercise no-page-break-inside" data-correct="3" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 4</h5>
+          <div class="question">
+            <p>À partir de la constante MOT2, mettre dans m la valeur 3 :</p>
+          </div>
+          <ul class="propositions">
+            <li>m = val(MOT2[1])</li>
+            <li>int(MOT2[1], m, e)</li>
+            <li>m = int(MOT2[1])</li>
+            <li>m = length(MOT2) + 1</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- EXERCICE 4 -->
+      <section id="exercice-4" class="mb-5 exercise-section" data-ex-id="ex4">
+        <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+          <h3 class="h4 text-primary m-0">Exercice 4 : Fonctions Prédéfinies Numériques & Chaînes</h3>
+          <div class="d-flex gap-2">
+            <span class="badge badge-difficulty-medium rounded-pill px-3 py-2">🟡 Moyen</span>
+            <span class="badge bg-primary rounded-pill px-3 py-2">Bac 2012</span>
+          </div>
+        </div>
+
+        <!-- Rappel de cours -->
+        <div class="alert alert-light border-start border-primary border-4 shadow-sm my-3 d-print-none">
+          <div class="d-flex align-items-center gap-2 fw-bold text-primary mb-1">
+            💡 <span>Rappel de cours : Fonctions prédéfinies sur le numérique & les chaînes</span>
+          </div>
+          <ul class="mb-0 small text-muted ps-3">
+            <li><code>Ent(x)</code> retourne la partie entière de la valeur réelle <code>x</code>.</li>
+            <li><code>Arrondi(x)</code> retourne l'entier le plus proche de la valeur réelle <code>x</code>.</li>
+            <li><code>Valeur(ch)</code> convertit une chaîne numérique en sa valeur numérique.</li>
+            <li><code>ConvCh(x)</code> convertit une valeur numérique <code>x</code> en chaîne de caractères.</li>
+            <li><code>Effacer(ch, debut, fin)</code> efface <code>fin - debut</code> caractères de la chaîne
+              <code>ch</code> à partir de la position <code>debut</code>.
+            </li>
+            <li><code>Sous_chaine(ch, debut, fin)</code> extrait <code>fin - debut</code> caractères de la chaîne
+              <code>ch</code> à partir de la position <code>debut</code>.
+            </li>
+          </ul>
+        </div>
+
+        <p class="mb-3">Compléter le tableau suivant en saisissant la valeur finale des variables indiquées :</p>
+
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover align-middle custom-table shadow-sm">
+            <thead>
+              <tr>
+                <th style="width: 55%;">Instructions</th>
+                <th>Valeurs à saisir</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>x &larr; Ent(11.8)</code><br><code>y &larr; Arrondi(11.8)</code></td>
+                <td>
+                  x = <input type="text"
+                    class="trace-input form-control form-control-sm text-center d-inline-block w-auto" data-answer="11"
+                    placeholder="?">
+                  <br>
+                  y = <input type="text"
+                    class="trace-input form-control form-control-sm text-center d-inline-block w-auto" data-answer="12"
+                    placeholder="?">
+                </td>
+              </tr>
+              <tr>
+                <td><code>n &larr; Valeur("138.5")</code></td>
+                <td>
+                  n = <input type="text"
+                    class="trace-input form-control form-control-sm text-center d-inline-block w-auto" data-answer="138"
+                    placeholder="?">
+                  <small class="text-muted ms-1">(partie entière)</small>
+                </td>
+              </tr>
+              <tr>
+                <td><code>ch &larr; ConvCh(138.25)</code></td>
+                <td>
+                  ch = <input type="text"
+                    class="trace-input form-control form-control-sm text-center d-inline-block w-auto"
+                    data-answer='"138.25"' placeholder='?'>
+                </td>
+              </tr>
+              <tr>
+                <td><code>ch1 &larr; "Information"</code><br><code>ch1 &larr; Effacer(ch1, 2, 8)</code></td>
+                <td>
+                  ch1 = <input type="text"
+                    class="trace-input form-control form-control-sm text-center d-inline-block w-auto"
+                    data-answer='"Iion"' placeholder='?'>
+                </td>
+              </tr>
+              <tr>
+                <td><code>ch1 &larr; "Information"</code><br><code>ch2 &larr; Sous_chaine(ch1, 2, 5)</code></td>
+                <td>
+                  ch2 = <input type="text"
+                    class="trace-input form-control form-control-sm text-center d-inline-block w-auto"
+                    data-answer='"nform"' placeholder='?'>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- EXERCICE 5 -->
+      <section id="exercice-5" class="mb-5 exercise-section" data-ex-id="ex5">
+        <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+          <h3 class="h4 text-primary m-0">Exercice 5 : Concepts Fondamentaux & Types de Données</h3>
+          <div class="d-flex gap-2">
+            <span class="badge badge-difficulty-easy rounded-pill px-3 py-2">🟢 Facile</span>
+            <span class="badge bg-primary rounded-pill px-3 py-2">Bac 2011</span>
+          </div>
+        </div>
+
+        <p class="fw-bold text-secondary mb-3">Répondre par Vrai si la proposition est correcte ou par Faux sinon :</p>
+
+        <div class="qcm-exercise no-page-break-inside" data-correct="2" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 1</h5>
+          <div class="question">
+            <p>Un tableau d'entiers peut être rempli de réels.</p>
+          </div>
+          <ul class="propositions">
+            <li>Vrai</li>
+            <li>Faux</li>
+          </ul>
+        </div>
+
+        <div class="qcm-exercise no-page-break-inside" data-correct="2" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 2</h5>
+          <div class="question">
+            <p>Un compteur d'une structure répétitive avance <b>uniquement</b> par pas de 1.</p>
+          </div>
+          <ul class="propositions">
+            <li>Vrai</li>
+            <li>Faux</li>
+          </ul>
+        </div>
+
+        <div class="qcm-exercise no-page-break-inside" data-correct="1" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 3</h5>
+          <div class="question">
+            <p>Les opérateurs <code>div</code> et <code>mod</code> ne peuvent pas être appliqués sur les nombres réels.
+            </p>
+          </div>
+          <ul class="propositions">
+            <li>Vrai</li>
+            <li>Faux</li>
+          </ul>
+        </div>
+
+        <div class="qcm-exercise no-page-break-inside" data-correct="1" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 4</h5>
+          <div class="question">
+            <p><code>ch &larr; efface(Ch, long(Ch)-2, long(Ch))</code> efface les deux derniers caractères de la chaîne
+              Ch.</p>
+          </div>
+          <ul class="propositions">
+            <li>Vrai</li>
+            <li>Faux</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- EXERCICE 6 -->
+      <section id="exercice-6" class="mb-5 exercise-section" data-ex-id="ex6">
+        <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+          <h3 class="h4 text-primary m-0">Exercice 6 : Évaluation & Typage d'Expressions</h3>
+          <div class="d-flex gap-2">
+            <span class="badge badge-difficulty-medium rounded-pill px-3 py-2">🟡 Moyen</span>
+            <span class="badge bg-primary rounded-pill px-3 py-2">Bac 2007</span>
+          </div>
+        </div>
+
+        <!-- Rappel de cours -->
+        <div class="alert alert-light border-start border-primary border-4 shadow-sm my-3 d-print-none">
+          <div class="d-flex align-items-center gap-2 fw-bold text-primary mb-1">
+            💡 <span>Rappel de cours : Opérateurs & Fonctions prédéfinies</span>
+          </div>
+          <ul class="mb-0 small text-muted ps-3">
+            <li><code>ord(c)</code> retourne le code ASCII du caractère <code>c</code> (ex: <code>ord("A") = 65</code>,
+              <code>ord("D") = 68</code>).
+            </li>
+            <li><code>chr(n)</code> retourne le caractère correspondant au code ASCII <code>n</code> (ex:
+              <code>chr(52) = "4"</code>).
+            </li>
+            <li><code>ABS(x)</code> retourne la valeur absolue du nombre <code>x</code>.</li>
+            <li><code>div</code> donne le quotient entier et <code>MOD</code> donne le reste de la division entière.
+            </li>
+            <li>Les caractères sont comparés selon leurs codes ASCII (ex: <code>"D" &lt; "A"</code> s'évalue à
+              <code>Faux</code> car 68 &lt; 65).
+            </li>
+          </ul>
+        </div>
+
+        <p class="mb-3">Saisir le résultat et le type correspondant à chacune des expressions :</p>
+
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover align-middle custom-table shadow-sm">
+            <thead>
+              <tr>
+                <th style="width: 45%;">Instruction</th>
+                <th style="width: 30%;">Résultat</th>
+                <th style="width: 25%;">Type du résultat</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>sous_chaine("Baccalauréat", 0, 3) + " 2007"</code></td>
+                <td><input type="text" class="trace-input form-control form-control-sm text-center"
+                    data-answer='"Bac 2007"' placeholder="Résultat"></td>
+                <td>
+                  <select class="trace-select form-select form-select-sm text-center" data-answer="Chaîne">
+                    <option value="">-- Choisir le type --</option>
+                    <option value="Entier">Entier</option>
+                    <option value="Réel">Réel</option>
+                    <option value="Booléen">Booléen</option>
+                    <option value="Caractère">Caractère</option>
+                    <option value="Chaîne">Chaîne de caractères</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td><code>(("D" &lt; "A") et (ABS(-1) > 0))</code></td>
+                <td><input type="text" class="trace-input form-control form-control-sm text-center" data-answer="Faux"
+                    placeholder="Résultat"></td>
+                <td>
+                  <select class="trace-select form-select form-select-sm text-center" data-answer="Booléen">
+                    <option value="">-- Choisir le type --</option>
+                    <option value="Entier">Entier</option>
+                    <option value="Réel">Réel</option>
+                    <option value="Booléen">Booléen</option>
+                    <option value="Caractère">Caractère</option>
+                    <option value="Chaîne">Chaîne de caractères</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td><code>(15 div 3) MOD 2</code></td>
+                <td><input type="text" class="trace-input form-control form-control-sm text-center" data-answer="1"
+                    placeholder="Résultat"></td>
+                <td>
+                  <select class="trace-select form-select form-select-sm text-center" data-answer="Entier">
+                    <option value="">-- Choisir le type --</option>
+                    <option value="Entier">Entier</option>
+                    <option value="Réel">Réel</option>
+                    <option value="Booléen">Booléen</option>
+                    <option value="Caractère">Caractère</option>
+                    <option value="Chaîne">Chaîne de caractères</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td><code>Ent(7.25) + Arrondi(7.25)</code></td>
+                <td><input type="text" class="trace-input form-control form-control-sm text-center" data-answer="14"
+                    placeholder="Résultat"></td>
+                <td>
+                  <select class="trace-select form-select form-select-sm text-center" data-answer="Entier">
+                    <option value="">-- Choisir le type --</option>
+                    <option value="Entier">Entier</option>
+                    <option value="Réel">Réel</option>
+                    <option value="Booléen">Booléen</option>
+                    <option value="Caractère">Caractère</option>
+                    <option value="Chaîne">Chaîne de caractères</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td><code>ch &larr; chr(ord("D") - 16)</code></td>
+                <td><input type="text" class="trace-input form-control form-control-sm text-center" data-answer='"4"'
+                    placeholder="Résultat"></td>
+                <td>
+                  <select class="trace-select form-select form-select-sm text-center" data-answer="Caractère">
+                    <option value="">-- Choisir le type --</option>
+                    <option value="Entier">Entier</option>
+                    <option value="Réel">Réel</option>
+                    <option value="Booléen">Booléen</option>
+                    <option value="Caractère">Caractère</option>
+                    <option value="Chaîne">Chaîne de caractères</option>
+                  </select>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- EXERCICE 7 -->
+      <section id="exercice-7" class="mb-5 exercise-section" data-ex-id="ex7">
+        <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+          <h3 class="h4 text-primary m-0">Exercice 7 : Expressions Arithmétiques & Logiques en Python</h3>
+          <span class="badge badge-difficulty-medium rounded-pill px-3 py-2">🟡 Moyen</span>
+        </div>
+
+        <!-- Rappel de cours -->
+        <div class="alert alert-light border-start border-primary border-4 shadow-sm my-3 d-print-none">
+          <div class="d-flex align-items-center gap-2 fw-bold text-primary mb-1">
+            💡 <span>Rappel de cours : Opérateurs Python</span>
+          </div>
+          <ul class="mb-0 small text-muted ps-3">
+            <li><code>//</code> représente la division entière (retient le quotient entier).</li>
+            <li><code>%</code> (modulo) retourne le reste de la division entière.</li>
+            <li><code>^</code> est l'opérateur logiques XOR (OU exclusif).</li>
+            <li>Priorité des opérateurs logiques : <code>not</code> > <code>and</code> > <code>or</code>.</li>
+          </ul>
+        </div>
+
+        <div class="row g-4 mb-3">
+          <div class="col-md-6">
+            <div class="card h-100 border-0 shadow-sm p-3 bg-light">
+              <h5 class="card-title text-primary fw-bold mb-3">Déclarations :</h5>
+              <div class="table-responsive">
+                <table class="table table-sm table-bordered bg-white align-middle mb-0">
+                  <thead class="table-light">
+                    <tr>
+                      <th>Variable</th>
+                      <th>Type</th>
+                      <th>Valeur</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>x</td>
+                      <td>float</td>
+                      <td>2.2</td>
+                    </tr>
+                    <tr>
+                      <td>y</td>
+                      <td>float</td>
+                      <td>0.2</td>
+                    </tr>
+                    <tr>
+                      <td>n</td>
+                      <td>int</td>
+                      <td>20</td>
+                    </tr>
+                    <tr>
+                      <td>z</td>
+                      <td>int</td>
+                      <td>-2</td>
+                    </tr>
+                    <tr>
+                      <td>t</td>
+                      <td>str</td>
+                      <td>'n'</td>
+                    </tr>
+                    <tr>
+                      <td>b</td>
+                      <td>bool</td>
+                      <td>True</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card h-100 border-0 shadow-sm p-3 bg-light">
+              <h5 class="card-title text-primary fw-bold mb-3">Expressions à évaluer :</h5>
+              <pre class="mb-0"><code class="language-python">n1 = (x+y)*(x-y)/(x+z) 
+n2 = 1.2*(n%z) 
+n3 = n//z + z%n
+n4 = ('a'>t) ^ (ord('A')>n)
+n5 = n3*z//4*z%n - n2
+n6 = not((n1<=12) or (n3>=5) and (n2!=10)) and b</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <p class="mb-2">Saisir le résultat calculé et le type de chaque variable n<sub>i</sub> :</p>
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover align-middle custom-table shadow-sm">
+            <thead>
+              <tr>
+                <th>Variable</th>
+                <th>Valeur calculée</th>
+                <th>Type Python</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>n1</code></td>
+                <td><input type="text" class="trace-input form-control form-control-sm text-center" data-answer="24.0"
+                    placeholder="Valeur"></td>
+                <td>
+                  <select class="trace-select form-select form-select-sm text-center" data-answer="float">
+                    <option value="">-- Type Python --</option>
+                    <option value="int">int</option>
+                    <option value="float">float</option>
+                    <option value="bool">bool</option>
+                    <option value="str">str</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td><code>n2</code></td>
+                <td><input type="text" class="trace-input form-control form-control-sm text-center" data-answer="0.0"
+                    placeholder="Valeur"></td>
+                <td>
+                  <select class="trace-select form-select form-select-sm text-center" data-answer="float">
+                    <option value="">-- Type Python --</option>
+                    <option value="int">int</option>
+                    <option value="float">float</option>
+                    <option value="bool">bool</option>
+                    <option value="str">str</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td><code>n3</code></td>
+                <td><input type="text" class="trace-input form-control form-control-sm text-center" data-answer="8"
+                    placeholder="Valeur"></td>
+                <td>
+                  <select class="trace-select form-select form-select-sm text-center" data-answer="int">
+                    <option value="">-- Type Python --</option>
+                    <option value="int">int</option>
+                    <option value="float">float</option>
+                    <option value="bool">bool</option>
+                    <option value="str">str</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td><code>n4</code></td>
+                <td><input type="text" class="trace-input form-control form-control-sm text-center" data-answer="True"
+                    placeholder="Valeur"></td>
+                <td>
+                  <select class="trace-select form-select form-select-sm text-center" data-answer="bool">
+                    <option value="">-- Type Python --</option>
+                    <option value="int">int</option>
+                    <option value="float">float</option>
+                    <option value="bool">bool</option>
+                    <option value="str">str</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td><code>n5</code></td>
+                <td><input type="text" class="trace-input form-control form-control-sm text-center" data-answer="8.0"
+                    placeholder="Valeur"></td>
+                <td>
+                  <select class="trace-select form-select form-select-sm text-center" data-answer="float">
+                    <option value="">-- Type Python --</option>
+                    <option value="int">int</option>
+                    <option value="float">float</option>
+                    <option value="bool">bool</option>
+                    <option value="str">str</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td><code>n6</code></td>
+                <td><input type="text" class="trace-input form-control form-control-sm text-center" data-answer="False"
+                    placeholder="Valeur"></td>
+                <td>
+                  <select class="trace-select form-select form-select-sm text-center" data-answer="bool">
+                    <option value="">-- Type Python --</option>
+                    <option value="int">int</option>
+                    <option value="float">float</option>
+                    <option value="bool">bool</option>
+                    <option value="str">str</option>
+                  </select>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- EXERCICE 8 -->
+      <section id="exercice-8" class="mb-5 algo-troue" data-ex-id="ex8">
+        <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+          <h3 class="h4 text-primary m-0">Exercice 8 : Validation d'un Horaire (Expressions Booléennes)</h3>
+          <span class="badge badge-difficulty-medium rounded-pill px-3 py-2">🟡 Moyen</span>
+        </div>
+
+        <p>Soient les variables <code>h</code>, <code>m</code> et <code>s</code>, de type entier, représentant les
+          composantes <code>h:m:s</code> d'un horaire.</p>
+        <p class="fw-bold">Compléter l'algorithme qui évalue la validité d'un horaire en faisant glisser les bonnes
+          étiquettes :</p>
+
+        <div class="alert alert-info shadow-sm border-0 mb-4">
+          Un horaire est valide (<code>valide = Vrai</code>) si <code>h &in; [0, 23]</code>, <code>m &in; [0, 59]</code>
+          et <code>s &in; [0, 59]</code>.
+        </div>
+
+        <!-- Code & TDO layout row -->
+        <div class="row g-3 align-items-stretch">
+          <div class="col-lg-8">
+            <pre class="bg-dark text-light p-3 rounded shadow-sm h-100 mb-0"><code class="language-algorithm">Algorithme Validation_Horaire
+Début
+  // Evaluation de la validité de l'horaire h:m:s
+  valide &larr; (0 &le; h &lt; <span class="missing-code" data-target="24">(1)</span>) et 
+           (0 &le; m &lt; <span class="missing-code" data-target="60">(2)</span>) et 
+           (0 &le; s &le; <span class="missing-code" data-target="59">(3)</span>)
+Fin</code></pre>
+          </div>
+          <div class="col-lg-4">
+            <div class="card shadow-sm border-0 h-100">
+              <div class="card-header bg-dark text-white fw-bold py-2">TDO</div>
+              <div class="card-body p-0">
+                <table class="table table-sm table-bordered mb-0 text-center align-middle h-100">
+                  <thead class="table-light">
+                    <tr>
+                      <th>Objet</th>
+                      <th>Type</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code>h, m, s</code></td>
+                      <td>entier</td>
+                    </tr>
+                    <tr>
+                      <td><code>valide</code></td>
+                      <td><span class="missing-code" data-target="booléen">(4)</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Banque de réponses avec distracteurs -->
+        <div class="mb-2 mt-3">
+          <label class="form-label text-dark small fw-bold">🏷️ Banque de réponses (Glisser/Cliquer l'étiquette vers
+            l'emplacement) :</label>
+          <div
+            class="labels-bank drop-target p-2 border border-2 border-dashed border-info rounded bg-white d-flex flex-wrap gap-2 align-items-center"
+            style="min-height: 55px;" id="labels-bank-ex8" data-distractors="24 | 60 | entier | réel | 12">
+          </div>
+        </div>
+      </section>
+
+      <!-- EXERCICE 9 -->
+      <section id="exercice-9" class="mb-5 exercise-section" data-ex-id="ex9">
+        <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+          <h3 class="h4 text-primary m-0">Exercice 9 : Traduction de Formules Mathématiques</h3>
+          <span class="badge badge-difficulty-medium rounded-pill px-3 py-2">🟡 Moyen</span>
+        </div>
+
+        <!-- Rappel de cours & Indices -->
+        <div class="alert alert-light border-start border-primary border-4 shadow-sm my-3 d-print-none">
+          <div class="d-flex align-items-center gap-2 fw-bold text-primary mb-1">
+            💡 <span>Rappel de cours : Traduction de formules mathématiques</span>
+          </div>
+          <ul class="mb-0 small text-muted ps-3">
+            <li><strong>Opérateur de multiplication :</strong> La multiplication implicite (ex: $2x$) doit
+              obligatoirement s'écrire avec l'opérateur <code>*</code> (ex: <code>2 * x</code>).</li>
+            <li><strong>Racine carrée :</strong> S'écrit <code>racine(X)</code> en Algorithme et <code>sqrt(X)</code> en
+              Python (module <code>math</code>).</li>
+            <li><strong>Valeur absolue :</strong> S'écrit <code>abs(X)</code> ou <code>ABS(X)</code> en Algorithme et en
+              Python.</li>
+            <li><strong>Priorités & Parenthèses :</strong> Entourer systématiquement le numérateur et le dénominateur
+              composés de parenthèses <code>(...)</code> pour garantir le bon ordre des opérations.</li>
+          </ul>
+        </div>
+
+        <p class="mb-3">Donner en algorithmique et en Python l’équivalent de chacune des expressions arithmétiques
+          suivantes :</p>
+
+        <noscript>
+          <style>
+            #latex-formulas-ex9 {
+              display: none !important;
+            }
+
+            #fallback-img-ex9 {
+              display: block !important;
+            }
+          </style>
+        </noscript>
+
+        <!-- Formules Mathématiques (LaTeX principal avec choix multiples) -->
+        <div class="math-formulas-wrapper text-center my-4">
+          <!-- Conteneur Formules LaTeX -->
+          <div id="latex-formulas-ex9" class="latex-formulas p-3 bg-white rounded shadow-sm border mb-3">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3 align-items-stretch justify-content-center">
+              <!-- Formule A -->
+              <div class="col">
+                <div
+                  class="p-3 border rounded bg-light shadow-sm text-center h-100 d-flex flex-column justify-content-between">
+                  <div>
+                    <div class="fw-bold text-primary mb-1">Formule A</div>
+                    <div class="fs-5 my-2">$$A = \frac{(x + 1)^2}{\sqrt{x}}$$</div>
+                  </div>
+                  <div class="mt-2 text-start">
+                    <label class="form-label small fw-bold text-dark mb-1">Choisir l'expression correcte :</label>
+                    <select class="trace-select form-select form-select-sm font-monospace"
+                      data-answer="(x + 1)*(x + 1) / racine(x)">
+                      <option value="">-- Choisir la formule --</option>
+                      <option value="(x + 1)^2 / racine(x)">A &larr; (x + 1)^2 / racine(x)</option>
+                      <option value="(x + 1)*(x + 1) / racine(x)">A &larr; (x + 1)*(x + 1) / racine(x)</option>
+                      <option value="x + 1 * x + 1 / racine(x)">A &larr; x + 1 * x + 1 / racine(x)</option>
+                      <option value="(x + 1)*(x + 1) / sqrt(x)">A &larr; (x + 1)*(x + 1) / sqrt(x)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <!-- Formule B -->
+              <div class="col">
+                <div
+                  class="p-3 border rounded bg-light shadow-sm text-center h-100 d-flex flex-column justify-content-between">
+                  <div>
+                    <div class="fw-bold text-primary mb-1">Formule B</div>
+                    <div class="fs-5 my-2">$$B = \frac{2x^2 + 4x - 1}{\sqrt{|x + 5|}}$$</div>
+                  </div>
+                  <div class="mt-2 text-start">
+                    <label class="form-label small fw-bold text-dark mb-1">Choisir l'expression correcte :</label>
+                    <select class="trace-select form-select form-select-sm font-monospace"
+                      data-answer="(2 * x * x + 4 * x - 1) / racine(abs(x + 5))">
+                      <option value="">-- Choisir la formule --</option>
+                      <option value="2 * x * x + 4 * x - 1 / racine(abs(x + 5))">B &larr; 2 * x * x + 4 * x - 1 /
+                        racine(abs(x + 5))</option>
+                      <option value="(2x^2 + 4x - 1) / sqrt(|x + 5|)">B &larr; (2x^2 + 4x - 1) / sqrt(|x + 5|)</option>
+                      <option value="(2 * x * x + 4 * x - 1) / abs(racine(x + 5))">B &larr; (2 * x * x + 4 * x - 1) /
+                        abs(racine(x + 5))</option>
+                      <option value="(2 * x * x + 4 * x - 1) / racine(abs(x + 5))">B &larr; (2 * x * x + 4 * x - 1) /
+                        racine(abs(x + 5))</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <!-- Formule C -->
+              <div class="col">
+                <div
+                  class="p-3 border rounded bg-light shadow-sm text-center h-100 d-flex flex-column justify-content-between">
+                  <div>
+                    <div class="fw-bold text-primary mb-1">Formule C</div>
+                    <div class="fs-5 my-2">$$C = \sqrt{\frac{|10x + 2|}{3}}$$</div>
+                  </div>
+                  <div class="mt-2 text-start">
+                    <label class="form-label small fw-bold text-dark mb-1">Choisir l'expression correcte :</label>
+                    <select class="trace-select form-select form-select-sm font-monospace"
+                      data-answer="racine(abs(10 * x + 2) / 3)">
+                      <option value="">-- Choisir la formule --</option>
+                      <option value="racine(abs(10x + 2)) / 3">C &larr; racine(abs(10x + 2)) / 3</option>
+                      <option value="sqrt(|10 * x + 2| / 3)">C &larr; sqrt(|10 * x + 2| / 3)</option>
+                      <option value="racine(abs(10 * x + 2) / 3)">C &larr; racine(abs(10 * x + 2) / 3)</option>
+                      <option value="racine(10 * x + 2 / 3)">C &larr; racine(10 * x + 2 / 3)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <!-- Formule D -->
+              <div class="col">
+                <div
+                  class="p-3 border rounded bg-light shadow-sm text-center h-100 d-flex flex-column justify-content-between">
+                  <div>
+                    <div class="fw-bold text-primary mb-1">Formule D</div>
+                    <div class="fs-5 my-2">$$D = \frac{x^3}{(x^2 + 2)} - 1$$</div>
+                  </div>
+                  <div class="mt-2 text-start">
+                    <label class="form-label small fw-bold text-dark mb-1">Choisir l'expression correcte :</label>
+                    <select class="trace-select form-select form-select-sm font-monospace"
+                      data-answer="x * x * x / (x * x + 2) - 1">
+                      <option value="">-- Choisir la formule --</option>
+                      <option value="x^3 / x^2 + 2 - 1">D &larr; x^3 / x^2 + 2 - 1</option>
+                      <option value="x * x * x / (x * x + 2) - 1">D &larr; x * x * x / (x * x + 2) - 1</option>
+                      <option value="(x * x * x / x * x + 2) - 1">D &larr; (x * x * x / x * x + 2) - 1</option>
+                      <option value="x * x * x / (x * x + 2 - 1)">D &larr; x * x * x / (x * x + 2 - 1)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fallback Image (affichée uniquement si LaTeX n'est pas actif) -->
+          <figure id="fallback-img-ex9" class="fallback-image text-center my-2 d-none">
+            <img src="assets/img/formules_serie01_01.png" alt="Formules mathématiques"
+              class="img-fluid rounded shadow-sm border p-3 bg-white" style="max-height: 250px;" />
+            <figcaption class="text-muted small mt-2">Formules mathématiques à traduire</figcaption>
+          </figure>
+        </div>
+
+        <!-- Indices & Conseils de traduction accordéon -->
+        <div class="solution-wrapper my-3">
+          <details class="solution-details">
+            <summary class="solution-summary">
+              <span>💡 Indices détaillés formule par formule</span>
+            </summary>
+            <div class="solution-content mt-3">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="border rounded p-3 bg-light">
+                    <h6 class="fw-bold text-primary mb-2">Formule A</h6>
+                    <ul class="small mb-0 ps-3">
+                      <li>Numérateur : <code>(x + 1)*(x + 1)</code></li>
+                      <li>Dénominateur : <code>racine(x)</code> (Algo) / <code>sqrt(x)</code> (Python)</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="border rounded p-3 bg-light">
+                    <h6 class="fw-bold text-primary mb-2">Formule B</h6>
+                    <ul class="small mb-0 ps-3">
+                      <li>Numérateur : <code>(2 * x * x + 4 * x - 1)</code></li>
+                      <li>Dénominateur : <code>racine(abs(x + 5))</code></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="border rounded p-3 bg-light">
+                    <h6 class="fw-bold text-primary mb-2">Formule C</h6>
+                    <ul class="small mb-0 ps-3">
+                      <li>Numérateur intérieur : <code>abs(10 * x + 2)</code></li>
+                      <li>Fraction globale sous la racine : <code>abs(10 * x + 2) / 3</code></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="border rounded p-3 bg-light">
+                    <h6 class="fw-bold text-primary mb-2">Formule D</h6>
+                    <ul class="small mb-0 ps-3">
+                      <li>Numérateur : <code>x * x * x</code> | Dénominateur : <code>(x * x + 2)</code></li>
+                      <li>Soustraction extérieure : <code>- 1</code></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="alert alert-info mb-0 mt-3">
+                <strong>📌 Exemple guidé :</strong> Pour traduire $E = \frac{x + 3}{\sqrt{x^2 + 1}}$ :
+                <ul class="mb-0 mt-1">
+                  <li><strong>Algorithme :</strong> <code>E &larr; (x + 3) / racine(x**2 + 1)</code></li>
+                  <li><strong>Python :</strong> <code>E = (x + 3) / sqrt(x**2 + 1)</code></li>
+                </ul>
+              </div>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- EXERCICE 10 -->
+      <section id="exercice-10" class="mb-5 exercise-section" data-ex-id="ex10">
+        <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+          <h3 class="h4 text-primary m-0">Exercice 10 : Trace d'Algorithmes sur les Chaînes</h3>
+          <span class="badge badge-difficulty-hard rounded-pill px-3 py-2">🔴 Avancé</span>
+        </div>
+
+        <!-- Rappel de cours -->
+        <div class="alert alert-light border-start border-primary border-4 shadow-sm my-3 d-print-none">
+          <div class="d-flex align-items-center gap-2 fw-bold text-primary mb-1">
+            💡 <span>Rappel de cours : Fonctions sur les chaînes de caractères</span>
+          </div>
+          <ul class="mb-0 small text-muted ps-3">
+            <li><code>long(ch)</code> retourne le nombre total de caractères de la chaîne <code>ch</code>.</li>
+            <li><code>ch1 + ch2</code> effectue la <strong>concaténation</strong> (assemblage) de <code>ch1</code> et
+              <code>ch2</code>.
+            </li>
+            <li><code>pos(sub, ch)</code> retourne l'indice de la 1<sup>ère</sup> occurrence de la sous-chaîne
+              <code>sub</code> dans <code>ch</code> (les positions démarrent à 1).
+            </li>
+            <li><code>sous_chaine(ch, debut, fin)</code> extrait les caractères de l'indice <code>debut</code> jusqu'à
+              l'indice <code>fin</code> non inclus.</li>
+            <li><code>effacer(ch, debut, fin)</code> supprime les caractères de <code>ch</code> à partir de
+              l'indice <code>debut</code> jusqu'à l'indice <code>fin</code> non inclus.</li>
+          </ul>
+        </div>
+
+        <p class="mb-2">Compléter le tableau suivant en donnant le résultat de l’évaluation des instructions :</p>
+
+        <div class="my-3">
+          <pre><code class="language-algorithm">c1 &larr; "Algorithme"
+c2 &larr; "Récurrent"</code></pre>
+        </div>
+
+        <!-- Représentation visuelle des chaînes avec indices -->
+        <div class="card border-0 shadow-sm p-3 bg-light my-3">
+          <h6 class="fw-bold text-primary mb-3">📍 Représentation des chaînes avec numérotation des indices (0-basés) :
+          </h6>
+          <div class="d-flex flex-column gap-3">
+            <!-- Chaîne c1 -->
+            <div class="d-flex align-items-center gap-2 flex-wrap">
+              <span class="fw-bold me-2 font-monospace text-primary fs-6">c1 :</span>
+              <div class="d-flex align-items-center gap-1 flex-wrap">
+                <div class="text-center">
+                  <div class="vector-cell px-2 font-monospace text-dark bg-white shadow-sm">A</div>
+                  <div class="vector-index font-monospace fw-bold text-primary">0</div>
+                </div>
+                <div class="text-center">
+                  <div class="vector-cell px-2 font-monospace text-dark bg-white shadow-sm">l</div>
+                  <div class="vector-index font-monospace fw-bold text-primary">1</div>
+                </div>
+                <div class="text-center">
+                  <div class="vector-cell px-2 font-monospace text-dark bg-white shadow-sm">g</div>
+                  <div class="vector-index font-monospace fw-bold text-primary">2</div>
+                </div>
+                <div class="text-center">
+                  <div class="vector-cell px-2 font-monospace text-dark bg-white shadow-sm">o</div>
+                  <div class="vector-index font-monospace fw-bold text-primary">3</div>
+                </div>
+                <div class="text-center">
+                  <div class="vector-cell px-2 font-monospace text-dark bg-white shadow-sm">r</div>
+                  <div class="vector-index font-monospace fw-bold text-primary">4</div>
+                </div>
+                <div class="text-center">
+                  <div class="vector-cell px-2 font-monospace text-dark bg-white shadow-sm">i</div>
+                  <div class="vector-index font-monospace fw-bold text-primary">5</div>
+                </div>
+                <div class="text-center">
+                  <div class="vector-cell px-2 font-monospace text-dark bg-white shadow-sm">t</div>
+                  <div class="vector-index font-monospace fw-bold text-primary">6</div>
+                </div>
+                <div class="text-center">
+                  <div class="vector-cell px-2 font-monospace text-dark bg-white shadow-sm">h</div>
+                  <div class="vector-index font-monospace fw-bold text-primary">7</div>
+                </div>
+                <div class="text-center">
+                  <div class="vector-cell px-2 font-monospace text-dark bg-white shadow-sm">m</div>
+                  <div class="vector-index font-monospace fw-bold text-primary">8</div>
+                </div>
+                <div class="text-center">
+                  <div class="vector-cell px-2 font-monospace text-dark bg-white shadow-sm">e</div>
+                  <div class="vector-index font-monospace fw-bold text-primary">9</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Chaîne c2 -->
+            <div class="d-flex align-items-center gap-2 flex-wrap">
+              <span class="fw-bold me-2 font-monospace text-primary fs-6">c2 :</span>
+              <div class="d-flex align-items-center gap-1 flex-wrap">
+                <div class="text-center">
+                  <div class="vector-cell px-2 font-monospace text-dark bg-white shadow-sm">R</div>
+                  <div class="vector-index font-monospace fw-bold text-primary">0</div>
+                </div>
+                <div class="text-center">
+                  <div class="vector-cell px-2 font-monospace text-dark bg-white shadow-sm">é</div>
+                  <div class="vector-index font-monospace fw-bold text-primary">1</div>
+                </div>
+                <div class="text-center">
+                  <div class="vector-cell px-2 font-monospace text-dark bg-white shadow-sm">c</div>
+                  <div class="vector-index font-monospace fw-bold text-primary">2</div>
+                </div>
+                <div class="text-center">
+                  <div class="vector-cell px-2 font-monospace text-dark bg-white shadow-sm">u</div>
+                  <div class="vector-index font-monospace fw-bold text-primary">3</div>
+                </div>
+                <div class="text-center">
+                  <div class="vector-cell px-2 font-monospace text-dark bg-white shadow-sm">r</div>
+                  <div class="vector-index font-monospace fw-bold text-primary">4</div>
+                </div>
+                <div class="text-center">
+                  <div class="vector-cell px-2 font-monospace text-dark bg-white shadow-sm">r</div>
+                  <div class="vector-index font-monospace fw-bold text-primary">5</div>
+                </div>
+                <div class="text-center">
+                  <div class="vector-cell px-2 font-monospace text-dark bg-white shadow-sm">e</div>
+                  <div class="vector-index font-monospace fw-bold text-primary">6</div>
+                </div>
+                <div class="text-center">
+                  <div class="vector-cell px-2 font-monospace text-dark bg-white shadow-sm">n</div>
+                  <div class="vector-index font-monospace fw-bold text-primary">7</div>
+                </div>
+                <div class="text-center">
+                  <div class="vector-cell px-2 font-monospace text-dark bg-white shadow-sm">t</div>
+                  <div class="vector-index font-monospace fw-bold text-primary">8</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover align-middle custom-table shadow-sm">
+            <thead>
+              <tr>
+                <th style="width: 50%;">Expression</th>
+                <th style="width: 50%;">Valeur calculée</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>n2 &larr; long(c2)</code></td>
+                <td>n2 = <input type="text"
+                    class="trace-input form-control form-control-sm text-center d-inline-block w-auto" data-answer="9"
+                    placeholder="?"></td>
+              </tr>
+              <tr>
+                <td><code>c1 &larr; c1 + c2</code></td>
+                <td>c1 = <input type="text"
+                    class="trace-input form-control form-control-sm text-center d-inline-block w-auto"
+                    data-answer='"AlgorithmeRécurrent"' placeholder="?"></td>
+              </tr>
+              <tr>
+                <td><code>n1 &larr; long(c1)</code></td>
+                <td>n1 = <input type="text"
+                    class="trace-input form-control form-control-sm text-center d-inline-block w-auto" data-answer="19"
+                    placeholder="?"></td>
+              </tr>
+              <tr>
+                <td><code>p &larr; pos("n", c2)</code></td>
+                <td>p = <input type="text"
+                    class="trace-input form-control form-control-sm text-center d-inline-block w-auto" data-answer="7"
+                    placeholder="?"></td>
+              </tr>
+              <tr>
+                <td><code>c3 &larr; sous_chaine(c1, 8, 15)</code></td>
+                <td>c3 = <input type="text"
+                    class="trace-input form-control form-control-sm text-center d-inline-block w-auto"
+                    data-answer='"meRécur"' placeholder="?"></td>
+              </tr>
+              <tr>
+                <td><code>c2 &larr; effacer(c2, 1, 6)</code></td>
+                <td>c2 = <input type="text"
+                    class="trace-input form-control form-control-sm text-center d-inline-block w-auto"
+                    data-answer='"Rent"' placeholder="?"></td>
+              </tr>
+              <tr>
+                <td><code>c3 &larr; c3 + c2</code></td>
+                <td>c3 = <input type="text"
+                    class="trace-input form-control form-control-sm text-center d-inline-block w-auto"
+                    data-answer='"meRécurRent"' placeholder="?"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- EXERCICE 11 -->
+      <section id="exercice-11" class="mb-5 exercise-section" data-ex-id="ex11">
+        <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+          <h3 class="h4 text-primary m-0">Exercice 11 : Simulation et Trace de Tableaux</h3>
+          <span class="badge badge-difficulty-hard rounded-pill px-3 py-2">🔴 Avancé</span>
+        </div>
+
+        <p class="mb-2">Soient les instructions suivantes :</p>
+        <div class="my-3">
+          <pre><code class="language-algorithm">t1[1] &larr; 5 
+t2[2] &larr; t1[1] + 2 
+t1[1] &larr; t1[1] DIV 2 
+t2[0] &larr; 2 * t1[1] 
+t2[1] &larr; t2[2] - t1[1]  
+t2[0] &larr; t1[1] + 2 * t2[0] 
+t1[0] &larr; t1[1] + 2 * t2[0]  
+t1[2] &larr; t1[1]</code></pre>
+        </div>
+
+        <p class="fw-bold mb-3">Saisir le contenu final de chaque cellule des deux tableaux :</p>
+
+        <div class="row g-4">
+          <div class="col-md-6">
+            <div class="card border-0 shadow-sm p-3 bg-light">
+              <h5 class="fw-bold text-primary mb-3">Tableau t1</h5>
+              <div class="d-flex align-items-center gap-2 justify-content-center">
+                <span class="fw-bold me-2">t1</span>
+                <div>
+                  <div class="vector-cell"><input type="text" class="vector-cell-input trace-input" data-answer="22"
+                      placeholder="?"></div>
+                  <div class="vector-index">0</div>
+                </div>
+                <div>
+                  <div class="vector-cell"><input type="text" class="vector-cell-input trace-input" data-answer="2"
+                      placeholder="?"></div>
+                  <div class="vector-index">1</div>
+                </div>
+                <div>
+                  <div class="vector-cell"><input type="text" class="vector-cell-input trace-input" data-answer="2"
+                      placeholder="?"></div>
+                  <div class="vector-index">2</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card border-0 shadow-sm p-3 bg-light">
+              <h5 class="fw-bold text-primary mb-3">Tableau t2</h5>
+              <div class="d-flex align-items-center gap-2 justify-content-center">
+                <span class="fw-bold me-2">t2</span>
+                <div>
+                  <div class="vector-cell"><input type="text" class="vector-cell-input trace-input" data-answer="10"
+                      placeholder="?"></div>
+                  <div class="vector-index">0</div>
+                </div>
+                <div>
+                  <div class="vector-cell"><input type="text" class="vector-cell-input trace-input" data-answer="5"
+                      placeholder="?"></div>
+                  <div class="vector-index">1</div>
+                </div>
+                <div>
+                  <div class="vector-cell"><input type="text" class="vector-cell-input trace-input" data-answer="7"
+                      placeholder="?"></div>
+                  <div class="vector-index">2</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-custom py-4 text-center mt-5">
+    <div class="container">
+      <div class="mb-2">
+        <span class="fw-bold text-white">Informatique 4<sup>e</sup> Année Scientifique</span>
+        <span class="mx-2 text-white-50">|</span>
+        <span class="text-light">Bac 2026</span>
+      </div>
+      <div class="small text-white-50 mb-3">
+        Conformité pédagogique aux programmes et conventions officielles 2024-2025
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts JS Locaux -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/highlight.min.js"></script>
+  <script src="assets/js/hljs.algorithm.js"></script>
+  <script src="assets/js/clipboard.min.js"></script>
+  <script src="assets/js/main-ui.js?v=2"></script>
+  <script src="assets/js/pages.js"></script>
+  <script src="assets/js/draggable.js"></script>
+
+  <!-- Highlighting & Clipboard Setup -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof hljs !== 'undefined') {
+        if (typeof hljs.highlightAll === 'function') {
+          hljs.highlightAll();
+        } else if (typeof hljs.initHighlightingOnLoad === 'function') {
+          hljs.initHighlightingOnLoad();
+        }
+      }
+
+      document.querySelectorAll('.language-algorithm, .language-python').forEach(item => {
+        if (!item.parentElement.querySelector('.bd-clipboard')) {
+          const div = document.createElement('div');
+          div.className = 'bd-clipboard d-print-none';
+          const btn = document.createElement('button');
+          btn.className = 'btn-clipboard';
+          btn.type = 'button';
+          btn.innerHTML = '<i class="bi bi-clipboard me-1"></i> Copier';
+          btn.title = "Copier le code";
+          div.appendChild(btn);
+          item.parentElement.insertBefore(div, item);
+        }
+      });
+
+      if (typeof ClipboardJS !== 'undefined') {
+        const clipboard = new ClipboardJS('.btn-clipboard', {
+          target: (trigger) => trigger.parentElement.nextElementSibling
+        });
+
+        clipboard.on('success', (e) => {
+          const btn = e.trigger;
+          const orig = btn.innerHTML;
+          btn.innerHTML = '<i class="bi bi-check-lg me-1"></i> Copié !';
+          btn.classList.add('copied');
+          setTimeout(() => {
+            btn.innerHTML = orig;
+            btn.classList.remove('copied');
+          }, 2000);
+          e.clearSelection();
+        });
+      }
+    });
+  </script>
+
+  <!-- Controller Gamification, Interactivité & Sauvegarde Progress Bar -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const TOTAL_EXERCISES = 11;
+      const STORAGE_KEY = 'serie_01_validated_exs';
+
+      const getValidatedExercises = () => {
+        try {
+          return new Set(JSON.parse(localStorage.getItem(STORAGE_KEY)) || []);
+        } catch (e) {
+          return new Set();
+        }
+      };
+
+      const saveValidatedExercise = (exId) => {
+        const set = getValidatedExercises();
+        set.add(exId);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(set)));
+        updateProgressUI();
+      };
+
+      const updateProgressUI = () => {
+        const validated = getValidatedExercises();
+        const count = validated.size;
+        const percent = Math.round((count / TOTAL_EXERCISES) * 100);
+
+        const scoreText = document.getElementById('score-text');
+        const progressBar = document.getElementById('series-progress-bar');
+
+        if (scoreText) {
+          scoreText.textContent = 'Score : ' + count + ' / ' + TOTAL_EXERCISES + ' exercices';
+        }
+
+        if (progressBar) {
+          progressBar.style.width = percent + '%';
+          progressBar.setAttribute('aria-valuenow', percent);
+        }
+      };
+
+      // 1. Monitor QCM Validations via draggable.js
+      document.addEventListener('click', (e) => {
+        if (e.target && e.target.classList.contains('check-btn')) {
+          setTimeout(() => {
+            document.querySelectorAll('.exercise-section').forEach(section => {
+              const exId = section.getAttribute('data-ex-id');
+              const qcms = section.querySelectorAll('.qcm-exercise');
+              if (qcms.length > 0) {
+                let allCorrect = true;
+                qcms.forEach(qcm => {
+                  if (!qcm.classList.contains('qcm-solved') && !qcm.classList.contains('is-correct')) {
+                    allCorrect = false;
+                  }
+                });
+                if (allCorrect) {
+                  saveValidatedExercise(exId);
+                }
+              }
+            });
+          }, 300);
+        }
+      });
+
+      // 2. Trace Inputs Verification per section
+      document.querySelectorAll('.check-trace-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const section = e.target.closest('.exercise-section');
+          if (!section) return;
+
+          const exId = section.getAttribute('data-ex-id');
+          const inputs = section.querySelectorAll('.trace-input');
+          const feedback = section.querySelector('.trace-feedback');
+          let correctCount = 0;
+
+          inputs.forEach(input => {
+            const rawExpected = input.getAttribute('data-answer') || '';
+            const val = input.value.trim();
+
+            if (!val) {
+              input.classList.add('is-invalid-answer');
+              input.classList.remove('is-valid-answer');
+              return;
+            }
+
+            const normalize = (str) => str.toLowerCase().replace(/["']/g, '').replace(/\s+/g, ' ').trim();
+            const compact = (str) => normalize(str).replace(/\s+/g, '');
+
+            const userNorm = normalize(val);
+            const userCompact = compact(val);
+
+            const expectedList = rawExpected.split('|').map(ans => ans.trim());
+
+            const isCorrect = expectedList.some(exp => {
+              const expNorm = normalize(exp);
+              const expCompact = compact(exp);
+              return userNorm === expNorm || userCompact === expCompact || (expNorm.includes(userNorm) && userNorm.length > 0 && !rawExpected.includes('|'));
+            });
+
+            if (isCorrect) {
+              input.classList.add('is-valid-answer');
+              input.classList.remove('is-invalid-answer');
+              correctCount++;
+            } else {
+              input.classList.add('is-invalid-answer');
+              input.classList.remove('is-valid-answer');
+            }
+          });
+
+          if (feedback) {
+            if (correctCount === inputs.length) {
+              feedback.className = 'trace-feedback small fw-bold text-success';
+              feedback.textContent = '🎉 Bravo ! Toutes les réponses sont correctes.';
+              saveValidatedExercise(exId);
+            } else {
+              feedback.className = 'trace-feedback small fw-bold text-danger';
+              feedback.textContent = '⚠️ ' + correctCount + ' / ' + inputs.length + ' réponses correctes. Réessayez !';
+            }
+          }
+        });
+      });
+
+      // 3. Reset Button
+      const resetBtn = document.getElementById('reset-progress-btn');
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          if (confirm('Voulez-vous vraiment réinitialiser votre score et votre progression ?')) {
+            localStorage.removeItem(STORAGE_KEY);
+            document.querySelectorAll('.trace-input').forEach(input => {
+              input.value = '';
+              input.classList.remove('is-valid-answer', 'is-invalid-answer');
+            });
+            document.querySelectorAll('.trace-feedback').forEach(fb => fb.textContent = '');
+            updateProgressUI();
+          }
+        });
+      }
+
+      // Initialize UI on load
+      updateProgressUI();
+    });
+  </script>
+
+  <!-- KaTeX Auto-Render Math Setup -->
+  <script src="assets/js/katex.min.js"></script>
+  <script src="assets/js/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const latexBox = document.getElementById('latex-formulas-ex9');
+      const fallbackImg = document.getElementById('fallback-img-ex9');
+
+      if (typeof renderMathInElement === 'function') {
+        try {
+          renderMathInElement(document.body, {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '$', right: '$', display: false },
+              { left: '\\(', right: '\\)', display: false },
+              { left: '\\[', right: '\\]', display: true }
+            ],
+            throwOnError: false
+          });
+
+          if (latexBox && latexBox.querySelector('.katex')) {
+            latexBox.classList.remove('d-none');
+            if (fallbackImg) fallbackImg.classList.add('d-none');
+          } else if (fallbackImg) {
+            fallbackImg.classList.remove('d-none');
+            if (latexBox) latexBox.classList.add('d-none');
+          }
+        } catch (e) {
+          if (fallbackImg) fallbackImg.classList.remove('d-none');
+          if (latexBox) latexBox.classList.add('d-none');
+        }
+      } else {
+        if (fallbackImg) fallbackImg.classList.remove('d-none');
+        if (latexBox) latexBox.classList.add('d-none');
+      }
+    });
+  </script>
+</body>
+
+</html>

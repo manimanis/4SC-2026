@@ -1,7 +1,7 @@
 /**
- * assets/apps/seance03.js
- * Logique applicative JavaScript (Vue 3) pour seance03.html
- * Séance 3 : Structures conditionnelles, choix multiples (Selon / match-case) & TDO
+ * assets/apps/seance02.js
+ * Logique applicative JavaScript (Vue 3) pour seance02.html
+ * Séance 2 : Structures conditionnelles, choix multiples (Selon / match-case) & TDO
  * Conforme aux programmes et conventions officielles 2024-2025
  */
 

@@ -807,4 +807,61 @@ body {
     page-break-inside: avoid;
     display: block !important;
   }
+
+  .bd-clipboard,
+  .btn-clipboard {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   Blocs de code et Bouton Copier (.bd-clipboard & .btn-clipboard)
+   ========================================================================== */
+.bd-clipboard {
+  position: absolute !important;
+  top: 0.55rem !important;
+  right: 0.65rem !important;
+  z-index: 10 !important;
+  display: block !important;
+}
+
+.btn-clipboard {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: 0.75rem !important;
+  font-weight: 500 !important;
+  line-height: 1 !important;
+  color: #e2e8f0 !important;
+  background: rgba(30, 41, 59, 0.85) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  padding: 0.35rem 0.75rem !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25) !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  user-select: none !important;
+  white-space: nowrap !important;
+}
+
+.btn-clipboard:hover {
+  background: rgba(51, 65, 85, 0.95) !important;
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.35) !important;
+}
+
+.btn-clipboard:active {
+  transform: translateY(0) !important;
+}
+
+.btn-clipboard.copied {
+  background: #10b981 !important;
+  border-color: #059669 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.4) !important;
 }

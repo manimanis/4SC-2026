@@ -1,7 +1,7 @@
 /**
- * assets/apps/seance04.js
- * Logique applicative JavaScript (Vue 3) pour seance04.html
- * Séance 4 : Structures itératives (Pour, Tant que, Répéter...Jusqu'à) & TDO
+ * assets/apps/seance03.js
+ * Logique applicative JavaScript (Vue 3) pour seance03.html
+ * Séance 3 : Structures itératives (Pour, Tant que, Répéter...Jusqu'à) & TDO
  * Conforme aux programmes et conventions officielles 2024-2025
  */
 
