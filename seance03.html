@@ -4,24 +4,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Séance 3 : Structures conditionnelles, choix multiples (Selon / match-case) & TDO - 4e Scientifiques</title>
+  <title>Séance 4 : Structures itératives (Pour, Tant que, Répéter...Jusqu'à) & TDO - 4e Scientifiques</title>
 
   <!-- Métadonnées SEO & Description -->
   <meta name="description"
-    content="Séance 3 d'Informatique pour 4ème Année Scientifique (Bac 2026) : Structures conditionnelles simples, alternatives, généralisées, choix multiple (Selon / match-case), opérateurs relationnels et logiques, TDO standard.">
+    content="Séance 4 d'Informatique pour 4ème Année Scientifique (Bac 2026) : Boucle complète (Pour / for range), boucles à condition d'arrêt (Tant que / Répéter...Jusqu'à / while), transposition sans break et TDO standard.">
 
   <!-- Dépendances locales -->
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/css/bootstrap-icons.min.css">
   <link rel="stylesheet" href="assets/css/atom-one-dark.min.css">
   <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/seance03.css">
+  <link rel="stylesheet" href="assets/css/seance04.css">
 </head>
 
 <body>
 
   <div id="app">
-    <!-- NAVIGATION -->
+    <!-- NAVIGATION (SEULE LA SÉANCE 4 EST AFFICHÉE CONFORMÉMENT AUX DIRECTIVES) -->
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom sticky-top">
       <div class="container">
         <a class="navbar-brand" href="index.html">
@@ -35,7 +35,7 @@
         <div class="collapse navbar-collapse" id="navContent">
           <ul class="navbar-nav ms-auto align-items-lg-center">
             <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house-door me-1"></i> Accueil</a></li>
-            <li class="nav-item"><a class="nav-link active" href="seance03.html"><i class="bi bi-3-circle-fill me-1"></i> Séance 3</a></li>
+            <li class="nav-item"><a class="nav-link active" href="seance04.html"><i class="bi bi-4-circle-fill me-1"></i> Séance 4</a></li>
             <li class="nav-item"><a class="nav-link" href="seance02-old.html"><i class="bi bi-archive me-1"></i> Archives</a></li>
             <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
               <button class="btn btn-sm btn-outline-light" onclick="window.print()">
@@ -51,14 +51,14 @@
     <header class="hero-banner">
       <div class="container">
         <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
-          <span class="badge bg-primary px-3 py-1"><i class="bi bi-diagram-2 me-1"></i>Axe : Conditions</span>
+          <span class="badge bg-primary px-3 py-1"><i class="bi bi-arrow-repeat me-1"></i>Axe : Boucles</span>
           <span class="badge bg-secondary px-2 py-1">Sections : Sc. Expérimentales, Mathématiques & Sc. Techniques</span>
           <span class="badge bg-success px-2 py-1"><i class="bi bi-clock-history me-1"></i>Durée : 70 min</span>
           <span class="badge bg-info text-dark px-2 py-1"><i class="bi bi-bookmark-check-fill me-1"></i>Conventions 2024-2025</span>
         </div>
-        <h1 class="hero-title">Séance 3 : Structures conditionnelles & Choix multiples</h1>
+        <h1 class="hero-title">Séance 4 : Structures itératives (Pour, Tant que, Répéter...Jusqu'à)</h1>
         <p class="hero-subtitle">
-          Formes simple, alternative, généralisée, structure à choix multiples (Selon / match-case), opérateurs relationnels et logiques.
+          Boucle complète, boucles à condition de continuation ou d'arrêt, transcription en Python 3 sans instruction break et formalisation TDO.
         </p>
         <div class="objective-box">
           <div class="d-flex align-items-start gap-3">
@@ -66,11 +66,10 @@
             <div>
               <div class="fw-bold text-white text-uppercase letter-spacing-1 small mb-1">Objectifs didactiques de la séance :</div>
               <ul class="text-light mb-0 ps-3 small">
-                <li>Maîtriser les structures conditionnelles simples, alternatives et généralisées (<code>Si ... Sinon Si ... Sinon</code>).</li>
-                <li>Employer la structure conditionnelle à choix multiples (<code>Selon</code>).</li>
-                <li>Manipuler les opérateurs relationnels (<code>=</code>, <code>≠</code>, <code>&lt;</code>, <code>&le;</code>, <code>&gt;</code>, <code>&ge;</code>, <code>&isin;</code>) et logiques (<code>Non</code>, <code>Et</code>, <code>Ou</code>).</li>
-                <li>Traduire rigoureusement ces structures en Python (<code>if</code>, <code>elif</code>, <code>else</code> et <code>match ... case</code>).</li>
-                <li>Établir le TDO correspondant et exécuter le script sans faute d'indentation.</li>
+                <li>Maîtriser la boucle complète <code>Pour</code> en algorithmique et sa transcription avec <code>for in range(Début, Fin + 1, Pas)</code> en Python.</li>
+                <li>Différencier et manipuler les boucles à condition d'arrêt : <code>Tant que</code> (condition de continuation) et <code>Répéter ... Jusqu'à</code> (condition de sortie).</li>
+                <li>Traduire les structures itératives conditionnelles en Python à l'aide de l'instruction <code>while</code> sans jamais recourir à l'instruction <code>break</code>.</li>
+                <li>Élaborer le TDO et valider l'exécution sans boucle infinie.</li>
               </ul>
             </div>
           </div>
@@ -83,7 +82,7 @@
 
       <!-- MENU FLOTTANT RÉTRACTABLE (EN BAS À DROITE) -->
       <div class="floating-menu-wrapper">
-        <!-- Panneau déroulant des phases (au-dessus du bouton) -->
+        <!-- Panneau déroulant des phases -->
         <nav class="floating-menu-panel" v-show="isMenuOpen">
           <div class="floating-menu-header">
             <span><i class="bi bi-compass-fill text-primary me-1"></i> MENU DES PHASES</span>
@@ -113,7 +112,7 @@
           </button>
         </nav>
 
-        <!-- Bouton déclencheur flottant en bas à droite -->
+        <!-- Bouton déclencheur flottant -->
         <button class="floating-menu-trigger" @click="isMenuOpen = !isMenuOpen" title="Changer de phase">
           <i class="bi bi-compass-fill text-primary fs-5"></i>
           <span>Phases</span>
@@ -122,7 +121,7 @@
         </button>
       </div>
 
-      <!-- BANDEAU INDICATEUR DE PHASE DANS LE CONTENU -->
+      <!-- BANDEAU INDICATEUR DE PHASE -->
       <div class="d-flex align-items-center justify-content-between p-3 bg-white border rounded shadow-sm mb-4">
         <div class="d-flex align-items-center gap-3">
           <span class="badge bg-primary fs-6 px-3 py-2 rounded-pill">
@@ -154,99 +153,71 @@
           </div>
 
           <div class="section-body">
-            <!-- ÉNONCÉ DE LA SITUATION-PROBLÈME OFFICIELLE -->
+            <!-- ÉNONCÉ OFFICIEL AU TABLEAU -->
             <div class="p-4 rounded border-start border-4 border-primary bg-light mb-4">
               <div class="d-flex align-items-center gap-2 text-primary fw-bold text-uppercase small mb-2">
                 <i class="bi bi-lightbulb-fill"></i> Énoncé au tableau
               </div>
               <blockquote class="fs-5 text-dark fw-semibold mb-2 fst-italic">
-                « Un centre sportif calcule le tarif d'un accès journalier (tarif de base : 20 DT). Le client fournit son âge et un code de formule sous forme d'un caractère : 'P' (Piscine : +5 DT), 'M' (Musculation : +10 DT) ou 'T' (Total : +15 DT). Tout autre code entraîne un message d'erreur. De plus, une remise est accordée selon l'âge : gratuit pour les moins de 12 ans, 50% de réduction pour les juniors (12 à 17 ans inclus) et 20% pour les seniors (60 ans et plus). Calculer et afficher le prix net à payer. »
+                « On souhaite saisir un entier N strictement compris entre 2 et 100 (la saisie doit être répétée tant qu'elle n'est pas conforme). On calcule ensuite la somme de ses diviseurs stricts pour tester si le nombre est parfait (un nombre est parfait s'il est égal à cette somme). Enfin, on compte combien de divisions successives entières par 2 ce nombre peut subir tant qu'il reste pair. »
               </blockquote>
               <div class="small text-muted">
-                Cette situation permet de mobiliser les deux types d'arbres décisionnels : le choix multiple sur valeurs discrètes (sélecteur caractère) et la décision en cascade sur intervalles numériques continus (tranches d'âge).
+                Cette situation-problème fédère de manière exemplaire les trois grandes formes de structures itératives : la boucle post-test avec au moins une saisie, la boucle à compteur à nombre d'itérations fixé, et la boucle pré-test dépendante d'un prédicat de calcul.
               </div>
             </div>
 
-            <!-- SCHÉMA DES FORMULES ET DES REMISES -->
+            <!-- SCHÉMA D'ARTICULATION DES TROIS BOUCLES -->
             <div class="row g-4 align-items-stretch mb-4">
-              <div class="col-md-6">
-                <div class="p-3 bg-white border rounded shadow-sm h-100">
-                  <h6 class="fw-bold text-primary mb-3">
-                    <i class="bi bi-tag-fill me-2"></i>1. Formules & Suppléments (Choix multiple) :
-                  </h6>
-                  <ul class="list-unstyled mb-0">
-                    <li class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom">
-                      <div>
-                        <span class="badge bg-dark font-monospace me-2">'P' ou 'p'</span>
-                        <strong>Piscine</strong>
-                      </div>
-                      <span class="badge bg-info text-dark font-monospace fs-6">+5 DT</span>
-                    </li>
-                    <li class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom">
-                      <div>
-                        <span class="badge bg-dark font-monospace me-2">'M' ou 'm'</span>
-                        <strong>Musculation</strong>
-                      </div>
-                      <span class="badge bg-info text-dark font-monospace fs-6">+10 DT</span>
-                    </li>
-                    <li class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom">
-                      <div>
-                        <span class="badge bg-dark font-monospace me-2">'T' ou 't'</span>
-                        <strong>Accès Total</strong>
-                      </div>
-                      <span class="badge bg-info text-dark font-monospace fs-6">+15 DT</span>
-                    </li>
-                    <li class="d-flex justify-content-between align-items-center">
-                      <div>
-                        <span class="badge bg-danger font-monospace me-2">Autre code</span>
-                        <span class="text-danger fw-bold">Code non reconnu</span>
-                      </div>
-                      <span class="badge bg-danger font-monospace fs-6">Erreur</span>
-                    </li>
-                  </ul>
-                  <div class="small text-muted mt-3 pt-2 border-top">
-                    Tarif brut = Tarif de base (20 DT) + Supplément.
+              <div class="col-md-4">
+                <div class="p-3 bg-white border rounded shadow-sm h-100 border-top border-4 border-info">
+                  <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="badge bg-info text-dark rounded-pill">Boucle 1</span>
+                    <h6 class="fw-bold text-dark mb-0">Contrôle de saisie</h6>
+                  </div>
+                  <p class="small text-muted mb-2">
+                    <strong>Structure post-test :</strong> <code>Répéter ... Jusqu'à</code>.
+                  </p>
+                  <div class="p-2 bg-light font-monospace small rounded mb-2">
+                    Jusqu'à (n > 2) Et (n < 100)
+                  </div>
+                  <div class="small text-muted">
+                    Garantit au moins une première saisie avant vérification de la condition d'arrêt.
                   </div>
                 </div>
               </div>
 
-              <div class="col-md-6">
-                <div class="p-3 bg-white border rounded shadow-sm h-100">
-                  <h6 class="fw-bold text-success mb-3">
-                    <i class="bi bi-percent me-2"></i>2. Remises par Tranche d'Âge (Conditions continues) :
-                  </h6>
-                  <ul class="list-unstyled mb-0">
-                    <li class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom">
-                      <div>
-                        <span class="badge bg-success me-2">&lt; 12 ans</span>
-                        <strong>Enfants</strong>
-                      </div>
-                      <span class="badge bg-success fs-6">Gratuit (100% remise)</span>
-                    </li>
-                    <li class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom">
-                      <div>
-                        <span class="badge bg-primary me-2">12 à 17 ans</span>
-                        <strong>Juniors</strong>
-                      </div>
-                      <span class="badge bg-primary fs-6">-50% (prix &times; 0.5)</span>
-                    </li>
-                    <li class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom">
-                      <div>
-                        <span class="badge bg-warning text-dark me-2">&ge; 60 ans</span>
-                        <strong>Seniors</strong>
-                      </div>
-                      <span class="badge bg-warning text-dark fs-6">-20% (prix &times; 0.8)</span>
-                    </li>
-                    <li class="d-flex justify-content-between align-items-center">
-                      <div>
-                        <span class="badge bg-secondary me-2">18 à 59 ans</span>
-                        <strong>Adultes</strong>
-                      </div>
-                      <span class="badge bg-secondary fs-6">Tarif plein (100%)</span>
-                    </li>
-                  </ul>
-                  <div class="small text-muted mt-3 pt-2 border-top">
-                    Évalué avec une structure conditionnelle généralisée (<code>Si ... Sinon Si ... Sinon</code>).
+              <div class="col-md-4">
+                <div class="p-3 bg-white border rounded shadow-sm h-100 border-top border-4 border-primary">
+                  <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="badge bg-primary rounded-pill">Boucle 2</span>
+                    <h6 class="fw-bold text-dark mb-0">Somme des diviseurs</h6>
+                  </div>
+                  <p class="small text-muted mb-2">
+                    <strong>Boucle complète :</strong> <code>Pour i de 1 à n-1</code>.
+                  </p>
+                  <div class="p-2 bg-light font-monospace small rounded mb-2">
+                    Pour i de 1 à n - 1 Faire
+                  </div>
+                  <div class="small text-muted">
+                    Le nombre d'itérations est exactement <code>n - 1</code>, connu et fixé dès le départ.
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="p-3 bg-white border rounded shadow-sm h-100 border-top border-4 border-warning">
+                  <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="badge bg-warning text-dark rounded-pill">Boucle 3</span>
+                    <h6 class="fw-bold text-dark mb-0">Divisions par 2</h6>
+                  </div>
+                  <p class="small text-muted mb-2">
+                    <strong>Boucle préalable :</strong> <code>Tant que</code>.
+                  </p>
+                  <div class="p-2 bg-light font-monospace small rounded mb-2">
+                    Tant que temp Mod 2 = 0 Faire
+                  </div>
+                  <div class="small text-muted">
+                    Condition de continuation évaluée avant chaque division entière par 2.
                   </div>
                 </div>
               </div>
@@ -299,105 +270,89 @@
 
           <div class="section-body">
             <p class="text-muted mb-3">
-              Mise au point sur les équivalences normatives officielles pour les structures conditionnelles et les opérateurs (Conventions 2024-2025) :
+              Mise au point sur les règles officielles des structures itératives (Conventions 2024-2025) :
             </p>
 
-            <!-- TABLEAU COMPARATIF OFFICIEL DES STRUCTURES CONDITIONNELLES -->
+            <!-- TABLEAU COMPARATIF OFFICIEL DES STRUCTURES ITÉRATIVES -->
             <div class="table-responsive mb-4">
               <table class="table table-hover align-middle border shadow-sm">
                 <thead class="table-dark">
                   <tr>
-                    <th scope="col" style="width: 25%;">Structure / Opération</th>
-                    <th scope="col" style="width: 35%;">Algorithmique (Norme)</th>
+                    <th scope="col" style="width: 22%;">Structure</th>
+                    <th scope="col" style="width: 38%;">Algorithmique (Norme)</th>
                     <th scope="col" style="width: 40%;">Python (Conventions 2024-2025)</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td><strong>Forme simple</strong></td>
-                    <td><code>Si Condition Alors<br>&nbsp;&nbsp;Traitement<br>FinSi</code></td>
-                    <td><code>if Condition :<br>&nbsp;&nbsp;&nbsp;&nbsp;Traitement</code></td>
+                    <td><strong>Boucle complète</strong></td>
+                    <td><code>Pour i de D à F [Pas = p] Faire<br>&nbsp;&nbsp;Traitement<br>Fin Pour</code></td>
+                    <td><code>for i in range(D, F + 1, p):<br>&nbsp;&nbsp;&nbsp;&nbsp;Traitement</code><br><span class="badge bg-info text-dark mt-1">Borne F+1 exclue en Python</span></td>
                   </tr>
                   <tr>
-                    <td><strong>Forme alternative</strong></td>
-                    <td><code>Si Condition Alors<br>&nbsp;&nbsp;Traitement1<br>Sinon<br>&nbsp;&nbsp;Traitement2<br>FinSi</code></td>
-                    <td><code>if Condition :<br>&nbsp;&nbsp;&nbsp;&nbsp;Traitement1<br>else :<br>&nbsp;&nbsp;&nbsp;&nbsp;Traitement2</code></td>
+                    <td><strong>Boucle préalable</strong></td>
+                    <td><code>Tant que Condition Faire<br>&nbsp;&nbsp;Traitement<br>Fin Tant que</code></td>
+                    <td><code>while Condition:<br>&nbsp;&nbsp;&nbsp;&nbsp;Traitement</code><br><span class="badge bg-secondary mt-1">Condition de maintien / continuation</span></td>
                   </tr>
                   <tr>
-                    <td><strong>Forme généralisée</strong></td>
-                    <td><code>Si C1 Alors ...<br>Sinon Si C2 Alors ...<br>Sinon ...<br>FinSi</code></td>
-                    <td><code>if C1 : ...<br>elif C2 : ...<br>else : ...</code></td>
-                  </tr>
-                  <tr>
-                    <td><strong>Choix multiple</strong></td>
-                    <td><code>Selon Sélecteur<br>&nbsp;&nbsp;val1 : T1<br>&nbsp;&nbsp;val2, val3 : T2<br>&nbsp;&nbsp;[Sinon TN]<br>Fin Selon</code></td>
-                    <td><code>match Sélecteur :<br>&nbsp;&nbsp;&nbsp;&nbsp;case val1 : T1<br>&nbsp;&nbsp;&nbsp;&nbsp;case val2 | val3 : T2<br>&nbsp;&nbsp;&nbsp;&nbsp;case _ : TN</code></td>
-                  </tr>
-                  <tr>
-                    <td><strong>Opérateurs logiques</strong></td>
-                    <td><code>Non</code>, <code>Et</code>, <code>Ou</code></td>
-                    <td><code>not</code>, <code>and</code>, <code>or</code></td>
-                  </tr>
-                  <tr>
-                    <td><strong>Opérateurs de comparaison</strong></td>
-                    <td><code>=</code>, <code>≠</code>, <code>&lt;</code>, <code>&le;</code>, <code>&gt;</code>, <code>&ge;</code>, <code>&isin;</code></td>
-                    <td><code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&le;</code>, <code>&gt;</code>, <code>&ge;</code>, <code>in</code></td>
+                    <td><strong>Boucle post-test</strong></td>
+                    <td><code>Répéter<br>&nbsp;&nbsp;Traitement<br>Jusqu'à Condition</code></td>
+                    <td><code>while not (Condition):<br>&nbsp;&nbsp;&nbsp;&nbsp;Traitement</code><br><span class="badge bg-warning text-dark mt-1">Négation de la condition d'arrêt</span></td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
             <!-- CARTE DU RAPPEL FONDAMENTAL -->
-            <div class="alert alert-warning border-start border-4 border-warning d-flex align-items-start gap-3 p-3 mb-4">
-              <i class="bi bi-exclamation-triangle-fill fs-3 text-warning"></i>
+            <div class="alert alert-danger border-start border-4 border-danger d-flex align-items-start gap-3 p-3 mb-4">
+              <i class="bi bi-exclamation-octagon-fill fs-3 text-danger"></i>
               <div>
-                <h6 class="fw-bold mb-1 text-dark">Rappels didactiques et normatifs majeurs :</h6>
+                <h6 class="fw-bold mb-1 text-dark">Consignes officielles impératives (Interdictions formelles) :</h6>
                 <ul class="mb-0 small text-dark ps-3">
-                  <li><strong>Type scalaire obligatoire pour le <code>Selon</code> :</strong> Le sélecteur de la structure <code>Selon</code> doit être impérativement de type <strong>Entier</strong> ou <strong>Caractère</strong>.</li>
-                  <li><strong>Clause par défaut en Python :</strong> Dans le bloc <code>match-case</code>, le tiret de soulignement <code>case _ :</code> représente la clause par défaut équivalente au <code>Sinon</code> du <code>Selon</code>.</li>
-                  <li><strong>Indentation syntaxique obligatoire :</strong> En Python, l'indentation (4 espaces) remplace impérativement les délimiteurs textuels (<code>FinSi</code>, <code>Fin Selon</code>).</li>
+                  <li><strong>Proscription absolue du <code>break</code> :</strong> L'utilisation de l'instruction <code>break</code> pour forcer la sortie d'une boucle <code>for</code> ou <code>while</code> est formellement interdite.</li>
+                  <li><strong>Intégrité du compteur de boucle <code>Pour</code> :</strong> La valeur de la variable de contrôle d'une boucle <code>Pour</code> ne doit jamais être modifiée manuellement dans le traitement.</li>
+                  <li><strong>Division entière :</strong> Les calculs de parité et de division itérative doivent employer l'opérateur euclidien <code>//</code> (et non pas <code>/</code>) pour préserver le type <code>int</code>.</li>
                 </ul>
               </div>
             </div>
 
-            <!-- ZOOM SUR TROIS SUBTILITÉS FRÉQUENTES -->
+            <!-- ZOOM SUR TROIS SUBTILITÉS MAJEURES -->
             <div class="row g-3">
               <div class="col-md-4">
                 <div class="card h-100 border p-3">
-                  <div class="fw-bold text-primary mb-1"><i class="bi bi-check2-all me-1"></i>Test d'égalité : = vs ==</div>
+                  <div class="fw-bold text-primary mb-1"><i class="bi bi-slash-circle me-1"></i>Pas négatif dans range</div>
                   <p class="small text-muted mb-2">
-                    En algorithmique, l'égalité se note <code>=</code> (l'affectation étant <code>&larr;</code>). En Python, le test d'égalité s'écrit obligatoirement <code>==</code>.
+                    Pour compter à rebours en Python, la borne finale doit être <code>F - 1</code> pour s'arrêter à <code>F</code>.
                   </p>
                   <div class="p-2 bg-light font-monospace small rounded">
-                    valide ← (age = 18)<br>
-                    valide = (age == 18)
+                    # De 10 à 0 décroissant :<br>
+                    range(10, -1, -2)
                   </div>
                 </div>
               </div>
 
               <div class="col-md-4">
                 <div class="card h-100 border p-3">
-                  <div class="fw-bold text-primary mb-1"><i class="bi bi-pipe me-1"></i>Alternative match-case (|)</div>
+                  <div class="fw-bold text-primary mb-1"><i class="bi bi-shield-x me-1"></i>Inversion de condition</div>
                   <p class="small text-muted mb-2">
-                    Pour grouper plusieurs valeurs dans un <code>case</code> en Python, on emploie le symbole <strong>pipe <code>|</code></strong> et <em>jamais</em> la virgule.
+                    La condition de <code>Jusqu'à</code> indique quand <em>sortir</em>. En Python, le <code>while</code> continue tant que la condition est <em>vraie</em>.
                   </p>
                   <div class="p-2 bg-light font-monospace small rounded">
-                    # Valide en Python 3 :<br>
-                    case "P" | "p":<br>
-                    # INTERDIT : case "P", "p":
+                    Jusqu'à (n > 2)<br>
+                    while not (n > 2): # ou n &lt;= 2
                   </div>
                 </div>
               </div>
 
               <div class="col-md-4">
                 <div class="card h-100 border p-3">
-                  <div class="fw-bold text-primary mb-1"><i class="bi bi-arrows-expand me-1"></i>Encadrement numérique</div>
+                  <div class="fw-bold text-primary mb-1"><i class="bi bi-infinity me-1"></i>Prévention de boucle infinie</div>
                   <p class="small text-muted mb-2">
-                    En algorithmique, l'encadrement nécessite <code>Et</code>. En Python, la double comparaison chaînée est directement acceptée.
+                    Dans une boucle <code>while</code>, une variable de la condition doit impérativement être modifiée à chaque itération.
                   </p>
                   <div class="p-2 bg-light font-monospace small rounded">
-                    (age ≥ 12) Et (age ≤ 17)<br>
-                    12 &lt;= age &lt;= 17
+                    temp = temp // 2<br>
+                    nb_div2 = nb_div2 + 1
                   </div>
                 </div>
               </div>
@@ -422,7 +377,7 @@
 
           <div class="section-body">
             <p class="text-muted mb-3">
-              Construction guidée de la solution au tableau : articulation rigoureuse entre la structure à choix multiple et les conditions généralisées.
+              Construction guidée au tableau articulant les trois familles d'itérations en un algorithme cohérent :
             </p>
 
             <div class="row g-4">
@@ -430,45 +385,38 @@
               <div class="col-lg-7">
                 <div class="card border h-100 shadow-sm">
                   <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
-                    <span class="font-monospace fw-bold"><i class="bi bi-code-square me-2 text-info"></i>ALGORITHME TarifAcces</span>
+                    <span class="font-monospace fw-bold"><i class="bi bi-code-square me-2 text-info"></i>ALGORITHME AnalyseNombre</span>
                     <span class="badge bg-primary">Algorithme Principal</span>
                   </div>
                   <div class="card-body p-0">
-                    <pre class="m-0 p-3" style="background-color: #1e1e2e; border-radius: 0 0 var(--radius-sm) var(--radius-sm);"><code class="language-algo">ALGORITHME TarifAcces
+                    <pre class="m-0 p-3" style="background-color: #1e1e2e; border-radius: 0 0 var(--radius-sm) var(--radius-sm);"><code class="language-algo">ALGORITHME AnalyseNombre
 DEBUT
-    Écrire("Donner l'âge du client : ")
-    Lire(age)
-    Écrire("Donner le code de formule (P, M ou T) : ")
-    Lire(formule)
+    // 1. Contrôle de saisie post-test
+    Répéter
+        Écrire("Donner un entier N (2 à 100) : ")
+        Lire(n)
+    Jusqu'à (n > 2) Et (n < 100)
     
-    supplement ← 0
-    valide ← Vrai
-    
-    Selon formule
-        "P", "p" : supplement ← 5
-        "M", "m" : supplement ← 10
-        "T", "t" : supplement ← 15
-        Sinon
-            valide ← Faux
-    Fin Selon
-    
-    Si Non valide Alors
-        Écrire("Formule invalide !")
-    Sinon
-        prix_brut ← 20 + supplement
-        
-        Si age < 12 Alors
-            prix_net ← 0
-        Sinon Si (age ≥ 12) Et (age ≤ 17) Alors
-            prix_net ← prix_brut * 0.5
-        Sinon Si age ≥ 60 Alors
-            prix_net ← prix_brut * 0.8
-        Sinon
-            prix_net ← prix_brut
+    // 2. Boucle complète : somme des diviseurs stricts
+    somme_div ← 0
+    Pour i de 1 à n - 1 Faire
+        Si n Mod i = 0 Alors
+            somme_div ← somme_div + i
         FinSi
-        
-        Écrire("Montant net à payer : ", prix_net, " DT")
-    FinSi
+    Fin Pour
+    
+    est_parfait ← (somme_div = n)
+    Écrire("Le nombre est-il parfait ? ", est_parfait)
+    
+    // 3. Boucle préalable : divisions successives par 2
+    temp ← n
+    nb_div2 ← 0
+    Tant que temp Mod 2 = 0 Faire
+        temp ← temp Div 2
+        nb_div2 ← nb_div2 + 1
+    Fin Tant que
+    
+    Écrire("Nombre de divisions par 2 possibles : ", nb_div2)
 FIN</code></pre>
                   </div>
                 </div>
@@ -492,19 +440,11 @@ FIN</code></pre>
                         </thead>
                         <tbody>
                           <tr>
-                            <td><strong class="font-monospace text-primary">age, supplement</strong></td>
+                            <td><strong class="font-monospace text-primary">n, somme_div, i, temp, nb_div2</strong></td>
                             <td><span class="badge bg-success">Entier</span></td>
                           </tr>
                           <tr>
-                            <td><strong class="font-monospace text-primary">prix_brut, prix_net</strong></td>
-                            <td><span class="badge bg-info text-dark">Réel</span></td>
-                          </tr>
-                          <tr>
-                            <td><strong class="font-monospace text-primary">formule</strong></td>
-                            <td><span class="badge bg-primary">Caractère</span></td>
-                          </tr>
-                          <tr>
-                            <td><strong class="font-monospace text-primary">valide</strong></td>
+                            <td><strong class="font-monospace text-primary">est_parfait</strong></td>
                             <td><span class="badge bg-warning text-dark">Booléen</span></td>
                           </tr>
                         </tbody>
@@ -512,11 +452,13 @@ FIN</code></pre>
                     </div>
 
                     <div class="p-3 bg-light border-top">
-                      <div class="small fw-bold text-dark mb-1"><i class="bi bi-info-circle text-primary me-1"></i>Commentaires méthodologiques :</div>
+                      <div class="small fw-bold text-dark mb-1"><i class="bi bi-info-circle text-primary me-1"></i>Rôles des variables dans les boucles :</div>
                       <ul class="small text-muted ps-3 mb-0">
-                        <li><strong><code>formule</code> :</strong> Variable de type <strong>Caractère</strong> servant de sélecteur scalaire au <code>Selon</code>.</li>
-                        <li><strong><code>valide</code> :</strong> Drapeau booléen (flag) pour stopper proprement l'évaluation en cas d'erreur de saisie.</li>
-                        <li><strong><code>prix_net</code> :</strong> Déclaré comme <strong>Réel</strong> pour accueillir les valeurs après calcul des réductions en pourcentage.</li>
+                        <li><strong><code>n</code> :</strong> Entier saisi contrôlé dans ]2, 100[.</li>
+                        <li><strong><code>i</code> :</strong> Compteur automatique de la boucle <code>Pour</code> (de 1 à n-1).</li>
+                        <li><strong><code>somme_div</code> :</strong> Accumulateur de somme, initialisé à 0 avant la boucle.</li>
+                        <li><strong><code>temp</code> :</strong> Copie de travail de <code>n</code> pour éviter d'altérer la valeur initiale.</li>
+                        <li><strong><code>nb_div2</code> :</strong> Compteur incrémenté à chaque division valide par 2.</li>
                       </ul>
                     </div>
                   </div>
@@ -543,7 +485,7 @@ FIN</code></pre>
 
           <div class="section-body">
             <p class="text-muted mb-3">
-              Saisie individuelle du script Python par les élèves en appliquant rigoureusement les conventions officielles (Python 3.10+) :
+              Implémentation individuelle du script en respectant les conventions d'écriture Python officielles :
             </p>
 
             <div class="row g-4 mb-4">
@@ -551,43 +493,32 @@ FIN</code></pre>
               <div class="col-lg-6">
                 <div class="card border h-100 shadow-sm">
                   <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
-                    <span class="font-monospace fw-bold"><i class="bi bi-file-earmark-code text-warning me-2"></i>tarif_acces.py</span>
+                    <span class="font-monospace fw-bold"><i class="bi bi-file-earmark-code text-warning me-2"></i>analyse_nombre.py</span>
                     <button class="btn btn-sm btn-outline-info" @click="copyPythonCode">
                       <i class="bi bi-clipboard me-1"></i>{{ copyStatus }}
                     </button>
                   </div>
                   <div class="card-body p-0">
-                    <pre class="m-0 p-3" style="background-color: #1e1e2e; border-radius: 0 0 var(--radius-sm) var(--radius-sm);"><code class="language-python"># Entrées
-age = int(input("Donner l'âge du client : "))
-formule = input("Donner le code de formule (P, M ou T) : ")
+                    <pre class="m-0 p-3" style="background-color: #1e1e2e; border-radius: 0 0 var(--radius-sm) var(--radius-sm);"><code class="language-python"># 1. Contrôle de saisie émulant 'Répéter ... Jusqu'à' sans break
+n = 0
+while not (2 < n < 100):
+    n = int(input("Donner un entier N (2 à 100) : "))
 
-# Structure à choix multiples (match / case)
-supplement = 0
-valide = True
-match formule:
-    case "P" | "p":
-        supplement = 5
-    case "M" | "m":
-        supplement = 10
-    case "T" | "t":
-        supplement = 15
-    case _:
-        valide = False
+# 2. Somme des diviseurs avec 'for in range' (borne n incluse dans le range via n)
+somme_div = 0
+for i in range(1, n):
+    if n % i == 0:
+        somme_div = somme_div + i
+est_parfait = (somme_div == n)
+print("Le nombre est-il parfait ? :", est_parfait)
 
-# Traitement conditionnel imbriqué et généralisé
-if not valide:
-    print("Formule invalide !")
-else:
-    prix_brut = 20 + supplement
-    if age < 12:
-        prix_net = 0.0
-    elif 12 <= age <= 17:
-        prix_net = prix_brut * 0.5
-    elif age >= 60:
-        prix_net = prix_brut * 0.8
-    else:
-        prix_net = float(prix_brut)
-    print("Montant net à payer :", prix_net, "DT")</code></pre>
+# 3. Divisions successives par 2 avec 'while'
+temp = n
+nb_div2 = 0
+while temp % 2 == 0:
+    temp = temp // 2
+    nb_div2 = nb_div2 + 1
+print("Nombre de divisions par 2 possibles :", nb_div2)</code></pre>
                   </div>
                 </div>
               </div>
@@ -600,26 +531,26 @@ else:
                   </div>
                   <div class="card-body">
                     <div class="d-flex align-items-start gap-2 mb-3 pb-2 border-bottom">
-                      <i class="bi bi-exclamation-octagon-fill text-danger fs-5"></i>
+                      <i class="bi bi-bounding-box text-danger fs-5"></i>
                       <div>
-                        <strong>Respect de l'opérateur pipe <code>|</code> dans <code>case</code> :</strong><br>
-                        <span class="small text-muted">Vérifier l'utilisation impérative de la barre verticale <code>case "P" | "p":</code> pour l'alternative. La virgule <code>,</code> est une faute de syntaxe dans ce contexte.</span>
+                        <strong>Vérification de la borne supérieure dans <code>range(1, n)</code> :</strong><br>
+                        <span class="small text-muted">Pour tester les diviseurs stricts jusqu'à <code>n - 1</code>, la borne passée à <code>range</code> doit impérativement être <code>n</code> (puisque la fin est exclue).</span>
                       </div>
                     </div>
 
                     <div class="d-flex align-items-start gap-2 mb-3 pb-2 border-bottom">
-                      <i class="bi bi-shield-x text-danger fs-5"></i>
+                      <i class="bi bi-slash-square text-danger fs-5"></i>
                       <div>
-                        <strong>Différenciation stricte de l'affectation et de l'égalité :</strong><br>
-                        <span class="small text-muted">Veiller à ce que l'opérateur de comparaison <code>==</code> ne soit jamais confondu avec l'affectation <code>=</code> dans les expressions booléennes.</span>
+                        <strong>Usage de la division entière <code>//</code> :</strong><br>
+                        <span class="small text-muted">S'assurer que les élèves utilisent <code>temp = temp // 2</code> et non <code>temp / 2</code>, sous peine de convertir <code>temp</code> en nombre flottant.</span>
                       </div>
                     </div>
 
                     <div class="d-flex align-items-start gap-2">
-                      <i class="bi bi-text-indent-left text-danger fs-5"></i>
+                      <i class="bi bi-x-octagon-fill text-danger fs-5"></i>
                       <div>
-                        <strong>Rigueur absolue des niveaux d'indentation :</strong><br>
-                        <span class="small text-muted">Contrôler l'alignement des sous-blocs : le bloc intérieur au <code>match</code>, puis l'imbrication du <code>if-elif-else</code> à l'intérieur du <code>else</code> principal.</span>
+                        <strong>Interdiction stricte de <code>while True</code> + <code>break</code> :</strong><br>
+                        <span class="small text-muted">Rappeler l'obligation normative de pré-initialiser <code>n = 0</code> pour amorcer la boucle <code>while not (2 &lt; n &lt; 100):</code>.</span>
                       </div>
                     </div>
                   </div>
@@ -627,205 +558,131 @@ else:
               </div>
             </div>
 
-            <!-- SIMULATEUR D'EXÉCUTION INTERACTIF (ATELIER MACHINE) -->
+            <!-- SIMULATEUR D'EXÉCUTION INTERACTIF -->
             <div class="card border-primary shadow-sm mb-4">
               <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center flex-wrap gap-2">
-                <span class="fw-bold"><i class="bi bi-play-circle-fill me-2"></i>Simulateur Interactif : Arbre de Décision & Tarification en direct</span>
+                <span class="fw-bold"><i class="bi bi-play-circle-fill me-2"></i>Simulateur Interactif : Décomposition des 3 Boucles en Direct</span>
                 <div class="d-flex align-items-center gap-1 flex-wrap">
-                  <span class="small text-white-50 me-1">Cas types :</span>
+                  <span class="small text-white-50 me-1">Cas d'école :</span>
                   <button v-for="pr in presets" :key="pr.name" class="btn btn-xs btn-outline-light py-0 px-2 small"
                     @click="setPreset(pr)" :title="pr.desc">{{ pr.name }}</button>
                 </div>
               </div>
 
               <div class="card-body">
-                <!-- FORMULAIRE DE TEST ENTRÉES -->
+                <!-- FORMULAIRE DE SAISIE DE N -->
                 <div class="row g-3 mb-4">
-                  <!-- SAISIE DE L'ÂGE -->
                   <div class="col-md-6">
                     <label class="form-label fw-bold text-dark small mb-1">
-                      <i class="bi bi-person-fill text-primary me-1"></i>Âge du client (Entier &ge; 0) :
+                      <i class="bi bi-123 text-primary me-1"></i>Saisir la valeur de N :
                     </label>
                     <div class="input-group mb-2">
-                      <span class="input-group-text font-monospace bg-light">age =</span>
-                      <input type="number" min="0" max="120" class="form-control font-monospace" v-model.number="simAge">
-                      <span class="input-group-text">ans</span>
+                      <span class="input-group-text font-monospace bg-light">n =</span>
+                      <input type="number" min="0" max="150" class="form-control font-monospace" v-model.number="simN">
                     </div>
-                    <input type="range" class="form-range" min="0" max="100" v-model.number="simAge">
+                    <input type="range" class="form-range" min="1" max="120" v-model.number="simN">
                   </div>
 
-                  <!-- SAISIE DE LA FORMULE -->
                   <div class="col-md-6">
-                    <label class="form-label fw-bold text-dark small mb-1">
-                      <i class="bi bi-bookmark-fill text-primary me-1"></i>Code de formule (Caractère) :
-                    </label>
-                    <div class="formula-selector-group mb-2">
-                      <button type="button" class="formula-btn" :class="{ 'active': formuleUpper === 'P' }" @click="simFormule = 'P'">
-                        <span class="badge-formula">P / p</span>
-                        <span class="small">Piscine (+5 DT)</span>
-                      </button>
-                      <button type="button" class="formula-btn" :class="{ 'active': formuleUpper === 'M' }" @click="simFormule = 'M'">
-                        <span class="badge-formula">M / m</span>
-                        <span class="small">Muscu (+10 DT)</span>
-                      </button>
-                      <button type="button" class="formula-btn" :class="{ 'active': formuleUpper === 'T' }" @click="simFormule = 'T'">
-                        <span class="badge-formula">T / t</span>
-                        <span class="small">Total (+15 DT)</span>
-                      </button>
-                      <button type="button" class="formula-btn btn-invalid" :class="{ 'active btn-invalid': !isFormuleValid }" @click="simFormule = 'X'">
-                        <span class="badge-formula">Autre</span>
-                        <span class="small">Code Erroné</span>
-                      </button>
-                    </div>
-                    <div class="input-group input-group-sm">
-                      <span class="input-group-text font-monospace bg-light">Saisie libre :</span>
-                      <input type="text" maxlength="5" class="form-control font-monospace" v-model="simFormule" placeholder="ex: P, M, T...">
+                    <label class="form-label fw-bold text-dark small mb-1">Contrôle de conformité de saisie :</label>
+                    <div class="p-3 border rounded" :class="isValidInput ? 'bg-success bg-opacity-10 border-success' : 'bg-danger bg-opacity-10 border-danger'">
+                      <div class="d-flex align-items-center gap-2 mb-1">
+                        <i class="bi" :class="isValidInput ? 'bi-check-circle-fill text-success fs-5' : 'bi-exclamation-triangle-fill text-danger fs-5'"></i>
+                        <span class="fw-bold" :class="isValidInput ? 'text-success' : 'text-danger'">
+                          {{ isValidInput ? 'Saisie Valide (2 < N < 100)' : 'Saisie Hors Bornes !' }}
+                        </span>
+                      </div>
+                      <div class="small text-muted">
+                        {{ isValidInput ? 'La boucle post-test s\'arrête avec succès.' : 'La boucle post-test continue de redemander la saisie.' }}
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                <!-- VISUALISEUR DE CHEMIN DÉCISIONNEL (ARBRE CONDITIONNEL) -->
-                <div class="decision-flow-container mb-4">
+                <!-- DÉCOMPOSITION VISUELLE DES 3 BOUCLES -->
+                <div class="loop-visualizer-container mb-4">
                   <div class="row g-3">
-                    <!-- ÉTAPE A : SÉLECTEUR DE FORMULE (MATCH-CASE) -->
+                    <!-- BOUCLE 2 : DIVISEURS & NOMBRE PARFAIT -->
                     <div class="col-lg-6">
-                      <div class="flow-step-header">
-                        <i class="bi bi-signpost-split-fill text-info"></i>
-                        <span>Branche A : Structure match formule (Choix Multiple)</span>
-                      </div>
-                      <div class="d-flex flex-column gap-2">
-                        <div class="decision-branch-card" :class="{ 'is-active is-success': formuleUpper === 'P' }">
-                          <div class="branch-condition">
-                            <span>case "P" | "p":</span>
-                            <span v-if="formuleUpper === 'P'" class="badge bg-success">Active</span>
-                          </div>
-                          <div class="branch-outcome">supplement = 5 DT | Formule Piscine</div>
-                        </div>
-
-                        <div class="decision-branch-card" :class="{ 'is-active is-success': formuleUpper === 'M' }">
-                          <div class="branch-condition">
-                            <span>case "M" | "m":</span>
-                            <span v-if="formuleUpper === 'M'" class="badge bg-success">Active</span>
-                          </div>
-                          <div class="branch-outcome">supplement = 10 DT | Formule Musculation</div>
-                        </div>
-
-                        <div class="decision-branch-card" :class="{ 'is-active is-success': formuleUpper === 'T' }">
-                          <div class="branch-condition">
-                            <span>case "T" | "t":</span>
-                            <span v-if="formuleUpper === 'T'" class="badge bg-success">Active</span>
-                          </div>
-                          <div class="branch-outcome">supplement = 15 DT | Formule Totale</div>
-                        </div>
-
-                        <div class="decision-branch-card" :class="{ 'is-active is-error': !isFormuleValid }">
-                          <div class="branch-condition">
-                            <span>case _: (Sinon)</span>
-                            <span v-if="!isFormuleValid" class="badge bg-danger">Active (Erreur)</span>
-                          </div>
-                          <div class="branch-outcome">valide = False | Code de formule invalide !</div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- ÉTAPE B : TRANCHE D'ÂGE (IF-ELIF-ELSE) -->
-                    <div class="col-lg-6">
-                      <div class="flow-step-header">
-                        <i class="bi bi-filter-circle-fill text-warning"></i>
-                        <span>Branche B : Structure if-elif-else sur l'âge (Conditions continues)</span>
-                      </div>
-                      <div class="d-flex flex-column gap-2">
-                        <div class="decision-branch-card" :class="{ 'is-active': isFormuleValid && ageBranch === 'child' }">
-                          <div class="branch-condition">
-                            <span>if age &lt; 12:</span>
-                            <span v-if="isFormuleValid && ageBranch === 'child'" class="badge bg-info text-dark">Active</span>
-                          </div>
-                          <div class="branch-outcome">prix_net = 0.0 DT | Enfant (&lt; 12 ans) : Gratuit (100%)</div>
-                        </div>
-
-                        <div class="decision-branch-card" :class="{ 'is-active': isFormuleValid && ageBranch === 'junior' }">
-                          <div class="branch-condition">
-                            <span>elif 12 &le; age &le; 17:</span>
-                            <span v-if="isFormuleValid && ageBranch === 'junior'" class="badge bg-info text-dark">Active</span>
-                          </div>
-                          <div class="branch-outcome">prix_net = brut &times; 0.5 | Junior (12-17 ans) : Remise de 50%</div>
-                        </div>
-
-                        <div class="decision-branch-card" :class="{ 'is-active': isFormuleValid && ageBranch === 'senior' }">
-                          <div class="branch-condition">
-                            <span>elif age &ge; 60:</span>
-                            <span v-if="isFormuleValid && ageBranch === 'senior'" class="badge bg-info text-dark">Active</span>
-                          </div>
-                          <div class="branch-outcome">prix_net = brut &times; 0.8 | Senior (&ge; 60 ans) : Remise de 20%</div>
-                        </div>
-
-                        <div class="decision-branch-card" :class="{ 'is-active': isFormuleValid && ageBranch === 'adult' }">
-                          <div class="branch-condition">
-                            <span>else:</span>
-                            <span v-if="isFormuleValid && ageBranch === 'adult'" class="badge bg-info text-dark">Active</span>
-                          </div>
-                          <div class="branch-outcome">prix_net = brut | Adulte (18-59 ans) : Plein tarif standard</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- CARTES DE SYNTHÈSE DES VALEURS & TERMINAL -->
-                <div class="row g-3">
-                  <!-- BLOC MÉTRIQUES -->
-                  <div class="col-lg-6">
-                    <div class="p-3 bg-light rounded border h-100">
-                      <h6 class="fw-bold text-dark mb-3"><i class="bi bi-calculator text-primary me-2"></i>Détail du calcul pas-à-pas :</h6>
-
-                      <div class="d-flex justify-content-between align-items-center mb-2 pb-1 border-bottom">
-                        <span class="small text-muted">Tarif de base journalier :</span>
-                        <strong class="font-monospace">20.0 DT</strong>
+                      <div class="loop-header-badge">
+                        <i class="bi bi-calculator-fill text-info"></i>
+                        <span>Boucle 2 (Pour) : Parcours des diviseurs stricts de 1 à {{ nVal - 1 }}</span>
                       </div>
 
-                      <div class="d-flex justify-content-between align-items-center mb-2 pb-1 border-bottom">
-                        <span class="small text-muted">Formule choisie :</span>
-                        <strong class="font-monospace text-primary">{{ formuleNom }}</strong>
-                      </div>
-
-                      <div class="d-flex justify-content-between align-items-center mb-2 pb-1 border-bottom">
-                        <span class="small text-muted">Validité (<code>valide</code>) :</span>
-                        <span class="badge" :class="isFormuleValid ? 'bg-success' : 'bg-danger'">
-                          {{ isFormuleValid ? 'Vrai / True' : 'Faux / False (Invalide)' }}
+                      <div class="divisors-grid mb-3">
+                        <span v-for="d in divisorsList" :key="d" class="divisor-chip">
+                          <i class="bi bi-check-lg"></i> {{ d }}
+                        </span>
+                        <span v-if="divisorsList.length === 0" class="text-white-50 small fst-italic p-2">
+                          Aucun diviseur strict disponible.
                         </span>
                       </div>
 
-                      <div class="d-flex justify-content-between align-items-center mb-2 pb-1 border-bottom">
-                        <span class="small text-muted">Prix brut calculé (20 + supp) :</span>
-                        <strong class="font-monospace">{{ isFormuleValid ? (prixBrut + '.0 DT') : 'Non calculé' }}</strong>
+                      <div class="p-2 bg-dark rounded border border-secondary text-white small mb-3">
+                        <div><strong>Somme des diviseurs stricts :</strong></div>
+                        <div class="font-monospace text-info mt-1">
+                          {{ divisorsList.join(' + ') || '0' }} = <strong class="fs-6 text-warning">{{ sommeDiv }}</strong>
+                        </div>
                       </div>
 
-                      <div class="d-flex justify-content-between align-items-center mb-2 pb-1 border-bottom">
-                        <span class="small text-muted">Remise appliquée sur l'âge :</span>
-                        <span class="badge" :class="reductionBadgeClass">{{ isFormuleValid ? reductionLabel : 'Aucune' }}</span>
+                      <div class="perfect-status-box" :class="isPerfect ? 'is-perfect' : 'not-perfect'">
+                        <div class="perfect-badge-icon">
+                          <i class="bi" :class="isPerfect ? 'bi-award-fill text-success' : 'bi-x-circle text-muted'"></i>
+                        </div>
+                        <div class="fw-bold text-white fs-6">
+                          {{ isPerfect ? 'NOMBRE PARFAIT ! (somme = n)' : 'Nombre Non Parfait (somme ≠ n)' }}
+                        </div>
+                        <div class="small text-white-50 mt-1">
+                          {{ isPerfect ? (sommeDiv + ' == ' + nVal + ' -> est_parfait = True') : (sommeDiv + ' ≠ ' + nVal + ' -> est_parfait = False') }}
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- BOUCLE 3 : DIVISIONS SUCCESSIVES PAR 2 -->
+                    <div class="col-lg-6">
+                      <div class="loop-header-badge">
+                        <i class="bi bi-arrow-repeat text-warning"></i>
+                        <span>Boucle 3 (Tant que) : Divisions successives par 2 (temp // 2)</span>
                       </div>
 
-                      <div class="d-flex justify-content-between align-items-center pt-2">
-                        <span class="fw-bold text-dark">Montant net final à payer :</span>
-                        <strong class="fs-5 font-monospace" :class="isFormuleValid ? 'text-success' : 'text-danger'">
-                          {{ isFormuleValid ? prixNetFormatted : 'Erreur formule' }}
-                        </strong>
+                      <div class="division-chain-wrapper mb-3">
+                        <div class="chain-step">
+                          <span class="chain-val">{{ nVal }}</span>
+                          <span class="chain-label">temp initial</span>
+                        </div>
+
+                        <template v-for="(step, sIdx) in divisionSteps" :key="sIdx">
+                          <i class="bi bi-arrow-right chain-arrow"></i>
+                          <div class="chain-step">
+                            <span class="chain-val text-warning">{{ step.after }}</span>
+                            <span class="chain-label">Div #{{ sIdx + 1 }}</span>
+                          </div>
+                        </template>
+                      </div>
+
+                      <div class="p-3 bg-dark rounded border border-secondary text-white small">
+                        <div class="d-flex justify-content-between align-items-center mb-1 pb-1 border-bottom border-secondary">
+                          <span class="text-white-50">Valeur finale restante (impaire) :</span>
+                          <strong class="font-monospace text-info fs-6">{{ lastOddNumber }}</strong>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                          <span class="text-white-50">Nombre total de divisions (<code>nb_div2</code>) :</span>
+                          <span class="badge bg-primary fs-6 font-monospace">{{ nbDiv2 }}</span>
+                        </div>
                       </div>
                     </div>
                   </div>
+                </div>
 
-                  <!-- CONSOLE TERMINALE SIMULÉE -->
-                  <div class="col-lg-6">
-                    <div class="terminal-window h-100">
-                      <div class="terminal-header">
-                        <span class="terminal-dot dot-red"></span>
-                        <span class="terminal-dot dot-yellow"></span>
-                        <span class="terminal-dot dot-green"></span>
-                        <span class="text-white-50 small ms-2 font-monospace">Sortie console Python (Terminal)</span>
-                      </div>
-                      <div class="terminal-body">{{ terminalOutput }}</div>
-                    </div>
+                <!-- CONSOLE TERMINALE SIMULÉE -->
+                <div class="terminal-window">
+                  <div class="terminal-header">
+                    <span class="terminal-dot dot-red"></span>
+                    <span class="terminal-dot dot-yellow"></span>
+                    <span class="terminal-dot dot-green"></span>
+                    <span class="text-white-50 small ms-2 font-monospace">Sortie console Python (Terminal)</span>
                   </div>
+                  <div class="terminal-body">{{ terminalOutput }}</div>
                 </div>
 
               </div>
@@ -874,7 +731,7 @@ else:
             <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
               <div>
                 <h4 class="h5 fw-bold text-dark mb-1"><i class="bi bi-patch-question-fill text-primary me-2"></i>Quiz d'auto-évaluation interactif</h4>
-                <div class="small text-muted">Testez vos acquis sur les structures conditionnelles, match-case, les opérateurs logiques et le TDO.</div>
+                <div class="small text-muted">Testez vos compétences sur les boucles Pour, Tant que, Répéter et leur implémentation sans break.</div>
               </div>
               <div class="d-flex align-items-center gap-2">
                 <span class="badge bg-primary px-3 py-2 fs-6">Score : {{ quizScore }} / {{ quizQuestions.length }}</span>
@@ -943,8 +800,8 @@ else:
           <a href="index.html" class="btn btn-outline-light btn-sm me-2">
             <i class="bi bi-house-door me-1"></i> Accueil
           </a>
-          <a href="seance02.html" class="btn btn-outline-light btn-sm me-2">
-            <i class="bi bi-arrow-left me-1"></i> Revoir Séance 2
+          <a href="seance03.html" class="btn btn-outline-light btn-sm me-2">
+            <i class="bi bi-arrow-left me-1"></i> Revoir Séance 3
           </a>
           <a href="seance02-old.html" class="btn btn-primary-custom btn-sm">
             Voir les archives <i class="bi bi-arrow-right ms-1"></i>
@@ -962,7 +819,7 @@ else:
   <script src="assets/js/algo-highlight.js"></script>
 
   <!-- APPLICATION VUE 3 -->
-  <script src="assets/apps/seance03.js"></script>
+  <script src="assets/apps/seance04.js"></script>
 
 </body>
 
