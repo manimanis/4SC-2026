@@ -15,11 +15,10 @@ createApp({
 
       // Phases d'apprentissage
       phases: [
-        { title: "Accroche & Situation-problème (Tarif d'accès au centre sportif)", shortTitle: "Phase 1 : Accroche", duration: "10 min" },
-        { title: "Tableau de correspondance Algo ↔ Python (Structures & Opérateurs)", shortTitle: "Phase 2 : Normes Conditions", duration: "15 min" },
-        { title: "Conception algorithmique & TDO (ALGORITHME TarifAcces)", shortTitle: "Phase 3 : Algo & TDO", duration: "20 min" },
-        { title: "Traduction machine, Vigilance & Simulateur dynamique", shortTitle: "Phase 4 : Machine & Débogage", duration: "20 min" },
-        { title: "Bilan & Synthèse d'ancrage (Contrôle oral & Quiz)", shortTitle: "Phase 5 : Bilan & Quiz", duration: "5 min" }
+        { title: "Situation & Simulateur interactif (Tarif d'accès)", shortTitle: "Situation & Simulateur", duration: "15 min" },
+        { title: "Structures conditionnelles & Opérateurs", shortTitle: "Conditions & Opérateurs", duration: "15 min" },
+        { title: "Algorithme & Programme TarifAcces", shortTitle: "Algo & Programme", duration: "25 min" },
+        { title: "Bilan & Auto-évaluation (Questions flash & Quiz)", shortTitle: "Bilan & Quiz", duration: "5 min" }
       ],
 
       // Questions orales de réactivation (Phase 1)
@@ -47,7 +46,7 @@ createApp({
         }
       ],
 
-      // Simulateur interactif de tarification (Phase 4)
+      // Simulateur interactif de tarification (Phase 1)
       simAge: 15,
       simFormule: 'M',
       copyStatus: 'Copier le script Python',
@@ -61,7 +60,7 @@ createApp({
         { name: "Formule Invalide", age: 22, formule: 'Z', desc: "Code non répertorié (déclenche case _)" }
       ],
 
-      // Questions flash de clôture (Phase 5)
+      // Questions flash de clôture (Phase 4)
       flashQuestions: [
         {
           expr: 'Pourquoi case "P", "p": est-il incorrect en Python ?',
@@ -107,7 +106,7 @@ createApp({
         }
       ],
 
-      // Auto-évaluation / Quiz (Phase 5)
+      // Auto-évaluation / Quiz (Phase 4)
       quizActiveCount: 10,
       quizQuestions: [],
       quizScore: 0,
@@ -361,12 +360,116 @@ createApp({
   mounted() {
     this.initQuiz();
     this.highlightAll();
+
+    // Lecture du hash d'URL initial si présent
+    if (this.readUrl()) {
+      this.$nextTick(() => {
+        this.highlightAll();
+      });
+    } else {
+      this.updateUrl(true);
+    }
+
+    // Écoute des événements d'historique du navigateur
+    window.addEventListener('popstate', () => {
+      this.handleHashChange();
+    });
+    window.addEventListener('hashchange', () => {
+      this.handleHashChange();
+    });
+
+    // Fermeture automatique de tout dropdown au clic sur une option
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('.dropdown-item')) {
+        this.closeDropdowns();
+      }
+    });
+
+    // Coloration syntaxique lors du basculement des onglets
+    document.querySelectorAll('button[data-bs-toggle="tab"]').forEach((tabEl) => {
+      tabEl.addEventListener('shown.bs.tab', () => {
+        this.highlightAll();
+      });
+    });
   },
 
   methods: {
+    // Mise à jour de l'URL avec la phase active
+    updateUrl(replace = false) {
+      const hash = this.currentPhase === 'all'
+        ? '#all'
+        : `#phase${this.currentPhase}`;
+
+      if (window.location.hash !== hash) {
+        if (replace) {
+          history.replaceState(null, '', hash);
+        } else {
+          history.pushState(null, '', hash);
+        }
+      }
+    },
+
+    // Lecture de la phase depuis le hash de l'URL
+    readUrl() {
+      const hash = window.location.hash.trim().toLowerCase();
+      if (!hash) return false;
+
+      // Formats acceptés : #phase1, #phase-1, #1, #all
+      const match = hash.match(/^#(?:phase-?)?([1-4]|all)/i);
+      if (match) {
+        const phase = match[1] === 'all' ? 'all' : parseInt(match[1], 10);
+        this.currentPhase = phase;
+        return true;
+      }
+      return false;
+    },
+
+    // Gestion du changement de hash via le navigateur (historique)
+    handleHashChange() {
+      if (this.readUrl()) {
+        this.closeDropdowns();
+        this.$nextTick(() => {
+          this.highlightAll();
+        });
+      }
+    },
+
+    // Fermeture des dropdowns et du menu responsive
+    closeDropdowns() {
+      if (window.bootstrap && window.bootstrap.Dropdown) {
+        document.querySelectorAll('.dropdown-toggle').forEach((el) => {
+          const inst = window.bootstrap.Dropdown.getInstance(el);
+          if (inst) {
+            inst.hide();
+          }
+        });
+      }
+      document.querySelectorAll('.dropdown-menu.show').forEach((menu) => {
+        menu.classList.remove('show');
+        menu.removeAttribute('data-bs-popper');
+      });
+      document.querySelectorAll('.dropdown-toggle.show').forEach((toggle) => {
+        toggle.classList.remove('show');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+
+      const navCollapse = document.getElementById('navContent');
+      if (navCollapse && navCollapse.classList.contains('show')) {
+        if (window.bootstrap && window.bootstrap.Collapse) {
+          const collapseInst = window.bootstrap.Collapse.getInstance(navCollapse);
+          if (collapseInst) {
+            collapseInst.hide();
+          }
+        }
+        navCollapse.classList.remove('show');
+      }
+    },
+
     setPhase(p) {
       this.currentPhase = p;
       this.isMenuOpen = false;
+      this.closeDropdowns();
+      this.updateUrl();
       this.$nextTick(() => {
         this.highlightAll();
         window.scrollTo({ top: 120, behavior: 'smooth' });
@@ -374,12 +477,14 @@ createApp({
     },
 
     nextPhase() {
+      if (this.currentPhase === 'all') return;
       if (this.currentPhase < this.phases.length) {
         this.setPhase(this.currentPhase + 1);
       }
     },
 
     prevPhase() {
+      if (this.currentPhase === 'all') return;
       if (this.currentPhase > 1) {
         this.setPhase(this.currentPhase - 1);
       }
@@ -387,7 +492,13 @@ createApp({
 
     toggleViewMode() {
       const nextMode = this.currentPhase === 'all' ? 1 : 'all';
-      this.setPhase(nextMode);
+      this.currentPhase = nextMode;
+      this.isMenuOpen = false;
+      this.closeDropdowns();
+      this.updateUrl();
+      this.$nextTick(() => {
+        this.highlightAll();
+      });
     },
 
     toggleOral(item) {

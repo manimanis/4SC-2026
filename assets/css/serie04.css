@@ -1,0 +1,301 @@
+/* ==========================================================================
+   assets/css/serie04.css
+   Style dédié pour la Série N°4 d'exercices (Structures itératives N°2)
+   Informatique 4e Année Scientifique (Bac 2026)
+   ========================================================================== */
+
+:root {
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --bg-card: #ffffff;
+  --bg-subtle: #f8fafc;
+  --border-color: #e2e8f0;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.img-modal-overlay,
+.img-modal-close,
+.chapters-drawer,
+.drawer-toggle-btn {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+[data-theme="dark"] {
+  --bg-card: #1e293b;
+  --bg-subtle: #0f172a;
+  --border-color: #334155;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  background-color: #0b1120;
+  color: #f8fafc;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #f8fafc;
+  color: var(--text-main);
+}
+
+[data-theme="dark"] body {
+  background-color: #0b1120;
+  color: #f8fafc;
+}
+
+/* Card d'exercice */
+.exercise-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.2s ease;
+}
+
+.exercise-section:hover {
+  border-color: #93c5fd;
+}
+
+[data-theme="dark"] .exercise-section:hover {
+  border-color: #3b82f6;
+}
+
+/* Solution & Help Accordion */
+.solution-details {
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  transition: all 0.2s ease;
+}
+
+.solution-details[open] {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.solution-summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--primary);
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* QCM Interactive Exercises */
+.qcm-exercise {
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.qcm-exercise .question-title {
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Draggable Items UI */
+.ordered-items-exercise {
+  padding: 1rem;
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--bg-subtle);
+  margin-bottom: 1rem;
+}
+
+.draggable-item {
+  cursor: grab;
+  padding: 0.5rem 0.8rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  margin-bottom: 0.4rem;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.draggable-item:active {
+  cursor: grabbing;
+}
+
+/* Custom Table Layout */
+.custom-table {
+  background-color: var(--bg-card);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.custom-table th {
+  background-color: var(--bg-subtle);
+  color: var(--text-main);
+}
+
+/* High Contrast Difficulty Badges */
+.badge-difficulty-easy {
+  background-color: #d1fae5 !important;
+  color: #065f46 !important;
+  border: 1px solid #10b981 !important;
+  font-weight: 700;
+}
+
+.badge-difficulty-medium {
+  background-color: #fef3c7 !important;
+  color: #78350f !important;
+  border: 1px solid #f59e0b !important;
+  font-weight: 700;
+}
+
+.badge-difficulty-hard {
+  background-color: #fee2e2 !important;
+  color: #991b1b !important;
+  border: 1px solid #ef4444 !important;
+  font-weight: 700;
+}
+
+[data-theme="dark"] .badge-difficulty-easy {
+  background-color: rgba(16, 185, 129, 0.25) !important;
+  color: #34d399 !important;
+  border-color: rgba(16, 185, 129, 0.5) !important;
+}
+
+[data-theme="dark"] .badge-difficulty-medium {
+  background-color: rgba(245, 158, 11, 0.25) !important;
+  color: #fbbf24 !important;
+  border-color: rgba(245, 158, 11, 0.5) !important;
+}
+
+[data-theme="dark"] .badge-difficulty-hard {
+  background-color: rgba(239, 68, 68, 0.25) !important;
+  color: #f87171 !important;
+  border-color: rgba(239, 68, 68, 0.5) !important;
+}
+
+/* Trace Input Validation Feedback */
+.trace-input.is-valid-answer {
+  background-color: #d1fae5 !important;
+  border-color: #10b981 !important;
+  color: #065f46 !important;
+  font-weight: bold;
+}
+
+.trace-input.is-invalid-answer {
+  background-color: #fee2e2 !important;
+  border-color: #ef4444 !important;
+  color: #991b1b !important;
+}
+
+/* Print Optimization */
+@media print {
+  .navbar-custom, .hero-section, #theme-toggle-btn, .btn, .d-print-none, .alert-light {
+    display: none !important;
+  }
+
+  .exercise-section {
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin-bottom: 1.5rem !important;
+    padding: 1rem !important;
+  }
+
+  .qcm-exercise, table {
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+    break-inside: avoid;
+  }
+}
+
+/* Blocs de code et Bouton Copier */
+pre,
+pre.p-3 {
+  position: relative !important;
+  background-color: #282c34 !important;
+  color: #abb2bf !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: var(--radius-md, 12px) !important;
+  padding: 1.25rem 1.25rem 1rem 1.25rem !important;
+  padding-top: 2.5rem !important;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace !important;
+  font-size: 0.92rem !important;
+  line-height: 1.6 !important;
+  overflow-x: auto !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2) !important;
+}
+
+[data-theme="dark"] pre,
+[data-theme="dark"] pre.p-3 {
+  background-color: #1e1e2e !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+pre code.hljs,
+pre code {
+  background: transparent !important;
+  padding: 0 !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+}
+
+.bd-clipboard {
+  position: absolute !important;
+  top: 0.55rem !important;
+  right: 0.65rem !important;
+  z-index: 10 !important;
+  display: block !important;
+}
+
+.btn-clipboard {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: 0.75rem !important;
+  font-weight: 500 !important;
+  line-height: 1 !important;
+  color: #e2e8f0 !important;
+  background: rgba(30, 41, 59, 0.85) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  padding: 0.35rem 0.75rem !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25) !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  user-select: none !important;
+  white-space: nowrap !important;
+}
+
+.btn-clipboard:hover {
+  background: rgba(51, 65, 85, 0.95) !important;
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.35) !important;
+}
+
+.btn-clipboard.copied {
+  background: #10b981 !important;
+  border-color: #059669 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.4) !important;
+}
+
+@media print {
+  .bd-clipboard,
+  .btn-clipboard {
+    display: none !important;
+  }
+}

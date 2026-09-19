@@ -1,0 +1,114 @@
+/* =========================================================
+   STYLE SPÉCIFIQUE - SÉANCE 5 : Modularité 2 (Les Procédures)
+   Passage par valeur vs par variable (@) & Portée (TDOL / TDOG)
+   Conforme aux Conventions Officielles 2024-2025
+   ========================================================= */
+
+/* Visualiseur des cases mémoires */
+.memory-inspector-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.memory-block {
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  transition: all 0.25s ease;
+}
+
+.memory-block-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #94a3b8;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.memory-cells-wrapper {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.memory-cell {
+  background: #1e293b;
+  border: 2px solid #475569;
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.75rem;
+  text-align: center;
+  min-width: 90px;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.memory-cell.is-modified {
+  border-color: #10b981;
+  background: rgba(16, 185, 129, 0.15);
+}
+
+.memory-cell.is-unmodified {
+  border-color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.cell-addr {
+  font-size: 0.65rem;
+  font-family: monospace;
+  color: #64748b;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.cell-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #38bdf8;
+  display: block;
+}
+
+.cell-value {
+  font-size: 1.1rem;
+  font-weight: 800;
+  font-family: monospace;
+  color: #f8fafc;
+}
+
+/* Boutons de bascule de mode de passage */
+.mode-toggle-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.mode-toggle-btn {
+  flex: 1;
+  padding: 0.6rem 0.8rem;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--border-color);
+  background: white;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.mode-toggle-btn.active-mode {
+  border-color: var(--primary-color);
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--primary-dark);
+}
+
+/* Pipeline d'interaction */
+.proc-flow-badge {
+  font-family: monospace;
+  font-size: 0.85rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}

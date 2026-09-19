@@ -1,0 +1,104 @@
+/* =========================================================
+   STYLE SPÉCIFIQUE - SÉANCE 6 : Tableaux 1D (numpy & parcours indicé)
+   Conforme aux Conventions Officielles 2024-2025
+   ========================================================= */
+
+/* Visualiseur de Tableau 1D */
+.array-visualizer-wrapper {
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  overflow-x: auto;
+}
+
+.array-strip {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+  padding: 0.5rem 0;
+  min-width: min-content;
+}
+
+.array-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 65px;
+}
+
+.array-index-badge {
+  font-family: monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #94a3b8;
+  margin-bottom: 0.35rem;
+  background: #1e293b;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #475569;
+}
+
+.array-slot.is-active .array-index-badge {
+  color: #38bdf8;
+  border-color: #38bdf8;
+}
+
+.array-cell-box {
+  background: #1e293b;
+  border: 2px solid #475569;
+  border-radius: var(--radius-sm);
+  padding: 0.5rem;
+  text-align: center;
+  width: 100%;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.array-cell-box:hover, .array-slot.is-active .array-cell-box {
+  border-color: #38bdf8;
+  background: rgba(56, 189, 248, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(56, 189, 248, 0.2);
+}
+
+.array-cell-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #f8fafc;
+  font-family: monospace;
+  font-size: 1.1rem;
+  font-weight: 800;
+  text-align: center;
+  outline: none;
+}
+
+/* Indicateurs de statistiques */
+.stats-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.75rem;
+}
+
+.stat-metric-card {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: var(--radius-sm);
+  padding: 0.75rem;
+  text-align: center;
+}
+
+.stat-metric-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #94a3b8;
+  margin-bottom: 0.2rem;
+}
+
+.stat-metric-value {
+  font-family: monospace;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #38bdf8;
+}

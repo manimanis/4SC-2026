@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Série N°4 : Structures itératives N°2 - Informatique 4SC (Bac 2026)</title>
+
+  <!-- Dépendances locales -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/atom-one-dark.min.css">
+  <link rel="stylesheet" href="assets/css/style.css?v=2">
+  <link rel="stylesheet" href="assets/css/katex.min.css">
+  <link rel="stylesheet" href="assets/css/serie04.css?v=2">
+</head>
+
+<body>
+
+  <!-- Header / Navigation -->
+  <header class="modern-header d-print-none sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+      <div class="container-fluid px-md-4">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+          <i class="bi bi-cpu-fill text-primary"></i>
+          <span>Informatique 4<sup>e</sup> SC</span>
+          <span class="brand-badge">Bac 2026</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#aside_navbar"
+          aria-controls="aside_navbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="aside_navbar">
+          <!-- Le menu déroulant des exercices est généré automatiquement par pages.js -->
+        </div>
+        <div class="d-flex align-items-center gap-2 ms-auto mt-2 mt-lg-0">
+          <a href="seance03.html" class="btn btn-outline-info btn-sm rounded-pill px-3 py-1">
+            <i class="bi bi-arrow-left me-1"></i> Séance 3
+          </a>
+          <button id="theme-toggle-btn" class="btn btn-outline-secondary btn-sm rounded-pill px-3 py-1" type="button">
+            🌙 <span class="d-none d-sm-inline ms-1">Mode Sombre</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section text-center d-print-none py-4 mb-3">
+    <div class="container">
+      <div class="d-flex justify-content-center flex-wrap gap-2 mb-2">
+        <span class="badge bg-primary px-3 py-1"><i class="bi bi-arrow-repeat me-1"></i>Axe : Boucles</span>
+        <span class="badge bg-secondary px-2 py-1">Sections : Sc. Expérimentales, Mathématiques & Sc. Techniques</span>
+        <span class="badge bg-info text-dark px-2 py-1"><i class="bi bi-bookmark-check-fill me-1"></i>Conventions 2024-2025</span>
+      </div>
+      <h1 class="hero-title display-6 fw-bold mb-2">Série N°4 : Structures itératives N°2</h1>
+      <p class="text-muted mb-0">Traces manuelles, complétion d'algorithmes, recherche dichotomique interactive et T.D.O.</p>
+    </div>
+  </section>
+
+  <!-- Contenu principal -->
+  <main class="container my-4">
+<article>
+ <h2 class="border-bottom pb-2 mb-4">
+  Série N°4
+ </h2>
+ <!-- EXERCICE 1 -->
+ <section class="mb-5" data-ex-id="ex1" id="exercice-1">
+  <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+   <h3 class="h4 text-primary m-0">
+    Exercice 1 : Analyse des boucles Répéter et TantQue
+   </h3>
+   <span class="badge badge-difficulty-easy rounded-pill px-3 py-2">
+    🟢 Facile
+   </span>
+  </div>
+  <p>
+   Pour chacune des séquences suivantes, déterminer la valeur finale de chaque variable ainsi que le nombre
+          d'itérations.
+  </p>
+  <div id="ex1-app">
+   <div class="row g-3">
+    <div class="col-lg-6">
+     <div class="exercise-section">
+      <div class="p-3 border rounded bg-light shadow-sm h-100 d-flex flex-column justify-content-between">
+       <pre><code class="algorithm" data-text=" Séquence 1">x ← 8
+Répéter
+  x ← x + 2
+  y ← x * 2
+Jusqu'à y &gt; 25</code></pre>
+       <div class="mt-2 fw-bold text-secondary">
+        <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+         <span>
+          x =
+         </span>
+         <input class="trace-input form-control form-control-sm text-center" data-answer="14" style="width: 70px;" type="text"/>
+         <span>
+          - y =
+         </span>
+         <input class="trace-input form-control form-control-sm text-center" data-answer="28" style="width: 70px;" type="text"/>
+         <span>
+          - Nb. d'itérations :
+         </span>
+         <input class="trace-input form-control form-control-sm text-center" data-answer="3" style="width: 70px;" type="text"/>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-6">
+     <div class="exercise-section">
+      <div class="p-3 border rounded bg-light shadow-sm h-100 d-flex flex-column justify-content-between">
+       <pre><code class="algorithm" data-text=" Séquence 2">x ← 5
+Répéter
+  x ← x + 2
+  y ← x * 2
+Jusqu'à y &lt; 30</code></pre>
+       <div class="mt-2 fw-bold text-secondary">
+        <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+         <span>
+          x =
+         </span>
+         <input class="trace-input form-control form-control-sm text-center" data-answer="7" style="width: 70px;" type="text"/>
+         <span>
+          - y =
+         </span>
+         <input class="trace-input form-control form-control-sm text-center" data-answer="14" style="width: 70px;" type="text"/>
+         <span>
+          - Nb. d'itérations :
+         </span>
+         <input class="trace-input form-control form-control-sm text-center" data-answer="1" style="width: 70px;" type="text"/>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-6">
+     <div class="exercise-section">
+      <div class="p-3 border rounded bg-light shadow-sm h-100 d-flex flex-column justify-content-between">
+       <pre><code class="algorithm" data-text=" Séquence 3">p ← 0
+Tant Que p &gt; 5 Faire
+  p ← p + 5
+Fin Tant Que</code></pre>
+       <div class="mt-2 fw-bold text-secondary">
+        <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+         <span>
+          p =
+         </span>
+         <input class="trace-input form-control form-control-sm text-center" data-answer="0" style="width: 70px;" type="text"/>
+         <span>
+          - Nb. d'itérations :
+         </span>
+         <input class="trace-input form-control form-control-sm text-center" data-answer="0" style="width: 70px;" type="text"/>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-6">
+     <div class="exercise-section">
+      <div class="p-3 border rounded bg-light shadow-sm h-100 d-flex flex-column justify-content-between">
+       <pre><code class="algorithm" data-text=" Séquence 4">p ← 0
+Tant Que p &lt; 5 Faire
+  p ← p + 2
+Fin Tant Que</code></pre>
+       <div class="mt-2 fw-bold text-secondary">
+        <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+         <span>
+          p =
+         </span>
+         <input class="trace-input form-control form-control-sm text-center" data-answer="6" style="width: 70px;" type="text"/>
+         <span>
+          - Nb. d'itérations :
+         </span>
+         <input class="trace-input form-control form-control-sm text-center" data-answer="3" style="width: 70px;" type="text"/>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-6">
+     <div class="exercise-section">
+      <div class="p-3 border rounded bg-light shadow-sm h-100 d-flex flex-column justify-content-between">
+       <pre><code class="algorithm" data-text=" Séquence 5">x ← 16
+pas ← 1
+Répéter
+  x ← x + pas
+  pas ← pas + 1
+Jusqu'à x &gt; 25</code></pre>
+       <div class="mt-2 fw-bold text-secondary">
+        <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+         <span>
+          x =
+         </span>
+         <input class="trace-input form-control form-control-sm text-center" data-answer="26" style="width: 70px;" type="text"/>
+         <span>
+          - pas =
+         </span>
+         <input class="trace-input form-control form-control-sm text-center" data-answer="5" style="width: 70px;" type="text"/>
+         <span>
+          - Nb. d'itérations :
+         </span>
+         <input class="trace-input form-control form-control-sm text-center" data-answer="4" style="width: 70px;" type="text"/>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-6">
+     <div class="exercise-section">
+      <div class="p-3 border rounded bg-light shadow-sm h-100 d-flex flex-column justify-content-between">
+       <pre><code class="algorithm" data-text=" Séquence 6">x ← 15
+Répéter
+  x ← x - 2
+Jusqu'à x &gt; 20</code></pre>
+       <div class="mt-2 fw-bold text-secondary">
+        <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+         <span>
+          x =
+         </span>
+         <input class="trace-input form-control form-control-sm text-center" data-answer="inf|infini" style="width: 85px;" type="text"/>
+         <span>
+          - Nb. d'itérations :
+         </span>
+         <input class="trace-input form-control form-control-sm text-center" data-answer="inf|infini" style="width: 85px;" type="text"/>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-6">
+     <div class="exercise-section">
+      <div class="p-3 border rounded bg-light shadow-sm h-100 d-flex flex-column justify-content-between">
+       <pre><code class="algorithm" data-text=" Séquence 7">x ← 13
+p ← 0
+Tant Que x ≠ 0 Faire
+  p ← p + (x mod 2 ≠ 1)
+  x ← x div 2
+Fin Tant Que</code></pre>
+       <div class="mt-2 fw-bold text-secondary">
+        <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+         <span>
+          x =
+         </span>
+         <input class="trace-input form-control form-control-sm text-center" data-answer="0" style="width: 70px;" type="text"/>
+         <span>
+          - p =
+         </span>
+         <input class="trace-input form-control form-control-sm text-center" data-answer="1" style="width: 70px;" type="text"/>
+         <span>
+          - Nb. d'itérations :
+         </span>
+         <input class="trace-input form-control form-control-sm text-center" data-answer="4" style="width: 70px;" type="text"/>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-6">
+     <div class="exercise-section">
+      <div class="p-3 border rounded bg-light shadow-sm h-100 d-flex flex-column justify-content-between">
+       <pre><code class="algorithm" data-text=" Séquence 8">ch ← "1100"
+i ← 0
+p ← 0
+Tant Que i &lt; Long(ch) Faire
+  p ← p * 2 + valeur(ch[i])
+  i ← i + 1
+Fin Tant Que</code></pre>
+       <div class="mt-2 fw-bold text-secondary">
+        <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+         <span>
+          p =
+         </span>
+         <input class="trace-input form-control form-control-sm text-center" data-answer="12" style="width: 70px;" type="text"/>
+         <span>
+          - i =
+         </span>
+         <input class="trace-input form-control form-control-sm text-center" data-answer="4" style="width: 70px;" type="text"/>
+         <span>
+          - Nb. d'itérations :
+         </span>
+         <input class="trace-input form-control form-control-sm text-center" data-answer="4" style="width: 70px;" type="text"/>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <!-- Indice / Structure -->
+  <div class="alert alert-light border-start border-warning border-4 shadow-sm my-3 d-print-none">
+   <div class="fw-bold text-dark mb-2">
+    💡 Indice
+   </div>
+   <p class="mb-1 small">
+    <strong>
+     Indice :
+    </strong>
+    Suivre pas à pas les instructions. Attention aux boucles
+    <code>
+     TantQue
+    </code>
+    dont
+            la condition est fausse dès le départ (0 itération) et aux boucles
+    <code>
+     Répéter
+    </code>
+    qui exécutent
+            toujours leur corps au moins une fois !
+   </p>
+  </div>
+ </section>
+ <!-- EXERCICE 2 -->
+ <section class="mb-5" data-ex-id="ex2" id="exercice-2">
+  <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+   <h3 class="h4 text-primary m-0">
+    Exercice 2 : Traduction et affichage de la boucle Pour
+   </h3>
+   <span class="badge badge-difficulty-easy rounded-pill px-3 py-2">
+    🟢 Facile
+   </span>
+  </div>
+  <p>
+   Traduire les algorithmes du tableau ci-dessous en Python tout en indiquant leurs affichages.
+  </p>
+  <div id="ex2-app">
+   <div class="row g-3">
+    <div class="col-lg-6">
+     <div class="exercise-section">
+      <div class="p-3 border rounded bg-light shadow-sm h-100 d-flex flex-column justify-content-between">
+       <pre><code class="algorithm" data-text=" Cadre 1">Pour i de 1 à 5 faire
+  Ecrire_nl(i)
+Fin Pour</code></pre>
+       <div class="mt-2">
+        <label class="form-label text-dark small fw-bold mb-1">
+         Affichage :
+        </label>
+        <input class="trace-input form-control form-control-sm mb-2" data-answer="1 2 3 4 5|12345" placeholder="ex: 1 2 3 4 5" type="text"/>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-6">
+     <div class="exercise-section">
+      <div class="p-3 border rounded bg-light shadow-sm h-100 d-flex flex-column justify-content-between">
+       <pre><code class="algorithm" data-text=" Cadre 2">Pour i de 1 à 5 faire
+  Ecrire(i*i,' ')
+Fin Pour</code></pre>
+       <div class="mt-2">
+        <label class="form-label text-dark small fw-bold mb-1">
+         Affichage :
+        </label>
+        <input class="trace-input form-control form-control-sm mb-2" data-answer="1 4 9 16 25" placeholder="ex: 1 4 9 16 25" type="text"/>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-6">
+     <div class="exercise-section">
+      <div class="p-3 border rounded bg-light shadow-sm h-100 d-flex flex-column justify-content-between">
+       <pre><code class="algorithm" data-text=" Cadre 3">Pour i de 1 à 7 (pas=2) faire
+  Ecrire_nl(i)
+Fin Pour</code></pre>
+       <div class="mt-2">
+        <label class="form-label text-dark small fw-bold mb-1">
+         Affichage :
+        </label>
+        <input class="trace-input form-control form-control-sm mb-2" data-answer="1 3 5 7|1357" placeholder="ex: 1 3 5 7" type="text"/>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-6">
+     <div class="exercise-section">
+      <div class="p-3 border rounded bg-light shadow-sm h-100 d-flex flex-column justify-content-between">
+       <pre><code class="algorithm" data-text=" Cadre 4">Pour i de 5 à 1 (pas=-1) faire
+  Ecrire_nl(i)
+Fin pour</code></pre>
+       <div class="mt-2">
+        <label class="form-label text-dark small fw-bold mb-1">
+         Affichage :
+        </label>
+        <input class="trace-input form-control form-control-sm mb-2" data-answer="5 4 3 2 1|54321" placeholder="ex: 5 4 3 2 1" type="text"/>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <!-- Indice / Structure -->
+   <div class="alert alert-light border-start border-warning border-4 shadow-sm my-3 d-print-none">
+    <div class="fw-bold text-dark mb-2">
+     💡 Indice
+    </div>
+    <p class="mb-1 small">
+     <strong>
+      Indice :
+     </strong>
+     Rappel : En Python, prêter une attention particulière aux bornes
+              (incluse/excluse)
+              manipulées dans la fonction
+     <code>
+      range()
+     </code>
+     .
+    </p>
+   </div>
+  </div>
+ </section>
+ <!-- EXERCICE 3 -->
+ <section class="mb-5" data-ex-id="ex3" id="exercice-3">
+  <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+   <h3 class="h4 text-primary m-0">
+    Exercice 3 : Tournage à la main &amp; Détermination du rôle
+   </h3>
+   <span class="badge badge-difficulty-medium rounded-pill px-3 py-2">
+    🟡 Moyen
+   </span>
+  </div>
+  <p>
+   Pour chacune des séquences algorithmiques ci-après, effectuer une exécution manuelle en fonction des valeurs
+          données. Puis, en déduire le rôle.
+  </p>
+  <p class="fw-bold text-secondary">
+   N.B : a et b deux entiers non nuls
+  </p>
+  <div id="ex3-app">
+   <div class="row g-3">
+    <div class="col-lg-6">
+     <div class="exercise-section">
+      <div class="p-3 border rounded bg-light shadow-sm h-100 d-flex flex-column justify-content-between">
+       <div>
+        <pre><code class="algorithm" data-text=" Inconnu 1">p ← 1
+Pour i de 1 à b Faire
+  p ← p * a
+Fin pour
+Ecrire(p)</code></pre>
+        <div class="mb-2 text-dark small">
+         <strong>
+          Affichage pour a = 2, b = 5 :
+         </strong>
+         <input class="trace-input form-control form-control-sm d-inline-block text-center ms-1" data-answer="32" style="width: 80px;" type="text"/>
+        </div>
+        <div class="mb-2 text-primary small">
+         <strong>
+          Rôle :
+         </strong>
+         <select class="trace-select form-select form-select-sm mt-1" data-answer="puissance">
+          <option value="">
+           -- Sélectionner le rôle --
+          </option>
+          <option value="palindrome">
+           Vérifier si une chaîne est un palindrome
+          </option>
+          <option value="ppcm">
+           Calculer le PPCM de a et b (Méthode d'addition)
+          </option>
+          <option value="factorielle">
+           Calculer la factorielle de a
+          </option>
+          <option value="inversion">
+           Inverser la chaîne de caractères ch
+          </option>
+          <option value="puissance">
+           Calculer la puissance a^b
+          </option>
+          <option value="pgcd">
+           Calculer le PGCD de a et b (Méthode de soustraction)
+          </option>
+         </select>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-6">
+     <div class="exercise-section">
+      <div class="p-3 border rounded bg-light shadow-sm h-100 d-flex flex-column justify-content-between">
+       <div>
+        <pre><code class="algorithm" data-text=" Inconnu 2">p ← 1
+Pour i de 1 à a Faire
+  p ← p * i
+Fin Pour
+Ecrire(p)</code></pre>
+        <div class="mb-2 text-dark small">
+         <strong>
+          Affichage pour a = 5 :
+         </strong>
+         <input class="trace-input form-control form-control-sm d-inline-block text-center ms-1" data-answer="120" style="width: 80px;" type="text"/>
+        </div>
+        <div class="mb-2 text-primary small">
+         <strong>
+          Rôle :
+         </strong>
+         <select class="trace-select form-select form-select-sm mt-1" data-answer="factorielle">
+          <option value="">
+           -- Sélectionner le rôle --
+          </option>
+          <option value="palindrome">
+           Vérifier si une chaîne est un palindrome
+          </option>
+          <option value="ppcm">
+           Calculer le PPCM de a et b (Méthode d'addition)
+          </option>
+          <option value="factorielle">
+           Calculer la factorielle de a
+          </option>
+          <option value="inversion">
+           Inverser la chaîne de caractères ch
+          </option>
+          <option value="puissance">
+           Calculer la puissance a^b
+          </option>
+          <option value="pgcd">
+           Calculer le PGCD de a et b (Méthode de soustraction)
+          </option>
+         </select>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-6">
+     <div class="exercise-section">
+      <div class="p-3 border rounded bg-light shadow-sm h-100 d-flex flex-column justify-content-between">
+       <div>
+        <pre><code class="algorithm" data-text=" Inconnu 3">Tant Que a ≠ b Faire
+  Si a &gt; b alors
+    a ← a - b
+  Sinon
+    b ← b - a
+  Fin Si
+Fin Tant Que
+Ecrire(a)</code></pre>
+        <div class="mb-2 text-dark small">
+         <strong>
+          Affichage pour a = 54, b = 10 :
+         </strong>
+         <input class="trace-input form-control form-control-sm d-inline-block text-center ms-1" data-answer="2" style="width: 80px;" type="text"/>
+        </div>
+        <div class="mb-2 text-primary small">
+         <strong>
+          Rôle :
+         </strong>
+         <select class="trace-select form-select form-select-sm mt-1" data-answer="pgcd">
+          <option value="">
+           -- Sélectionner le rôle --
+          </option>
+          <option value="palindrome">
+           Vérifier si une chaîne est un palindrome
+          </option>
+          <option value="ppcm">
+           Calculer le PPCM de a et b (Méthode d'addition)
+          </option>
+          <option value="factorielle">
+           Calculer la factorielle de a
+          </option>
+          <option value="inversion">
+           Inverser la chaîne de caractères ch
+          </option>
+          <option value="puissance">
+           Calculer la puissance a^b
+          </option>
+          <option value="pgcd">
+           Calculer le PGCD de a et b (Méthode de soustraction)
+          </option>
+         </select>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-6">
+     <div class="exercise-section">
+      <div class="p-3 border rounded bg-light shadow-sm h-100 d-flex flex-column justify-content-between">
+       <div>
+        <pre><code class="algorithm" data-text=" Inconnu 4">x ← a
+y ← b
+Tant Que a ≠ b Faire
+  Si a &lt; b Alors
+    a ← a + x
+  Sinon
+    b ← b + y
+  Fin Si
+Fin Tant Que
+Ecrire(a)</code></pre>
+        <div class="mb-2 text-dark small">
+         <strong>
+          Affichage pour a = 5, b = 6 :
+         </strong>
+         <input class="trace-input form-control form-control-sm d-inline-block text-center ms-1" data-answer="30" style="width: 80px;" type="text"/>
+        </div>
+        <div class="mb-2 text-primary small">
+         <strong>
+          Rôle :
+         </strong>
+         <select class="trace-select form-select form-select-sm mt-1" data-answer="ppcm">
+          <option value="">
+           -- Sélectionner le rôle --
+          </option>
+          <option value="palindrome">
+           Vérifier si une chaîne est un palindrome
+          </option>
+          <option value="ppcm">
+           Calculer le PPCM de a et b (Méthode d'addition)
+          </option>
+          <option value="factorielle">
+           Calculer la factorielle de a
+          </option>
+          <option value="inversion">
+           Inverser la chaîne de caractères ch
+          </option>
+          <option value="puissance">
+           Calculer la puissance a^b
+          </option>
+          <option value="pgcd">
+           Calculer le PGCD de a et b (Méthode de soustraction)
+          </option>
+         </select>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-6">
+     <div class="exercise-section">
+      <div class="p-3 border rounded bg-light shadow-sm h-100 d-flex flex-column justify-content-between">
+       <div>
+        <pre><code class="algorithm" data-text=" Inconnu 5">C ← ""
+Pour i de 0 à long(ch)-1 faire
+  C ← ch[i] + C
+Fin Pour
+Ecrire(C)</code></pre>
+        <div class="mb-2 text-dark small">
+         <strong>
+          Affichage pour ch = "BAC" :
+         </strong>
+         <input class="trace-input form-control form-control-sm d-inline-block text-center ms-1" data-answer="CAB" style="width: 100px;" type="text"/>
+        </div>
+        <div class="mb-2 text-primary small">
+         <strong>
+          Rôle :
+         </strong>
+         <select class="trace-select form-select form-select-sm mt-1" data-answer="inversion">
+          <option value="">
+           -- Sélectionner le rôle --
+          </option>
+          <option value="palindrome">
+           Vérifier si une chaîne est un palindrome
+          </option>
+          <option value="ppcm">
+           Calculer le PPCM de a et b (Méthode d'addition)
+          </option>
+          <option value="factorielle">
+           Calculer la factorielle de a
+          </option>
+          <option value="inversion">
+           Inverser la chaîne de caractères ch
+          </option>
+          <option value="puissance">
+           Calculer la puissance a^b
+          </option>
+          <option value="pgcd">
+           Calculer le PGCD de a et b (Méthode de soustraction)
+          </option>
+         </select>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="col-lg-6">
+     <div class="exercise-section">
+      <div class="p-3 border rounded bg-light shadow-sm h-100 d-flex flex-column justify-content-between">
+       <div>
+        <pre><code class="algorithm" data-text=" Inconnu 6">test ← Vrai
+Pour i de 0 à (long(ch) div 2) - 1 faire
+  Si ch[i] ≠ ch[long(ch)-1-i] Alors
+    test ← Faux
+  Fin Si
+Fin Pour
+Ecrire(test)</code></pre>
+        <div class="mb-2 text-dark small">
+         <strong>
+          Affichage pour ch = "RADAR" :
+         </strong>
+         <input class="trace-input form-control form-control-sm d-inline-block text-center ms-1" data-answer="Vrai|True|1" style="width: 100px;" type="text"/>
+        </div>
+        <div class="mb-2 text-primary small">
+         <strong>
+          Rôle :
+         </strong>
+         <select class="trace-select form-select form-select-sm mt-1" data-answer="palindrome">
+          <option value="">
+           -- Sélectionner le rôle --
+          </option>
+          <option value="palindrome">
+           Vérifier si une chaîne est un palindrome
+          </option>
+          <option value="ppcm">
+           Calculer le PPCM de a et b (Méthode d'addition)
+          </option>
+          <option value="factorielle">
+           Calculer la factorielle de a
+          </option>
+          <option value="inversion">
+           Inverser la chaîne de caractères ch
+          </option>
+          <option value="puissance">
+           Calculer la puissance a^b
+          </option>
+          <option value="pgcd">
+           Calculer le PGCD de a et b (Méthode de soustraction)
+          </option>
+         </select>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <!-- Indice / Structure -->
+  <div class="alert alert-light border-start border-warning border-4 shadow-sm my-3 d-print-none">
+   <div class="fw-bold text-dark mb-2">
+    💡 Indice
+   </div>
+   <p class="mb-1 small">
+    <strong>
+     Indice :
+    </strong>
+    Effectuer un tracé manuel pas à pas avec les valeurs d'entrée proposées pour
+            observer l'évolution des variables et identifier l'opération mathématique ou le traitement de chaîne
+            réalisé.
+   </p>
+  </div>
+ </section>
+ <!-- EXERCICE 4 -->
+ <section class="mb-5" data-ex-id="ex4" id="exercice-4">
+  <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+   <h3 class="h4 text-primary m-0">
+    Exercice 4 : Complétion d'algorithmes (Glisser-Déposer les étiquettes)
+   </h3>
+   <span class="badge badge-difficulty-medium rounded-pill px-3 py-2">
+    🟡 Moyen
+   </span>
+  </div>
+  <p>
+   Glisser-déposer (ou cliquer pour sélectionner puis cliquer sur l'emplacement) les étiquettes ci-dessous dans
+          les emplacements correspondants des algorithmes.
+  </p>
+  <div id="ex4-drag-app">
+   <!-- Algorithme 1 -->
+   <div class="card border-primary mb-4 shadow-sm algorithme-troue">
+    <div class="card-header bg-primary text-white fw-bold">
+     Algorithme 1 : Calculer la somme des chiffres pairs dans une chaîne numérique.
+    </div>
+    <div class="card-body bg-light">
+     <pre class="p-3 bg-dark text-light rounded font-monospace shadow-sm m-0"><code class="algorithm">Algorithme Somme_Chiffres
+Début
+  Ecrire("Donner une chaîne numérique ? ") ; Lire(ch)
+  S ← <span class="missing-code" data-alg="alg1" data-target="0" id="slot-1">(1)</span>
+  Pour i de <span class="missing-code" data-alg="alg1" data-target="0 à Long(ch)-1" id="slot-2">(2)</span> Faire
+    Si <span class="missing-code" data-alg="alg1" data-target="valeur(ch[i]) mod 2 = 0" id="slot-3">(3)</span> Alors
+      S ← <span class="missing-code" data-alg="alg1" data-target="S + valeur(ch[i])" id="slot-4">(4)</span>
+    Fin Si
+  Fin Pour
+  Ecrire(S)
+Fin</code></pre>
+     <!-- Banque d'étiquettes Algorithme 1 -->
+     <div class="mt-3 mb-3">
+      <label class="form-label text-dark small fw-bold">
+       🏷️ Banque d'étiquettes (Algorithme 1) - Glisser les
+                  bonnes étiquettes (contient 3 intrus) :
+      </label>
+      <div class="labels-bank drop-target p-2 border border-2 border-dashed border-info rounded bg-white d-flex flex-wrap gap-2 align-items-center" data-distractors='1 | 1 à Long(ch) | ch[i] = "2"' id="labels-bank-1" style="min-height: 55px;">
+      </div>
+     </div>
+    </div>
+   </div>
+   <!-- Algorithme 2 -->
+   <div class="card border-primary mb-4 shadow-sm algorithme-troue">
+    <div class="card-header bg-primary text-white fw-bold">
+     Algorithme 2 : Calculer le produit des diviseurs d'un entier sauf lui-même.
+    </div>
+    <div class="card-body bg-light">
+     <pre class="p-3 bg-dark text-light rounded font-monospace shadow-sm m-0"><code class="algorithm">Algorithme Produit_Div
+Début
+  Ecrire("Donner n &gt; 0 ? ") ; Lire(n)
+  P ← <span class="missing-code" data-alg="alg2" data-target="1" id="slot-5">(5)</span>
+  Pour i de <span class="missing-code" data-alg="alg2" data-target="1 à n div 2" id="slot-6">(6)</span> Faire
+    Si <span class="missing-code" data-alg="alg2" data-target="n mod i = 0" id="slot-7">(7)</span> Alors
+      P ← <span class="missing-code" data-alg="alg2" data-target="P * i" id="slot-8">(8)</span>
+    Fin Si
+  Fin Pour
+  Ecrire(P)
+Fin</code></pre>
+     <!-- Banque d'étiquettes Algorithme 2 -->
+     <div class="mb-3">
+      <label class="form-label text-dark small fw-bold">
+       🏷️ Banque d'étiquettes (Algorithme 2) - Glisser les
+                  bonnes étiquettes (contient 3 intrus) :
+      </label>
+      <div class="labels-bank drop-target p-2 border border-2 border-dashed border-info rounded bg-white d-flex flex-wrap gap-2 align-items-center" data-distractors="0 | 1 à n | n div i = 0" id="labels-bank-2" style="min-height: 55px;">
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <!-- Indice / Structure -->
+  <div class="alert alert-light border-start border-warning border-4 shadow-sm my-3 d-print-none">
+   <div class="fw-bold text-dark mb-2">
+    💡 Indice
+   </div>
+   <p class="mb-1 small">
+    <strong>
+     Indice :
+    </strong>
+    Pour l'algorithme 1, penser à convertir chaque caractère numérique afin de pouvoir
+            tester sa parité. Pour l'algorithme 2, tester les diviseurs de
+    <code>
+     n
+    </code>
+    et accumuler leur produit.
+   </p>
+  </div>
+ </section>
+ <!-- EXERCICE 5 -->
+ <section class="mb-5" data-ex-id="ex5" id="exercice-5">
+  <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+   <h3 class="h4 text-primary m-0">
+    Exercice 5 : Jeu de la devinette par recherche dichotomique
+   </h3>
+   <span class="badge badge-difficulty-hard rounded-pill px-3 py-2">
+    🔴 Difficile
+   </span>
+  </div>
+  <p>
+   Ecrire un programme en Python qui devine le nombre choisi par l'utilisateur.
+  </p>
+  <ul>
+   <li>
+    L'utilisateur choisit un nombre secret entre 0 et 127.
+   </li>
+   <li>
+    L'ordinateur propose un nombre
+    <code>
+     prop
+    </code>
+    dans cet intervalle.
+   </li>
+   <li>
+    L'utilisateur répond par le signe :
+    <ul>
+     <li>
+      <code>
+       +
+      </code>
+      : si prop &lt; secret
+     </li>
+     <li>
+      <code>
+       -
+      </code>
+      : si prop &gt; secret
+     </li>
+     <li>
+      <code>
+       =
+      </code>
+      : Si prop = secret
+     </li>
+    </ul>
+   </li>
+  </ul>
+  <p class="fw-bold text-success">
+   L'ordinateur doit faire 7 essais au plus pour deviner exactement le nombre.
+  </p>
+  <div class="card bg-dark text-light border-secondary shadow-lg my-4 overflow-hidden rounded-4 d-print-none" id="ex5-app">
+   <div class="card-header bg-gradient bg-primary text-white p-3 d-flex align-items-center justify-content-between">
+    <h5 class="m-0 fw-bold d-flex align-items-center gap-2">
+     <span>
+      🎮
+     </span>
+     <span>
+      Simulation Interactive : Recherche Dichotomique
+     </span>
+    </h5>
+    <span class="badge bg-light text-dark fw-bold px-3 py-2 rounded-pill">
+     Intervalle [0 .. 127]
+    </span>
+   </div>
+   <div class="card-body p-4">
+    <!-- Mental Secret Banner -->
+    <div class="bg-secondary bg-opacity-25 p-3 rounded-3 border border-secondary mb-4 d-flex align-items-center justify-content-between flex-wrap gap-3">
+     <div class="d-flex align-items-center gap-2">
+      <span class="fs-4">
+       💭
+      </span>
+      <span class="fw-bold text-info fs-6">
+       Pensez à un nombre secret entre 0 et 127 dans votre tête. L'ordinateur va le deviner en 7 essais max !
+      </span>
+     </div>
+     <button class="btn btn-outline-info rounded-pill px-4 shadow-sm" v-on:click="startNewGame()">
+      🔄 Recommencer
+     </button>
+    </div>
+    <!-- Attempt Counter & Gauge -->
+    <div class="mb-4">
+     <div class="d-flex justify-content-between align-items-center mb-2">
+      <span class="fw-bold text-light">
+       Essai n°
+       <span class="text-warning fs-4 fw-bold">
+        {{ attempts }}
+       </span>
+       / {{ maxAttempts }} max
+      </span>
+      <span class="badge bg-info text-dark font-monospace fs-6 px-3 py-2 rounded-pill">
+       Taille restante : {{ intervalSize }} nombre(s)
+      </span>
+     </div>
+     <div class="progress bg-secondary bg-opacity-50" style="height: 12px;">
+      <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" role="progressbar" v-bind:style="{ width: attemptsPercent + '%' }">
+      </div>
+     </div>
+    </div>
+    <!-- Visual Range Bar (0 to 127) -->
+    <div class="mb-4 p-3 bg-black bg-opacity-50 rounded-3 border border-secondary position-relative">
+     <div class="d-flex justify-content-between text-muted small fw-bold mb-1 font-monospace">
+      <span>
+       0
+      </span>
+      <span>
+       31
+      </span>
+      <span>
+       63
+      </span>
+      <span>
+       95
+      </span>
+      <span>
+       127
+      </span>
+     </div>
+     <!-- Bar graph representation -->
+     <div class="position-relative bg-dark rounded-pill my-2 border border-secondary overflow-hidden" style="height: 38px;">
+      <!-- Full range background -->
+      <div class="position-absolute top-0 bottom-0 start-0 end-0 bg-secondary bg-opacity-25">
+      </div>
+      <!-- Active interval [min, max] -->
+      <div class="position-absolute top-0 bottom-0 bg-gradient bg-info opacity-75 rounded-pill transition-all" v-bind:style="{ left: minPercent + '%', width: rangeWidthPercent + '%' }">
+      </div>
+      <!-- Marker for current proposition prop -->
+      <div class="position-absolute top-0 bottom-0 bg-warning border border-light border-2 rounded shadow transition-all d-flex align-items-center justify-content-center fw-bold text-dark px-2" title="Proposition actuelle" v-bind:style="{ left: propPercent + '%', transform: 'translateX(-50%)', minWidth: '42px' }">
+       {{ prop }}
+      </div>
+     </div>
+     <div class="d-flex justify-content-between align-items-center mt-2 small font-monospace">
+      <span class="text-info fw-bold">
+       min = {{ min }}
+      </span>
+      <span class="text-warning fw-bold">
+       prop = {{ prop }}
+      </span>
+      <span class="text-info fw-bold">
+       max = {{ max }}
+      </span>
+     </div>
+    </div>
+    <!-- Interactive Decision Buttons -->
+    <div class="text-center p-3 bg-secondary bg-opacity-10 rounded-3 border border-secondary mb-4" v-if="!gameOver">
+     <p class="fs-5 mb-3">
+      L'ordinateur propose
+      <strong class="text-warning fs-3 mx-1">
+       {{ prop }}
+      </strong>
+      .
+                Votre nombre secret est-il :
+     </p>
+     <div class="d-flex justify-content-center gap-3 flex-wrap">
+      <button class="btn btn-lg btn-outline-warning border-2 rounded-3 px-4 py-2 shadow-sm d-flex align-items-center gap-2" v-on:click="respond('+')">
+       <span class="fs-3 fw-bold">
+        +
+       </span>
+       <span class="text-start">
+        <span class="d-block fw-bold fs-6">
+         Plus grand que {{prop}}
+        </span>
+       </span>
+      </button>
+      <button class="btn btn-lg btn-outline-warning border-2 rounded-3 px-4 py-2 shadow-sm d-flex align-items-center gap-2" v-on:click="respond('-')">
+       <span class="fs-3 fw-bold">
+        -
+       </span>
+       <span class="text-start">
+        <span class="d-block fw-bold fs-6">
+         Plus petit que {{prop}}
+        </span>
+       </span>
+      </button>
+      <button class="btn btn-lg btn-success border-2 rounded-3 px-4 py-2 shadow-sm d-flex align-items-center gap-2" v-on:click="respond('=')">
+       <span class="fs-3 fw-bold">
+        =
+       </span>
+       <span class="text-start">
+        <span class="d-block fw-bold fs-6">
+         Égal à {{prop}} (Trouvé !)
+        </span>
+       </span>
+      </button>
+     </div>
+    </div>
+    <!-- Game Over Banner -->
+    <div class="text-center p-4 rounded-3 mb-4 shadow-sm" v-bind:class="won ? 'bg-success bg-opacity-25 border border-success' : 'bg-danger bg-opacity-25 border border-danger'" v-else="">
+     <div v-if="won">
+      <h4 class="text-success fw-bold mb-2">
+       🎉 Bravo ! Votre nombre secret {{ prop }} a été deviné !
+      </h4>
+      <p class="fs-5 mb-3">
+       L'ordinateur a réussi la recherche en seulement
+       <strong class="badge bg-success fs-5 px-3">
+        {{ attempts }}
+       </strong>
+       essai(s) sur 7 !
+      </p>
+     </div>
+     <div v-else="">
+      <h4 class="text-danger fw-bold mb-2">
+       ❌ Limite d'essais atteinte
+      </h4>
+      <p class="fs-5 mb-3">
+       L'ordinateur est arrivé au bout des 7 essais.
+      </p>
+     </div>
+     <button class="btn btn-primary btn-lg rounded-pill px-5 shadow" v-on:click="startNewGame()">
+      🔄 Rejouer avec un autre nombre secret
+     </button>
+    </div>
+    <!-- Interactive Timeline / History Log -->
+    <div v-if="history.length &gt; 0">
+     <h6 class="text-info fw-bold mb-3 d-flex align-items-center gap-2">
+      <span>
+       📜
+      </span>
+      <span>
+       Historique détaillé des étapes de dichotomie
+      </span>
+     </h6>
+     <div class="table-responsive rounded-3 border border-secondary">
+      <table class="table table-dark table-hover align-middle mb-0 small">
+       <thead>
+        <tr class="table-secondary text-dark">
+         <th class="text-center" scope="col">
+          Essai #
+         </th>
+         <th scope="col">
+          Intervalle [min .. max]
+         </th>
+         <th class="text-center" scope="col">
+          Proposition (prop)
+         </th>
+         <th class="text-center" scope="col">
+          Votre réponse
+         </th>
+         <th class="text-end" scope="col">
+          Éléments éliminés
+         </th>
+        </tr>
+       </thead>
+       <tbody>
+        <tr v-bind:key="h.essai" v-for="h in history">
+         <td class="text-center fw-bold text-warning">
+          #{{ h.essai }}
+         </td>
+         <td class="font-monospace fw-bold text-white fs-6">
+          [{{ h.min }} .. {{ h.max }}]
+         </td>
+         <td class="text-center font-monospace fw-bold text-info fs-6">
+          {{ h.prop }}
+         </td>
+         <td class="text-center">
+          <span class="badge px-3 py-1 fs-6 font-monospace" v-bind:class="h.sign === '=' ? 'bg-success' : (h.sign === '+' ? 'bg-warning text-dark' : 'bg-info text-dark')">
+           {{ h.sign }}
+          </span>
+         </td>
+         <td class="text-end font-monospace text-light opacity-75">
+          -{{ h.eliminated }} nombre(s)
+         </td>
+        </tr>
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+  </div>
+  <!-- Indice / Structure -->
+  <div class="alert alert-light border-start border-warning border-4 shadow-sm my-3 d-print-none">
+   <div class="fw-bold text-dark mb-2">
+    💡 Indice &amp; Recherche Dichotomique
+   </div>
+   <p class="mb-1 small">
+    <strong>
+     Indice :
+    </strong>
+    Appliquer l'algorithme de recherche dichotomique : initialiser
+    <code>
+     min ← 0
+    </code>
+    et
+    <code>
+     max ← 127
+    </code>
+    . À chaque étape, calculer la proposition au milieu
+    <code>
+     prop ← (min + max) div 2
+    </code>
+    et ajuster l'une des bornes selon le signe donné par
+            l'utilisateur.
+   </p>
+  </div>
+ </section>
+</article>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-custom py-4 text-center mt-5">
+    <div class="container">
+      <div class="mb-2">
+        <span class="fw-bold text-white">Informatique 4<sup>e</sup> Année Scientifique</span>
+        <span class="mx-2 text-white-50">|</span>
+        <span class="text-light">Bac 2026</span>
+      </div>
+      <div class="small text-white-50 mb-3">
+        Conformité pédagogique aux programmes et conventions officielles 2024-2025
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts JS Locaux -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/highlight.min.js"></script>
+  <script src="assets/js/hljs.algorithm.js"></script>
+  <script src="assets/js/clipboard.min.js"></script>
+  <script src="assets/js/main-ui.js?v=2"></script>
+  <script src="assets/js/pages.js"></script>
+  <script src="assets/js/katex.min.js"></script>
+  <script src="assets/js/auto-render.min.js"></script>
+  <script src="assets/js/draggable.js"></script>
+  <script src="assets/js/vue.global.prod.js"></script>
+  <script src="assets/apps/serie04.js"></script>
+
+  <!-- Highlighting & Clipboard Setup -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof hljs !== 'undefined') {
+        if (typeof hljs.highlightAll === 'function') {
+          hljs.highlightAll();
+        } else if (typeof hljs.initHighlightingOnLoad === 'function') {
+          hljs.initHighlightingOnLoad();
+        }
+      }
+
+      document.querySelectorAll('.language-algorithm, .language-python').forEach(item => {
+        if (!item.parentElement.querySelector('.bd-clipboard')) {
+          const div = document.createElement('div');
+          div.className = 'bd-clipboard d-print-none';
+          const btn = document.createElement('button');
+          btn.className = 'btn-clipboard';
+          btn.type = 'button';
+          btn.innerHTML = '<i class="bi bi-clipboard me-1"></i> Copier';
+          btn.title = "Copier le code";
+          div.appendChild(btn);
+          item.parentElement.insertBefore(div, item);
+        }
+      });
+
+      if (typeof ClipboardJS !== 'undefined') {
+        const clipboard = new ClipboardJS('.btn-clipboard', {
+          target: (trigger) => trigger.parentElement.nextElementSibling
+        });
+
+        clipboard.on('success', (e) => {
+          const btn = e.trigger;
+          const orig = btn.innerHTML;
+          btn.innerHTML = '<i class="bi bi-check-lg me-1"></i> Copié !';
+          btn.classList.add('copied');
+          setTimeout(() => {
+            btn.innerHTML = orig;
+            btn.classList.remove('copied');
+          }, 2000);
+          e.clearSelection();
+        });
+      }
+    });
+  </script>
+
+  <!-- KaTeX Auto-Render Math Setup -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (typeof renderMathInElement === 'function') {
+        try {
+          renderMathInElement(document.body, {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '$', right: '$', display: false },
+              { left: '\(', right: '\)', display: false },
+              { left: '\[', right: '\]', display: true }
+            ],
+            throwOnError: false
+          });
+        } catch (e) {
+          console.error("KaTeX render error:", e);
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

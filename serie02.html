@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Série N°2 : Les structures conditionnelles - Informatique 4SC (Bac 2026)</title>
+
+  <!-- Dépendances locales -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/atom-one-dark.min.css">
+  <link rel="stylesheet" href="assets/css/style.css?v=2">
+  <link rel="stylesheet" href="assets/css/katex.min.css">
+  <link rel="stylesheet" href="assets/css/serie02.css?v=2">
+</head>
+
+<body>
+
+  <!-- Header / Navigation -->
+  <header class="modern-header d-print-none sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+      <div class="container-fluid px-md-4">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+          <i class="bi bi-cpu-fill text-primary"></i>
+          <span>Informatique 4<sup>e</sup> SC</span>
+          <span class="brand-badge">Bac 2026</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#aside_navbar"
+          aria-controls="aside_navbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="aside_navbar">
+          <!-- Le menu déroulant des exercices est généré automatiquement par pages.js -->
+        </div>
+        <div class="d-flex align-items-center gap-2 ms-auto mt-2 mt-lg-0">
+          <a href="seance02.html" class="btn btn-outline-info btn-sm rounded-pill px-3 py-1">
+            <i class="bi bi-arrow-left me-1"></i> Séance 2
+          </a>
+          <button id="theme-toggle-btn" class="btn btn-outline-secondary btn-sm rounded-pill px-3 py-1" type="button">
+            🌙 <span class="d-none d-sm-inline ms-1">Mode Sombre</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section text-center d-print-none py-4 mb-3">
+    <div class="container">
+      <div class="d-flex justify-content-center flex-wrap gap-2 mb-2">
+        <span class="badge bg-primary px-3 py-1"><i class="bi bi-diagram-2 me-1"></i>Axe : Conditions</span>
+        <span class="badge bg-secondary px-2 py-1">Sections : Sc. Expérimentales, Mathématiques & Sc. Techniques</span>
+        <span class="badge bg-info text-dark px-2 py-1"><i class="bi bi-bookmark-check-fill me-1"></i>Conventions 2024-2025</span>
+      </div>
+      <h1 class="hero-title display-6 fw-bold mb-2">Série N°2 : Les structures conditionnelles</h1>
+      <p class="text-muted mb-0">Forme réduite, alternative, généralisée, choix multiples (Selon / match-case) & T.D.O.</p>
+    </div>
+  </section>
+
+  <!-- Contenu principal : 12 Exercices -->
+  <main class="container my-4">
+<article>
+ <h2 class="border-bottom pb-2 mb-4">
+  Série N°2
+ </h2>
+ <!-- EXERCICE 1 -->
+ <section class="mb-5 exercise-section" data-ex-id="ex1" id="exercice-1">
+  <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+   <h3 class="h4 text-primary m-0">
+    Exercice 1 : Racine carrée de la valeur absolue
+   </h3>
+   <div class="d-flex gap-2">
+    <span class="badge badge-difficulty-easy rounded-pill px-3 py-2">
+     🟢 Facile
+    </span>
+    <span class="badge bg-primary rounded-pill px-3 py-2">
+     Forme réduite
+    </span>
+   </div>
+  </div>
+  <p>
+   Ecrire un programme qui permet de lire un réel
+   <code>
+    x
+   </code>
+   , puis d'afficher la racine carrée de sa valeur
+          absolue,
+   <u>
+    sans utiliser
+   </u>
+   la fonction prédéfinie
+   <strong>
+    abs
+   </strong>
+   .
+  </p>
+  <figure class="text-center my-3">
+   <img alt="racine(abs(x))" class="img-fluid rounded shadow-sm" src="assets/img/exercice01-serie2.png"/>
+  </figure>
+  <!-- Indice / Structure -->
+  <div class="alert alert-light border-start border-warning border-4 shadow-sm my-3 d-print-none">
+   <div class="fw-bold text-dark mb-2">
+    💡 Structure recommandée : Forme réduite
+   </div>
+   <div class="row g-2 mb-2">
+    <div class="col-md-6">
+     <span class="badge bg-secondary mb-1">
+      Algorithme
+     </span>
+     <pre class="m-0 p-2 bg-white rounded border"><code class="language-algorithm">Si condition Alors
+  // Traitement
+Fin Si</code></pre>
+    </div>
+    <div class="col-md-6">
+     <span class="badge bg-secondary mb-1">
+      Python
+     </span>
+     <pre class="m-0 p-2 bg-white rounded border"><code class="language-python">if condition:
+    # Traitement</code></pre>
+    </div>
+   </div>
+   <div class="small text-muted mt-2">
+    <strong>
+     Indice :
+    </strong>
+    Modifier le signe du nombre uniquement s'il est négatif avant d'en calculer la
+            racine carrée.
+   </div>
+  </div>
+ </section>
+ <!-- EXERCICE 2 -->
+ <section class="mb-5 exercise-section" data-ex-id="ex2" id="exercice-2">
+  <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+   <h3 class="h4 text-primary m-0">
+    Exercice 2 : Signe d'un nombre
+   </h3>
+   <div class="d-flex gap-2">
+    <span class="badge badge-difficulty-easy rounded-pill px-3 py-2">
+     🟢 Facile
+    </span>
+    <span class="badge bg-primary rounded-pill px-3 py-2">
+     Forme généralisée
+    </span>
+   </div>
+  </div>
+  <figure class="d-print-none text-center my-3">
+   <img alt="Signe d'un nombre" class="img-fluid rounded shadow-sm" src="assets/img/signe_nombre.png"/>
+   <figcaption class="figure-caption text-center text-muted mt-1">
+    Signe d'un nombre
+   </figcaption>
+  </figure>
+  <p>
+   Écrire un programme qui affiche si un nombre
+   <code>
+    x
+   </code>
+   donné est :
+  </p>
+  <ul>
+   <li>
+    <strong>
+     positif
+    </strong>
+    , si
+    <code>
+     x &gt; 0
+    </code>
+   </li>
+   <li>
+    <strong>
+     négatif
+    </strong>
+    , si
+    <code>
+     x &lt; 0
+    </code>
+   </li>
+   <li>
+    <strong>
+     nul
+    </strong>
+    , si
+    <code>
+     x = 0
+    </code>
+   </li>
+  </ul>
+  <!-- Indice / Structure -->
+  <div class="alert alert-light border-start border-warning border-4 shadow-sm my-3 d-print-none">
+   <div class="fw-bold text-dark mb-2">
+    💡 Structure recommandée : Forme généralisée
+   </div>
+   <div class="row g-2 mb-2">
+    <div class="col-md-6">
+     <span class="badge bg-secondary mb-1">
+      Algorithme
+     </span>
+     <pre class="m-0 p-2 bg-white rounded border"><code class="language-algorithm">Si condition1 Alors
+  // Traitement 1
+Sinon Si condition2 Alors
+  // Traitement 2
+Sinon
+  // Traitement 3
+Fin Si</code></pre>
+    </div>
+    <div class="col-md-6">
+     <span class="badge bg-secondary mb-1">
+      Python
+     </span>
+     <pre class="m-0 p-2 bg-white rounded border"><code class="language-python">if condition1:
+    # Traitement 1
+elif condition2:
+    # Traitement 2
+else:
+    # Traitement 3</code></pre>
+    </div>
+   </div>
+   <div class="small text-muted mt-2">
+    <strong>
+     Indice :
+    </strong>
+    Enchaîner les conditions pour distinguer les trois cas possibles (strictement
+            positif, strictly négatif, ou nul).
+   </div>
+  </div>
+  <div class="row">
+   <div class="col-sm-6">
+    <pre><code class="nohighlight shell python" data-text="Exemple 1">Donner un nombre ? 27
+27 est positif</code></pre>
+   </div>
+   <div class="col-sm-6">
+    <pre><code class="nohighlight shell python" data-text="Exemple 2">Donner un nombre ? -6
+-6 est négatif</code></pre>
+   </div>
+  </div>
+ </section>
+ <!-- EXERCICE 3 -->
+ <section class="mb-5 exercise-section" data-ex-id="ex3" id="exercice-3">
+  <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+   <h3 class="h4 text-primary m-0">
+    Exercice 3 : Intersection de deux cercles
+   </h3>
+   <div class="d-flex gap-2">
+    <span class="badge badge-difficulty-medium rounded-pill px-3 py-2">
+     🟡 Moyen
+    </span>
+    <span class="badge bg-primary rounded-pill px-3 py-2">
+     Forme généralisée
+    </span>
+   </div>
+  </div>
+  <p>
+   Soient deux cercles du plan
+   <strong>
+    C1
+   </strong>
+   et
+   <strong>
+    C2
+   </strong>
+   de rayons respectifs
+   <code>
+    r1
+   </code>
+   et
+   <code>
+    r2
+   </code>
+   , les centres des deux cercles étant à une distance
+   <code>
+    d
+   </code>
+   donnée.
+  </p>
+  <p>
+   Ces deux cercles :
+  </p>
+  <ul>
+   <li>
+    sont
+    <strong>
+     confondus
+    </strong>
+    , si
+    <code>
+     d = 0
+    </code>
+    et
+    <code>
+     r1 = r2
+    </code>
+   </li>
+   <li>
+    sont
+    <strong>
+     disjoints intérieurement
+    </strong>
+    , si
+    <code>
+     d = 0
+    </code>
+    et
+    <code>
+     r1 ≠ r2
+    </code>
+   </li>
+   <li>
+    sont
+    <strong>
+     disjoints intérieurement
+    </strong>
+    , si
+    <code>
+     0 &lt; d &lt; |r1 - r2|
+    </code>
+   </li>
+   <li>
+    sont
+    <strong>
+     tangents intérieurement
+    </strong>
+    , si
+    <code>
+     d = |r1 - r2|
+    </code>
+   </li>
+   <li>
+    sont
+    <strong>
+     sécants
+    </strong>
+    , si
+    <code>
+     |r1 - r2| &lt; d &lt; r1 + r2
+    </code>
+   </li>
+   <li>
+    sont
+    <strong>
+     tangents extérieurement
+    </strong>
+    , si
+    <code>
+     d = r1 + r2
+    </code>
+   </li>
+   <li>
+    sont
+    <strong>
+     disjoints extérieurement
+    </strong>
+    , si
+    <code>
+     d &gt; r1 + r2
+    </code>
+   </li>
+  </ul>
+  <figure class="text-center my-3">
+   <img alt="Intersection de deux cercles" class="img-fluid rounded shadow-sm" src="assets/img/inter-cercles.png"/>
+   <figcaption class="figure-caption text-center text-muted mt-1">
+    Intersection de deux cercles
+   </figcaption>
+  </figure>
+  <p>
+   On demande d'écrire un programme qui saisit les données mentionnées puis affiche la position relative des
+          deux cercles.
+  </p>
+  <!-- Indice / Structure -->
+  <div class="alert alert-light border-start border-warning border-4 shadow-sm my-3 d-print-none">
+   <div class="fw-bold text-dark mb-2">
+    💡 Structure recommandée : Forme généralisée
+   </div>
+   <div class="row g-2 mb-2">
+    <div class="col-md-6">
+     <span class="badge bg-secondary mb-1">
+      Algorithme
+     </span>
+     <pre class="m-0 p-2 bg-white rounded border"><code class="language-algorithm">Si condition1 Alors
+  // Traitement 1
+Sinon Si condition2 Alors
+  // Traitement 2
+...
+Fin Si</code></pre>
+    </div>
+    <div class="col-md-6">
+     <span class="badge bg-secondary mb-1">
+      Python
+     </span>
+     <pre class="m-0 p-2 bg-white rounded border"><code class="language-python">if condition1:
+    # Traitement 1
+elif condition2:
+    # Traitement 2
+...</code></pre>
+    </div>
+   </div>
+   <div class="small text-muted mt-2">
+    <strong>
+     Indice :
+    </strong>
+    Comparer la distance
+    <code>
+     d
+    </code>
+    aux expressions
+    <code>
+     |r1 - r2|
+    </code>
+    et
+    <code>
+     r1 + r2
+    </code>
+    dans l'ordre pour identifier le cas géométrique.
+   </div>
+  </div>
+  <div class="row">
+   <div class="col-sm-6">
+    <pre><code class="nohighlight shell python" data-text="Exemple 1">Rayon de C1 ? 6
+Rayon de C2 ? 3
+Distance entre les centres ? 9
+Les deux cercles sont tangents extérieurement</code></pre>
+   </div>
+   <div class="col-sm-6">
+    <pre><code class="nohighlight shell python" data-text="Exemple 2">Rayon de C1 ? 10
+Rayon de C2 ? 10
+Distance entre les centres ? 10
+Les cercles se coupent en deux points</code></pre>
+   </div>
+  </div>
+ </section>
+ <!-- EXERCICE 4 -->
+ <section class="mb-5 exercise-section" data-ex-id="ex4" id="exercice-4">
+  <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+   <h3 class="h4 text-primary m-0">
+    Exercice 4 : Jeu de trois dés
+   </h3>
+   <div class="d-flex gap-2">
+    <span class="badge badge-difficulty-medium rounded-pill px-3 py-2">
+     🟡 Moyen
+    </span>
+    <span class="badge bg-primary rounded-pill px-3 py-2">
+     Forme généralisée
+    </span>
+   </div>
+  </div>
+  <figure class="d-print-none text-center my-3">
+   <img alt="Jeu de trois dés" class="img-fluid rounded shadow-sm" src="assets/img/jeu_3des.jpeg"/>
+   <figcaption class="figure-caption text-center text-muted mt-1">
+    Jeu de trois dés
+   </figcaption>
+  </figure>
+  <p>
+   Les combinaisons gagnantes dans un jeu de trois dés sont les suivantes :
+  </p>
+  <ul>
+   <li>
+    Trois nombres identiques, on gagne
+    <strong>
+     300 pts
+    </strong>
+   </li>
+   <li>
+    Deux nombres identiques ou la somme des trois dés est égale à 6, on gagne
+    <strong>
+     200 pts
+    </strong>
+   </li>
+   <li>
+    Au moins un 6, on gagne
+    <strong>
+     50 pts
+    </strong>
+   </li>
+   <li>
+    Dans les autres cas, on gagne la
+    <strong>
+     somme des trois dés
+    </strong>
+   </li>
+  </ul>
+  <p>
+   On demande d'écrire un programme qui :
+  </p>
+  <ul>
+   <li>
+    Simule le lancement de trois dés (valeurs aléatoires entre 1 et 6)
+   </li>
+   <li>
+    Affiche la valeur de chaque dé, ainsi que la somme des trois dés
+   </li>
+   <li>
+    Calcule et affiche le nombre de points gagnés
+   </li>
+  </ul>
+  <!-- Indice / Structure -->
+  <div class="alert alert-light border-start border-warning border-4 shadow-sm my-3 d-print-none">
+   <div class="fw-bold text-dark mb-2">
+    💡 Structure recommandée : Forme généralisée
+   </div>
+   <div class="row g-2 mb-2">
+    <div class="col-md-6">
+     <span class="badge bg-secondary mb-1">
+      Algorithme
+     </span>
+     <pre class="m-0 p-2 bg-white rounded border"><code class="language-algorithm">Si condition1 Alors
+  // Gain maximal (300 pts)
+Sinon Si condition2 Alors
+  // Gain intermédiaire (200 pts)
+Sinon Si condition3 Alors
+  // Gain minimal (50 pts)
+Sinon
+  // Gain standard (Somme)
+Fin Si</code></pre>
+    </div>
+    <div class="col-md-6">
+     <span class="badge bg-secondary mb-1">
+      Python
+     </span>
+     <pre class="m-0 p-2 bg-white rounded border"><code class="language-python">if condition1:
+    # Gain 300 pts
+elif condition2:
+    # Gain 200 pts
+elif condition3:
+    # Gain 50 pts
+else:
+    # Gain somme</code></pre>
+    </div>
+   </div>
+   <div class="small text-muted mt-2">
+    <strong>
+     Indice :
+    </strong>
+    Évaluer les règles de gain dans l'ordre décroissant de leur priorité/valeur.
+   </div>
+  </div>
+  <div class="row">
+   <div class="col-sm-6">
+    <pre><code class="nohighlight shell python" data-text="Exemple 1">Dé1 : 6 - Dé2 : 3 - Dé3 : 4
+Somme : 13
+Vous gagnez 50 pts</code></pre>
+   </div>
+   <div class="col-sm-6">
+    <pre><code class="nohighlight shell python" data-text="Exemple 2">Dé1 : 4 - Dé2 : 1 - Dé3 : 2
+Somme : 7
+Vous gagnez 7 pts</code></pre>
+   </div>
+  </div>
+ </section>
+ <!-- EXERCICE 5 -->
+ <section class="mb-5 exercise-section" data-ex-id="ex5" id="exercice-5">
+  <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+   <h3 class="h4 text-primary m-0">
+    Exercice 5 : Conversion de devise
+   </h3>
+   <div class="d-flex gap-2">
+    <span class="badge badge-difficulty-medium rounded-pill px-3 py-2">
+     🟡 Moyen
+    </span>
+    <span class="badge bg-primary rounded-pill px-3 py-2">
+     Structure à choix / Généralisée
+    </span>
+   </div>
+  </div>
+  <figure class="d-print-none text-center my-3">
+   <img alt="Conversion de devise" class="img-fluid rounded shadow-sm" src="assets/img/devises.webp"/>
+   <figcaption class="figure-caption text-center text-muted mt-1">
+    Conversion de devise
+   </figcaption>
+  </figure>
+  <p>
+   On donne les taux de conversion suivants :
+   <code>
+    1€ = 1.17$ = 3.28 D
+   </code>
+   .
+  </p>
+  <p>
+   Écrire un programme qui :
+  </p>
+  <ul>
+   <li>
+    Saisit le montant à convertir
+    <code>
+     mac
+    </code>
+    .
+   </li>
+   <li>
+    Saisit la devise initiale
+    <code>
+     di
+    </code>
+    (
+    <strong>
+     $
+    </strong>
+    ,
+    <strong>
+     €
+    </strong>
+    ou
+    <strong>
+     D
+    </strong>
+    ).
+   </li>
+   <li>
+    Saisit la devise requise
+    <code>
+     dr
+    </code>
+    (
+    <strong>
+     $
+    </strong>
+    ,
+    <strong>
+     €
+    </strong>
+    ou
+    <strong>
+     D
+    </strong>
+    ).
+   </li>
+   <li>
+    Calcule la valeur convertie
+    <code>
+     mc
+    </code>
+    de
+    <code>
+     mac
+    </code>
+    de la devise
+    <code>
+     di
+    </code>
+    vers la
+            devise
+    <code>
+     dr
+    </code>
+    .
+   </li>
+   <li>
+    Affiche le résultat de la conversion
+    <code>
+     mc
+    </code>
+    .
+   </li>
+  </ul>
+  <!-- Indice / Structure -->
+  <div class="alert alert-light border-start border-warning border-4 shadow-sm my-3 d-print-none">
+   <div class="fw-bold text-dark mb-2">
+    💡 Structure recommandée : Forme généralisée ou Structure à choix
+   </div>
+   <div class="row g-2 mb-2">
+    <div class="col-md-6">
+     <span class="badge bg-secondary mb-1">
+      Algorithme
+     </span>
+     <pre class="m-0 p-2 bg-white rounded border"><code class="language-algorithm">Selon variable
+  valeur1, valeur2 : // Traitement 1
+  valeur3 .. valeur4 : // Traitement 2
+  Sinon : // Traitement par défaut
+Fin Selon</code></pre>
+    </div>
+    <div class="col-md-6">
+     <span class="badge bg-secondary mb-1">
+      Python
+     </span>
+     <pre class="m-0 p-2 bg-white rounded border"><code class="language-python">match variable:
+  case valeur1 | valeur2:
+    # Traitement 1
+  case _:
+    # Traitement par défaut</code></pre>
+    </div>
+   </div>
+   <div class="small text-muted mt-2">
+    <strong>
+     Indice :
+    </strong>
+    Convertir d'abord le montant vers une devise de référence commune (ex: le Dinar),
+            puis effectuer la conversion finale vers la devise de destination.
+   </div>
+  </div>
+  <div class="row">
+   <div class="col-sm-6">
+    <pre><code class="nohighlight shell python" data-text="Exemple 1">Montant ? 100
+Devise initiale ($/€/D) ? D
+Devise requise ($/€/D) ? $
+100 D = 35.67 $</code></pre>
+   </div>
+   <div class="col-sm-6">
+    <pre><code class="nohighlight shell python" data-text="Exemple 2">Montant ? 100
+Devise initiale ($/€/D) ? €
+Devise requise ($/€/D) ? $
+100 € = 117.0 $</code></pre>
+   </div>
+  </div>
+ </section>
+ <!-- EXERCICE 6 -->
+ <section class="mb-5 exercise-section" data-ex-id="ex6" id="exercice-6">
+  <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+   <h3 class="h4 text-primary m-0">
+    Exercice 6 : Vendeur de poissons (Prix de vente)
+   </h3>
+   <div class="d-flex gap-2">
+    <span class="badge badge-difficulty-easy rounded-pill px-3 py-2">
+     🟢 Facile
+    </span>
+    <span class="badge bg-primary rounded-pill px-3 py-2">
+     Forme généralisée
+    </span>
+   </div>
+  </div>
+  <figure class="d-print-none text-center my-3">
+   <img alt="Vendeur de poissons" class="img-fluid rounded shadow-sm" src="assets/img/vendeur-poissons.jpg"/>
+   <figcaption class="figure-caption text-center text-muted mt-1">
+    Vendeur de poissons
+   </figcaption>
+  </figure>
+  <p>
+   Un vendeur de poissons veut calculer le prix de vente de ses marchandises en fonction du prix d'achat :
+  </p>
+  <p class="text-center">
+   <code>
+    Prix vente = Prix achat × (1 + gain / 100)
+   </code>
+  </p>
+  <p>
+   Sachant que :
+  </p>
+  <ul>
+   <li>
+    <code>
+     gain = 20%
+    </code>
+    , si
+    <code>
+     0 ≤ Prix achat &lt; 15
+    </code>
+   </li>
+   <li>
+    <code>
+     gain = 25%
+    </code>
+    , si
+    <code>
+     15 ≤ Prix achat &lt; 30
+    </code>
+   </li>
+   <li>
+    <code>
+     gain = 35%
+    </code>
+    , si
+    <code>
+     Prix achat ≥ 30
+    </code>
+   </li>
+  </ul>
+  <p>
+   Écrire un programme qui :
+  </p>
+  <ul>
+   <li>
+    Saisit le nom du produit
+    <code>
+     np
+    </code>
+    et son prix d'achat
+    <code>
+     pa
+    </code>
+    .
+   </li>
+   <li>
+    Détermine le pourcentage de gain
+    <code>
+     g
+    </code>
+    selon les tranches ci-dessus.
+   </li>
+   <li>
+    Calcule et affiche le prix de vente
+    <code>
+     pv
+    </code>
+    .
+   </li>
+  </ul>
+  <!-- Indice / Structure -->
+  <div class="alert alert-light border-start border-warning border-4 shadow-sm my-3 d-print-none">
+   <div class="fw-bold text-dark mb-2">
+    💡 Structure recommandée : Forme généralisée
+   </div>
+   <div class="row g-2 mb-2">
+    <div class="col-md-6">
+     <span class="badge bg-secondary mb-1">
+      Algorithme
+     </span>
+     <pre class="m-0 p-2 bg-white rounded border"><code class="language-algorithm">Si condition1 Alors
+  // Traitement 1
+Sinon Si condition2 Alors
+  // Traitement 2
+Sinon
+  // Traitement 3
+Fin Si</code></pre>
+    </div>
+    <div class="col-md-6">
+     <span class="badge bg-secondary mb-1">
+      Python
+     </span>
+     <pre class="m-0 p-2 bg-white rounded border"><code class="language-python">if condition1:
+    # Traitement 1
+elif condition2:
+    # Traitement 2
+else:
+    # Traitement 3</code></pre>
+    </div>
+   </div>
+   <div class="small text-muted mt-2">
+    <strong>
+     Indice :
+    </strong>
+    Tester le prix d'achat pour fixer le taux de gain avant de procéder au calcul du
+            prix de vente final.
+   </div>
+  </div>
+  <div class="row">
+   <div class="col-sm-6">
+    <pre><code class="nohighlight shell python" data-text="Exemple 1">Calcul du prix de vente
+Quel est le nom du produit ? Sardines
+Quel est le prix d'achat (DT) ? 5
+Gain : 20 %
+Prix de vente : 6.0 DT</code></pre>
+   </div>
+   <div class="col-sm-6">
+    <pre><code class="nohighlight shell python" data-text="Exemple 2">Calcul du prix de vente
+Quel est le nom du produit ? Trilia
+Quel est le prix d'achat (DT) ? 20
+Gain : 25 %
+Prix de vente : 25.0 DT</code></pre>
+   </div>
+  </div>
+ </section>
+ <!-- EXERCICE 7 -->
+ <section class="mb-5 exercise-section" data-ex-id="ex7" id="exercice-7">
+  <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+   <h3 class="h4 text-primary m-0">
+    Exercice 7 : Garde d'enfants
+   </h3>
+   <div class="d-flex gap-2">
+    <span class="badge badge-difficulty-hard rounded-pill px-3 py-2">
+     🔴 Difficile
+    </span>
+    <span class="badge bg-primary rounded-pill px-3 py-2">
+     Forme généralisée
+    </span>
+   </div>
+  </div>
+  <figure class="d-print-none text-center my-3">
+   <img alt="Garde enfant" class="img-fluid rounded shadow-sm" src="assets/img/garde-enfants.jpeg"/>
+   <figcaption class="figure-caption text-center text-muted mt-1">
+    Garde enfant
+   </figcaption>
+  </figure>
+  <p>
+   Une garde d'enfants applique la tarification horaire suivante :
+  </p>
+  <ul>
+   <li>
+    <strong>
+     10 DT / heure
+    </strong>
+    entre 18h et 20h
+   </li>
+   <li>
+    <strong>
+     15 DT / heure
+    </strong>
+    entre 20h et 23h
+   </li>
+   <li>
+    <strong>
+     20 DT / heure
+    </strong>
+    entre 23h et 03h
+   </li>
+  </ul>
+  <figure class="d-print-none text-center my-3">
+   <img alt="Prix de la garde enfant" class="img-fluid rounded shadow-sm" src="assets/img/garde-enfants-prix.png"/>
+   <figcaption class="figure-caption text-center text-muted mt-1">
+    Prix de la garde enfant
+   </figcaption>
+  </figure>
+  <p>
+   Écrire un programme qui saisit l'heure d'arrivée d'un enfant et l'heure de départ de ses parents, puis
+          calcule et affiche le montant total à payer.
+  </p>
+  <!-- Indice / Structure -->
+  <div class="alert alert-light border-start border-warning border-4 shadow-sm my-3 d-print-none">
+   <div class="fw-bold text-dark mb-2">
+    💡 Structure recommandée : Forme généralisée
+   </div>
+   <div class="row g-2 mb-2">
+    <div class="col-md-6">
+     <span class="badge bg-secondary mb-1">
+      Algorithme
+     </span>
+     <pre class="m-0 p-2 bg-white rounded border"><code class="language-algorithm">Si condition1 Alors
+  // Traitement 1
+Sinon Si condition2 Alors
+  // Traitement 2
+Sinon
+  // Traitement 3
+Fin Si</code></pre>
+    </div>
+    <div class="col-md-6">
+     <span class="badge bg-secondary mb-1">
+      Python
+     </span>
+     <pre class="m-0 p-2 bg-white rounded border"><code class="language-python">if condition1:
+    # Traitement 1
+elif condition2:
+    # Traitement 2
+else:
+    # Traitement 3</code></pre>
+    </div>
+   </div>
+   <div class="small text-muted mt-2">
+    <strong>
+     Indice :
+    </strong>
+    Calculer séparément le nombre d'heures passées dans chaque tranche tarifaire
+            (18h-20h, 20h-23h, 23h-03h) avant de multiplier par les tarifs respectifs.
+   </div>
+  </div>
+  <div class="row">
+   <div class="col-sm-6">
+    <pre><code class="nohighlight shell python" data-text="Exemple 1">Heure d'arrivée ? 18
+Heure de départ ? 23
+Le montant à payer 65 DT</code></pre>
+   </div>
+   <div class="col-sm-6">
+    <pre><code class="nohighlight shell python" data-text="Exemple 2">Heure d'arrivée ? 21
+Heure de départ ? 0
+Le montant à payer 50 DT</code></pre>
+   </div>
+  </div>
+ </section>
+ <!-- EXERCICE 8 -->
+ <section class="mb-5 exercise-section" data-ex-id="ex8" id="exercice-8">
+  <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+   <h3 class="h4 text-primary m-0">
+    Exercice 8 : Date du lendemain
+   </h3>
+   <div class="d-flex gap-2">
+    <span class="badge badge-difficulty-hard rounded-pill px-3 py-2">
+     🔴 Difficile
+    </span>
+    <span class="badge bg-primary rounded-pill px-3 py-2">
+     Forme alternative &amp; Généralisée
+    </span>
+   </div>
+  </div>
+  <p>
+   Écrire un programme qui saisit une date sous la forme
+   <code>
+    jj/mm/aaaa
+   </code>
+   , puis calcule et affiche la
+          date du lendemain.
+  </p>
+  <figure class="d-print-none text-center my-3">
+   <img alt="Date du lendemain" class="img-fluid rounded shadow-sm" src="assets/img/date-lendemain.png"/>
+   <figcaption class="figure-caption text-center text-muted mt-1">
+    Date du lendemain
+   </figcaption>
+  </figure>
+  <p>
+   Rappel du nombre de jours par mois :
+  </p>
+  <div class="table-responsive">
+   <table class="table table-sm table-bordered table-striped text-center shadow-sm">
+    <thead class="table-dark">
+     <tr>
+      <th>
+       Jan
+      </th>
+      <th>
+       Fév
+      </th>
+      <th>
+       Mar
+      </th>
+      <th>
+       Avr
+      </th>
+      <th>
+       Mai
+      </th>
+      <th>
+       Juin
+      </th>
+      <th>
+       Juil
+      </th>
+      <th>
+       Août
+      </th>
+      <th>
+       Sep
+      </th>
+      <th>
+       Oct
+      </th>
+      <th>
+       Nov
+      </th>
+      <th>
+       Déc
+      </th>
+     </tr>
+    </thead>
+    <tbody>
+     <tr>
+      <td>
+       31
+      </td>
+      <td>
+       28
+      </td>
+      <td>
+       31
+      </td>
+      <td>
+       30
+      </td>
+      <td>
+       31
+      </td>
+      <td>
+       30
+      </td>
+      <td>
+       31
+      </td>
+      <td>
+       31
+      </td>
+      <td>
+       30
+      </td>
+      <td>
+       31
+      </td>
+      <td>
+       30
+      </td>
+      <td>
+       31
+      </td>
+     </tr>
+    </tbody>
+   </table>
+  </div>
+  <!-- Indice / Structure -->
+  <div class="alert alert-light border-start border-warning border-4 shadow-sm my-3 d-print-none">
+   <div class="fw-bold text-dark mb-2">
+    💡 Structure recommandée : Forme alternative &amp; Généralisée
+   </div>
+   <div class="row g-2 mb-2">
+    <div class="col-md-6">
+     <span class="badge bg-secondary mb-1">
+      Algorithme
+     </span>
+     <pre class="m-0 p-2 bg-white rounded border"><code class="language-algorithm">Si condition Alors
+  // Traitement 1 (Même mois)
+Sinon
+  // Traitement 2 (Changement de mois/année)
+Fin Si</code></pre>
+    </div>
+    <div class="col-md-6">
+     <span class="badge bg-secondary mb-1">
+      Python
+     </span>
+     <pre class="m-0 p-2 bg-white rounded border"><code class="language-python">if condition:
+    # Même mois
+else:
+    # Changement mois/année</code></pre>
+    </div>
+   </div>
+   <div class="small text-muted mt-2">
+    <strong>
+     Indice :
+    </strong>
+    Tester si le jour actuel est le dernier jour du mois en cours. Si oui,
+            réinitialiser le jour à 1 et incrémenter le mois (en gérant le passage au 1er janvier de l'année suivante si
+            mois = 12).
+   </div>
+  </div>
+  <div class="row">
+   <div class="col-sm-6">
+    <pre><code class="nohighlight shell python" data-text="Exemple 1">Entrer une date (jj/mm/aaaa) ? 31/12/2021
+Lendemain = 1 / 1 / 2022</code></pre>
+   </div>
+   <div class="col-sm-6">
+    <pre><code class="nohighlight shell python" data-text="Exemple 2">Entrer une date (jj/mm/aaaa) ? 28/02/2021
+Lendemain = 1 / 3 / 2021</code></pre>
+   </div>
+  </div>
+ </section>
+ <!-- EXERCICE 9 -->
+ <section class="mb-5 exercise-section" data-ex-id="ex9" id="exercice-9">
+  <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+   <h3 class="h4 text-primary m-0">
+    Exercice 9 : Chiffre hexadécimal
+   </h3>
+   <div class="d-flex gap-2">
+    <span class="badge badge-difficulty-easy rounded-pill px-3 py-2">
+     🟢 Facile
+    </span>
+    <span class="badge bg-primary rounded-pill px-3 py-2">
+     Structure à choix
+    </span>
+   </div>
+  </div>
+  <p>
+   Ecrire un programme qui permet de saisir un entier
+   <code>
+    n
+   </code>
+   <u>
+    entre 0 et 15
+   </u>
+   et de le
+   <strong>
+    convertir en chiffre hexadécimal
+   </strong>
+   (0-9 conservés, 10-15 représentés par A-F).
+  </p>
+  <figure class="text-center my-3">
+   <img alt="Chiffres hexadécimaux" class="img-fluid rounded shadow-sm" src="assets/img/chiffre-hexadecimal.png"/>
+   <figcaption class="figure-caption text-center text-muted mt-1">
+    Chiffres hexadécimaux
+   </figcaption>
+  </figure>
+  <!-- Indice / Structure -->
+  <div class="alert alert-light border-start border-warning border-4 shadow-sm my-3 d-print-none">
+   <div class="fw-bold text-dark mb-2">
+    💡 Structure recommandée : Structure à choix
+   </div>
+   <div class="row g-2 mb-2">
+    <div class="col-md-6">
+     <span class="badge bg-secondary mb-1">
+      Algorithme
+     </span>
+     <pre class="m-0 p-2 bg-white rounded border"><code class="language-algorithm">Selon variable
+  valeur1, valeur2 : // Traitement 1
+  valeur3 .. valeur4 : // Traitement 2
+  Sinon : // Traitement par défaut
+Fin Selon</code></pre>
+    </div>
+    <div class="col-md-6">
+     <span class="badge bg-secondary mb-1">
+      Python
+     </span>
+     <pre class="m-0 p-2 bg-white rounded border"><code class="language-python">match variable:
+  case valeur1 | valeur2:
+    # Traitement 1
+  case var if valeur3 &lt;= var &lt;= valeur4:
+    # Traitement 2
+  case _:
+    # Traitement par défaut</code></pre>
+    </div>
+   </div>
+   <div class="small text-muted mt-2">
+    <strong>
+     Indice :
+    </strong>
+    Associer chaque nombre de 10 à 15 au caractère correspondant ('A' à 'F').
+   </div>
+  </div>
+ </section>
+ <!-- EXERCICE 10 -->
+ <section class="mb-5 exercise-section" data-ex-id="ex10" id="exercice-10">
+  <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+   <h3 class="h4 text-primary m-0">
+    Exercice 10 : Tiny Calculator
+   </h3>
+   <div class="d-flex gap-2">
+    <span class="badge badge-difficulty-easy rounded-pill px-3 py-2">
+     🟢 Facile
+    </span>
+    <span class="badge bg-primary rounded-pill px-3 py-2">
+     Structure à choix
+    </span>
+   </div>
+  </div>
+  <figure class="d-print-none text-center my-3">
+   <img alt="Tiny calculator" class="img-fluid rounded shadow-sm" src="assets/img/calculette.jpg"/>
+   <figcaption class="figure-caption text-center text-muted mt-1">
+    Tiny calculator
+   </figcaption>
+  </figure>
+  <p>
+   Ecrire un programme calculatrice qui permet de saisir deux valeurs réelles
+   <code>
+    a
+   </code>
+   et
+   <code>
+    b
+   </code>
+   ,
+          puis un opérateur arithmétique
+   <code>
+    op
+   </code>
+   (
+   <strong>
+    +
+   </strong>
+   ,
+   <strong>
+    -
+   </strong>
+   ,
+   <strong>
+    *
+   </strong>
+   ,
+   <strong>
+    /
+   </strong>
+   ) et affiche le résultat de l'opération.
+  </p>
+  <p class="fw-bold text-danger">
+   Attention : tester une éventuelle division par zéro.
+  </p>
+  <!-- Indice / Structure -->
+  <div class="alert alert-light border-start border-warning border-4 shadow-sm my-3 d-print-none">
+   <div class="fw-bold text-dark mb-2">
+    💡 Structure recommandée : Structure à choix &amp; Forme alternative
+   </div>
+   <div class="row g-2 mb-2">
+    <div class="col-md-6">
+     <span class="badge bg-secondary mb-1">
+      Algorithme
+     </span>
+     <pre class="m-0 p-2 bg-white rounded border"><code class="language-algorithm">Selon opérateur
+  "+" : // Addition
+  "-" : // Soustraction
+  "*" : // Multiplication
+  "/" : // Division avec test de zéro
+Fin Selon</code></pre>
+    </div>
+    <div class="col-md-6">
+     <span class="badge bg-secondary mb-1">
+      Python
+     </span>
+     <pre class="m-0 p-2 bg-white rounded border"><code class="language-python">match op:
+  case "+": # Addition
+  case "-": # Soustraction
+  case "*": # Multiplication
+  case "/": # Division (if b != 0)</code></pre>
+    </div>
+   </div>
+   <div class="small text-muted mt-2">
+    <strong>
+     Indice :
+    </strong>
+    Tester si le deuxième opérande est nul avant d'effectuer l'opération de division.
+   </div>
+  </div>
+ </section>
+ <!-- EXERCICE 11 -->
+ <section class="mb-5 exercise-section" data-ex-id="ex11" id="exercice-11">
+  <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+   <h3 class="h4 text-primary m-0">
+    Exercice 11 : Bonhommes de neige ordonnés
+   </h3>
+   <div class="d-flex gap-2">
+    <span class="badge badge-difficulty-medium rounded-pill px-3 py-2">
+     🟡 Moyen
+    </span>
+    <span class="badge bg-primary rounded-pill px-3 py-2">
+     Forme alternative
+    </span>
+   </div>
+  </div>
+  <figure class="text-center my-3">
+   <img alt="Bonhommes de neige" class="img-fluid rounded shadow-sm" src="assets/img/homme-de-neige-ordre.jpg"/>
+   <figcaption class="figure-caption text-center text-muted mt-1">
+    Bonhommes de neige
+   </figcaption>
+  </figure>
+  <p>
+   Ecrire un programme qui saisit l'hauteur, en cm, des trois bonhommes de neige
+   <code>
+    a
+   </code>
+   ,
+   <code>
+    b
+   </code>
+   et
+   <code>
+    c
+   </code>
+   puis affiche s'ils sont
+   <strong>
+    ordonnés
+   </strong>
+   ou pas.
+  </p>
+  <p>
+   <strong>
+    Note :
+   </strong>
+   Les bonhommes de neige peuvent être ordonnés en ordre croissant ou en ordre
+          décroissant.
+  </p>
+  <!-- Indice / Structure -->
+  <div class="alert alert-light border-start border-warning border-4 shadow-sm my-3 d-print-none">
+   <div class="fw-bold text-dark mb-2">
+    💡 Structure recommandée : Forme alternative
+   </div>
+   <div class="row g-2 mb-2">
+    <div class="col-md-6">
+     <span class="badge bg-secondary mb-1">
+      Algorithme
+     </span>
+     <pre class="m-0 p-2 bg-white rounded border"><code class="language-algorithm">Si condition Alors
+  // Traitement 1 (si Vrai)
+Sinon
+  // Traitement 2 (si Faux)
+Fin Si</code></pre>
+    </div>
+    <div class="col-md-6">
+     <span class="badge bg-secondary mb-1">
+      Python
+     </span>
+     <pre class="m-0 p-2 bg-white rounded border"><code class="language-python">if condition:
+    # Traitement 1 (si True)
+else:
+    # Traitement 2 (si False)</code></pre>
+    </div>
+   </div>
+   <div class="small text-muted mt-2">
+    <strong>
+     Indice :
+    </strong>
+    Vérifier si la suite des hauteurs est entièrement croissante OU entièrement
+            décroissante.
+   </div>
+  </div>
+  <div class="row">
+   <div class="col-sm-6">
+    <pre><code class="nohighlight shell python" data-text="Exemple 1">Hauteur du Bonhomme 1 ? 3
+Hauteur du Bonhomme 2 ? 4
+Hauteur du Bonhomme 3 ? 5
+Les bonhommes sont ordonnés</code></pre>
+   </div>
+   <div class="col-sm-6">
+    <pre><code class="nohighlight shell python" data-text="Exemple 2">Hauteur du Bonhomme 1 ? 3
+Hauteur du Bonhomme 2 ? 5
+Hauteur du Bonhomme 3 ? 4
+Les bonhommes ne sont pas ordonnés</code></pre>
+   </div>
+  </div>
+ </section>
+ <!-- EXERCICE 12 -->
+ <section class="mb-5 exercise-section" data-ex-id="ex12" id="exercice-12">
+  <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+   <h3 class="h4 text-primary m-0">
+    Exercice 12 : La meilleure moyenne
+   </h3>
+   <div class="d-flex gap-2">
+    <span class="badge badge-difficulty-medium rounded-pill px-3 py-2">
+     🟡 Moyen
+    </span>
+    <span class="badge bg-primary rounded-pill px-3 py-2">
+     Forme généralisée
+    </span>
+   </div>
+  </div>
+  <figure class="text-center my-3">
+   <img alt="Meilleure moyenne" class="img-fluid rounded shadow-sm" src="assets/img/meilleure-moyenne.png"/>
+   <figcaption class="figure-caption text-center text-muted mt-1">
+    La meilleure moyenne
+   </figcaption>
+  </figure>
+  <p>
+   Ecrire un programme qui saisit les notes et les noms de trois élèves, puis affiche
+   <strong>
+    le nom de
+            l'élève
+   </strong>
+   qui a obtenu
+   <strong>
+    la meilleure note
+   </strong>
+   .
+  </p>
+  <p>
+   On suppose que les notes sont deux à deux distinctes.
+  </p>
+  <!-- Indice / Structure -->
+  <div class="alert alert-light border-start border-warning border-4 shadow-sm my-3 d-print-none">
+   <div class="fw-bold text-dark mb-2">
+    💡 Structure recommandée : Forme généralisée
+   </div>
+   <div class="row g-2 mb-2">
+    <div class="col-md-6">
+     <span class="badge bg-secondary mb-1">
+      Algorithme
+     </span>
+     <pre class="m-0 p-2 bg-white rounded border"><code class="language-algorithm">Si condition1 Alors
+  // Traitement 1
+Sinon Si condition2 Alors
+  // Traitement 2
+Sinon
+  // Traitement 3
+Fin Si</code></pre>
+    </div>
+    <div class="col-md-6">
+     <span class="badge bg-secondary mb-1">
+      Python
+     </span>
+     <pre class="m-0 p-2 bg-white rounded border"><code class="language-python">if condition1:
+    # Traitement 1
+elif condition2:
+    # Traitement 2
+else:
+    # Traitement 3</code></pre>
+    </div>
+   </div>
+   <div class="small text-muted mt-2">
+    <strong>
+     Indice :
+    </strong>
+    Comparer la moyenne de chaque élève à celles des deux autres.
+   </div>
+  </div>
+  <div class="row">
+   <div class="col-sm-6">
+    <pre><code class="nohighlight shell python" data-text="Exemple 1">Elève 1 ? Eya
+Moyenne Eya ? 15.6
+Elève 2 ? Rayen
+Moyenne Rayen ? 16.0
+Elève 3 ? Amira
+Moyenne Amira ? 15.5
+L'élève Rayen a obtenu la meilleure moyenne</code></pre>
+   </div>
+   <div class="col-sm-6">
+    <pre><code class="nohighlight shell python" data-text="Exemple 2">Elève 1 ? Sami
+Moyenne Sami ? 17.6
+Elève 2 ? Youssef
+Moyenne Youssef ? 13.0
+Elève 3 ? Abderrazek
+Moyenne Abderrazek ? 18.5
+L'élève Abderrazek a obtenu la meilleure moyenne</code></pre>
+   </div>
+  </div>
+ </section>
+</article>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-custom py-4 text-center mt-5">
+    <div class="container">
+      <div class="mb-2">
+        <span class="fw-bold text-white">Informatique 4<sup>e</sup> Année Scientifique</span>
+        <span class="mx-2 text-white-50">|</span>
+        <span class="text-light">Bac 2026</span>
+      </div>
+      <div class="small text-white-50 mb-3">
+        Conformité pédagogique aux programmes et conventions officielles 2024-2025
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts JS Locaux -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/highlight.min.js"></script>
+  <script src="assets/js/hljs.algorithm.js"></script>
+  <script src="assets/js/clipboard.min.js"></script>
+  <script src="assets/js/main-ui.js?v=2"></script>
+  <script src="assets/js/pages.js"></script>
+  <script src="assets/js/katex.min.js"></script>
+  <script src="assets/js/auto-render.min.js"></script>
+
+  <!-- Highlighting & Clipboard Setup -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof hljs !== 'undefined') {
+        if (typeof hljs.highlightAll === 'function') {
+          hljs.highlightAll();
+        } else if (typeof hljs.initHighlightingOnLoad === 'function') {
+          hljs.initHighlightingOnLoad();
+        }
+      }
+
+      document.querySelectorAll('.language-algorithm, .language-python').forEach(item => {
+        if (!item.parentElement.querySelector('.bd-clipboard')) {
+          const div = document.createElement('div');
+          div.className = 'bd-clipboard d-print-none';
+          const btn = document.createElement('button');
+          btn.className = 'btn-clipboard';
+          btn.type = 'button';
+          btn.innerHTML = '<i class="bi bi-clipboard me-1"></i> Copier';
+          btn.title = "Copier le code";
+          div.appendChild(btn);
+          item.parentElement.insertBefore(div, item);
+        }
+      });
+
+      if (typeof ClipboardJS !== 'undefined') {
+        const clipboard = new ClipboardJS('.btn-clipboard', {
+          target: (trigger) => trigger.parentElement.nextElementSibling
+        });
+
+        clipboard.on('success', (e) => {
+          const btn = e.trigger;
+          const orig = btn.innerHTML;
+          btn.innerHTML = '<i class="bi bi-check-lg me-1"></i> Copié !';
+          btn.classList.add('copied');
+          setTimeout(() => {
+            btn.innerHTML = orig;
+            btn.classList.remove('copied');
+          }, 2000);
+          e.clearSelection();
+        });
+      }
+    });
+  </script>
+
+  <!-- KaTeX Auto-Render Math Setup -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (typeof renderMathInElement === 'function') {
+        try {
+          renderMathInElement(document.body, {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '$', right: '$', display: false },
+              { left: '\(', right: '\)', display: false },
+              { left: '\[', right: '\]', display: true }
+            ],
+            throwOnError: false
+          });
+        } catch (e) {
+          console.error("KaTeX render error:", e);
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -3,8 +3,8 @@
  * Logique applicative JavaScript (Vue 3) pour seance01.html
  * Séance 1 : Structures de données (Types numériques & textuels)
  * Séquence pédagogique en deux problèmes consécutifs :
- *   - Problème 1 : Types numériques, fonctions arithmétiques & repère 2D (Phases 1 à 5)
- *   - Problème 2 : Types textuels, primitives de chaînes & analyseur indicé (Phases 1 à 5)
+ *   - Problème 1 : Types numériques, fonctions arithmétiques & repère 2D (Phases 1 à 4)
+ *   - Problème 2 : Types textuels, primitives de chaînes & analyseur indicé (Phases 1 à 4)
  * Conforme aux conventions officielles tunisiennes 2024-2025 (Bac 2026)
  */
 
@@ -14,26 +14,24 @@ createApp({
   data() {
     return {
       currentProblem: 1, // 1 ou 2
-      currentPhase: 1,   // 1, 2, 3, 4, 5 ou 'all'
+      currentPhase: 1,   // 1, 2, 3, 4 ou 'all'
       isMenuOpen: false,
 
       // ==========================================
       // PHASES PÉDAGOGIQUES PAR PROBLÈME
       // ==========================================
       phasesP1: [
-        { title: "Accroche & Réactivation (Distance euclidienne)", shortTitle: "Phase 1 : Accroche", duration: "10 min" },
-        { title: "Fonctions Prédéfinies Arithmétiques", shortTitle: "Phase 2 : Fonctions Prédéfinies", duration: "15 min" },
-        { title: "Conception & TDO (ALGORITHME DistanceEuclidienne)", shortTitle: "Phase 3 : Algo & TDO", duration: "20 min" },
-        { title: "Machine & Laboratoire (Repère cartésien 2D)", shortTitle: "Phase 4 : Labo 2D", duration: "20 min" },
-        { title: "Bilan & Auto-évaluation (Questions flash & Quiz arithmétique)", shortTitle: "Phase 5 : Bilan & Quiz", duration: "5 min" }
+        { title: "Situation & Labo 2D (Distance euclidienne)", shortTitle: "Situation & Labo 2D", duration: "10 min" },
+        { title: "Fonctions Prédéfinies Arithmétiques", shortTitle: "Fonctions Arithmétiques", duration: "15 min" },
+        { title: "Algorithme & Programme DistanceEuclidienne", shortTitle: "Algo & Programme", duration: "25 min" },
+        { title: "Bilan & Auto-évaluation (Questions flash & Quiz arithmétique)", shortTitle: "Bilan & Quiz", duration: "5 min" }
       ],
 
       phasesP2: [
-        { title: "Accroche & Situation-problème (Code d'inscription)", shortTitle: "Phase 1 : Accroche", duration: "10 min" },
-        { title: "Fonctions Prédéfinies Textuelles", shortTitle: "Phase 2 : Fonctions Prédéfinies", duration: "15 min" },
-        { title: "Conception & TDO (ALGORITHME MajCode)", shortTitle: "Phase 3 : Algo & TDO", duration: "20 min" },
-        { title: "Machine & Laboratoire (Analyseur indicé de chaînes)", shortTitle: "Phase 4 : Labo Chaînes", duration: "20 min" },
-        { title: "Bilan & Auto-évaluation (Questions flash & Quiz textuel)", shortTitle: "Phase 5 : Bilan & Quiz", duration: "5 min" }
+        { title: "Situation & Labo Chaîne (Code d'inscription)", shortTitle: "Situation & Labo Chaîne", duration: "10 min" },
+        { title: "Fonctions Prédéfinies Textuelles", shortTitle: "Primitives Chaînes", duration: "15 min" },
+        { title: "Algorithme & Programme MajCode", shortTitle: "Algo & Programme", duration: "25 min" },
+        { title: "Bilan & Auto-évaluation (Questions flash & Quiz textuel)", shortTitle: "Bilan & Quiz", duration: "5 min" }
       ],
 
       // ==========================================
@@ -43,21 +41,21 @@ createApp({
         {
           id: 1,
           question: "Comment exprimer le quotient et le reste d'une division entière ?",
-          algoAns: "Quotient : Div (ex: 14 Div 3 = 4) | Reste : Mod (ex: 14 Mod 3 = 2)",
+          algoAns: "Quotient : div (ex: 14 div 3 = 4) | Reste : mod (ex: 14 mod 3 = 2)",
           pyAns: "Quotient : // (ex: 14 // 3 == 4) | Reste : % (ex: 14 % 3 == 2)",
           isOpen: false
         },
         {
           id: 2,
-          question: "Comment extraire une racine carrée ou générer un entier aléatoire sans réécrire l'algorithme ?",
+          question: "Comment extraire une racine carrée ou générer un entier aléatoire ?",
           algoAns: "On utilise les fonctions prédéfinies : Racine(x) et Aléa(vi, vf).",
           pyAns: "On importe depuis la bibliothèque standard : from math import sqrt et from random import randint.",
           isOpen: false
         },
         {
           id: 3,
-          question: "Quelle est la différence fondamentale entre la division réelle (/) et la division entière (Div / //) ?",
-          algoAns: "a / b produit toujours un Réel (ex: 14 / 3 ≈ 4.666...), alors que a Div b produit un Entier (la part entière sans virgule).",
+          question: "Quelle est la différence fondamentale entre la division réelle (/) et la division entière (div) ?",
+          algoAns: "a / b produit toujours un Réel (ex: 14 / 3 ≈ 4.666...), alors que a div b produit un Entier (part entière sans virgule).",
           pyAns: "14 / 3 donne un float (4.666666666666667), alors que 14 // 3 donne un int (4).",
           isOpen: false
         }
@@ -263,7 +261,7 @@ createApp({
         : 'Tout afficher (Problème ' + this.currentProblem + ')';
     },
     phaseChipText() {
-      return 'P' + this.currentProblem + '-' + (this.currentPhase === 'all' ? 'All' : this.currentPhase + '/5');
+      return 'P' + this.currentProblem + '-' + (this.currentPhase === 'all' ? 'All' : this.currentPhase + '/4');
     },
 
     // Calculs en direct du simulateur cartésien 2D (Problème 1)
@@ -331,14 +329,120 @@ createApp({
     this.initQuiz1();
     this.initQuiz2();
     this.highlightAll();
+
+    // Lecture du hash d'URL initial si présent
+    if (this.readUrl()) {
+      this.$nextTick(() => {
+        this.highlightAll();
+      });
+    } else {
+      this.updateUrl(true);
+    }
+
+    // Écoute des boutons Précédent / Suivant du navigateur
+    window.addEventListener('popstate', () => {
+      this.handleHashChange();
+    });
+    window.addEventListener('hashchange', () => {
+      this.handleHashChange();
+    });
+
+    // Fermeture automatique de tout dropdown au clic sur une option
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('.dropdown-item')) {
+        this.closeDropdowns();
+      }
+    });
+
+    // Coloration syntaxique lors du basculement des onglets
+    document.querySelectorAll('button[data-bs-toggle="tab"]').forEach((tabEl) => {
+      tabEl.addEventListener('shown.bs.tab', () => {
+        this.highlightAll();
+      });
+    });
   },
 
   methods: {
+    // Mise à jour de l'URL avec le problème et la phase actifs
+    updateUrl(replace = false) {
+      const hash = this.currentPhase === 'all'
+        ? `#p${this.currentProblem}-all`
+        : `#p${this.currentProblem}-phase${this.currentPhase}`;
+
+      if (window.location.hash !== hash) {
+        if (replace) {
+          history.replaceState(null, '', hash);
+        } else {
+          history.pushState(null, '', hash);
+        }
+      }
+    },
+
+    // Lecture de l'état (problème et phase) depuis le hash de l'URL
+    readUrl() {
+      const hash = window.location.hash.trim().toLowerCase();
+      if (!hash) return false;
+
+      // Formats acceptés : #p1-phase2, #p1-2, #p1-all, #p2-phase3, etc.
+      const match = hash.match(/^#p([12])-(?:phase-?)?([1-4]|all)/i);
+      if (match) {
+        const prob = parseInt(match[1], 10);
+        const phase = match[2] === 'all' ? 'all' : parseInt(match[2], 10);
+        this.currentProblem = prob;
+        this.currentPhase = phase;
+        return true;
+      }
+      return false;
+    },
+
+    // Gestion du changement de hash via le navigateur (historique)
+    handleHashChange() {
+      if (this.readUrl()) {
+        this.closeDropdowns();
+        this.$nextTick(() => {
+          this.highlightAll();
+        });
+      }
+    },
+
+    // Fermeture des dropdowns et du menu responsive
+    closeDropdowns() {
+      if (window.bootstrap && window.bootstrap.Dropdown) {
+        document.querySelectorAll('.dropdown-toggle').forEach((el) => {
+          const inst = window.bootstrap.Dropdown.getInstance(el);
+          if (inst) {
+            inst.hide();
+          }
+        });
+      }
+      document.querySelectorAll('.dropdown-menu.show').forEach((menu) => {
+        menu.classList.remove('show');
+        menu.removeAttribute('data-bs-popper');
+      });
+      document.querySelectorAll('.dropdown-toggle.show').forEach((toggle) => {
+        toggle.classList.remove('show');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+
+      const navCollapse = document.getElementById('navContent');
+      if (navCollapse && navCollapse.classList.contains('show')) {
+        if (window.bootstrap && window.bootstrap.Collapse) {
+          const collapseInst = window.bootstrap.Collapse.getInstance(navCollapse);
+          if (collapseInst) {
+            collapseInst.hide();
+          }
+        }
+        navCollapse.classList.remove('show');
+      }
+    },
+
     // Sélecteur de problème
     setProblem(probNum, phaseNum = 1) {
       this.currentProblem = probNum;
       this.currentPhase = phaseNum;
       this.isMenuOpen = false;
+      this.closeDropdowns();
+      this.updateUrl();
       this.$nextTick(() => {
         this.highlightAll();
         window.scrollTo({ top: 180, behavior: 'smooth' });
@@ -349,6 +453,8 @@ createApp({
     setPhase(phaseNum) {
       this.currentPhase = phaseNum;
       this.isMenuOpen = false;
+      this.closeDropdowns();
+      this.updateUrl();
       this.$nextTick(() => {
         this.highlightAll();
         window.scrollTo({ top: 220, behavior: 'smooth' });
@@ -364,9 +470,9 @@ createApp({
         return;
       }
 
-      if (this.currentPhase < 5) {
+      if (this.currentPhase < 4) {
         this.setPhase(this.currentPhase + 1);
-      } else if (this.currentPhase === 5 && this.currentProblem === 1) {
+      } else if (this.currentPhase === 4 && this.currentProblem === 1) {
         // Fin du problème 1 -> passage séquentiel au problème 2 !
         this.setProblem(2, 1);
       }
@@ -383,8 +489,8 @@ createApp({
       if (this.currentPhase > 1) {
         this.setPhase(this.currentPhase - 1);
       } else if (this.currentPhase === 1 && this.currentProblem === 2) {
-        // Début du problème 2 -> retour vers la phase 5 du problème 1
-        this.setProblem(1, 5);
+        // Début du problème 2 -> retour vers la phase 4 du problème 1
+        this.setProblem(1, 4);
       }
     },
 
@@ -395,6 +501,8 @@ createApp({
         this.currentPhase = 'all';
       }
       this.isMenuOpen = false;
+      this.closeDropdowns();
+      this.updateUrl();
       this.$nextTick(() => {
         this.highlightAll();
       });
@@ -440,30 +548,25 @@ print("Distance paire ? :", est_pair)`;
     },
 
     copyPythonCodeText() {
-      const code = `# Saisie du code d'inscription
+      const code = `# Saisie du code
 code = input("Donner le code (ex: info-2026) : ")
 
-# Recherche de la position du tiret séparateur
+# Position du tiret et découpage
 p = code.find('-')
+prefixe = code[0:p]
+suffixe = code[p + 1:]
 
-if p != -1:
-    prefixe = code[0:p]
-    suffixe = code[p + 1:]
-    
-    # Mise en majuscules du préfixe
-    prefixe_maj = prefixe.upper()
-    
-    # Test numérique et incrémentation de l'année
-    if suffixe.isdecimal():
-        annee = int(suffixe)
-        nouvelle_annee = annee + 1
-        nouveau_code = prefixe_maj + "-" + str(nouvelle_annee)
-    else:
-        nouveau_code = prefixe_maj + "-" + suffixe
+# Vérification que le suffixe est numérique
+valide = suffixe.isdecimal()
+
+if valide:
+    # Préfixe en majuscules et incrémentation de l'année
+    annee = int(suffixe)
+    nouvelle_annee = annee + 1
+    nouveau_code = prefixe.upper() + "-" + str(nouvelle_annee)
+    print("Nouveau code :", nouveau_code)
 else:
-    nouveau_code = code.upper()
-
-print("Nouveau code généré :", nouveau_code)`;
+    print("Erreur : le suffixe n'est pas numérique !")`;
 
       this.executeClipboardCopy(code, 'copyStatusText', 'Copier le script Python (Chaînes)');
     },
