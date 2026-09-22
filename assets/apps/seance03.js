@@ -31,9 +31,9 @@ createApp({
         },
         {
           id: 2,
-          question: "Pour la recherche des diviseurs de 1 à N-1, pourquoi utilise-t-on la boucle Pour ?",
-          algoAns: "Car le nombre total d'itérations est déterminé et connu à l'avance (exactement n - 1 itérations de 1 à n - 1).",
-          pyAns: "En Python, cela s'exprime par 'for i in range(1, n):' car la borne supérieure n est exclue, ce qui s'arrête exactement à n - 1.",
+          question: "Pour la recherche des diviseurs de 1 à N div 2, pourquoi utilise-t-on la boucle Pour ?",
+          algoAns: "Car le nombre total d'itérations est déterminé et connu à l'avance (exactement n div 2 itérations de 1 à n div 2).",
+          pyAns: "En Python, cela s'exprime par 'for i in range(1, n // 2 + 1):' car la borne supérieure n // 2 + 1 est exclue, ce qui s'arrête exactement à n // 2.",
           isOpen: false
         },
         {
@@ -295,7 +295,8 @@ createApp({
     divisorsList() {
       if (this.nVal <= 1) return [];
       const res = [];
-      for (let i = 1; i < this.nVal; i++) {
+      const limit = Math.floor(this.nVal / 2);
+      for (let i = 1; i <= limit; i++) {
         if (this.nVal % i === 0) {
           res.push(i);
         }
@@ -338,8 +339,12 @@ createApp({
       if (!this.isValidInput) {
         out += `[Boucle post-test] Saisie hors intervalle 2..100 ! Répétition de la demande...\n`;
       }
-      out += `Le nombre est-il parfait ? : ${this.isPerfect ? 'True' : 'False'}\n`;
-      out += `Nombre de divisions par 2 possibles : ${this.nbDiv2}`;
+      if (this.isPerfect) {
+        out += `${this.nVal} est un nombre parfait.\n`;
+      } else {
+        out += `${this.nVal} n'est pas un nombre parfait.\n`;
+      }
+      out += `${this.nVal} supporte ${this.nbDiv2} divisions par 2, l'entier impair retrouvé est ${this.lastOddNumber}.`;
       return out;
     }
   },

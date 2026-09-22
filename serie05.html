@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Série N°5 : Modularité 1 (Les Fonctions) - Informatique 4SC (Bac 2026)</title>
+
+  <!-- Métadonnées SEO & Description -->
+  <meta name="description"
+    content="Série d'exercices N°5 d'Informatique pour 4ème Année Scientifique (Bac 2026) : Modularité 1, Fonctions pures, paramètres formels et effectifs, TDOL et implémentation Python.">
+
+  <!-- Dépendances locales -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/atom-one-dark.min.css">
+  <link rel="stylesheet" href="assets/css/style.css?v=2">
+  <link rel="stylesheet" href="assets/css/katex.min.css">
+  <link rel="stylesheet" href="assets/css/serie05.css?v=3">
+</head>
+
+<body>
+
+  <!-- Header / Navigation -->
+  <header class="modern-header d-print-none sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+      <div class="container-fluid px-md-4">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+          <i class="bi bi-cpu-fill text-primary"></i>
+          <span>Informatique 4<sup>e</sup> SC</span>
+          <span class="brand-badge">Bac 2026</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#aside_navbar"
+          aria-controls="aside_navbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="aside_navbar">
+          <!-- Le menu déroulant des exercices est généré automatiquement par pages.js -->
+        </div>
+        <div class="d-flex align-items-center gap-2 ms-auto mt-2 mt-lg-0">
+          <a href="seance04.html" class="btn btn-outline-info btn-sm rounded-pill px-3 py-1">
+            <i class="bi bi-arrow-left me-1"></i> Séance 4
+          </a>
+          <button id="theme-toggle-btn" class="btn btn-outline-secondary btn-sm rounded-pill px-3 py-1" type="button">
+            🌙 <span class="d-none d-sm-inline ms-1">Mode Sombre</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section text-center d-print-none py-4 mb-3">
+    <div class="container">
+      <div class="d-flex justify-content-center flex-wrap gap-2 mb-2">
+        <span class="badge bg-primary px-3 py-1"><i class="bi bi-diagram-3 me-1"></i>Axe : Modularité 1</span>
+        <span class="badge bg-secondary px-2 py-1">Sections : Sc. Expérimentales, Mathématiques &amp; Sc. Techniques</span>
+        <span class="badge bg-info text-dark px-2 py-1"><i class="bi bi-bookmark-check-fill me-1"></i>Conventions 2024-2025</span>
+      </div>
+      <h1 class="hero-title display-6 fw-bold mb-2">Série N°5 : Modularité 1 — Les Fonctions</h1>
+      <p class="text-muted mb-0">Paramètres formels et effectifs, concordance, résultat scalaire unique, T.D.O.L. et transcription Python.</p>
+    </div>
+  </section>
+
+  <!-- Contenu principal -->
+  <main class="container my-4">
+    <article>
+      <h2 class="border-bottom pb-2 mb-4">Série N°5 : Les Fonctions</h2>
+
+      <!-- ========================================================
+           EXERCICE 1 : QCM NIVEAU FACILE (10 QUESTIONS)
+           ======================================================== -->
+      <section class="mb-5 exercise-section" data-ex-id="ex1" id="exercice-1">
+        <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+          <h3 class="h4 text-primary m-0">Exercice 1 : QCM Fondamentaux des Fonctions</h3>
+          <span class="badge badge-difficulty-easy rounded-pill px-3 py-2">🟢 Facile</span>
+        </div>
+
+        <!-- Rappel de cours -->
+        <div class="alert alert-light border-start border-primary border-4 shadow-sm my-3 d-print-none">
+          <div class="d-flex align-items-center gap-2 fw-bold text-primary mb-1">
+            💡 <span>Rappel de cours : La Fonction en Algorithmique et en Python</span>
+          </div>
+          <ul class="mb-0 small text-muted ps-3">
+            <li>Une <strong>fonction</strong> est un sous-programme qui calcule et retourne un <strong>résultat unique de type simple</strong> (Entier, Réel, Booléen, Caractère ou Chaîne).</li>
+            <li>En algorithme, l'en-tête s'écrit : <code>Fonction NomFonc(param1 : type1, param2 : type2) : TypeRetour</code> et le résultat est transmis par l'instruction <code>Retourner valeur</code>.</li>
+            <li>En Python, une fonction se définit avec <code>def NomFonc(param1, param2):</code> et se termine par <code>return valeur</code>.</li>
+            <li>L'appel d'une fonction ne s'utilise jamais seul comme instruction, mais <strong>au sein d'une expression</strong>, d'une affectation ou d'une condition.</li>
+          </ul>
+        </div>
+
+        <p class="fw-bold text-secondary mb-3">Cochez la bonne réponse pour chacune des 10 questions suivantes :</p>
+
+        <!-- Q1 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="1" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 1</h5>
+          <div class="question">
+            <p>En algorithmique, une fonction est un sous-programme qui :</p>
+          </div>
+          <ul class="propositions">
+            <li>Calcule et retourne un résultat unique de type simple à travers son identificateur</li>
+            <li>Affiche obligatoirement un message à l'écran via l'instruction Ecrire</li>
+            <li>Modifie directement tous ses paramètres d'appel en mémoire</li>
+            <li>Ne peut recevoir aucun paramètre d'entrée</li>
+          </ul>
+        </div>
+
+        <!-- Q2 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="2" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 2</h5>
+          <div class="question">
+            <p>Quelle est la syntaxe correcte de l'en-tête d'une fonction calculant le cube d'un entier ?</p>
+          </div>
+          <ul class="propositions">
+            <li>Algorithme Cube(x : Entier) : Entier</li>
+            <li>Fonction Cube(x : Entier) : Entier</li>
+            <li>Fonction Cube(x : Entier)</li>
+            <li>Début Cube(x : Entier) : Entier</li>
+          </ul>
+        </div>
+
+        <!-- Q3 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="3" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 3</h5>
+          <div class="question">
+            <p>Quelle instruction algorithmique permet de renvoyer le résultat calculé par une fonction au programme appelant ?</p>
+          </div>
+          <ul class="propositions">
+            <li>Ecrire(res)</li>
+            <li>Lire(res)</li>
+            <li>Retourner res</li>
+            <li>Resultat &larr; res</li>
+          </ul>
+        </div>
+
+        <!-- Q4 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="1" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 4</h5>
+          <div class="question">
+            <p>En Python, quelle instruction traduit fidèlement le mot-clé algorithmique <code>Retourner</code> ?</p>
+          </div>
+          <ul class="propositions">
+            <li>return</li>
+            <li>print()</li>
+            <li>output()</li>
+            <li>yield()</li>
+          </ul>
+        </div>
+
+        <!-- Q5 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="2" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 5</h5>
+          <div class="question">
+            <p>Dans l'instruction d'appel <code>res &larr; Surface(larg + 2, 10)</code>, l'expression <code>larg + 2</code> représente :</p>
+          </div>
+          <ul class="propositions">
+            <li>Un paramètre formel</li>
+            <li>Un paramètre effectif (argument réel d'appel)</li>
+            <li>Une variable globale obligatoire</li>
+            <li>Un identificateur de fonction</li>
+          </ul>
+        </div>
+
+        <!-- Q6 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="3" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 6</h5>
+          <div class="question">
+            <p>La concordance entre paramètres formels et paramètres effectifs exige le respect strict :</p>
+          </div>
+          <ul class="propositions">
+            <li>Du nombre de paramètres uniquement</li>
+            <li>Du nom identique des variables</li>
+            <li>Du nombre, de l'ordre et des types des paramètres</li>
+            <li>De l'ordre alphabétique des identificateurs</li>
+          </ul>
+        </div>
+
+        <!-- Q7 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="2" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 7</h5>
+          <div class="question">
+            <p>Comment doit être utilisé l'appel d'une fonction dans un programme ?</p>
+          </div>
+          <ul class="propositions">
+            <li>Comme une instruction isolée indépendante (exemple : <code>Calcul(x) ;</code>)</li>
+            <li>Au sein d'une expression, d'une affectation ou d'un test (exemple : <code>y &larr; Calcul(x)</code>)</li>
+            <li>Uniquement dans la déclaration des variables</li>
+            <li>Uniquement à l'intérieur d'une boucle Pour</li>
+          </ul>
+        </div>
+
+        <!-- Q8 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="2" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 8</h5>
+          <div class="question">
+            <p>Les objets déclarés dans le T.D.O.L. (Tableau de Déclaration des Objets Locaux) d'une fonction :</p>
+          </div>
+          <ul class="propositions">
+            <li>Sont accessibles et modifiables partout dans le programme principal</li>
+            <li>Ont une portée locale : ils naissent lors de l'appel et sont détruits dès la fin de la fonction</li>
+            <li>Doivent obligatoirement porter des noms différents des lettres de l'alphabet</li>
+            <li>Sont partagés avec toutes les autres fonctions du programme</li>
+          </ul>
+        </div>
+
+        <!-- Q9 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="4" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 9</h5>
+          <div class="question">
+            <p>Parmi les types suivants, lequel d'entre eux peut être retourné par une fonction ?</p>
+          </div>
+          <ul class="propositions">
+            <li>Entier ou Réel</li>
+            <li>Booléen</li>
+            <li>Chaîne de caractères</li>
+            <li>Tous les types simples (Entier, Réel, Booléen, Caractère, Chaîne)</li>
+          </ul>
+        </div>
+
+        <!-- Q10 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="1" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 10</h5>
+          <div class="question">
+            <p>En Python, que renvoie une fonction qui ne contient aucune instruction <code>return</code> ?</p>
+          </div>
+          <ul class="propositions">
+            <li>La valeur spéciale <code>None</code></li>
+            <li>L'entier <code>0</code></li>
+            <li>Une erreur de syntaxe à la compilation</li>
+            <li>La valeur du premier paramètre passé</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           EXERCICE 2 : QCM NIVEAU INTERMÉDIAIRE (10 QUESTIONS)
+           ======================================================== -->
+      <section class="mb-5 exercise-section" data-ex-id="ex2" id="exercice-2">
+        <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+          <h3 class="h4 text-primary m-0">Exercice 2 : QCM Analyse, Traçage &amp; Portée</h3>
+          <span class="badge badge-difficulty-medium rounded-pill px-3 py-2">🟠 Intermédiaire</span>
+        </div>
+
+        <p class="fw-bold text-secondary mb-3">Analysez les algorithmes et scripts ci-dessous puis cochez la réponse exacte :</p>
+
+        <!-- Q1 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="2" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 1</h5>
+          <div class="question">
+            <p>Soit la fonction algorithmique suivante :</p>
+            <pre><code class="language-algorithm">Fonction Mystere(n : Entier) : Entier
+Début
+  s ← 0
+  Pour i de 1 à n Faire
+    s ← s + i
+  Fin Pour
+  Retourner s
+Fin</code></pre>
+            <p>Quelle est la valeur retournée par l'appel <code>Mystere(4)</code> ?</p>
+          </div>
+          <ul class="propositions">
+            <li>4</li>
+            <li>10 (car 1 + 2 + 3 + 4 = 10)</li>
+            <li>24 (produit factoriel)</li>
+            <li>16</li>
+          </ul>
+        </div>
+
+        <!-- Q2 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="1" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 2</h5>
+          <div class="question">
+            <p>Considérons la fonction suivante :</p>
+            <pre><code class="language-algorithm">Fonction Est_Pair(n : Entier) : Booléen
+Début
+  Retourner (n Mod 2 = 0)
+Fin</code></pre>
+            <p>Quelle est la valeur exacte renvoyée par l'expression <code>Non Est_Pair(15)</code> ?</p>
+          </div>
+          <ul class="propositions">
+            <li>Vrai (True en Python)</li>
+            <li>Faux (False en Python)</li>
+            <li>1</li>
+            <li>0</li>
+          </ul>
+        </div>
+
+        <!-- Q3 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="2" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 3</h5>
+          <div class="question">
+            <p>Soit l'en-tête : <code>Fonction Extraire(ch : Chaîne, p : Entier, n : Entier) : Chaîne</code>.<br>
+            Quel appel dans le programme principal est <strong>invalide</strong> ?</p>
+          </div>
+          <ul class="propositions">
+            <li><code>mot &larr; Extraire("Bac2026", 1, 3)</code></li>
+            <li><code>mot &larr; Extraire(1, "Bac2026", 3)</code></li>
+            <li><code>Ecrire(Extraire("Informatique", 3, 4))</code></li>
+            <li><code>Si Extraire(ch, 1, 1) = "A" Alors ...</code></li>
+          </ul>
+        </div>
+
+        <!-- Q4 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="1" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 4</h5>
+          <div class="question">
+            <p>Soit le script Python suivant :</p>
+            <pre><code class="language-python">def afficher_double(x):
+    print(x * 2)
+
+res = afficher_double(5) + 3</code></pre>
+            <p>Que produit l'exécution de ce script ?</p>
+          </div>
+          <ul class="propositions">
+            <li>Une erreur <code>TypeError</code> car <code>afficher_double(5)</code> renvoie <code>None</code> et on ne peut additionner <code>None + 3</code></li>
+            <li><code>res</code> prend la valeur 13</li>
+            <li><code>res</code> prend la valeur 10</li>
+            <li><code>res</code> prend la valeur 8</li>
+          </ul>
+        </div>
+
+        <!-- Q5 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="3" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 5</h5>
+          <div class="question">
+            <p>Soit le script Python suivant portant sur la portée des identificateurs :</p>
+            <pre><code class="language-python">x = 10
+
+def modifier(x):
+    x = 25
+    return x * 2
+
+y = modifier(x)</code></pre>
+            <p>Quelles sont les valeurs respectives de <code>x</code> et <code>y</code> à la fin du script ?</p>
+          </div>
+          <ul class="propositions">
+            <li>x = 25 et y = 50</li>
+            <li>x = 10 et y = 20</li>
+            <li>x = 10 et y = 50 (le x local dans modifier ne modifie pas le x global)</li>
+            <li>x = 50 et y = 50</li>
+          </ul>
+        </div>
+
+        <!-- Q6 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="2" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 6</h5>
+          <div class="question">
+            <p>Dans une fonction, la variable utilisée pour stocker le résultat intermédiaire et la variable de contrôle d'une boucle <code>Pour</code> doivent être déclarées :</p>
+          </div>
+          <ul class="propositions">
+            <li>Dans le T.D.O.G. (Tableau de Déclaration des Objets Globaux)</li>
+            <li>Dans le T.D.O.L. (Tableau de Déclaration des Objets Locaux) de la fonction</li>
+            <li>Dans la liste des paramètres formels de l'en-tête</li>
+            <li>Nulle part, elles sont automatiquement devinées par l'interpréteur</li>
+          </ul>
+        </div>
+
+        <!-- Q7 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="1" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 7</h5>
+          <div class="question">
+            <p>Soit la fonction algorithmique suivante :</p>
+            <pre><code class="language-algorithm">Fonction Premier_Chiffre(ch : Chaîne) : Caractère
+Début
+  i ← 0
+  Tant que (i &lt; Long(ch)) Et Non (ch[i] &in; {"0".."9"}) Faire
+    i ← i + 1
+  Fin Tant que
+  Si i &lt; Long(ch) Alors
+    Retourner ch[i]
+  Sinon
+    Retourner "@"
+  Fin Si
+Fin</code></pre>
+            <p>Que renvoie l'appel <code>Premier_Chiffre("Bac2026")</code> ?</p>
+          </div>
+          <ul class="propositions">
+            <li>"2"</li>
+            <li>"B"</li>
+            <li>"6"</li>
+            <li>"@"</li>
+          </ul>
+        </div>
+
+        <!-- Q8 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="3" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 8</h5>
+          <div class="question">
+            <p>En Python 3, quelle formulation traduit le plus élégamment une fonction vérifiant si un entier <code>n</code> est strictement compris entre 2 et 100 ?</p>
+          </div>
+          <ul class="propositions">
+            <li><code>def valide(n): return n &gt; 2 and n &lt; 100</code></li>
+            <li><code>def valide(n): return 2 &lt; n &lt; 100</code></li>
+            <li>Les deux propositions 1 et 2 sont valides et équivalentes en Python</li>
+            <li><code>def valide(n): if 2 &lt; n &lt; 100: return True</code> (sans clause else)</li>
+          </ul>
+        </div>
+
+        <!-- Q9 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="2" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 9</h5>
+          <div class="question">
+            <p>Que se passe-t-il si l'on écrit <code>res = Carre(x, y)</code> alors que la fonction a été définie avec <code>def Carre(x): return x * x</code> ?</p>
+          </div>
+          <ul class="propositions">
+            <li>Python ignore simplement le deuxième argument <code>y</code></li>
+            <li>Une erreur <code>TypeError: Carre() takes 1 positional argument but 2 were given</code> est levée</li>
+            <li>Python multiplie <code>x</code> par <code>y</code></li>
+            <li>Le programme boucle indéfiniment</li>
+          </ul>
+        </div>
+
+        <!-- Q10 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="1" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 10</h5>
+          <div class="question">
+            <p>Pourquoi est-il préférable qu'une fonction retourne son résultat avec <code>Retourner</code> (ou <code>return</code>) plutôt que de l'afficher directement avec <code>Ecrire()</code> (ou <code>print()</code>) ?</p>
+          </div>
+          <ul class="propositions">
+            <li>Parce que la fonction est réutilisable : son résultat peut être stocké, testé dans un <code>Si</code> ou réutilisé dans une expression</li>
+            <li>Parce que l'instruction d'affichage est strictement interdite dans un sous-programme</li>
+            <li>Parce qu'un affichage direct consomme obligatoirement dix fois plus de mémoire</li>
+            <li>Parce qu'une fonction qui affiche directement provoque une erreur de syntaxe à l'exécution</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           EXERCICE 3 : FONCTION EST_ARMSTRONG (ARITHMÉTIQUE & CHIFFRES)
+           ======================================================== -->
+      <section class="mb-5 exercise-section" data-ex-id="ex3" id="exercice-3">
+        <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+          <h3 class="h4 text-primary m-0">Exercice 3 : Nombres d'Armstrong (Est_Armstrong)</h3>
+          <span class="badge badge-difficulty-easy rounded-pill px-3 py-2">🟢 Facile</span>
+        </div>
+
+        <div class="row align-items-center mb-3">
+          <div class="col-lg-7">
+            <p>
+              Un entier naturel <code>N</code> ($N \ge 1$) est appelé <strong>nombre d'Armstrong</strong> (ou nombre narcissique) si la somme de ses chiffres élevés chacun à la puissance <code>p</code> (où <code>p</code> est le nombre total de chiffres de <code>N</code>) est égale à <code>N</code> lui-même.<br>
+              <em>Exemples pour des entiers à 3 chiffres ($p = 3$) :</em>
+            </p>
+            <ul class="ps-3 mb-0">
+              <li><strong>153</strong> est un nombre d'Armstrong car $1^3 + 5^3 + 3^3 = 1 + 125 + 27 = 153$.</li>
+              <li><strong>370</strong> est un nombre d'Armstrong car $3^3 + 7^3 + 0^3 = 27 + 343 + 0 = 370$.</li>
+              <li><strong>371</strong> est un nombre d'Armstrong car $3^3 + 7^3 + 1^3 = 27 + 343 + 1 = 371$.</li>
+              <li><strong>407</strong> est un nombre d'Armstrong car $4^3 + 0^3 + 7^3 = 64 + 0 + 343 = 407$.</li>
+              <li><strong>125</strong> n'est pas un nombre d'Armstrong car $1^3 + 2^3 + 5^3 = 1 + 8 + 125 = 134 \ne 125$.</li>
+            </ul>
+          </div>
+          <div class="col-lg-5 text-center my-3 my-lg-0">
+            <figure class="figure m-0 d-print-none text-center">
+              <img src="assets/img/serie05/nombre-armstrong.jpg" alt="Principe arithmétique d'un Nombre d'Armstrong" class="img-fluid rounded-3 shadow-sm border" style="max-height: 250px; width: 100%; object-fit: cover;">
+              <figcaption class="figure-caption text-center small mt-1">
+                <i class="bi bi-diagram-3-fill text-primary me-1"></i>Décomposition des chiffres et somme des puissances $p$ ($153 = 1^3 + 5^3 + 3^3$)
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="card bg-light border-0 shadow-sm p-3 mb-3">
+          <h6 class="fw-bold text-dark mb-1"><i class="bi bi-pencil-square text-primary me-2"></i>Travail demandé :</h6>
+          <ol class="small text-dark mb-0 ps-3">
+            <li>Définir la spécification de la fonction <code>Est_Armstrong</code> (paramètres, type de retour et rôle).</li>
+            <li>Dresser le Tableau de Déclaration des Objets Locaux (T.D.O.L.).</li>
+            <li>Rédiger l'algorithme officiel de la fonction en décomposant <code>N</code> à l'aide des opérateurs <code>Div</code> et <code>Mod 10</code>.</li>
+            <li>Traduire la fonction en Python 3 et proposer un exemple d'appel.</li>
+          </ol>
+        </div>
+
+        <!-- Indications & Jeux d'essais (Pas de corrigé pré-rédigé) -->
+        <div class="alert alert-light border-start border-warning border-4 shadow-sm my-3 d-print-none">
+          <div class="fw-bold text-dark mb-2">
+            💡 Conseils méthodologiques &amp; Indices
+          </div>
+          <ul class="mb-2 small text-muted ps-3">
+            <li>Pour déterminer le nombre total de chiffres <code>p</code>, compter combien de divisions entières par 10 (<code>temp Div 10</code>) sont nécessaires pour réduire <code>temp</code> à 0.</li>
+            <li>Pour extraire successivement chaque chiffre, utiliser le reste modulo 10 (<code>temp Mod 10</code>).</li>
+            <li>Calculer l'élévation à la puissance <code>chiffre ^ p</code> (en Python : <code>chiffre ** p</code>) et cumuler dans une variable <code>somme</code>.</li>
+            <li>La fonction retourne directement le résultat du test d'égalité <code>somme = n</code>.</li>
+          </ul>
+          <div class="p-2 bg-white rounded border small">
+            <strong>Jeux d'essais à vérifier :</strong> <code>Est_Armstrong(153)</code> &rarr; <span class="text-success fw-bold">Vrai</span> | <code>Est_Armstrong(370)</code> &rarr; <span class="text-success fw-bold">Vrai</span> | <code>Est_Armstrong(125)</code> &rarr; <span class="text-danger fw-bold">Faux</span>
+          </div>
+        </div>
+
+        <!-- Simulateur Interactif Ex 3 -->
+        <div id="sim-armstrong-app" class="simulation-box my-4 p-3 rounded-3 shadow-sm border d-print-none">
+          <div class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-2">
+            <div class="d-flex align-items-center gap-2">
+              <span class="fs-5">🧮</span>
+              <h5 class="m-0 fw-bold text-primary">Simulateur Interactif : Nombres d'Armstrong</h5>
+            </div>
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-2 py-1 small">Labo Décomposition</span>
+          </div>
+
+          <!-- Presets -->
+          <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+            <span class="small fw-bold text-secondary">Exemples rapides :</span>
+            <button v-for="p in presets" :key="p.val" type="button" class="btn btn-sm btn-outline-primary rounded-pill py-0 px-2" @click="setPreset(p.val)">
+              {{ p.label }}
+            </button>
+          </div>
+
+          <!-- Input -->
+          <div class="row g-2 align-items-center mb-3">
+            <div class="col-auto">
+              <label for="input-armstrong" class="col-form-label fw-bold small">Entier N à tester :</label>
+            </div>
+            <div class="col-auto">
+              <input id="input-armstrong" type="number" min="1" max="999999" class="form-control form-control-sm text-center fw-bold" style="width: 140px;" v-model.number="nInput">
+            </div>
+          </div>
+
+          <!-- Résultat & Analyse -->
+          <div v-if="analysis.valid" class="p-3 rounded-2 bg-subtle-box border">
+            <div class="row g-2 mb-2">
+              <div class="col-md-4">
+                <div class="small text-secondary">Nombre total de chiffres (p) :</div>
+                <div class="fw-bold fs-6 text-primary">p = {{ analysis.p }} chiffre{{ analysis.p > 1 ? 's' : '' }}</div>
+              </div>
+              <div class="col-md-8">
+                <div class="small text-secondary">Décomposition & Calcul des puissances :</div>
+                <div class="font-monospace small fw-bold text-dark-emphasis">{{ analysis.formula }}</div>
+              </div>
+            </div>
+
+            <!-- Verdict -->
+            <div class="mt-2 pt-2 border-top d-flex align-items-center gap-2">
+              <span class="small fw-bold">Résultat de Est_Armstrong({{ num }}) :</span>
+              <span v-if="analysis.isArmstrong" class="badge bg-success fs-6 px-3 py-1">
+                <i class="bi bi-check-circle-fill me-1"></i> Vrai ({{ analysis.sum }} = {{ num }})
+              </span>
+              <span v-else class="badge bg-danger fs-6 px-3 py-1">
+                <i class="bi bi-x-circle-fill me-1"></i> Faux ({{ analysis.sum }} ≠ {{ num }})
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           EXERCICE 4 : FONCTION EST_PALINDROME (CHAÎNES & POINTEURS)
+           ======================================================== -->
+      <section class="mb-5 exercise-section" data-ex-id="ex4" id="exercice-4">
+        <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+          <h3 class="h4 text-primary m-0">Exercice 4 : Détection de Palindrome (Est_Palindrome)</h3>
+          <span class="badge badge-difficulty-easy rounded-pill px-3 py-2">🟢 Facile</span>
+        </div>
+
+        <div class="row align-items-center mb-3">
+          <div class="col-lg-7">
+            <p>
+              Un <strong>palindrome</strong> est un mot qui reste identique qu'on le lise de gauche à droite ou de droite à gauche.<br>
+              <em>Exemples :</em> <code>"RADAR"</code>, <code>"KAYAK"</code>, <code>"LAVAL"</code>, <code>"ETE"</code>, <code>"12321"</code> sont des palindromes.<br>
+              On souhaite écrire une fonction <code>Est_Palindrome(ch : Chaîne) : Booléen</code> qui vérifie si la chaîne <code>ch</code> est un palindrome en comparant les caractères symétriques depuis les deux extrémités avec arrêt dès la première différence.
+            </p>
+            <div class="p-2 bg-light rounded border small text-secondary">
+              <i class="bi bi-info-circle text-primary me-1"></i>
+              <strong>Principe optimal :</strong> Deux pointeurs <code>i</code> (début) et <code>j</code> (fin) convergent vers le centre sans avoir besoin d'inverser toute la chaîne en mémoire.
+            </div>
+          </div>
+          <div class="col-lg-5 text-center my-3 my-lg-0">
+            <figure class="figure m-0 d-print-none text-center">
+              <img src="assets/img/serie05/detection-palindrome.jpg" alt="Vérification symétrique de palindrome" class="img-fluid rounded-3 shadow-sm border" style="max-height: 250px; width: 100%; object-fit: cover;">
+              <figcaption class="figure-caption text-center small mt-1">
+                <i class="bi bi-arrow-left-right text-primary me-1"></i>Pointeurs convergents $i \to$ et $\leftarrow j$ vers l'axe de symétrie centrale
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="card bg-light border-0 shadow-sm p-3 mb-3">
+          <h6 class="fw-bold text-dark mb-1"><i class="bi bi-pencil-square text-primary me-2"></i>Travail demandé :</h6>
+          <ol class="small text-dark mb-0 ps-3">
+            <li>Pourquoi une boucle avec arrêt conditionnel (sans <code>break</code>) est-elle plus efficace que d'inverser toute la chaîne ?</li>
+            <li>Dresser le Tableau de Déclaration des Objets Locaux (T.D.O.L.).</li>
+            <li>Rédiger l'algorithme officiel de la fonction en utilisant deux indices convergents <code>i</code> et <code>j</code>.</li>
+            <li>Traduire la fonction en Python 3 (insensible à la casse avec <code>upper()</code>).</li>
+          </ol>
+        </div>
+
+        <!-- Indications & Jeux d'essais -->
+        <div class="alert alert-light border-start border-warning border-4 shadow-sm my-3 d-print-none">
+          <div class="fw-bold text-dark mb-2">
+            💡 Conseils méthodologiques &amp; Indices
+          </div>
+          <ul class="mb-2 small text-muted ps-3">
+            <li>Initialiser deux indices : <code>i &larr; 0</code> (début) et <code>j &larr; Long(ch) - 1</code> (fin).</li>
+            <li>Répéter la comparaison tant que <code>i &lt; j</code> et que les caractères symétriques coïncident : <code>Majus(ch[i]) = Majus(ch[j])</code>.</li>
+            <li>À chaque étape, avancer <code>i &larr; i + 1</code> et reculer <code>j &larr; j - 1</code>.</li>
+            <li>À la sortie de la boucle, le mot est un palindrome si et seulement si les deux indices se sont croisés (<code>i &ge; j</code>).</li>
+          </ul>
+          <div class="p-2 bg-white rounded border small">
+            <strong>Jeux d'essais à vérifier :</strong> <code>Est_Palindrome("RADAR")</code> &rarr; <span class="text-success fw-bold">Vrai</span> | <code>Est_Palindrome("KAYAK")</code> &rarr; <span class="text-success fw-bold">Vrai</span> | <code>Est_Palindrome("Informatique")</code> &rarr; <span class="text-danger fw-bold">Faux</span>
+          </div>
+        </div>
+
+        <!-- Simulateur Interactif Ex 4 -->
+        <div id="sim-palindrome-app" class="simulation-box my-4 p-3 rounded-3 shadow-sm border d-print-none">
+          <div class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-2">
+            <div class="d-flex align-items-center gap-2">
+              <span class="fs-5">🔄</span>
+              <h5 class="m-0 fw-bold text-primary">Simulateur Interactif : Deux Indices Convergents</h5>
+            </div>
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-2 py-1 small">Pointeurs i &amp; j</span>
+          </div>
+
+          <!-- Presets -->
+          <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+            <span class="small fw-bold text-secondary">Mots tests :</span>
+            <button v-for="w in presets" :key="w" type="button" class="btn btn-sm btn-outline-primary rounded-pill py-0 px-2" @click="setPreset(w)">
+              {{ w }}
+            </button>
+          </div>
+
+          <!-- Input -->
+          <div class="row g-2 align-items-center mb-3">
+            <div class="col-auto">
+              <label for="input-palindrome" class="col-form-label fw-bold small">Chaîne ch :</label>
+            </div>
+            <div class="col-auto">
+              <input id="input-palindrome" type="text" class="form-control form-control-sm text-uppercase fw-bold" style="width: 220px;" v-model="wordInput" placeholder="Tapez un mot...">
+            </div>
+          </div>
+
+          <!-- Visualisation des Lettres et Indices (Tableau de 100 cases réservées) -->
+          <div class="p-3 rounded-2 bg-subtle-box border mb-3">
+            <div class="d-flex flex-wrap gap-2 mb-3">
+              <div
+                v-for="(cell, idx) in populatedCells"
+                :key="cell.index"
+                v-show="idx < wordLength"
+                class="text-center"
+                style="min-width: 42px;"
+              >
+                <div class="small text-secondary font-monospace mb-1">{{ idx }}</div>
+                <div
+                  class="letter-tile border rounded p-2 fw-bold text-uppercase fs-5 bg-white shadow-sm"
+                  :class="{
+                    'border-primary text-primary': idx === trace.finalI && wordLength > 0,
+                    'border-info text-info': idx === trace.finalJ && wordLength > 0
+                  }"
+                >
+                  {{ cell.char }}
+                </div>
+              </div>
+            </div>
+
+            <!-- Trace étape par étape -->
+            <div class="small fw-bold text-secondary mb-2">Trace des comparaisons symétriques :</div>
+            <div class="table-responsive">
+              <table class="table table-sm table-bordered mb-2 small text-center align-middle">
+                <thead class="table-light">
+                  <tr>
+                    <th>Étape</th>
+                    <th>ch[i] (gauche)</th>
+                    <th>ch[j] (droite)</th>
+                    <th>ch[i] = ch[j] ?</th>
+                    <th>Action algorithmique</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="st in trace.steps" :key="st.stepNum" :class="{ 'table-success': st.match, 'table-danger': !st.match }">
+                    <td class="fw-bold">{{ st.stepNum }}</td>
+                    <td><code>ch[{{ st.i }}] = '{{ st.charI }}'</code></td>
+                    <td><code>ch[{{ st.j }}] = '{{ st.charJ }}'</code></td>
+                    <td>
+                      <span v-if="st.match" class="badge bg-success">Vrai</span>
+                      <span v-else class="badge bg-danger">Faux</span>
+                    </td>
+                    <td class="text-start ps-2">{{ st.explanation }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Verdict -->
+            <div class="pt-2 border-top d-flex align-items-center gap-2">
+              <span class="small fw-bold">Résultat de Est_Palindrome("{{ cleanWord }}") :</span>
+              <span v-if="trace.isPalindrome" class="badge bg-success fs-6 px-3 py-1">
+                <i class="bi bi-check-circle-fill me-1"></i> Vrai (Palindrome)
+              </span>
+              <span v-else class="badge bg-danger fs-6 px-3 py-1">
+                <i class="bi bi-x-circle-fill me-1"></i> Faux (Arrêt à la 1<sup>ère</sup> différence)
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           EXERCICE 5 : FONCTION EST_ORDONNEE (CHAÎNES & ORDRE)
+           ======================================================== -->
+      <section class="mb-5 exercise-section" data-ex-id="ex5" id="exercice-5">
+        <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+          <h3 class="h4 text-primary m-0">Exercice 5 : Mots Ordonnés Alphabétiquement (Est_Ordonnee)</h3>
+          <span class="badge badge-difficulty-medium rounded-pill px-3 py-2">🟠 Intermédiaire</span>
+        </div>
+
+        <div class="row align-items-center mb-3">
+          <div class="col-lg-7">
+            <p>
+              En linguistique informatique, un mot est dit <strong>ordonné</strong> (ou abécédaire) si ses lettres apparaissent dans l'<strong>ordre alphabétique croissant</strong>, de gauche à droite ($ch[0] \le ch[1] \le ch[2] \le \dots \le ch[Long(ch)-1]$).<br>
+              La vérification doit être insensible à la casse (majuscules et minuscules traitées à l'identique). Une chaîne vide ou composée d'une seule lettre est considérée comme ordonnée.<br>
+              <em>Exemples :</em>
+            </p>
+            <ul class="ps-3 mb-0">
+              <li><code>"EFFORT"</code> est ordonné car <code>E &le; F &le; F &le; O &le; R &le; T</code>.</li>
+              <li><code>"CHINTZ"</code> est ordonné car <code>C &le; H &le; I &le; N &le; T &le; Z</code>.</li>
+              <li><code>"almost"</code> est ordonné car <code>a &le; l &le; m &le; o &le; s &le; t</code>.</li>
+              <li><code>"BOUQUET"</code> n'est pas ordonné car <code>U &gt; Q</code> (la lettre 'U' apparaît avant 'Q').</li>
+              <li><code>"PYTHON"</code> n'est pas ordonné car <code>Y &gt; T</code>.</li>
+            </ul>
+          </div>
+          <div class="col-lg-5 text-center my-3 my-lg-0">
+            <figure class="figure m-0 d-print-none text-center">
+              <img src="assets/img/serie05/chaine-ordonnee.jpg" alt="Vérification de l'ordre alphabétique croissant" class="img-fluid rounded-3 shadow-sm border" style="max-height: 250px; width: 100%; object-fit: cover;">
+              <figcaption class="figure-caption text-center small mt-1">
+                <i class="bi bi-sort-alpha-down text-primary me-1"></i>Comparaison consécutive $ch[i] \le ch[i+1]$ et test d'arrêt anticipé
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="card bg-light border-0 shadow-sm p-3 mb-3">
+          <h6 class="fw-bold text-dark mb-1"><i class="bi bi-pencil-square text-primary me-2"></i>Travail demandé :</h6>
+          <ol class="small text-dark mb-0 ps-3">
+            <li>Préciser l'en-tête de la fonction <code>Est_Ordonnee(ch : Chaîne) : Booléen</code> (paramètres, type de retour et spécification).</li>
+            <li>Dresser le Tableau de Déclaration des Objets Locaux (T.D.O.L.).</li>
+            <li>Rédiger l'algorithme officiel à l'aide d'une boucle <code>Tant que</code> garantissant l'arrêt anticipé dès la première rupture d'ordre ($Majus(ch[i]) > Majus(ch[i+1])$) sans utiliser <code>break</code>.</li>
+            <li>Traduire la fonction en Python 3 et proposer des exemples d'appels.</li>
+          </ol>
+        </div>
+
+        <!-- Indications & Jeux d'essais -->
+        <div class="alert alert-light border-start border-warning border-4 shadow-sm my-3 d-print-none">
+          <div class="fw-bold text-dark mb-2">
+            💡 Conseils méthodologiques &amp; Indices
+          </div>
+          <ul class="mb-2 small text-muted ps-3">
+            <li>Initialiser une variable booléenne (ex : <code>ordonne &larr; Vrai</code>) et un indice de parcours <code>i &larr; 0</code>.</li>
+            <li>Parcourir la chaîne tant que <code>(i &lt; Long(ch) - 1) Et (ordonne = Vrai)</code>.</li>
+            <li>À chaque itération, comparer deux lettres consécutives converties en majuscules : si <code>Majus(ch[i]) &gt; Majus(ch[i + 1])</code>, positionner <code>ordonne &larr; Faux</code> pour stopper immédiatement la boucle sans recourir à un <code>break</code>.</li>
+            <li>Avancer l'indice <code>i &larr; i + 1</code> à chaque étape. À la sortie de la boucle, la fonction retourne la valeur finale de <code>ordonne</code>.</li>
+          </ul>
+          <div class="p-2 bg-white rounded border small">
+            <strong>Jeux d'essais à vérifier :</strong> <code>Est_Ordonnee("EFFORT")</code> &rarr; <span class="text-success fw-bold">Vrai</span> | <code>Est_Ordonnee("almost")</code> &rarr; <span class="text-success fw-bold">Vrai</span> | <code>Est_Ordonnee("BOUQUET")</code> &rarr; <span class="text-danger fw-bold">Faux</span>
+          </div>
+        </div>
+
+        <!-- Simulateur Interactif Ex 5 -->
+        <div id="sim-ordonnee-app" class="simulation-box my-4 p-3 rounded-3 shadow-sm border d-print-none">
+          <div class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-2">
+            <div class="d-flex align-items-center gap-2">
+              <span class="fs-5">🔤</span>
+              <h5 class="m-0 fw-bold text-primary">Simulateur Interactif : Ordre Alphabétique Croissant</h5>
+            </div>
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-2 py-1 small">Test de rupture ch[i] &le; ch[i+1]</span>
+          </div>
+
+          <!-- Presets -->
+          <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+            <span class="small fw-bold text-secondary">Exemples :</span>
+            <button v-for="p in presets" :key="p.word" type="button" class="btn btn-sm btn-outline-primary rounded-pill py-0 px-2" @click="setPreset(p.word)">
+              {{ p.word }} ({{ p.expected ? 'Vrai' : 'Faux' }})
+            </button>
+          </div>
+
+          <!-- Input -->
+          <div class="row g-2 align-items-center mb-3">
+            <div class="col-auto">
+              <label for="input-ordonnee" class="col-form-label fw-bold small">Mot ch :</label>
+            </div>
+            <div class="col-auto">
+              <input id="input-ordonnee" type="text" class="form-control form-control-sm text-uppercase fw-bold" style="width: 200px;" v-model="wordInput" placeholder="Entrez un mot...">
+            </div>
+          </div>
+
+          <!-- Analyse du parcours (Tableau de 100 cases réservées) -->
+          <div class="p-3 rounded-2 bg-subtle-box border mb-2">
+            <!-- Lettres visuelles -->
+            <div class="d-flex flex-wrap gap-2 mb-3">
+              <div
+                v-for="(cell, idx) in populatedCells"
+                :key="cell.index"
+                v-show="idx < wordLength"
+                class="text-center"
+                style="min-width: 40px;"
+              >
+                <div
+                  class="letter-tile border rounded p-2 fw-bold text-uppercase fs-5 bg-white shadow-sm"
+                  :class="{
+                    'border-danger text-danger bg-danger-subtle': trace.brokenAt !== null && (idx === trace.brokenAt || idx === trace.brokenAt + 1),
+                    'border-success text-success': trace.isOrdered && wordLength > 0
+                  }"
+                >
+                  {{ cell.char }}
+                </div>
+                <div class="small text-secondary font-monospace mt-1">{{ idx }}</div>
+              </div>
+            </div>
+
+            <!-- Liste des comparaisons -->
+            <div class="table-responsive" v-if="trace.steps.length > 0">
+              <table class="table table-sm table-bordered mb-2 small text-center align-middle">
+                <thead class="table-light">
+                  <tr>
+                    <th>Indice i</th>
+                    <th>Comparaison adjacente</th>
+                    <th>Ordre respecté ?</th>
+                    <th>Statut boucle</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="st in trace.steps" :key="st.index" :class="{ 'table-success': st.valid, 'table-danger': !st.valid }">
+                    <td class="fw-bold">{{ st.index }}</td>
+                    <td><code>ch[{{ st.index }}] = '{{ st.c1 }}'</code> &le; <code>ch[{{ st.index + 1 }}] = '{{ st.c2 }}'</code></td>
+                    <td>
+                      <span v-if="st.valid" class="badge bg-success">Oui ('{{ st.c1 }}' &le; '{{ st.c2 }}')</span>
+                      <span v-else class="badge bg-danger">Non ('{{ st.c1 }}' &gt; '{{ st.c2 }}')</span>
+                    </td>
+                    <td class="text-start ps-2">{{ st.explanation }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Verdict -->
+            <div class="pt-2 border-top d-flex align-items-center gap-2">
+              <span class="small fw-bold">Résultat de Est_Ordonnee("{{ cleanWord }}") :</span>
+              <span v-if="trace.isOrdered" class="badge bg-success fs-6 px-3 py-1">
+                <i class="bi bi-check-circle-fill me-1"></i> Vrai (Mot ordonné alphabétiquement)
+              </span>
+              <span v-else class="badge bg-danger fs-6 px-3 py-1">
+                <i class="bi bi-x-circle-fill me-1"></i> Faux (Arrêt immédiat à la rupture)
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           EXERCICE 6 : FONCTION CHIFFRER_CESAR (CRYPTOGRAPHIE)
+           ======================================================== -->
+      <section class="mb-5 exercise-section" data-ex-id="ex6" id="exercice-6">
+        <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+          <h3 class="h4 text-primary m-0">Exercice 6 : Cryptographie — Chiffrement de César (Chiffrer_Cesar)</h3>
+          <span class="badge badge-difficulty-hard rounded-pill px-3 py-2">🔴 Avancé</span>
+        </div>
+
+        <div class="row align-items-center mb-3">
+          <div class="col-lg-7">
+            <p>
+              Le <strong>chiffrement de César</strong> est l'une des techniques historiques fondamentales de cryptographie. Il consiste à décaler chaque lettre d'un message d'un nombre fixe <code>cle</code> de positions dans l'alphabet ($1 \le cle \le 25$).<br>
+              Si le décalage dépasse la lettre <code>Z</code>, on repart circulairement depuis le début de l'alphabet (modulo 26). Les caractères non alphabétiques (espaces, chiffres, ponctuation) sont recopiés sans modification.<br>
+              <em>Exemple avec $cle = 3$ :</em><br>
+              Le message <code>"BAC 2026 : SECRET Z"</code> devient <code>"EDF 2026 : VHFUHW C"</code> (B&rarr;E, A&rarr;D, C&rarr;F, Z&rarr;C).
+            </p>
+            <div class="p-2 bg-light rounded border small text-secondary">
+              <i class="bi bi-shield-lock text-primary me-1"></i>
+              <strong>Principe circulaire Modulo 26 :</strong> <code>nouveau_rang = (rang + cle) mod 26</code> sur l'anneau des 26 lettres de l'alphabet.
+            </div>
+          </div>
+          <div class="col-lg-5 text-center my-3 my-lg-0">
+            <figure class="figure m-0 d-print-none text-center">
+              <img src="assets/img/serie05/chiffrement-cesar.jpg" alt="Disque de chiffrement circulaire de César" class="img-fluid rounded-3 shadow-sm border" style="max-height: 250px; width: 100%; object-fit: cover;">
+              <figcaption class="figure-caption text-center small mt-1">
+                <i class="bi bi-arrow-repeat text-primary me-1"></i>Roue de décalage circulaire avec arithmétique Modulo 26
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="card bg-light border-0 shadow-sm p-3 mb-3">
+          <h6 class="fw-bold text-dark mb-1"><i class="bi bi-pencil-square text-primary me-2"></i>Travail demandé :</h6>
+          <ol class="small text-dark mb-0 ps-3">
+            <li>Écrire la formule mathématique du décalage d'un caractère majuscule <code>car</code> à l'aide des fonctions standards <code>Ord</code> et <code>Chr</code>.</li>
+            <li>Dresser le Tableau de Déclaration des Objets Locaux (T.D.O.L.).</li>
+            <li>Rédiger l'algorithme officiel de la fonction <code>Chiffrer_Cesar(msg : Chaîne, cle : Entier) : Chaîne</code>.</li>
+            <li>Traduire la fonction en Python 3 et proposer un exemple complet de chiffrement/déchiffrement.</li>
+          </ol>
+        </div>
+
+        <!-- Indications & Jeux d'essais -->
+        <div class="alert alert-light border-start border-warning border-4 shadow-sm my-3 d-print-none">
+          <div class="fw-bold text-dark mb-2">
+            💡 Conseils méthodologiques &amp; Indices
+          </div>
+          <ul class="mb-2 small text-muted ps-3">
+            <li>Pour une lettre majuscule, déterminer sa position relative dans l'alphabet (de 0 à 25) : <code>rang &larr; Ord(car) - Ord("A")</code>.</li>
+            <li>Appliquer le décalage circulaire avec le modulo : <code>nouveau_rang &larr; (rang + cle) Mod 26</code>.</li>
+            <li>Retrouver le nouveau caractère via <code>Chr(Ord("A") + nouveau_rang)</code>.</li>
+            <li>Appliquer la même logique aux minuscules avec <code>Ord("a")</code>. Recopier les caractères non alphabétiques sans changement.</li>
+          </ul>
+          <div class="p-2 bg-white rounded border small">
+            <strong>Jeux d'essais à vérifier :</strong> <code>Chiffrer_Cesar("BAC 2026", 3)</code> &rarr; <span class="font-monospace text-primary fw-bold">"EDF 2026"</span> | <code>Chiffrer_Cesar("SECRET Z", 1)</code> &rarr; <span class="font-monospace text-primary fw-bold">"TFDSFU A"</span>
+          </div>
+        </div>
+
+        <!-- Simulateur Interactif Ex 6 -->
+        <div id="sim-cesar-app" class="simulation-box my-4 p-3 rounded-3 shadow-sm border d-print-none">
+          <div class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-2">
+            <div class="d-flex align-items-center gap-2">
+              <span class="fs-5">🔐</span>
+              <h5 class="m-0 fw-bold text-primary">Simulateur Interactif : Chiffrement de César</h5>
+            </div>
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-2 py-1 small">Décalage Modulo 26</span>
+          </div>
+
+          <!-- Presets -->
+          <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+            <span class="small fw-bold text-secondary">Exemples :</span>
+            <button v-for="(p, idx) in presets" :key="idx" type="button" class="btn btn-sm btn-outline-primary rounded-pill py-0 px-2" @click="setPreset(p)">
+              {{ p.msg }} (clé={{ p.key }})
+            </button>
+          </div>
+
+          <!-- Inputs : Message + Clé -->
+          <div class="row g-3 mb-3">
+            <div class="col-md-8">
+              <label for="input-cesar-msg" class="form-label fw-bold small">Message en clair :</label>
+              <input id="input-cesar-msg" type="text" class="form-control form-control-sm fw-bold" v-model="messageInput" placeholder="Tapez votre message ici...">
+            </div>
+            <div class="col-md-4">
+              <label for="input-cesar-cle" class="form-label fw-bold small">
+                Clé de décalage (cle) : <span class="badge bg-primary fs-6 px-2 py-0 ms-1">{{ cleanKey }}</span>
+              </label>
+              <input id="input-cesar-cle" type="range" class="form-range" min="1" max="25" v-model.number="keyInput">
+            </div>
+          </div>
+
+          <!-- Résultat chiffré -->
+          <div class="p-3 rounded-2 bg-subtle-box border mb-3">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <span class="small fw-bold text-secondary">Message chiffré généré :</span>
+              <button type="button" class="btn btn-sm btn-outline-secondary py-0 px-2" @click="copyCipher">
+                <i class="bi" :class="copied ? 'bi-check-lg text-success' : 'bi-clipboard'"></i>
+                {{ copied ? 'Copié !' : 'Copier' }}
+              </button>
+            </div>
+            <div class="p-2 rounded bg-white border text-primary font-monospace fw-bold fs-5 text-break">
+              {{ cipherAnalysis.ciphered || '(message vide)' }}
+            </div>
+            <div class="small text-secondary mt-1">
+              <em>Pour déchiffrer ce texte, appliquer le décalage inverse : <code>cle_inverse = 26 - {{ cleanKey }} = {{ cipherAnalysis.reverseKey }}</code>.</em>
+            </div>
+          </div>
+
+          <!-- Détail du calcul par caractère -->
+          <div class="d-flex align-items-center justify-content-between mb-2">
+            <span class="small fw-bold text-secondary">Détail mathématique par caractère :</span>
+            <button type="button" class="btn btn-sm btn-link p-0 text-decoration-none" @click="showDetails = !showDetails">
+              {{ showDetails ? 'Masquer le tableau' : 'Afficher le tableau détaillé' }}
+            </button>
+          </div>
+
+          <div v-if="showDetails && cipherAnalysis.details.length > 0" class="table-responsive border rounded bg-white shadow-sm">
+            <table class="table table-sm table-bordered mb-0 small text-center align-middle cesar-pivot-table">
+              <tbody>
+                <tr>
+                  <th scope="row" class="table-light text-start text-nowrap px-3 cesar-header-cell">Indice (i)</th>
+                  <td v-for="(item, idx) in cipherAnalysis.details" :key="'idx-' + idx"
+                      class="text-secondary small font-monospace px-2">
+                    {{ idx }}
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row" class="table-light text-start text-nowrap px-3 cesar-header-cell">Caractère clair</th>
+                  <td v-for="(item, idx) in cipherAnalysis.details" :key="'char-' + idx"
+                      class="fw-bold font-monospace px-2 fs-6"
+                      :class="{ 'bg-light text-muted': !item.isAlpha }">
+                    {{ item.char === ' ' ? '␣' : item.char }}
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row" class="table-light text-start text-nowrap px-3 cesar-header-cell">Code ASCII Ord(c)</th>
+                  <td v-for="(item, idx) in cipherAnalysis.details" :key="'code-' + idx"
+                      class="px-2 font-monospace"
+                      :class="{ 'bg-light text-muted': !item.isAlpha }">
+                    <code>{{ item.code }}</code>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row" class="table-light text-start text-nowrap px-3 cesar-header-cell">Rang (0..25)</th>
+                  <td v-for="(item, idx) in cipherAnalysis.details" :key="'rang-' + idx"
+                      class="px-2 font-monospace"
+                      :class="{ 'bg-light text-muted': !item.isAlpha }">
+                    {{ item.rang }}
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row" class="table-light text-start text-nowrap px-3 cesar-header-cell">(Rang + {{ cleanKey }}) Mod 26</th>
+                  <td v-for="(item, idx) in cipherAnalysis.details" :key="'mod-' + idx"
+                      class="px-2 font-monospace fw-semibold"
+                      :class="{ 'bg-light text-muted': !item.isAlpha, 'text-primary': item.isAlpha }">
+                    {{ item.newRang }}
+                  </td>
+                </tr>
+                <tr class="table-primary-subtle">
+                  <th scope="row" class="table-primary text-start text-nowrap px-3 fw-bold cesar-header-cell text-primary">Caractère chiffré</th>
+                  <td v-for="(item, idx) in cipherAnalysis.details" :key="'res-' + idx"
+                      class="fw-bold font-monospace px-2 fs-6 text-primary"
+                      :class="{ 'bg-light text-muted': !item.isAlpha }">
+                    {{ item.newChar === ' ' ? '␣' : item.newChar }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-custom py-4 text-center mt-5">
+    <div class="container">
+      <div class="mb-2">
+        <span class="fw-bold text-white">Informatique 4<sup>e</sup> Année Scientifique</span>
+        <span class="mx-2 text-white-50">|</span>
+        <span class="text-light">Bac 2026</span>
+      </div>
+      <div class="small text-white-50 mb-3">
+        Conformité pédagogique aux programmes et conventions officielles 2024-2025
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts JS Locaux -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/highlight.min.js"></script>
+  <script src="assets/js/hljs.algorithm.js"></script>
+  <script src="assets/js/clipboard.min.js"></script>
+  <script src="assets/js/main-ui.js?v=2"></script>
+  <script src="assets/js/pages.js"></script>
+  <script src="assets/js/draggable.js?v=2"></script>
+  <script src="assets/js/vue.global.prod.js"></script>
+  <script src="assets/apps/serie05.js?v=2"></script>
+  <script src="assets/js/katex.min.js"></script>
+  <script src="assets/js/auto-render.min.js"></script>
+
+  <!-- Highlighting & Clipboard Setup -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof hljs !== 'undefined') {
+        if (typeof hljs.highlightAll === 'function') {
+          hljs.highlightAll();
+        } else if (typeof hljs.initHighlightingOnLoad === 'function') {
+          hljs.initHighlightingOnLoad();
+        }
+      }
+
+      document.querySelectorAll('.language-algorithm, .language-python').forEach(item => {
+        if (!item.parentElement.querySelector('.bd-clipboard')) {
+          const div = document.createElement('div');
+          div.className = 'bd-clipboard d-print-none';
+          const btn = document.createElement('button');
+          btn.className = 'btn-clipboard';
+          btn.type = 'button';
+          btn.innerHTML = '<i class="bi bi-clipboard me-1"></i> Copier';
+          btn.title = "Copier le code";
+          div.appendChild(btn);
+          item.parentElement.insertBefore(div, item);
+        }
+      });
+    });
+  </script>
+
+  <!-- KaTeX Auto-Render Math Setup -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (typeof renderMathInElement === 'function') {
+        try {
+          renderMathInElement(document.body, {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '$', right: '$', display: false },
+              { left: '\\(', right: '\\)', display: false },
+              { left: '\\[', right: '\\]', display: true }
+            ],
+            ignoredClasses: ["simulation-box", "katex-ignore"],
+            throwOnError: false
+          });
+        } catch (e) {
+          console.error("KaTeX render error:", e);
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>

@@ -647,9 +647,13 @@ class ExerciceSection {
   constructor(node) {
     this.node = node;
     this.id = node.id;
-    this.buildUI();
 
     this.exerciseInputs = [...node.querySelectorAll('.trace-input, .trace-select, .trace-radio-group, .trace-switch')];
+    if (this.exerciseInputs.length === 0) {
+      return;
+    }
+
+    this.buildUI();
     this.feedback = this.node.querySelector('.trace-feedback');
     this.initSwitches();
   }

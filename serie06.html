@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Série N°6 : Modularité 2 (Les Procédures & Modes de passage) - Informatique 4SC (Bac 2026)</title>
+
+  <!-- Métadonnées SEO & Description -->
+  <meta name="description"
+    content="Série d'exercices N°6 d'Informatique pour 4ème Année Scientifique (Bac 2026) : Modularité 2, Procédures, passage par valeur vs variable (@), portée locale vs globale, TDOL et implémentation Python.">
+
+  <!-- Dépendances locales -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/atom-one-dark.min.css">
+  <link rel="stylesheet" href="assets/css/style.css?v=2">
+  <link rel="stylesheet" href="assets/css/katex.min.css">
+  <link rel="stylesheet" href="assets/css/serie06.css?v=3">
+</head>
+
+<body>
+
+  <!-- Header / Navigation -->
+  <header class="modern-header d-print-none sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+      <div class="container-fluid px-md-4">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+          <i class="bi bi-cpu-fill text-primary"></i>
+          <span>Informatique 4<sup>e</sup> SC</span>
+          <span class="brand-badge">Bac 2026</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#aside_navbar"
+          aria-controls="aside_navbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="aside_navbar">
+          <!-- Le menu déroulant des exercices est généré automatiquement par pages.js -->
+        </div>
+        <div class="d-flex align-items-center gap-2 ms-auto mt-2 mt-lg-0">
+          <a href="seance05.html" class="btn btn-outline-info btn-sm rounded-pill px-3 py-1">
+            <i class="bi bi-arrow-left me-1"></i> Séance 5
+          </a>
+          <button id="theme-toggle-btn" class="btn btn-outline-secondary btn-sm rounded-pill px-3 py-1" type="button">
+            🌙 <span class="d-none d-sm-inline ms-1">Mode Sombre</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section text-center d-print-none py-4 mb-3">
+    <div class="container">
+      <div class="d-flex justify-content-center flex-wrap gap-2 mb-2">
+        <span class="badge bg-primary px-3 py-1"><i class="bi bi-diagram-3 me-1"></i>Axe : Modularité 2</span>
+        <span class="badge bg-secondary px-2 py-1">Sections : Sc. Expérimentales, Mathématiques &amp; Sc. Techniques</span>
+        <span class="badge bg-info text-dark px-2 py-1"><i class="bi bi-bookmark-check-fill me-1"></i>Conventions 2024-2025</span>
+      </div>
+      <h1 class="hero-title display-6 fw-bold mb-2">Série N°6 : Modularité 2 — Les Procédures</h1>
+      <p class="text-muted mb-0">Passage par valeur vs par variable (<code>@</code>), portée des identificateurs, T.D.O.L. et conventions Python (mot-clé <code>global</code>).</p>
+    </div>
+  </section>
+
+  <!-- Contenu principal -->
+  <main class="container my-4">
+    <article>
+      <h2 class="border-bottom pb-2 mb-4">Série N°6 : Les Procédures</h2>
+
+      <!-- ========================================================
+           EXERCICE 1 : QCM NIVEAU FACILE (10 QUESTIONS)
+           ======================================================== -->
+      <section class="mb-5 exercise-section" data-ex-id="ex1" id="exercice-1">
+        <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+          <h3 class="h4 text-primary m-0">Exercice 1 : QCM Notions de base sur les Procédures</h3>
+          <span class="badge badge-difficulty-easy rounded-pill px-3 py-2">🟢 Facile</span>
+        </div>
+
+        <!-- Rappel de cours -->
+        <div class="alert alert-light border-start border-primary border-4 shadow-sm my-3 d-print-none">
+          <div class="d-flex align-items-center gap-2 fw-bold text-primary mb-1">
+            💡 <span>Rappel de cours : La Procédure & les Modes de Passage</span>
+          </div>
+          <ul class="mb-0 small text-muted ps-3">
+            <li>Une <strong>procédure</strong> est un sous-programme qui effectue des actions ou calcule plusieurs résultats sans renvoyer de valeur unique dans son nom. Elle ne comporte jamais de type de retour dans son en-tête ni d'instruction <code>Retourner</code>.</li>
+            <li>L'appel d'une procédure s'effectue comme une <strong>instruction autonome</strong> : <code>NomProc(arg1, arg2)</code>.</li>
+            <li><strong>Passage par valeur :</strong> transmet une copie de l'argument (paramètre d'entrée). La variable effective reste intacte.</li>
+            <li><strong>Passage par variable / adresse (noté <code>@</code> en algorithme) :</strong> transmet la référence directe de la variable (paramètre de sortie ou d'entrée-sortie). Toute modification est répercutée immédiatement sur la variable appelante.</li>
+          </ul>
+        </div>
+
+        <p class="fw-bold text-secondary mb-3">Cochez la bonne réponse pour chacune des 10 questions suivantes :</p>
+
+        <!-- Q1 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="2" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 1</h5>
+          <div class="question">
+            <p>Quelle est la différence fondamentale entre une fonction et une procédure en algorithmique ?</p>
+          </div>
+          <ul class="propositions">
+            <li>Une procédure ne peut contenir aucune boucle</li>
+            <li>Une fonction renvoie un résultat unique à travers son nom, tandis qu'une procédure ne renvoie pas de résultat directement par son nom</li>
+            <li>Une procédure ne peut recevoir aucun paramètre</li>
+            <li>Une fonction s'exécute toujours plus rapidement qu'une procédure</li>
+          </ul>
+        </div>
+
+        <!-- Q2 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="1" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 2</h5>
+          <div class="question">
+            <p>Quelle est la syntaxe correcte de l'en-tête d'une procédure affichant les diviseurs d'un entier ?</p>
+          </div>
+          <ul class="propositions">
+            <li>Procédure Afficher_Diviseurs(n : Entier)</li>
+            <li>Fonction Afficher_Diviseurs(n : Entier) : Vide</li>
+            <li>Procédure Afficher_Diviseurs(n : Entier) : Entier</li>
+            <li>Début Procédure Afficher_Diviseurs(n : Entier)</li>
+          </ul>
+        </div>
+
+        <!-- Q3 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="3" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 3</h5>
+          <div class="question">
+            <p>Comment s'effectue l'appel d'une procédure <code>Initialiser(x, y)</code> dans le programme principal ?</p>
+          </div>
+          <ul class="propositions">
+            <li>res &larr; Initialiser(x, y)</li>
+            <li>Ecrire(Initialiser(x, y))</li>
+            <li>Initialiser(x, y) (comme une instruction autonome isolée)</li>
+            <li>Si Initialiser(x, y) Alors ...</li>
+          </ul>
+        </div>
+
+        <!-- Q4 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="2" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 4</h5>
+          <div class="question">
+            <p>Dans l'en-tête <code>Procédure Calcul(a : Entier, @b : Entier)</code>, quel est le mode de passage du paramètre <code>b</code> ?</p>
+          </div>
+          <ul class="propositions">
+            <li>Passage par valeur</li>
+            <li>Passage par variable (ou par adresse), indiqué par le symbole @</li>
+            <li>Passage par constante</li>
+            <li>Passage global automatique</li>
+          </ul>
+        </div>
+
+        <!-- Q5 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="1" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 5</h5>
+          <div class="question">
+            <p>Lors d'un passage par valeur, si le sous-programme modifie le paramètre formel dans son corps :</p>
+          </div>
+          <ul class="propositions">
+            <li>Seule la copie locale est modifiée, la variable effective d'origine reste rigoureusement inchangée</li>
+            <li>La variable effective dans le programme principal est immédiatement modifiée</li>
+            <li>Une erreur d'exécution bloque le programme</li>
+            <li>La variable est supprimée de la mémoire</li>
+          </ul>
+        </div>
+
+        <!-- Q6 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="3" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 6</h5>
+          <div class="question">
+            <p>Quel mode de passage doit obligatoirement être attribué à un paramètre qui doit transmettre un résultat calculé vers le programme appelant ?</p>
+          </div>
+          <ul class="propositions">
+            <li>Le passage par valeur</li>
+            <li>Le passage par constante</li>
+            <li>Le passage par variable (par adresse, noté @)</li>
+            <li>Le passage par chaîne</li>
+          </ul>
+        </div>
+
+        <!-- Q7 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="2" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 7</h5>
+          <div class="question">
+            <p>Peut-on utiliser l'instruction <code>Retourner val</code> dans le corps d'une procédure algorithmique ?</p>
+          </div>
+          <ul class="propositions">
+            <li>Oui, c'est même obligatoire à la fin de chaque procédure</li>
+            <li>Non, l'instruction Retourner est strictement réservée aux fonctions</li>
+            <li>Oui, mais uniquement si val est de type entier</li>
+            <li>Oui, si la procédure comporte au moins deux paramètres</li>
+          </ul>
+        </div>
+
+        <!-- Q8 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="1" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 8</h5>
+          <div class="question">
+            <p>Soit l'en-tête <code>Procédure Incrementer(@x : Entier)</code>. Quel appel est <strong>illégal</strong> ?</p>
+          </div>
+          <ul class="propositions">
+            <li><code>Incrementer(5)</code> (car 5 est une valeur constante, pas une variable capable de recevoir une modification)</li>
+            <li><code>Incrementer(compteur)</code> (où compteur est une variable entière)</li>
+            <li><code>Incrementer(T[0])</code> (où T est un tableau d'entiers)</li>
+            <li><code>Incrementer(n)</code> (où n est un entier)</li>
+          </ul>
+        </div>
+
+        <!-- Q9 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="3" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 9</h5>
+          <div class="question">
+            <p>Une variable déclarée dans le T.D.O.G. (Objets Globaux) du programme principal :</p>
+          </div>
+          <ul class="propositions">
+            <li>N'est accessible que dans le programme principal et interdite dans les procédures</li>
+            <li>Est détruite dès qu'un sous-programme commence à s'exécuter</li>
+            <li>Est accessible en lecture dans l'ensemble du programme et de ses sous-programmes</li>
+            <li>Doit obligatoirement être de type réel</li>
+          </ul>
+        </div>
+
+        <!-- Q10 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="2" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 10</h5>
+          <div class="question">
+            <p>En Python 3, les types simples scalaires (int, float, str, bool) sont immuables (inchangeables en place). Pour qu'une procédure modifie directement une variable globale de type int selon les conventions officielles 2024-2025, on déclare dans la fonction :</p>
+          </div>
+          <ul class="propositions">
+            <li><code>local nom_var</code></li>
+            <li><code>global nom_var</code></li>
+            <li><code>pointer nom_var</code></li>
+            <li><code>static nom_var</code></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           EXERCICE 2 : QCM NIVEAU INTERMÉDIAIRE (10 QUESTIONS)
+           ======================================================== -->
+      <section class="mb-5 exercise-section" data-ex-id="ex2" id="exercice-2">
+        <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+          <h3 class="h4 text-primary m-0">Exercice 2 : QCM Analyse de Traces &amp; Effets de Bord</h3>
+          <span class="badge badge-difficulty-medium rounded-pill px-3 py-2">🟠 Intermédiaire</span>
+        </div>
+
+        <p class="fw-bold text-secondary mb-3">Analysez rigoureusement les algorithmes et traces d'exécution suivants :</p>
+
+        <!-- Q1 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="1" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 1</h5>
+          <div class="question">
+            <p>Soit l'algorithme suivant :</p>
+            <pre><code class="language-algorithm">Procédure Test(a : Entier, @b : Entier)
+Début
+  a ← a + 10
+  b ← b + 10
+Fin
+
+// Dans le programme principal :
+x ← 5
+y ← 5
+Test(x, y)</code></pre>
+            <p>Quelles sont les valeurs finales de <code>x</code> et <code>y</code> après l'exécution de <code>Test(x, y)</code> ?</p>
+          </div>
+          <ul class="propositions">
+            <li>x = 5 et y = 15 (a est par valeur donc x est inchangé ; b est par variable @ donc y est modifié)</li>
+            <li>x = 15 et y = 15</li>
+            <li>x = 5 et y = 5</li>
+            <li>x = 15 et y = 5</li>
+          </ul>
+        </div>
+
+        <!-- Q2 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="2" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 2</h5>
+          <div class="question">
+            <p>Un élève écrit la procédure de permutation suivante :</p>
+            <pre><code class="language-algorithm">Procédure Permuter(x : Entier, y : Entier)
+Début
+  aux ← x
+  x ← y
+  y ← aux
+Fin</code></pre>
+            <p>Pourquoi les variables du programme appelant ne sont-elles pas échangées après l'appel <code>Permuter(a, b)</code> ?</p>
+          </div>
+          <ul class="propositions">
+            <li>Parce que la variable tampon <code>aux</code> est mal orthographiée</li>
+            <li>Parce que <code>x</code> et <code>y</code> sont passés par valeur : seule la copie locale a été permutée, sans affecter <code>a</code> et <code>b</code></li>
+            <li>Parce que la permutation nécessite obligatoirement 3 paramètres</li>
+            <li>Parce qu'il manque l'instruction <code>Retourner</code></li>
+          </ul>
+        </div>
+
+        <!-- Q3 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="3" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 3</h5>
+          <div class="question">
+            <p>Pour corriger la procédure de l'exercice précédent et rendre la permutation effective en mémoire, il faut écrire :</p>
+          </div>
+          <ul class="propositions">
+            <li><code>Procédure Permuter(@x : Entier, y : Entier)</code></li>
+            <li><code>Procédure Permuter(x : Entier, @y : Entier)</code></li>
+            <li><code>Procédure Permuter(@x : Entier, @y : Entier)</code></li>
+            <li><code>Fonction Permuter(x : Entier, y : Entier) : Entier</code></li>
+          </ul>
+        </div>
+
+        <!-- Q4 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="2" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 4</h5>
+          <div class="question">
+            <p>Soit une procédure de saisie sécurisée :</p>
+            <pre><code class="language-algorithm">Procédure Saisie(@n : Entier)
+Début
+  Répéter
+    Ecrire("Donner N (N > 0) : ")
+    Lire(n)
+  Jusqu'à n > 0
+Fin</code></pre>
+            <p>Pourquoi le symbole <code>@</code> est-il strictement indispensable devant <code>n</code> ?</p>
+          </div>
+          <ul class="propositions">
+            <li>Pour que la boucle Répéter puisse s'exécuter</li>
+            <li>Pour transmettre la valeur lue au clavier à la variable effective du programme principal lors du retour</li>
+            <li>Pour empêcher la saisie de caractères alphabétiques</li>
+            <li>Pour convertir automatiquement <code>n</code> en réel</li>
+          </ul>
+        </div>
+
+        <!-- Q5 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="1" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 5</h5>
+          <div class="question">
+            <p>Soit le script Python suivant avec variable globale :</p>
+            <pre><code class="language-python">compteur = 0
+
+def incrementer():
+    global compteur
+    compteur += 1
+
+incrementer()
+incrementer()
+print(compteur)</code></pre>
+            <p>Quelle valeur est affichée à l'écran ?</p>
+          </div>
+          <ul class="propositions">
+            <li>2</li>
+            <li>0</li>
+            <li>1</li>
+            <li>Une erreur UnboundLocalError</li>
+          </ul>
+        </div>
+
+        <!-- Q6 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="3" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 6</h5>
+          <div class="question">
+            <p>En Python, si l'on omet l'instruction <code>global compteur</code> dans la fonction précédente lors d'une affectation <code>compteur += 1</code> :</p>
+          </div>
+          <ul class="propositions">
+            <li>Python incrémente automatiquement la variable globale</li>
+            <li>Python crée une variable sans valeur</li>
+            <li>Une erreur <code>UnboundLocalError: local variable 'compteur' referenced before assignment</code> est levée</li>
+            <li>Le compteur prend la valeur None</li>
+          </ul>
+        </div>
+
+        <!-- Q7 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="2" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 7</h5>
+          <div class="question">
+            <p>Lorsqu'un tableau <code>T</code> de type NumPy est passé en argument à une procédure en Python :</p>
+          </div>
+          <ul class="propositions">
+            <li>Le tableau est toujours dupliqué intégralement en mémoire</li>
+            <li>Toute modification d'une case <code>T[i]</code> modifie directement le tableau dans le programme appelant (passage par référence d'objet mutable)</li>
+            <li>Le mot-clé <code>global T</code> est obligatoirement requis pour modifier une case <code>T[i]</code></li>
+            <li>Le tableau devient en lecture seule</li>
+          </ul>
+        </div>
+
+        <!-- Q8 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="1" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 8</h5>
+          <div class="question">
+            <p>Soit la procédure suivante calculant simultanément le quotient entier et le reste de deux nombres :</p>
+            <pre><code class="language-algorithm">Procédure Division_Euclidienne(a : Entier, b : Entier, @q : Entier, @r : Entier)
+Début
+  q ← a Div b
+  r ← a Mod b
+Fin</code></pre>
+            <p>Quels sont respectivement les statuts des paramètres <code>a, b, q, r</code> ?</p>
+          </div>
+          <ul class="propositions">
+            <li>a et b sont des paramètres d'entrée (par valeur) ; q et r sont des paramètres de sortie (par variable @)</li>
+            <li>Tous les 4 sont des paramètres de sortie</li>
+            <li>a et b sont des paramètres de sortie ; q et r sont des paramètres d'entrée</li>
+            <li>Tous les 4 sont des paramètres d'entrée</li>
+          </ul>
+        </div>
+
+        <!-- Q9 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="2" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 9</h5>
+          <div class="question">
+            <p>Qu'appelle-t-on le masquage d'une variable globale ?</p>
+          </div>
+          <ul class="propositions">
+            <li>L'effacement définitif de la variable du disque dur</li>
+            <li>La déclaration d'une variable locale portant le même identificateur qu'une variable globale, rendant la globale inaccessible dans ce sous-programme</li>
+            <li>La transformation d'un entier en chaîne secrète</li>
+            <li>L'utilisation de tirets bas dans le nom de la variable</li>
+          </ul>
+        </div>
+
+        <!-- Q10 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="3" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 10</h5>
+          <div class="question">
+            <p>Dans quel cas de conception la structure <strong>Procédure</strong> est-elle incontournable ?</p>
+          </div>
+          <ul class="propositions">
+            <li>Lorsqu'on doit tester si un nombre est pair</li>
+            <li>Lorsqu'on effectue un simple calcul d'aire $S = L \times l$</li>
+            <li>Lorsqu'on doit réaliser un traitement produisant plusieurs résultats distincts ou modifiant des variables existantes (saisie, tri, remplissage, échange)</li>
+            <li>Lorsqu'on calcule une racine carrée</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           EXERCICE 3 : PROCÉDURE SAISIR_TAILLE (CONTRÔLE DE SAISIE)
+           ======================================================== -->
+      <section class="mb-5 exercise-section" data-ex-id="ex3" id="exercice-3">
+        <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+          <h3 class="h4 text-primary m-0">Exercice 3 : Contrôle de Saisie Sécurisé (Saisir_Taille)</h3>
+          <span class="badge badge-difficulty-easy rounded-pill px-3 py-2">🟢 Facile</span>
+        </div>
+
+        <p>
+          Dans la plupart des sujets officiels du Baccalauréat Scientifique, la taille d'un tableau ou la valeur d'un entier <code>N</code> doit être obligatoirement contrôlée dans un intervalle fermé <code>[min, max]</code>.<br>
+          On souhaite concevoir une procédure modulaire <code>Saisir_Taille(@n : Entier, min : Entier, max : Entier)</code> qui répète la saisie au clavier tant que <code>N</code> n'appartient pas à l'intervalle <code>[min, max]</code>.
+        </p>
+
+        <div class="card bg-light border-0 shadow-sm p-3 mb-3">
+          <h6 class="fw-bold text-dark mb-1"><i class="bi bi-pencil-square text-primary me-2"></i>Travail demandé :</h6>
+          <ol class="small text-dark mb-0 ps-3">
+            <li>Justifier le mode de passage de chaque paramètre : <code>@n</code>, <code>min</code> et <code>max</code>.</li>
+            <li>Rédiger l'algorithme officiel de la procédure à l'aide de la boucle post-test <code>Répéter...Jusqu'à</code>.</li>
+            <li>Dresser le T.D.O.L. de la procédure.</li>
+            <li>Proposer la transcription en Python 3 selon les conventions officielles 2024-2025.</li>
+            <li>Donner un exemple d'appel dans le programme principal pour saisir la taille d'un tableau d'au moins 5 et au plus 30 éléments.</li>
+          </ol>
+        </div>
+
+        <!-- Indications & Jeux d'essais (Pas de corrigé pré-rédigé) -->
+        <div class="alert alert-light border-start border-warning border-4 shadow-sm my-3 d-print-none">
+          <div class="fw-bold text-dark mb-2">
+            💡 Conseils méthodologiques &amp; Indices
+          </div>
+          <ul class="mb-2 small text-muted ps-3">
+            <li>Le paramètre <code>@n</code> reçoit une valeur lue au clavier qui doit être transmise au programme appelant : justifier pourquoi le passage par variable (adresse) avec <code>@</code> est obligatoire.</li>
+            <li>Les bornes <code>min</code> et <code>max</code> ne sont jamais modifiées par la procédure : justifier pourquoi le passage par valeur est requis.</li>
+            <li>Utiliser une structure répétitive à condition d'arrêt post-test <code>Répéter ... Jusqu'à (condition)</code>. La condition de sortie doit exprimer l'appartenance à l'intervalle $[min, max]$.</li>
+            <li>Vérifier s'il est nécessaire de déclarer des variables locales dans le T.D.O.L.</li>
+          </ul>
+          <div class="p-2 bg-white rounded border small">
+            <strong>Exemple d'appel :</strong> <code>Saisir_Taille(taille, 5, 30)</code> &rarr; La boucle se répète tant que l'utilisateur saisit une valeur hors de $[5, 30]$ (par ex. $2$ ou $45$) et s'arrête dès qu'une valeur valide est entrée (par ex. $15$).
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           EXERCICE 4 : PROCÉDURE PERMUTER (ÉCHANGE EN MÉMOIRE)
+           ======================================================== -->
+      <section class="mb-5 exercise-section" data-ex-id="ex4" id="exercice-4">
+        <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+          <h3 class="h4 text-primary m-0">Exercice 4 : Échange en Mémoire (Procédure Permuter)</h3>
+          <span class="badge badge-difficulty-easy rounded-pill px-3 py-2">🟢 Facile</span>
+        </div>
+
+        <p>
+          L'échange de deux valeurs en mémoire est l'opération élémentaire au cœur de tous les algorithmes de tri (tri à bulles, tri par sélection, etc.).<br>
+          On souhaite concevoir une procédure modulaire <code>Permuter(@a : Entier, @b : Entier)</code> qui échange le contenu de deux variables entières.
+        </p>
+
+        <div class="card bg-light border-0 shadow-sm p-3 mb-3">
+          <h6 class="fw-bold text-dark mb-1"><i class="bi bi-pencil-square text-primary me-2"></i>Travail demandé :</h6>
+          <ol class="small text-dark mb-0 ps-3">
+            <li>Expliquer pourquoi les deux paramètres doivent impérativement être déclarés avec le symbole <code>@</code>.</li>
+            <li>Dresser le Tableau de Déclaration des Objets Locaux (T.D.O.L.).</li>
+            <li>Rédiger l'algorithme de la procédure <code>Permuter</code> en utilisant une variable locale tampon <code>aux</code>.</li>
+            <li>Traduire la procédure en Python 3 et proposer un exemple complet d'utilisation.</li>
+          </ol>
+        </div>
+
+        <!-- Indications & Jeux d'essais (Pas de corrigé pré-rédigé) -->
+        <div class="alert alert-light border-start border-warning border-4 shadow-sm my-3 d-print-none">
+          <div class="fw-bold text-dark mb-2">
+            💡 Conseils méthodologiques &amp; Indices
+          </div>
+          <ul class="mb-2 small text-muted ps-3">
+            <li>Pour échanger les valeurs de deux variables sans écraser l'une d'elles, utiliser une variable locale temporaire <code>aux</code> déclarée dans le T.D.O.L.</li>
+            <li>Le processus s'effectue en 3 étapes d'affectation successives.</li>
+            <li>Puisque les valeurs des deux variables réelles doivent être modifiées dans l'environnement appelant, les deux paramètres doivent être précédés du symbole <code>@</code> (paramètres d'entrée-sortie par variable).</li>
+            <li>En Python, réfléchir aux spécificités de passage des types simples (immutables) et comment retourner ou réassigner les valeurs (ex : affectation multiple par tuple).</li>
+          </ul>
+          <div class="p-2 bg-white rounded border small">
+            <strong>Trace d'exécution à vérifier :</strong> Soit $a = 12$ et $b = 99$. Après l'appel <code>Permuter(a, b)</code>, on doit obtenir $a = 99$ et $b = 12$.
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           EXERCICE 5 : PROCÉDURE REMPLIR (TABLEAU ALÉATOIRE)
+           ======================================================== -->
+      <section class="mb-5 exercise-section" data-ex-id="ex5" id="exercice-5">
+        <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+          <h3 class="h4 text-primary m-0">Exercice 5 : Remplissage de Tableau (Procédure Remplir)</h3>
+          <span class="badge badge-difficulty-medium rounded-pill px-3 py-2">🟠 Intermédiaire</span>
+        </div>
+
+        <p>
+          Soit le type <code>Tab = Tableau de 100 Entier</code>.<br>
+          On souhaite écrire une procédure <code>Remplir(n : Entier, @T : Tab)</code> qui remplit les <code>n</code> premières cases d'un tableau <code>T</code> ($2 \le n \le 100$) avec des entiers aléatoires générés automatiquement dans l'intervalle <code>[10, 99]</code> à l'aide de la fonction standard <code>Aléa</code>.
+        </p>
+
+        <div class="card bg-light border-0 shadow-sm p-3 mb-3">
+          <h6 class="fw-bold text-dark mb-1"><i class="bi bi-pencil-square text-primary me-2"></i>Travail demandé :</h6>
+          <ol class="small text-dark mb-0 ps-3">
+            <li>Justifier pourquoi <code>n</code> est passé par valeur et <code>@T</code> par variable.</li>
+            <li>Dresser le T.D.O.L. de la procédure.</li>
+            <li>Écrire l'algorithme officiel de la procédure <code>Remplir</code>.</li>
+            <li>Traduire la procédure en Python 3 en utilisant la bibliothèque <code>random</code> et un tableau NumPy.</li>
+          </ol>
+        </div>
+
+        <!-- Indications & Jeux d'essais (Pas de corrigé pré-rédigé) -->
+        <div class="alert alert-light border-start border-warning border-4 shadow-sm my-3 d-print-none">
+          <div class="fw-bold text-dark mb-2">
+            💡 Conseils méthodologiques &amp; Indices
+          </div>
+          <ul class="mb-2 small text-muted ps-3">
+            <li>Déclarer dans le T.D.N.T. : <code>Tab = Tableau de 100 Entier</code>.</li>
+            <li>Le paramètre <code>n</code> est une simple donnée d'entrée (taille effective), tandis que <code>@T</code> est modifié par les valeurs générées (paramètre de sortie par variable).</li>
+            <li>Utiliser une boucle <code>Pour</code> avec un compteur local <code>i</code> allant de $0$ à $n - 1$.</li>
+            <li>Affecter à chaque case <code>T[i]</code> un entier généré par la fonction standard <code>Aléa(10, 99)</code>.</li>
+            <li>En Python, utiliser le module <code>random</code> (fonction <code>randint</code>) et un tableau NumPy initialisé avec <code>zeros</code>.</li>
+          </ul>
+          <div class="p-2 bg-white rounded border small">
+            <strong>Comportement attendu :</strong> Pour $n = 5$, après l'appel <code>Remplir(5, T)</code>, les 5 premières cases de <code>T</code> contiennent chacune un nombre à deux chiffres ($10 \le T[i] \le 99$).
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           EXERCICE 6 : PROCÉDURE À SORTIES MULTIPLES (STATISTIQUES)
+           ======================================================== -->
+      <section class="mb-5 exercise-section" data-ex-id="ex6" id="exercice-6">
+        <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+          <h3 class="h4 text-primary m-0">Exercice 6 : Calculs Simultanés — Min, Max et Moyenne</h3>
+          <span class="badge badge-difficulty-hard rounded-pill px-3 py-2">🔴 Avancé</span>
+        </div>
+
+        <p>
+          Soit un tableau <code>Notes</code> de <code>n</code> entiers ($1 \le n \le 50$) représentant les notes obtenues par une classe à une épreuve d'informatique.<br>
+          On souhaite concevoir une procédure modulaire <code>Statistiques(T : Tab, n : Entier, @val_min : Entier, @val_max : Entier, @moy : Réel)</code> qui calcule en un <strong>seul et unique parcours</strong> du tableau :
+        </p>
+        <ul class="ps-3 mb-3">
+          <li>La note minimale <code>val_min</code></li>
+          <li>La note maximale <code>val_max</code></li>
+          <li>La moyenne arithmétique <code>moy</code> de la classe</li>
+        </ul>
+
+        <div class="card bg-light border-0 shadow-sm p-3 mb-3">
+          <h6 class="fw-bold text-dark mb-1"><i class="bi bi-pencil-square text-primary me-2"></i>Travail demandé :</h6>
+          <ol class="small text-dark mb-0 ps-3">
+            <li>Pourquoi l'utilisation d'une procédure est-elle ici nettement préférable à l'écriture de trois fonctions séparées ?</li>
+            <li>Identifier les paramètres d'entrée et les paramètres de sortie avec leur mode de passage.</li>
+            <li>Dresser le T.D.O.L. de la procédure.</li>
+            <li>Rédiger l'algorithme officiel de la procédure <code>Statistiques</code>.</li>
+            <li>Traduire cette procédure en Python 3 et fournir un exemple d'appel complet.</li>
+          </ol>
+        </div>
+
+        <!-- Indications & Jeux d'essais (Pas de corrigé pré-rédigé) -->
+        <div class="alert alert-light border-start border-warning border-4 shadow-sm my-3 d-print-none">
+          <div class="fw-bold text-dark mb-2">
+            💡 Conseils méthodologiques &amp; Indices
+          </div>
+          <ul class="mb-2 small text-muted ps-3">
+            <li>La procédure permet de calculer simultanément trois grandeurs en <strong>un seul parcours</strong> de complexité $O(n)$, évitant trois boucles séparées.</li>
+            <li>Initialiser <code>val_min</code>, <code>val_max</code> et <code>somme</code> avec la première note <code>T[0]</code>.</li>
+            <li>Parcourir les éléments suivants de l'indice $1$ à $n - 1$ pour mettre à jour les extremums et cumuler la somme.</li>
+            <li>Après la boucle, calculer la moyenne arithmétique <code>moy &larr; somme / n</code>.</li>
+            <li>Préciser dans le T.D.O.L. les variables locales nécessaires au cumul et au parcours.</li>
+          </ul>
+          <div class="p-2 bg-white rounded border small">
+            <strong>Jeux d'essais à vérifier :</strong> Pour $T = [12, 17, 8, 19, 14, 11, 16]$ ($n = 7$), l'appel produit : <code>val_min = 8</code>, <code>val_max = 19</code>, <code>moy &asymp; 13.86</code>.
+          </div>
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-custom py-4 text-center mt-5">
+    <div class="container">
+      <div class="mb-2">
+        <span class="fw-bold text-white">Informatique 4<sup>e</sup> Année Scientifique</span>
+        <span class="mx-2 text-white-50">|</span>
+        <span class="text-light">Bac 2026</span>
+      </div>
+      <div class="small text-white-50 mb-3">
+        Conformité pédagogique aux programmes et conventions officielles 2024-2025
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts JS Locaux -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/highlight.min.js"></script>
+  <script src="assets/js/hljs.algorithm.js"></script>
+  <script src="assets/js/clipboard.min.js"></script>
+  <script src="assets/js/main-ui.js?v=2"></script>
+  <script src="assets/js/pages.js"></script>
+  <script src="assets/js/draggable.js?v=2"></script>
+  <script src="assets/js/katex.min.js"></script>
+  <script src="assets/js/auto-render.min.js"></script>
+
+  <!-- Highlighting & Clipboard Setup -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof hljs !== 'undefined') {
+        if (typeof hljs.highlightAll === 'function') {
+          hljs.highlightAll();
+        } else if (typeof hljs.initHighlightingOnLoad === 'function') {
+          hljs.initHighlightingOnLoad();
+        }
+      }
+
+      document.querySelectorAll('.language-algorithm, .language-python').forEach(item => {
+        if (!item.parentElement.querySelector('.bd-clipboard')) {
+          const div = document.createElement('div');
+          div.className = 'bd-clipboard d-print-none';
+          const btn = document.createElement('button');
+          btn.className = 'btn-clipboard';
+          btn.type = 'button';
+          btn.innerHTML = '<i class="bi bi-clipboard me-1"></i> Copier';
+          btn.title = "Copier le code";
+          div.appendChild(btn);
+          item.parentElement.insertBefore(div, item);
+        }
+      });
+    });
+  </script>
+
+  <!-- KaTeX Auto-Render Math Setup -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (typeof renderMathInElement === 'function') {
+        try {
+          renderMathInElement(document.body, {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '$', right: '$', display: false },
+              { left: '\\(', right: '\\)', display: false },
+              { left: '\\[', right: '\\]', display: true }
+            ],
+            throwOnError: false
+          });
+        } catch (e) {
+          console.error("KaTeX render error:", e);
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>
