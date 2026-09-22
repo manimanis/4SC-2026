@@ -198,7 +198,7 @@
           <ul class="propositions">
             <li><code>Incrementer(5)</code> (car 5 est une valeur constante, pas une variable capable de recevoir une modification)</li>
             <li><code>Incrementer(compteur)</code> (où compteur est une variable entière)</li>
-            <li><code>Incrementer(T[0])</code> (où T est un tableau d'entiers)</li>
+            <li><code>Incrementer(total)</code> (où total est une variable entière)</li>
             <li><code>Incrementer(n)</code> (où n est un entier)</li>
           </ul>
         </div>
@@ -367,13 +367,13 @@ print(compteur)</code></pre>
         <div class="qcm-exercise no-page-break-inside" data-correct="2" data-scrambled="false" data-tries="2">
           <h5 class="question-title">Question 7</h5>
           <div class="question">
-            <p>Lorsqu'un tableau <code>T</code> de type NumPy est passé en argument à une procédure en Python :</p>
+            <p>Peut-on appeler une fonction à l'intérieur du corps d'une procédure en algorithmique ?</p>
           </div>
           <ul class="propositions">
-            <li>Le tableau est toujours dupliqué intégralement en mémoire</li>
-            <li>Toute modification d'une case <code>T[i]</code> modifie directement le tableau dans le programme appelant (passage par référence d'objet mutable)</li>
-            <li>Le mot-clé <code>global T</code> est obligatoirement requis pour modifier une case <code>T[i]</code></li>
-            <li>Le tableau devient en lecture seule</li>
+            <li>Non, une procédure ne peut jamais faire appel à un autre sous-programme</li>
+            <li>Oui, une procédure peut librement appeler une fonction et utiliser sa valeur de retour dans ses calculs ou conditions</li>
+            <li>Uniquement si la fonction retourne obligatoirement une valeur entière</li>
+            <li>Non, seules les fonctions ont le droit d'appeler d'autres fonctions</li>
           </ul>
         </div>
 
@@ -427,27 +427,46 @@ Fin</code></pre>
       </section>
 
       <!-- ========================================================
-           EXERCICE 3 : PROCÉDURE SAISIR_TAILLE (CONTRÔLE DE SAISIE)
+           EXERCICE 3 : HORODATAGE & DÉCOMPOSITION TEMPORELLE
            ======================================================== -->
       <section class="mb-5 exercise-section" data-ex-id="ex3" id="exercice-3">
         <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
-          <h3 class="h4 text-primary m-0">Exercice 3 : Contrôle de Saisie Sécurisé (Saisir_Taille)</h3>
+          <h3 class="h4 text-primary m-0">Exercice 3 : Horodatage &amp; Décomposition Temporelle (Mixte Chronométrie)</h3>
           <span class="badge badge-difficulty-easy rounded-pill px-3 py-2">🟢 Facile</span>
         </div>
 
-        <p>
-          Dans la plupart des sujets officiels du Baccalauréat Scientifique, la taille d'un tableau ou la valeur d'un entier <code>N</code> doit être obligatoirement contrôlée dans un intervalle fermé <code>[min, max]</code>.<br>
-          On souhaite concevoir une procédure modulaire <code>Saisir_Taille(@n : Entier, min : Entier, max : Entier)</code> qui répète la saisie au clavier tant que <code>N</code> n'appartient pas à l'intervalle <code>[min, max]</code>.
-        </p>
+        <div class="row align-items-center mb-3">
+          <div class="col-lg-7">
+            <p>
+              Dans un système de chronométrage sportif ou de supervision réseau, les mesures de durée sont capturées sous la forme d'un nombre total de secondes écoulées (par exemple <code>total_sec = 7543</code> secondes).<br>
+              Pour restituer ce temps sous une forme humaine conventionnelle <code>HH:MM:SS</code> (par exemple <code>"02:05:43"</code>), on souhaite mettre en place une architecture modulaire collaborative combinant fonctions et procédures :
+            </p>
+            <ul class="ps-3 mb-0">
+              <li>Une fonction <code>Formater_2Chiffres(val : Entier) : Chaîne</code> qui prend un entier compris entre 0 et 59 et retourne une chaîne de deux chiffres (en préfixant d'un zéro si nécessaire : $5 \to \text{"05"}$, $42 \to \text{"42"}$).</li>
+              <li>Une procédure <code>Decomposer_Temps(total_sec : Entier, @h : Entier, @m : Entier, @s : Entier)</code> qui extrait simultanément le nombre d'heures, de minutes et de secondes restantes à partir de la durée brute en secondes.</li>
+              <li>Une fonction <code>Formater_Horloge(h : Entier, m : Entier, s : Entier) : Chaîne</code> qui appelle <code>Formater_2Chiffres</code> pour construire et retourner la chaîne finale au format officiel <code>"HH:MM:SS"</code>.</li>
+              <li>Une procédure <code>Afficher_Bilan_Chrono(total_sec : Entier)</code> qui appelle <code>Decomposer_Temps</code> et <code>Formater_Horloge</code>, puis affiche le temps formaté et son détail textuel.</li>
+            </ul>
+          </div>
+          <div class="col-lg-5 text-center my-3 my-lg-0">
+            <figure class="figure m-0 d-print-none text-center">
+              <img src="assets/img/serie06/horodatage-duree.jpg" alt="Décomposition temporelle d'une durée en heures, minutes et secondes" class="img-fluid rounded-3 shadow-sm border" style="max-height: 250px; width: 100%; object-fit: cover;">
+              <figcaption class="figure-caption text-center small mt-1">
+                <i class="bi bi-clock-history text-primary me-1"></i>Décomposition d'une durée brute en Heures ($h$), Minutes ($m$) et Secondes ($s$)
+              </figcaption>
+            </figure>
+          </div>
+        </div>
 
         <div class="card bg-light border-0 shadow-sm p-3 mb-3">
           <h6 class="fw-bold text-dark mb-1"><i class="bi bi-pencil-square text-primary me-2"></i>Travail demandé :</h6>
           <ol class="small text-dark mb-0 ps-3">
-            <li>Justifier le mode de passage de chaque paramètre : <code>@n</code>, <code>min</code> et <code>max</code>.</li>
-            <li>Rédiger l'algorithme officiel de la procédure à l'aide de la boucle post-test <code>Répéter...Jusqu'à</code>.</li>
-            <li>Dresser le T.D.O.L. de la procédure.</li>
-            <li>Proposer la transcription en Python 3 selon les conventions officielles 2024-2025.</li>
-            <li>Donner un exemple d'appel dans le programme principal pour saisir la taille d'un tableau d'au moins 5 et au plus 30 éléments.</li>
+            <li>Pourquoi le calcul des composantes temporelles est-il confié à une <strong>procédure</strong> (<code>Decomposer_Temps</code>) plutôt qu'à une simple fonction ?</li>
+            <li>Justifier le mode de passage des paramètres dans <code>Decomposer_Temps</code> : passage par valeur pour <code>total_sec</code>, et passage par variable avec <code>@</code> pour <code>h</code>, <code>m</code> et <code>s</code>.</li>
+            <li>Rédiger l'algorithme de la fonction <code>Formater_2Chiffres(val : Entier) : Chaîne</code>.</li>
+            <li>Dresser le Tableau de Déclaration des Objets Locaux (T.D.O.L.) et rédiger l'algorithme officiel de la procédure <code>Decomposer_Temps</code>.</li>
+            <li>Rédiger l'algorithme de la fonction <code>Formater_Horloge</code> et de la procédure <code>Afficher_Bilan_Chrono</code>.</li>
+            <li>Traduire ces sous-programmes en Python 3 selon les conventions officielles 2024-2025.</li>
           </ol>
         </div>
 
@@ -457,127 +476,71 @@ Fin</code></pre>
             💡 Conseils méthodologiques &amp; Indices
           </div>
           <ul class="mb-2 small text-muted ps-3">
-            <li>Le paramètre <code>@n</code> reçoit une valeur lue au clavier qui doit être transmise au programme appelant : justifier pourquoi le passage par variable (adresse) avec <code>@</code> est obligatoire.</li>
-            <li>Les bornes <code>min</code> et <code>max</code> ne sont jamais modifiées par la procédure : justifier pourquoi le passage par valeur est requis.</li>
-            <li>Utiliser une structure répétitive à condition d'arrêt post-test <code>Répéter ... Jusqu'à (condition)</code>. La condition de sortie doit exprimer l'appartenance à l'intervalle $[min, max]$.</li>
-            <li>Vérifier s'il est nécessaire de déclarer des variables locales dans le T.D.O.L.</li>
+            <li>Pour décomposer le temps en secondes : $h \leftarrow total\_sec \text{ Div } 3600$, le reste intermédiaire $reste \leftarrow total\_sec \text{ Mod } 3600$, puis $m \leftarrow reste \text{ Div } 60$ et $s \leftarrow reste \text{ Mod } 60$.</li>
+            <li>Pour <code>Formater_2Chiffres</code>, utiliser la fonction standard <code>ConvCh(val)</code> : si $val &lt; 10$, concaténer <code>"0" + ConvCh(val)</code>, sinon retourner <code>ConvCh(val)</code>.</li>
+            <li>Dans <code>Decomposer_Temps</code>, déclarer la variable intermédiaire <code>reste</code> dans le T.D.O.L. de la procédure.</li>
+            <li>En Python, pour simuler la modification de variables scalaires passées en argument, on utilise soit la réaffectation multiple par tuple (ex: <code>h, m, s = decomposer_temps(total_sec)</code>), soit le mot-clé <code>global</code>.</li>
           </ul>
           <div class="p-2 bg-white rounded border small">
-            <strong>Exemple d'appel :</strong> <code>Saisir_Taille(taille, 5, 30)</code> &rarr; La boucle se répète tant que l'utilisateur saisit une valeur hors de $[5, 30]$ (par ex. $2$ ou $45$) et s'arrête dès qu'une valeur valide est entrée (par ex. $15$).
+            <strong>Jeux d'essais à vérifier :</strong><br>
+            • <code>total_sec = 3661</code> &rarr; $h = 1, m = 1, s = 1$ &rarr; Horloge : <code>"01:01:01"</code>.<br>
+            • <code>total_sec = 7543</code> &rarr; $h = 2, m = 5, s = 43$ &rarr; Horloge : <code>"02:05:43"</code>.<br>
+            • <code>total_sec = 59</code> &rarr; $h = 0, m = 0, s = 59$ &rarr; Horloge : <code>"00:00:59"</code>.
           </div>
         </div>
       </section>
 
       <!-- ========================================================
-           EXERCICE 4 : PROCÉDURE PERMUTER (ÉCHANGE EN MÉMOIRE)
+           EXERCICE 4 : SÉCURITÉ ROUTIÈRE & DISTANCE D'ARRÊT
            ======================================================== -->
       <section class="mb-5 exercise-section" data-ex-id="ex4" id="exercice-4">
         <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
-          <h3 class="h4 text-primary m-0">Exercice 4 : Échange en Mémoire (Procédure Permuter)</h3>
+          <h3 class="h4 text-primary m-0">Exercice 4 : Sécurité Routière &amp; Distance d'Arrêt (Mixte Cinématique &amp; Diagnostic)</h3>
           <span class="badge badge-difficulty-easy rounded-pill px-3 py-2">🟢 Facile</span>
         </div>
 
-        <p>
-          L'échange de deux valeurs en mémoire est l'opération élémentaire au cœur de tous les algorithmes de tri (tri à bulles, tri par sélection, etc.).<br>
-          On souhaite concevoir une procédure modulaire <code>Permuter(@a : Entier, @b : Entier)</code> qui échange le contenu de deux variables entières.
-        </p>
-
-        <div class="card bg-light border-0 shadow-sm p-3 mb-3">
-          <h6 class="fw-bold text-dark mb-1"><i class="bi bi-pencil-square text-primary me-2"></i>Travail demandé :</h6>
-          <ol class="small text-dark mb-0 ps-3">
-            <li>Expliquer pourquoi les deux paramètres doivent impérativement être déclarés avec le symbole <code>@</code>.</li>
-            <li>Dresser le Tableau de Déclaration des Objets Locaux (T.D.O.L.).</li>
-            <li>Rédiger l'algorithme de la procédure <code>Permuter</code> en utilisant une variable locale tampon <code>aux</code>.</li>
-            <li>Traduire la procédure en Python 3 et proposer un exemple complet d'utilisation.</li>
-          </ol>
-        </div>
-
-        <!-- Indications & Jeux d'essais (Pas de corrigé pré-rédigé) -->
-        <div class="alert alert-light border-start border-warning border-4 shadow-sm my-3 d-print-none">
-          <div class="fw-bold text-dark mb-2">
-            💡 Conseils méthodologiques &amp; Indices
+        <div class="row align-items-center mb-3">
+          <div class="col-lg-7">
+            <p>
+              En sécurité routière et en physique appliquée, la distance totale d'arrêt d'un véhicule $D_a$ face à un obstacle imprévu se compose de deux phases successives :
+            </p>
+            <ol class="small ps-3 mb-2">
+              <li><strong>La distance de réaction ($D_r$) :</strong> parcourue à vitesse constante pendant le temps de réflexe du conducteur ($t_r$, estimé à $1.0\text{ s}$ pour un conducteur vigilant). En convertissant la vitesse de km/h en m/s ($v_{ms} = \frac{v}{3.6}$), on a : $D_r = v_{ms} \times t_r$.</li>
+              <li><strong>La distance de freinage ($D_f$) :</strong> décélération active des freins jusqu'à l'arrêt complet selon la pesanteur ($g = 9.81\text{ m/s}^2$) et l'adhérence $\mu$ :
+                $$D_f = \frac{v_{ms}^2}{2 \times g \times \mu}$$
+                $\mu = 0.8$ sur route sèche (<code>"Sec"</code>), $\mu = 0.4$ sur route mouillée (<code>"Mouille"</code>), et $\mu = 0.1$ sur route verglacée (<code>"Verglace"</code>).
+              </li>
+            </ol>
+            <p class="mb-0">
+              La distance totale d'arrêt vaut la somme des deux distances : $D_a = D_r + D_f$. On souhaite concevoir un module embarqué combinant fonctions et procédures :
+            </p>
           </div>
-          <ul class="mb-2 small text-muted ps-3">
-            <li>Pour échanger les valeurs de deux variables sans écraser l'une d'elles, utiliser une variable locale temporaire <code>aux</code> déclarée dans le T.D.O.L.</li>
-            <li>Le processus s'effectue en 3 étapes d'affectation successives.</li>
-            <li>Puisque les valeurs des deux variables réelles doivent être modifiées dans l'environnement appelant, les deux paramètres doivent être précédés du symbole <code>@</code> (paramètres d'entrée-sortie par variable).</li>
-            <li>En Python, réfléchir aux spécificités de passage des types simples (immutables) et comment retourner ou réassigner les valeurs (ex : affectation multiple par tuple).</li>
-          </ul>
-          <div class="p-2 bg-white rounded border small">
-            <strong>Trace d'exécution à vérifier :</strong> Soit $a = 12$ et $b = 99$. Après l'appel <code>Permuter(a, b)</code>, on doit obtenir $a = 99$ et $b = 12$.
+          <div class="col-lg-5 text-center my-3 my-lg-0">
+            <figure class="figure m-0 d-print-none text-center">
+              <img src="assets/img/serie06/distance-arret-securite.jpg" alt="Cinématique de sécurité routière et distance totale d'arrêt" class="img-fluid rounded-3 shadow-sm border" style="max-height: 250px; width: 100%; object-fit: cover;">
+              <figcaption class="figure-caption text-center small mt-1">
+                <i class="bi bi-shield-check text-primary me-1"></i>Distance de réaction ($D_r$), freinage ($D_f$) et arrêt sécurisé face à un obstacle
+              </figcaption>
+            </figure>
           </div>
         </div>
-      </section>
-
-      <!-- ========================================================
-           EXERCICE 5 : PROCÉDURE REMPLIR (TABLEAU ALÉATOIRE)
-           ======================================================== -->
-      <section class="mb-5 exercise-section" data-ex-id="ex5" id="exercice-5">
-        <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
-          <h3 class="h4 text-primary m-0">Exercice 5 : Remplissage de Tableau (Procédure Remplir)</h3>
-          <span class="badge badge-difficulty-medium rounded-pill px-3 py-2">🟠 Intermédiaire</span>
-        </div>
-
-        <p>
-          Soit le type <code>Tab = Tableau de 100 Entier</code>.<br>
-          On souhaite écrire une procédure <code>Remplir(n : Entier, @T : Tab)</code> qui remplit les <code>n</code> premières cases d'un tableau <code>T</code> ($2 \le n \le 100$) avec des entiers aléatoires générés automatiquement dans l'intervalle <code>[10, 99]</code> à l'aide de la fonction standard <code>Aléa</code>.
-        </p>
-
-        <div class="card bg-light border-0 shadow-sm p-3 mb-3">
-          <h6 class="fw-bold text-dark mb-1"><i class="bi bi-pencil-square text-primary me-2"></i>Travail demandé :</h6>
-          <ol class="small text-dark mb-0 ps-3">
-            <li>Justifier pourquoi <code>n</code> est passé par valeur et <code>@T</code> par variable.</li>
-            <li>Dresser le T.D.O.L. de la procédure.</li>
-            <li>Écrire l'algorithme officiel de la procédure <code>Remplir</code>.</li>
-            <li>Traduire la procédure en Python 3 en utilisant la bibliothèque <code>random</code> et un tableau NumPy.</li>
-          </ol>
-        </div>
-
-        <!-- Indications & Jeux d'essais (Pas de corrigé pré-rédigé) -->
-        <div class="alert alert-light border-start border-warning border-4 shadow-sm my-3 d-print-none">
-          <div class="fw-bold text-dark mb-2">
-            💡 Conseils méthodologiques &amp; Indices
-          </div>
-          <ul class="mb-2 small text-muted ps-3">
-            <li>Déclarer dans le T.D.N.T. : <code>Tab = Tableau de 100 Entier</code>.</li>
-            <li>Le paramètre <code>n</code> est une simple donnée d'entrée (taille effective), tandis que <code>@T</code> est modifié par les valeurs générées (paramètre de sortie par variable).</li>
-            <li>Utiliser une boucle <code>Pour</code> avec un compteur local <code>i</code> allant de $0$ à $n - 1$.</li>
-            <li>Affecter à chaque case <code>T[i]</code> un entier généré par la fonction standard <code>Aléa(10, 99)</code>.</li>
-            <li>En Python, utiliser le module <code>random</code> (fonction <code>randint</code>) et un tableau NumPy initialisé avec <code>zeros</code>.</li>
-          </ul>
-          <div class="p-2 bg-white rounded border small">
-            <strong>Comportement attendu :</strong> Pour $n = 5$, après l'appel <code>Remplir(5, T)</code>, les 5 premières cases de <code>T</code> contiennent chacune un nombre à deux chiffres ($10 \le T[i] \le 99$).
-          </div>
-        </div>
-      </section>
-
-      <!-- ========================================================
-           EXERCICE 6 : PROCÉDURE À SORTIES MULTIPLES (STATISTIQUES)
-           ======================================================== -->
-      <section class="mb-5 exercise-section" data-ex-id="ex6" id="exercice-6">
-        <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
-          <h3 class="h4 text-primary m-0">Exercice 6 : Calculs Simultanés — Min, Max et Moyenne</h3>
-          <span class="badge badge-difficulty-hard rounded-pill px-3 py-2">🔴 Avancé</span>
-        </div>
-
-        <p>
-          Soit un tableau <code>Notes</code> de <code>n</code> entiers ($1 \le n \le 50$) représentant les notes obtenues par une classe à une épreuve d'informatique.<br>
-          On souhaite concevoir une procédure modulaire <code>Statistiques(T : Tab, n : Entier, @val_min : Entier, @val_max : Entier, @moy : Réel)</code> qui calcule en un <strong>seul et unique parcours</strong> du tableau :
-        </p>
         <ul class="ps-3 mb-3">
-          <li>La note minimale <code>val_min</code></li>
-          <li>La note maximale <code>val_max</code></li>
-          <li>La moyenne arithmétique <code>moy</code> de la classe</li>
+          <li>Une fonction <code>Adherence_Route(etat : Chaîne) : Réel</code> qui reçoit l'état textuel de la route et renvoie le coefficient de frottement $\mu$ correspondant ($0.8$, $0.4$, ou $0.1$ ; $0.5$ par défaut si non reconnu).</li>
+          <li>Une fonction <code>Distance_Freinage(vitesse_kmh : Réel, coef_mu : Réel) : Réel</code> qui calcule et retourne la distance de freinage physique $D_f$ en mètres.</li>
+          <li>Une procédure <code>Calculer_Securite_Arret(vitesse_kmh : Réel, etat_route : Chaîne, temps_reac : Réel, @dist_reac : Réel, @dist_frein : Réel, @dist_arret : Réel)</code> qui calcule simultanément les trois distances ($D_r$, $D_f$ et $D_a = D_r + D_f$) et les restitue via trois paramètres de sortie passés par variable (<code>@</code>).</li>
+          <li>Une fonction <code>Tester_Collision(dist_arret : Réel, dist_obstacle : Réel) : Booléen</code> qui renvoie <code>Vrai</code> si $dist\_arret > dist\_obstacle$ (choc inévitable), et <code>Faux</code> si le véhicule parvient à s'arrêter avant l'obstacle.</li>
+          <li>Une procédure <code>Afficher_Diagnostic_Routier(vitesse_kmh : Réel, etat_route : Chaîne, dist_obstacle : Réel)</code> qui coordonne l'appel aux sous-programmes (en fixant le temps de réaction à $1.0\text{ s}$), puis affiche un compte-rendu clair : distances décomposées, verdict de collision ou d'arrêt sécurisé, et marge restante ou distance manquante.</li>
         </ul>
 
         <div class="card bg-light border-0 shadow-sm p-3 mb-3">
           <h6 class="fw-bold text-dark mb-1"><i class="bi bi-pencil-square text-primary me-2"></i>Travail demandé :</h6>
           <ol class="small text-dark mb-0 ps-3">
-            <li>Pourquoi l'utilisation d'une procédure est-elle ici nettement préférable à l'écriture de trois fonctions séparées ?</li>
-            <li>Identifier les paramètres d'entrée et les paramètres de sortie avec leur mode de passage.</li>
-            <li>Dresser le T.D.O.L. de la procédure.</li>
-            <li>Rédiger l'algorithme officiel de la procédure <code>Statistiques</code>.</li>
-            <li>Traduire cette procédure en Python 3 et fournir un exemple d'appel complet.</li>
+            <li>Pourquoi le calcul simultané des trois composantes ($D_r$, $D_f$, $D_a$) nécessite-t-il l'emploi d'une <strong>procédure</strong> plutôt que d'une fonction unique ?</li>
+            <li>Rédiger l'algorithme de la fonction <code>Adherence_Route(etat : Chaîne) : Réel</code>.</li>
+            <li>Rédiger l'algorithme de la fonction <code>Distance_Freinage(vitesse_kmh : Réel, coef_mu : Réel) : Réel</code>.</li>
+            <li>Dresser le T.D.O.L. et rédiger l'algorithme officiel de la procédure <code>Calculer_Securite_Arret</code> en mettant en œuvre le passage par variable (<code>@</code>).</li>
+            <li>Rédiger l'algorithme de la fonction <code>Tester_Collision</code> et de la procédure <code>Afficher_Diagnostic_Routier</code>.</li>
+            <li>Traduire l'ensemble de l'architecture en Python 3 selon les normes officielles.</li>
           </ol>
         </div>
 
@@ -587,14 +550,181 @@ Fin</code></pre>
             💡 Conseils méthodologiques &amp; Indices
           </div>
           <ul class="mb-2 small text-muted ps-3">
-            <li>La procédure permet de calculer simultanément trois grandeurs en <strong>un seul parcours</strong> de complexité $O(n)$, évitant trois boucles séparées.</li>
-            <li>Initialiser <code>val_min</code>, <code>val_max</code> et <code>somme</code> avec la première note <code>T[0]</code>.</li>
-            <li>Parcourir les éléments suivants de l'indice $1$ à $n - 1$ pour mettre à jour les extremums et cumuler la somme.</li>
-            <li>Après la boucle, calculer la moyenne arithmétique <code>moy &larr; somme / n</code>.</li>
-            <li>Préciser dans le T.D.O.L. les variables locales nécessaires au cumul et au parcours.</li>
+            <li>Attention à la conversion d'unités : convertir impérativement la vitesse en mètres par seconde ($v_{ms} \leftarrow vitesse\_kmh / 3.6$) avant d'évaluer $D_r = v_{ms} \times temps\_reac$ et $D_f$.</li>
+            <li>Dans <code>Calculer_Securite_Arret</code>, déclarer les variables locales nécessaires ($v_{ms}$ et $mu$) dans le T.D.O.L. de la procédure. Appeler <code>Adherence_Route</code> pour obtenir $\mu$, puis calculer $dist\_frein \leftarrow Distance\_Freinage(vitesse\_kmh, mu)$, et enfin $dist\_arret \leftarrow dist\_reac + dist\_frein$.</li>
+            <li>Dans <code>Afficher_Diagnostic_Routier</code>, si <code>Tester_Collision</code> est <code>Vrai</code>, calculer l'excès de distance $dist\_arret - dist\_obstacle$ pour indiquer l'intensité du choc ; sinon calculer la marge de sécurité $dist\_obstacle - dist\_arret$.</li>
           </ul>
           <div class="p-2 bg-white rounded border small">
-            <strong>Jeux d'essais à vérifier :</strong> Pour $T = [12, 17, 8, 19, 14, 11, 16]$ ($n = 7$), l'appel produit : <code>val_min = 8</code>, <code>val_max = 19</code>, <code>moy &asymp; 13.86</code>.
+            <strong>Jeux d'essais à vérifier :</strong> ($t_r = 1.0\text{ s}$)<br>
+            • En ville : $v = 50\text{ km/h}$, route <code>"Sec"</code>, obstacle à $30.0\text{ m}$ :<br>
+            &nbsp;&nbsp;$D_r \approx 13.89\text{ m}$, $D_f \approx 12.29\text{ m}$ &rarr; $D_a \approx 26.18\text{ m}$ &rarr; <strong>Arrêt sécurisé</strong> (marge restante : $3.82\text{ m}$).<br>
+            • Sur route : $v = 90\text{ km/h}$, route <code>"Mouille"</code>, obstacle à $80.0\text{ m}$ :<br>
+            &nbsp;&nbsp;$D_r = 25.00\text{ m}$, $D_f \approx 79.64\text{ m}$ &rarr; $D_a \approx 104.64\text{ m}$ &rarr; <strong>Collision inévitable !</strong> (dépassement de $24.64\text{ m}$).<br>
+            • Même vitesse ($v = 90\text{ km/h}$), route <code>"Sec"</code>, obstacle à $80.0\text{ m}$ :<br>
+            &nbsp;&nbsp;$D_r = 25.00\text{ m}$, $D_f \approx 39.82\text{ m}$ &rarr; $D_a \approx 64.82\text{ m}$ &rarr; <strong>Arrêt sécurisé</strong> (marge : $15.18\text{ m}$).
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           EXERCICE 5 : NETTOYAGE & NORMALISATION DE TEXTE
+           ======================================================== -->
+      <section class="mb-5 exercise-section" data-ex-id="ex5" id="exercice-5">
+        <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+          <h3 class="h4 text-primary m-0">Exercice 5 : Nettoyage &amp; Normalisation de Chaînes (Mixte Traitement de Texte)</h3>
+          <span class="badge badge-difficulty-medium rounded-pill px-3 py-2">🟠 Intermédiaire</span>
+        </div>
+
+        <div class="row align-items-center mb-3">
+          <div class="col-lg-7">
+            <p>
+              Dans les formulaires d'inscription en ligne, les utilisateurs saisissent souvent des identités avec des espacements multiples anarchiques et une alternance désordonnée de majuscules et de minuscules (par exemple : <code>ch = "   mOhaMed   aLi   bEn   sALEM   "</code>).<br>
+              Avant archivage, le système doit <strong>normaliser</strong> cette chaîne sur place (sans utiliser de tableau) : éliminer les espaces superflus, compter le nombre effectif de mots et capitaliser chaque composante (première lettre en majuscule, les autres en minuscule : <code>"Mohamed Ali Ben Salem"</code>).
+            </p>
+          </div>
+          <div class="col-lg-5 text-center my-3 my-lg-0">
+            <figure class="figure m-0 d-print-none text-center">
+              <img src="assets/img/serie06/normalisation-texte.jpg" alt="Normalisation et assainissement d'une chaîne de caractères" class="img-fluid rounded-3 shadow-sm border" style="max-height: 250px; width: 100%; object-fit: cover;">
+              <figcaption class="figure-caption text-center small mt-1">
+                <i class="bi bi-spellcheck text-primary me-1"></i>Nettoyage des espaces superflus, casse et comptage des mots sans tableau
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <p class="mb-2">Le cahier des charges impose une décomposition modulaire mixte :</p>
+        <ul class="ps-3 mb-3">
+          <li>Une fonction <code>Est_Espace(c : Caractère) : Booléen</code> qui renvoie <code>Vrai</code> si le caractère <code>c</code> est un espace, et <code>Faux</code> sinon.</li>
+          <li>Une fonction <code>En_Minuscule(c : Caractère) : Caractère</code> qui convertit un caractère majuscule en minuscule en utilisant les codes ASCII (si <code>"A" &le; c &le; "Z"</code> renvoie <code>Chr(Ord(c) + 32)</code>, sinon renvoie <code>c</code>).</li>
+          <li>Une procédure <code>Purger_Espaces(@texte : Chaîne)</code> qui modifie la chaîne <code>texte</code> directement par variable (<code>@</code>) pour supprimer les espaces de tête, les espaces de queue, et réduire toute séquence d'espaces consécutifs à un seul espace.</li>
+          <li>Une procédure <code>Normaliser_Nom(@texte : Chaîne, @nb_mots : Entier)</code> qui appelle <code>Purger_Espaces(texte)</code>, puis parcourt la chaîne assainie pour mettre en majuscule la première lettre de chaque mot, convertir les autres lettres en minuscules, et compter le nombre total de mots (transmis par variable via <code>@nb_mots</code>).</li>
+          <li>Une procédure <code>Afficher_Fiche_Identite(nom_brut : Chaîne)</code> qui prend une chaîne brute, appelle <code>Normaliser_Nom</code>, puis affiche le nom propre épuré ainsi que le nombre de mots identifiés.</li>
+        </ul>
+
+        <div class="card bg-light border-0 shadow-sm p-3 mb-3">
+          <h6 class="fw-bold text-dark mb-1"><i class="bi bi-pencil-square text-primary me-2"></i>Travail demandé :</h6>
+          <ol class="small text-dark mb-0 ps-3">
+            <li>Pourquoi le paramètre <code>texte</code> dans <code>Purger_Espaces</code> et <code>Normaliser_Nom</code> doit-il impérativement être déclaré avec le symbole <code>@</code> ?</li>
+            <li>Rédiger l'algorithme des fonctions auxiliaires <code>Est_Espace</code> et <code>En_Minuscule</code>.</li>
+            <li>Dresser le T.D.O.L. et rédiger l'algorithme de la procédure <code>Purger_Espaces(@texte : Chaîne)</code>.</li>
+            <li>Rédiger l'algorithme officiel de la procédure <code>Normaliser_Nom(@texte : Chaîne, @nb_mots : Entier)</code>.</li>
+            <li>Rédiger l'algorithme de la procédure d'affichage <code>Afficher_Fiche_Identite</code>.</li>
+            <li>Traduire la solution complète en Python 3 selon les normes officielles.</li>
+          </ol>
+        </div>
+
+        <!-- Indications & Jeux d'essais (Pas de corrigé pré-rédigé) -->
+        <div class="alert alert-light border-start border-warning border-4 shadow-sm my-3 d-print-none">
+          <div class="fw-bold text-dark mb-2">
+            💡 Conseils méthodologiques &amp; Indices
+          </div>
+          <ul class="mb-2 small text-muted ps-3">
+            <li>Pour <code>Purger_Espaces</code>, accumuler les caractères dans une variable locale <code>propre &larr; ""</code> : ignorer les espaces tant que <code>propre</code> est vide (élimination des espaces de début) ; pour les espaces suivants, n'ajouter l'espace que si le dernier caractère de <code>propre</code> n'est pas déjà un espace. En fin de parcours, si le dernier caractère de <code>propre</code> est un espace, l'éliminer. Terminer par l'affectation par variable : <code>texte &larr; propre</code>.</li>
+            <li>Dans <code>Normaliser_Nom</code>, un caractère <code>texte[i]</code> est l'initiale d'un mot si $i = 0$ ou si le caractère précédent est un espace (<code>texte[i-1] = " "</code>). Si c'est une initiale, le convertir en majuscule via <code>Majus(texte[i])</code> ; sinon le convertir avec <code>En_Minuscule(texte[i])</code>.</li>
+            <li>Le nombre de mots d'une chaîne purgée et non vide est simplement égal au nombre d'espaces simples $+ 1$.</li>
+          </ul>
+          <div class="p-2 bg-white rounded border small">
+            <strong>Jeux d'essais à vérifier :</strong><br>
+            • Pour <code>nom_brut = "   mOhaMed   aLi   bEn   sALEM   "</code> :<br>
+            &nbsp;&nbsp;- Après <code>Purger_Espaces</code> : <code>texte = "mOhaMed aLi bEn sALEM"</code><br>
+            &nbsp;&nbsp;- Après <code>Normaliser_Nom</code> : <code>texte = "Mohamed Ali Ben Salem"</code>, <code>nb_mots = 4</code>.<br>
+            • Pour <code>nom_brut = "   sara  "</code> &rarr; <code>texte = "Sara"</code>, <code>nb_mots = 1</code>.
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           EXERCICE 6 : CYBERSÉCURITÉ — AUDIT & RENFORCEMENT DE MOT DE PASSE
+           ======================================================== -->
+      <section class="mb-5 exercise-section" data-ex-id="ex6" id="exercice-6">
+        <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+          <h3 class="h4 text-primary m-0">Exercice 6 : Cybersécurité — Audit &amp; Renforcement de Mot de Passe (Mixte Avancé)</h3>
+          <span class="badge badge-difficulty-hard rounded-pill px-3 py-2">🔴 Avancé</span>
+        </div>
+
+        <div class="row align-items-center mb-3">
+          <div class="col-lg-7">
+            <p>
+              La sécurité des accès informatiques repose sur la complexité des mots de passe. Un portail web souhaite intégrer un module autonome d'audit sans faire appel à des structures de tableaux :
+            </p>
+            <ul class="ps-3 mb-0">
+              <li>Attribuer un score pondéré selon 4 catégories (minuscules, majuscules, chiffres, caractères spéciaux).</li>
+              <li>Examiner la chaîne en <strong>un seul parcours</strong> complet et renvoyer 5 indicateurs par variable (<code>@</code>).</li>
+              <li>Classifier le niveau de robustesse (<code>"Très Faible"</code>, <code>"Moyen"</code>, <code>"Robuste"</code>, <code>"Excellent"</code>).</li>
+              <li>Renforcer automatiquement le mot de passe sur place s'il est jugé vulnérable.</li>
+            </ul>
+          </div>
+          <div class="col-lg-5 text-center my-3 my-lg-0">
+            <figure class="figure m-0 d-print-none text-center">
+              <img src="assets/img/serie06/securite-mot-passe.jpg" alt="Audit de sécurité et renforcement automatique de mot de passe" class="img-fluid rounded-3 shadow-sm border" style="max-height: 250px; width: 100%; object-fit: cover;">
+              <figcaption class="figure-caption text-center small mt-1">
+                <i class="bi bi-shield-lock-fill text-primary me-1"></i>Audit pondéré, multi-compteurs et renforcement actif d'un mot de passe
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <p class="mb-2">Le module se compose des sous-programmes suivants :</p>
+        <ul class="ps-3 mb-3">
+          <li>Une fonction <code>Poids_Caractere(c : Caractère) : Entier</code> qui attribue un score pondéré selon la catégorie du caractère :
+            <ul>
+              <li>Lettre minuscule ($'a' \le c \le 'z'$) : <strong>1 point</strong></li>
+              <li>Lettre majuscule ($'A' \le c \le 'Z'$) : <strong>2 points</strong></li>
+              <li>Chiffre décimal ($'0' \le c \le '9'$) : <strong>3 points</strong></li>
+              <li>Caractère spécial (parmi <code># @ ! $ % &amp; * ?</code>) : <strong>5 points</strong></li>
+              <li>Tout autre caractère : <strong>0 point</strong></li>
+            </ul>
+          </li>
+          <li>Une procédure <code>Evaluer_Mot_De_Passe(mdp : Chaîne, @score : Entier, @nb_maj : Entier, @nb_min : Entier, @nb_chiffres : Entier, @nb_speciaux : Entier)</code> qui examine le mot de passe en <strong>un seul parcours</strong> complet de boucle, utilise <code>Poids_Caractere</code> pour cumuler le <code>@score</code> global et comptabilise simultanément les 4 catégories transmises par variable (<code>@</code>).</li>
+          <li>Une fonction <code>Determiner_Niveau(score : Entier, lg : Entier) : Chaîne</code> qui retourne l'appréciation textuelle :
+            <ul>
+              <li>Si $lg &lt; 8$ ou $score &lt; 15$ : <code>"Très Faible"</code></li>
+              <li>Sinon si $score &lt; 25$ : <code>"Moyen"</code></li>
+              <li>Sinon si $score &lt; 40$ : <code>"Robuste"</code></li>
+              <li>Sinon : <code>"Excellent"</code></li>
+            </ul>
+          </li>
+          <li>Une procédure <code>Renforcer_Mot_De_Passe(@mdp : Chaîne)</code> qui modifie le mot de passe sur place par variable (<code>@</code>) pour corriger ses vulnérabilités :
+            <ul>
+              <li>S'il ne comporte aucune majuscule, convertit son premier caractère en majuscule.</li>
+              <li>S'il ne comporte aucun caractère spécial, lui ajoute le symbole <code>"!"</code> à la fin.</li>
+              <li>Si sa longueur finale reste strictement inférieure à 8 caractères, lui concatène le suffixe <code>"2026"</code>.</li>
+            </ul>
+          </li>
+          <li>Une procédure <code>Auditer_Securite(mdp : Chaîne)</code> qui appelle <code>Evaluer_Mot_De_Passe</code>, affiche la grille des statistiques et le diagnostic de robustesse. Si le niveau est <code>"Très Faible"</code> ou <code>"Moyen"</code>, elle appelle <code>Renforcer_Mot_De_Passe</code> et affiche la proposition de mot de passe sécurisé.</li>
+        </ul>
+
+        <div class="card bg-light border-0 shadow-sm p-3 mb-3">
+          <h6 class="fw-bold text-dark mb-1"><i class="bi bi-pencil-square text-primary me-2"></i>Travail demandé :</h6>
+          <ol class="small text-dark mb-0 ps-3">
+            <li>Pourquoi la procédure <code>Evaluer_Mot_De_Passe</code> comporte-t-elle 5 paramètres précédés du symbole <code>@</code> ? Justifier pourquoi une fonction classique est inadaptée pour cette tâche.</li>
+            <li>Rédiger l'algorithme de la fonction <code>Poids_Caractere(c : Caractère) : Entier</code>.</li>
+            <li>Dresser le T.D.O.L. et rédiger l'algorithme officiel de la procédure <code>Evaluer_Mot_De_Passe</code>.</li>
+            <li>Rédiger l'algorithme de la fonction <code>Determiner_Niveau(score : Entier, lg : Entier) : Chaîne</code>.</li>
+            <li>Rédiger l'algorithme de la procédure <code>Renforcer_Mot_De_Passe(@mdp : Chaîne)</code>.</li>
+            <li>Rédiger l'algorithme de la procédure d'orchestration <code>Auditer_Securite(mdp : Chaîne)</code>.</li>
+            <li>Proposer la transcription intégrale en Python 3 de l'ensemble de l'architecture.</li>
+          </ol>
+        </div>
+
+        <!-- Indications & Jeux d'essais (Pas de corrigé pré-rédigé) -->
+        <div class="alert alert-light border-start border-warning border-4 shadow-sm my-3 d-print-none">
+          <div class="fw-bold text-dark mb-2">
+            💡 Conseils méthodologiques &amp; Indices
+          </div>
+          <ul class="mb-2 small text-muted ps-3">
+            <li>Pour tester si <code>c</code> est un caractère spécial, vérifier si sa position dans la chaîne modèle est non nulle : <code>Pos(c, "#@!$%&amp;*?") &ne; -1</code>.</li>
+            <li>Dans <code>Evaluer_Mot_De_Passe</code>, réinitialiser impérativement les 5 paramètres formels à 0 avant la boucle : <code>score &larr; 0</code>, <code>nb_maj &larr; 0</code>, etc. Une unique boucle <code>Pour i de 0 à Long(mdp) - 1</code> cumule le score et incrémente le compteur correspondant.</li>
+            <li>Dans <code>Renforcer_Mot_De_Passe</code>, utiliser <code>Evaluer_Mot_De_Passe</code> pour déterminer les manques, puis modifier <code>@mdp</code> successivement selon les 3 règles de renforcement.</li>
+          </ul>
+          <div class="p-2 bg-white rounded border small">
+            <strong>Jeux d'essais à vérifier :</strong><br>
+            • Pour <code>mdp = "secret"</code> ($lg = 6$) :<br>
+            &nbsp;&nbsp;- Décompte : 6 minuscules, 0 majuscule, 0 chiffre, 0 spécial &rarr; $score = 6$ &rarr; Niveau : <code>"Très Faible"</code>.<br>
+            &nbsp;&nbsp;- Après <code>Renforcer_Mot_De_Passe</code> : <code>"Secret!2026"</code> ($lg = 11$, 1 Maj, 1 Spécial, 4 Chiffres &rarr; <code>"Robuste"</code>).<br>
+            • Pour <code>mdp = "Bac@2026"</code> ($lg = 8$) :<br>
+            &nbsp;&nbsp;- Décompte : 2 min (2 pts), 1 Maj (2 pts), 4 chiffres (12 pts), 1 spécial (5 pts) &rarr; $score = 21$ &rarr; Niveau : <code>"Moyen"</code>.<br>
+            • Pour <code>mdp = "Admin#Secure2026!"</code> ($lg = 17$) : $score = 46$ &rarr; Niveau : <code>"Excellent"</code>.
           </div>
         </div>
       </section>
