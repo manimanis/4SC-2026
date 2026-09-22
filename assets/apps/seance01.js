@@ -23,14 +23,12 @@ createApp({
       phasesP1: [
         { title: "Situation & Labo 2D (Distance euclidienne)", shortTitle: "Situation & Labo 2D", duration: "10 min" },
         { title: "Fonctions Prédéfinies Arithmétiques", shortTitle: "Fonctions Arithmétiques", duration: "15 min" },
-        { title: "Algorithme & Programme DistanceEuclidienne", shortTitle: "Algo & Programme", duration: "25 min" },
         { title: "Bilan & Auto-évaluation (Questions flash & Quiz arithmétique)", shortTitle: "Bilan & Quiz", duration: "5 min" }
       ],
 
       phasesP2: [
         { title: "Situation & Labo Chaîne (Code d'inscription)", shortTitle: "Situation & Labo Chaîne", duration: "10 min" },
         { title: "Fonctions Prédéfinies Textuelles", shortTitle: "Primitives Chaînes", duration: "15 min" },
-        { title: "Algorithme & Programme MajCode", shortTitle: "Algo & Programme", duration: "25 min" },
         { title: "Bilan & Auto-évaluation (Questions flash & Quiz textuel)", shortTitle: "Bilan & Quiz", duration: "5 min" }
       ],
 
@@ -261,7 +259,7 @@ createApp({
         : 'Tout afficher (Problème ' + this.currentProblem + ')';
     },
     phaseChipText() {
-      return 'P' + this.currentProblem + '-' + (this.currentPhase === 'all' ? 'All' : this.currentPhase + '/4');
+      return 'P' + this.currentProblem + '-' + (this.currentPhase === 'all' ? 'All' : this.currentPhase + '/' + this.currentPhasesList.length);
     },
 
     // Calculs en direct du simulateur cartésien 2D (Problème 1)
@@ -387,8 +385,12 @@ createApp({
       const match = hash.match(/^#p([12])-(?:phase-?)?([1-4]|all)/i);
       if (match) {
         const prob = parseInt(match[1], 10);
-        const phase = match[2] === 'all' ? 'all' : parseInt(match[2], 10);
+        let phase = match[2] === 'all' ? 'all' : parseInt(match[2], 10);
         this.currentProblem = prob;
+        const maxPhases = prob === 1 ? this.phasesP1.length : this.phasesP2.length;
+        if (phase !== 'all' && phase > maxPhases) {
+          phase = maxPhases;
+        }
         this.currentPhase = phase;
         return true;
       }
@@ -461,7 +463,7 @@ createApp({
       });
     },
 
-    // Navigation séquentielle globale (P1 Phase 1-5 puis P2 Phase 1-5)
+    // Navigation séquentielle globale (P1 puis P2)
     nextPhase() {
       if (this.currentPhase === 'all') {
         if (this.currentProblem === 1) {
@@ -470,9 +472,10 @@ createApp({
         return;
       }
 
-      if (this.currentPhase < 4) {
+      const maxPhases = this.currentPhasesList.length;
+      if (this.currentPhase < maxPhases) {
         this.setPhase(this.currentPhase + 1);
-      } else if (this.currentPhase === 4 && this.currentProblem === 1) {
+      } else if (this.currentPhase === maxPhases && this.currentProblem === 1) {
         // Fin du problème 1 -> passage séquentiel au problème 2 !
         this.setProblem(2, 1);
       }
@@ -489,8 +492,8 @@ createApp({
       if (this.currentPhase > 1) {
         this.setPhase(this.currentPhase - 1);
       } else if (this.currentPhase === 1 && this.currentProblem === 2) {
-        // Début du problème 2 -> retour vers la phase 4 du problème 1
-        this.setProblem(1, 4);
+        // Début du problème 2 -> retour vers la dernière phase du problème 1
+        this.setProblem(1, this.phasesP1.length);
       }
     },
 

@@ -4,11 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Séance 2 : Structures conditionnelles, choix multiples (Selon / match-case) & TDO - 4e Scientifiques</title>
+  <title>Séance 2 : Structures conditionnelles & Choix multiples - 4e SC</title>
 
   <!-- Métadonnées SEO & Description -->
   <meta name="description"
-    content="Séance 2 d'Informatique pour 4ème Année Scientifique (Bac 2026) : Structures conditionnelles simples, alternatives, généralisées, choix multiple (Selon / match-case), opérateurs relationnels et logiques, TDO standard.">
+    content="Séance 2 d'Informatique 4e SC : Structures conditionnelles (Si, Selon / match-case), opérateurs relationnels et logiques.">
 
   <!-- Dépendances locales -->
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -40,16 +40,15 @@
 
             <!-- MENU TARIF D'ACCÈS -->
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle active" href="#" id="menuTarif"
-                role="button" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle active" href="#" id="menuTarif" role="button" data-bs-toggle="dropdown"
+                data-bs-auto-close="true" aria-expanded="false">
                 <i class="bi bi-tag-fill me-1 text-primary"></i>
                 <span>Tarif d'accès</span>
               </a>
               <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end shadow" aria-labelledby="menuTarif">
                 <li v-for="(p, idx) in phases" :key="'nav-phase-' + idx">
                   <a class="dropdown-item d-flex align-items-center justify-content-between py-2"
-                    :class="{ 'active': currentPhase === (idx + 1) }"
-                    :href="'#phase' + (idx + 1)"
+                    :class="{ 'active': currentPhase === (idx + 1) }" :href="'#phase' + (idx + 1)"
                     @click.prevent="setPhase(idx + 1)">
                     <span>
                       <span class="badge rounded-pill me-2"
@@ -66,8 +65,7 @@
 
             <!-- ACCÈS SÉRIE 2 -->
             <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
-              <a class="btn btn-sm btn-outline-info rounded-pill px-3" href="serie02.html" target="_blank"
-                referrerpolicy="noreferrer noopener">
+              <a class="btn btn-sm btn-outline-info rounded-pill px-3" href="serie02.html">
                 <i class="bi bi-journal-text me-1"></i> Série 2
               </a>
             </li>
@@ -80,25 +78,17 @@
     <header class="hero-banner">
       <div class="container">
         <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
-          <span class="badge bg-primary px-3 py-1"><i class="bi bi-diagram-2 me-1"></i>Axe : Conditions</span>
-          <span class="badge bg-secondary px-2 py-1">Sections : Sc. Expérimentales, Mathématiques & Sc. Techniques</span>
-          <span class="badge bg-info text-dark px-2 py-1"><i class="bi bi-bookmark-check-fill me-1"></i>Conventions 2024-2025</span>
+          <span class="badge bg-primary px-2 py-1"><i class="bi bi-diagram-2 me-1"></i>Conditions</span>
+          <span class="badge bg-info text-dark px-2 py-1">Bac 2026</span>
         </div>
         <h1 class="hero-title">Séance 2 : Structures conditionnelles & Choix multiples</h1>
-        <p class="hero-subtitle">
-          Formes simple, alternative, généralisée, choix multiple (Selon / match-case), opérateurs relationnels et logiques.
-        </p>
         <div class="objective-box">
-          <div class="d-flex align-items-start gap-3">
-            <i class="bi bi-bullseye fs-3 text-info mt-1"></i>
-            <div>
-              <div class="fw-bold text-white text-uppercase letter-spacing-1 small mb-1">Objectifs de la séance :</div>
-              <ul class="text-light mb-0 ps-3 small">
-                <li>Maîtriser les structures conditionnelles (<code>Si ... Sinon Si ... Sinon</code>) et à choix multiples (<code>Selon</code> / <code>match-case</code>).</li>
-                <li>Manipuler les opérateurs relationnels (<code>=</code>, <code>≠</code>, <code>&lt;</code>, <code>&le;</code>, <code>&gt;</code>, <code>&ge;</code>) et logiques (<code>Non</code>, <code>Et</code>, <code>Ou</code>).</li>
-                <li>Établir le T.D.O. et traduire le programme en Python sans erreur d'indentation.</li>
-              </ul>
-            </div>
+          <div class="d-flex align-items-center gap-2">
+            <i class="bi bi-bullseye text-info"></i>
+            <span class="small text-light">
+              <strong>Objectifs :</strong> Structures <code>Si</code> (simple, alternative, généralisée),
+              <code>Selon</code> / <code>match-case</code> et opérateurs relationnels / logiques.
+            </span>
           </div>
         </div>
       </div>
@@ -111,16 +101,18 @@
       <div class="d-flex align-items-center justify-content-between p-3 bg-white border rounded shadow-sm mb-4">
         <div class="d-flex align-items-center gap-3">
           <span class="badge bg-primary fs-6 px-3 py-2 rounded-pill">
-            <i class="bi bi-layers-fill me-1"></i> Phase {{ currentPhase === 'all' ? 'Toutes' : currentPhase + ' / ' + phases.length }}
+            <i class="bi bi-layers-fill me-1"></i> Phase {{ currentPhase === 'all' ? 'Toutes' : currentPhase + ' / ' +
+            phases.length }}
           </span>
           <div>
             <div class="text-muted small text-uppercase fw-bold">Phase active :</div>
             <div class="h5 mb-0 fw-bold text-dark">
-              {{ currentPhase === 'all' ? 'Vue complète (Toutes les phases affichées)' : phases[currentPhase - 1].title }}
+              {{ currentPhase === 'all' ? 'Vue complète (Toutes les phases)' : phases[currentPhase - 1].title }}
             </div>
           </div>
         </div>
-        <button class="btn btn-sm btn-outline-secondary" @click="toggleViewMode" :title="currentPhase === 'all' ? 'Mode pas-à-pas' : 'Tout afficher'">
+        <button class="btn btn-sm btn-outline-secondary" @click="toggleViewMode"
+          :title="currentPhase === 'all' ? 'Mode pas-à-pas' : 'Tout afficher'">
           <i class="bi bi-view-stacked me-1"></i> {{ currentPhase === 'all' ? 'Mode pas-à-pas' : 'Tout afficher' }}
         </button>
       </div>
@@ -133,20 +125,81 @@
           <div class="section-header">
             <div class="d-flex align-items-center gap-2">
               <span class="badge bg-primary rounded-pill px-2 py-1">Étape 1</span>
-              <h2 class="h5 mb-0 fw-bold text-dark">Situation & Simulateur interactif (Tarif d'accès)</h2>
+              <h2 class="h5 mb-0 fw-bold text-dark">Situation & Simulateur (Tarif d'accès)</h2>
             </div>
             <span class="phase-pill emerald"><i class="bi bi-clock me-1"></i>15 minutes</span>
           </div>
 
           <div class="section-body">
             <!-- ÉNONCÉ DE LA SITUATION-PROBLÈME -->
-            <div class="p-3 rounded border-start border-4 border-primary bg-light mb-3">
-              <div class="d-flex align-items-center gap-2 text-primary fw-bold text-uppercase small mb-2">
-                <i class="bi bi-lightbulb-fill"></i> Énoncé
+            <div class="p-3 rounded border-start border-4 border-primary bg-light mb-4 shadow-sm">
+              <div class="d-flex align-items-center justify-content-between gap-2 mb-3">
+                <div class="d-flex align-items-center gap-2 text-primary fw-bold text-uppercase small">
+                  <i class="bi bi-lightbulb-fill"></i> Énoncé de la situation-problème
+                </div>
+                <span class="badge bg-info text-dark small"><i class="bi bi-geo-alt-fill me-1"></i>Complexe
+                  Sportif</span>
               </div>
-              <blockquote class="fs-6 text-dark fw-semibold mb-0 fst-italic">
-                « Un centre sportif calcule le tarif d'un accès journalier (tarif de base : 20 DT). Le client fournit son âge et un code de formule : 'P' (Piscine : +5 DT), 'M' (Musculation : +10 DT) ou 'T' (Total : +15 DT). Tout autre code entraîne une erreur. De plus, une remise est accordée selon l'âge : gratuit pour les moins de 12 ans, 50% de réduction pour les juniors (12 à 17 ans) et 20% pour les seniors (60 ans et plus). Calculer et afficher le montant net à payer. »
-              </blockquote>
+
+              <div class="row g-4 align-items-center mb-3">
+                <div class="col-lg-7">
+                  <p class="fs-6 text-dark fw-semibold mb-2">
+                    Un complexe sportif souhaite automatiser la facturation d'un accès journalier dont le <strong>tarif
+                      de base est fixé à 20 DT</strong>.
+                  </p>
+                  <p class="small text-dark mb-2">
+                    Le client indique son <strong>âge</strong> (entier positif) et choisit une <strong>formule</strong>
+                    via un code caractère (majuscule ou minuscule) :
+                  </p>
+                  <ul class="small text-dark mb-2 ps-3">
+                    <li><strong>Formule Piscine (<code>'P'</code> ou <code>'p'</code>) :</strong> supplément de
+                      <strong>+5 DT</strong>.
+                    </li>
+                    <li><strong>Formule Musculation (<code>'M'</code> ou <code>'m'</code>) :</strong> supplément de
+                      <strong>+10 DT</strong>.
+                    </li>
+                    <li><strong>Formule Accès Total (<code>'T'</code> ou <code>'t'</code>) :</strong> supplément de
+                      <strong>+15 DT</strong>.
+                    </li>
+                    <li><strong>Tout autre code :</strong> la formule est considérée comme <strong>invalide</strong>.
+                    </li>
+                  </ul>
+                  <p class="small text-dark mb-2">
+                    Si la formule est valide, le prix brut est calculé par :
+                    <code>Prix brut = 20 DT + Supplément</code>. Une <strong>remise selon l'âge</strong> est ensuite
+                    appliquée pour obtenir le <strong>montant net à payer</strong> :
+                  </p>
+                  <ul class="small text-dark mb-0 ps-3">
+                    <li><strong>Moins de 12 ans (&lt; 12) :</strong> Gratuit (remise de 100%, net = <strong>0
+                        DT</strong>).</li>
+                    <li><strong>De 12 à 17 ans inclus :</strong> Réduction de <strong>50%</strong>
+                      (<code>prix_net = prix_brut * 0.5</code>).</li>
+                    <li><strong>60 ans et plus (&ge; 60) :</strong> Réduction de <strong>20%</strong>
+                      (<code>prix_net = prix_brut * 0.8</code>).</li>
+                    <li><strong>De 18 à 59 ans :</strong> Plein tarif (sans remise, <code>prix_net = prix_brut</code>).
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="col-lg-5 text-center">
+                  <div class="position-relative rounded overflow-hidden shadow-sm border">
+                    <img src="assets/img/complexe-sportif.jpg"
+                      alt="Illustration du Complexe Sportif (Piscine et Musculation)" class="img-fluid rounded"
+                      style="object-fit: cover; max-height: 280px; width: 100%;">
+                    <div
+                      class="p-2 bg-dark bg-opacity-75 text-white small position-absolute bottom-0 start-0 end-0 text-center">
+                      <i class="bi bi-tag-fill text-warning me-1"></i>Accès Journalier : Piscine | Muscu | Total
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-2 bg-white rounded border-start border-3 border-primary small text-dark">
+                <strong><i class="bi bi-check2-circle text-primary me-1"></i>Travail demandé :</strong>
+                Écrire l'algorithme (puis le programme Python correspondant) permettant de saisir l'âge et la formule,
+                puis de calculer et d'afficher le <strong>montant net à payer</strong> (en DT), ou le message d'erreur
+                <code>"Formule invalide !"</code> si le code est non reconnu.
+              </div>
             </div>
 
             <!-- SCHÉMA DES FORMULES ET DES REMISES -->
@@ -154,28 +207,29 @@
               <div class="col-md-6">
                 <div class="p-3 bg-white border rounded shadow-sm h-100">
                   <h6 class="fw-bold text-primary mb-2">
-                    <i class="bi bi-tag-fill me-2"></i>1. Formules & Suppléments (Choix multiple) :
+                    <i class="bi bi-tag-fill me-2"></i>1. Formules & Suppléments :
                   </h6>
                   <ul class="list-unstyled mb-0 small">
                     <li class="d-flex justify-content-between align-items-center mb-2 pb-1 border-bottom">
-                      <div><span class="badge bg-dark font-monospace me-2">'P' ou 'p'</span><strong>Piscine</strong></div>
+                      <div><span class="badge bg-dark font-monospace me-2">'P'</span><strong>Piscine</strong></div>
                       <span class="badge bg-info text-dark font-monospace">+5 DT</span>
                     </li>
                     <li class="d-flex justify-content-between align-items-center mb-2 pb-1 border-bottom">
-                      <div><span class="badge bg-dark font-monospace me-2">'M' ou 'm'</span><strong>Musculation</strong></div>
+                      <div><span class="badge bg-dark font-monospace me-2">'M'</span><strong>Musculation</strong></div>
                       <span class="badge bg-info text-dark font-monospace">+10 DT</span>
                     </li>
                     <li class="d-flex justify-content-between align-items-center mb-2 pb-1 border-bottom">
-                      <div><span class="badge bg-dark font-monospace me-2">'T' ou 't'</span><strong>Accès Total</strong></div>
+                      <div><span class="badge bg-dark font-monospace me-2">'T'</span><strong>Total</strong></div>
                       <span class="badge bg-info text-dark font-monospace">+15 DT</span>
                     </li>
                     <li class="d-flex justify-content-between align-items-center">
-                      <div><span class="badge bg-danger font-monospace me-2">Autre</span><span class="text-danger fw-bold">Code non reconnu</span></div>
+                      <div><span class="badge bg-danger font-monospace me-2">Autre</span><span
+                          class="text-danger fw-bold">Invalide</span></div>
                       <span class="badge bg-danger font-monospace">Erreur</span>
                     </li>
                   </ul>
                   <div class="small text-muted mt-2 pt-2 border-top">
-                    Prix brut = Base (20 DT) + Supplément.
+                    Prix brut = 20 DT + Supplément.
                   </div>
                 </div>
               </div>
@@ -183,39 +237,40 @@
               <div class="col-md-6">
                 <div class="p-3 bg-white border rounded shadow-sm h-100">
                   <h6 class="fw-bold text-success mb-2">
-                    <i class="bi bi-percent me-2"></i>2. Remises par Âge (Conditions continues) :
+                    <i class="bi bi-percent me-2"></i>2. Remises par Âge :
                   </h6>
                   <ul class="list-unstyled mb-0 small">
                     <li class="d-flex justify-content-between align-items-center mb-2 pb-1 border-bottom">
-                      <div><span class="badge bg-success me-2">&lt; 12 ans</span><strong>Enfants</strong></div>
-                      <span class="badge bg-success">Gratuit (100% remise)</span>
+                      <div><span class="badge bg-success me-2">&lt; 12 ans</span><strong>Enfant</strong></div>
+                      <span class="badge bg-success">Gratuit</span>
                     </li>
                     <li class="d-flex justify-content-between align-items-center mb-2 pb-1 border-bottom">
-                      <div><span class="badge bg-primary me-2">12 à 17 ans</span><strong>Juniors</strong></div>
-                      <span class="badge bg-primary">-50% (prix &times; 0.5)</span>
+                      <div><span class="badge bg-primary me-2">12 à 17 ans</span><strong>Junior</strong></div>
+                      <span class="badge bg-primary">-50%</span>
                     </li>
                     <li class="d-flex justify-content-between align-items-center mb-2 pb-1 border-bottom">
-                      <div><span class="badge bg-warning text-dark me-2">&ge; 60 ans</span><strong>Seniors</strong></div>
-                      <span class="badge bg-warning text-dark">-20% (prix &times; 0.8)</span>
+                      <div><span class="badge bg-warning text-dark me-2">&ge; 60 ans</span><strong>Senior</strong></div>
+                      <span class="badge bg-warning text-dark">-20%</span>
                     </li>
                     <li class="d-flex justify-content-between align-items-center">
-                      <div><span class="badge bg-secondary me-2">18 à 59 ans</span><strong>Adultes</strong></div>
-                      <span class="badge bg-secondary">Plein tarif (100%)</span>
+                      <div><span class="badge bg-secondary me-2">18 à 59 ans</span><strong>Adulte</strong></div>
+                      <span class="badge bg-secondary">Plein tarif</span>
                     </li>
                   </ul>
                   <div class="small text-muted mt-2 pt-2 border-top">
-                    Structure conditionnelle généralisée : <code>Si ... Sinon Si ... Sinon</code>.
+                    Structure : <code>Si ... Sinon Si ... Sinon</code>.
                   </div>
                 </div>
               </div>
             </div>
 
-            <!-- SIMULATEUR D'EXÉCUTION INTERACTIF (DÉMONSTRATION DÉPLACÉE EN PHASE 1) -->
+            <!-- SIMULATEUR D'EXÉCUTION INTERACTIF -->
             <div class="card border-primary shadow-sm mb-4">
-              <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center flex-wrap gap-2">
-                <span class="fw-bold"><i class="bi bi-play-circle-fill me-2"></i>Démonstration Interactive : Arbre de Décision & Tarification</span>
+              <div
+                class="card-header bg-primary text-white d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <span class="fw-bold"><i class="bi bi-play-circle-fill me-2"></i>Simulateur : Arbre de décision</span>
                 <div class="d-flex align-items-center gap-1 flex-wrap">
-                  <span class="small text-white-50 me-1">Profils types :</span>
+                  <span class="small text-white-50 me-1">Profils :</span>
                   <button v-for="pr in presets" :key="pr.name" class="btn btn-xs btn-outline-light py-0 px-2 small"
                     @click="setPreset(pr)" :title="pr.desc">{{ pr.name }}</button>
                 </div>
@@ -227,11 +282,12 @@
                   <!-- SAISIE DE L'ÂGE -->
                   <div class="col-md-6">
                     <label class="form-label fw-bold text-dark small mb-1">
-                      <i class="bi bi-person-fill text-primary me-1"></i>Âge du client (Entier &ge; 0) :
+                      <i class="bi bi-person-fill text-primary me-1"></i>Âge du client :
                     </label>
                     <div class="input-group mb-2">
                       <span class="input-group-text font-monospace bg-light">age =</span>
-                      <input type="number" min="0" max="120" class="form-control font-monospace" v-model.number="simAge">
+                      <input type="number" min="0" max="120" class="form-control font-monospace"
+                        v-model.number="simAge">
                       <span class="input-group-text">ans</span>
                     </div>
                     <input type="range" class="form-range" min="0" max="100" v-model.number="simAge">
@@ -240,29 +296,34 @@
                   <!-- SAISIE DE LA FORMULE -->
                   <div class="col-md-6">
                     <label class="form-label fw-bold text-dark small mb-1">
-                      <i class="bi bi-bookmark-fill text-primary me-1"></i>Code de formule (Caractère) :
+                      <i class="bi bi-bookmark-fill text-primary me-1"></i>Code formule :
                     </label>
                     <div class="formula-selector-group mb-2">
-                      <button type="button" class="formula-btn" :class="{ 'active': formuleUpper === 'P' }" @click="simFormule = 'P'">
-                        <span class="badge-formula">P / p</span>
+                      <button type="button" class="formula-btn" :class="{ 'active': formuleUpper === 'P' }"
+                        @click="simFormule = 'P'">
+                        <span class="badge-formula">P</span>
                         <span class="small">Piscine (+5 DT)</span>
                       </button>
-                      <button type="button" class="formula-btn" :class="{ 'active': formuleUpper === 'M' }" @click="simFormule = 'M'">
-                        <span class="badge-formula">M / m</span>
+                      <button type="button" class="formula-btn" :class="{ 'active': formuleUpper === 'M' }"
+                        @click="simFormule = 'M'">
+                        <span class="badge-formula">M</span>
                         <span class="small">Muscu (+10 DT)</span>
                       </button>
-                      <button type="button" class="formula-btn" :class="{ 'active': formuleUpper === 'T' }" @click="simFormule = 'T'">
-                        <span class="badge-formula">T / t</span>
+                      <button type="button" class="formula-btn" :class="{ 'active': formuleUpper === 'T' }"
+                        @click="simFormule = 'T'">
+                        <span class="badge-formula">T</span>
                         <span class="small">Total (+15 DT)</span>
                       </button>
-                      <button type="button" class="formula-btn btn-invalid" :class="{ 'active btn-invalid': !isFormuleValid }" @click="simFormule = 'X'">
+                      <button type="button" class="formula-btn btn-invalid"
+                        :class="{ 'active btn-invalid': !isFormuleValid }" @click="simFormule = 'X'">
                         <span class="badge-formula">Autre</span>
                         <span class="small">Code Erroné</span>
                       </button>
                     </div>
                     <div class="input-group input-group-sm">
-                      <span class="input-group-text font-monospace bg-light">Saisie libre :</span>
-                      <input type="text" maxlength="5" class="form-control font-monospace" v-model="simFormule" placeholder="ex: P, M, T...">
+                      <span class="input-group-text font-monospace bg-light">Saisie :</span>
+                      <input type="text" maxlength="5" class="form-control font-monospace" v-model="simFormule"
+                        placeholder="ex: P, M, T...">
                     </div>
                   </div>
                 </div>
@@ -274,39 +335,39 @@
                     <div class="col-lg-6">
                       <div class="flow-step-header">
                         <i class="bi bi-signpost-split-fill text-info"></i>
-                        <span>Branche A : Structure match formule (Choix Multiple)</span>
+                        <span>Branche A : Formule (match / Selon)</span>
                       </div>
-                      <div class="d-flex flex-column gap-2">
+                      <div class="d-flex flex-column gap-1">
                         <div class="decision-branch-card" :class="{ 'is-active is-success': formuleUpper === 'P' }">
-                          <div class="branch-condition">
-                            <span>case "P" | "p":</span>
-                            <span v-if="formuleUpper === 'P'" class="badge bg-success">Active</span>
+                          <div class="d-flex align-items-center gap-2">
+                            <span class="branch-condition">case "P" | "p":</span>
+                            <span class="branch-outcome">&rarr; +5 DT (Piscine)</span>
                           </div>
-                          <div class="branch-outcome">supplement = 5 DT | Piscine</div>
+                          <span v-if="formuleUpper === 'P'" class="badge bg-success">Active</span>
                         </div>
 
                         <div class="decision-branch-card" :class="{ 'is-active is-success': formuleUpper === 'M' }">
-                          <div class="branch-condition">
-                            <span>case "M" | "m":</span>
-                            <span v-if="formuleUpper === 'M'" class="badge bg-success">Active</span>
+                          <div class="d-flex align-items-center gap-2">
+                            <span class="branch-condition">case "M" | "m":</span>
+                            <span class="branch-outcome">&rarr; +10 DT (Muscu)</span>
                           </div>
-                          <div class="branch-outcome">supplement = 10 DT | Musculation</div>
+                          <span v-if="formuleUpper === 'M'" class="badge bg-success">Active</span>
                         </div>
 
                         <div class="decision-branch-card" :class="{ 'is-active is-success': formuleUpper === 'T' }">
-                          <div class="branch-condition">
-                            <span>case "T" | "t":</span>
-                            <span v-if="formuleUpper === 'T'" class="badge bg-success">Active</span>
+                          <div class="d-flex align-items-center gap-2">
+                            <span class="branch-condition">case "T" | "t":</span>
+                            <span class="branch-outcome">&rarr; +15 DT (Total)</span>
                           </div>
-                          <div class="branch-outcome">supplement = 15 DT | Total</div>
+                          <span v-if="formuleUpper === 'T'" class="badge bg-success">Active</span>
                         </div>
 
                         <div class="decision-branch-card" :class="{ 'is-active is-error': !isFormuleValid }">
-                          <div class="branch-condition">
-                            <span>case _: (Sinon)</span>
-                            <span v-if="!isFormuleValid" class="badge bg-danger">Active (Erreur)</span>
+                          <div class="d-flex align-items-center gap-2">
+                            <span class="branch-condition">case _: (Sinon)</span>
+                            <span class="branch-outcome">&rarr; Invalide (Erreur)</span>
                           </div>
-                          <div class="branch-outcome">valide = False | Formule invalide !</div>
+                          <span v-if="!isFormuleValid" class="badge bg-danger">Erreur</span>
                         </div>
                       </div>
                     </div>
@@ -315,39 +376,47 @@
                     <div class="col-lg-6">
                       <div class="flow-step-header">
                         <i class="bi bi-filter-circle-fill text-warning"></i>
-                        <span>Branche B : Structure if-elif-else sur l'âge (Conditions)</span>
+                        <span>Branche B : Remise selon l'âge (if-elif-else / Sinon Si)</span>
                       </div>
-                      <div class="d-flex flex-column gap-2">
-                        <div class="decision-branch-card" :class="{ 'is-active': isFormuleValid && ageBranch === 'child' }">
-                          <div class="branch-condition">
-                            <span>if age &lt; 12:</span>
-                            <span v-if="isFormuleValid && ageBranch === 'child'" class="badge bg-info text-dark">Active</span>
+                      <div class="d-flex flex-column gap-1">
+                        <div class="decision-branch-card"
+                          :class="{ 'is-active': isFormuleValid && ageBranch === 'child' }">
+                          <div class="d-flex align-items-center gap-2">
+                            <span class="branch-condition">if age &lt; 12:</span>
+                            <span class="branch-outcome">&rarr; Gratuit</span>
                           </div>
-                          <div class="branch-outcome">prix_net = 0.0 DT | Enfant (&lt; 12 ans) : Gratuit</div>
+                          <span v-if="isFormuleValid && ageBranch === 'child'"
+                            class="badge bg-info text-dark">Active</span>
                         </div>
 
-                        <div class="decision-branch-card" :class="{ 'is-active': isFormuleValid && ageBranch === 'junior' }">
-                          <div class="branch-condition">
-                            <span>elif 12 &le; age &le; 17:</span>
-                            <span v-if="isFormuleValid && ageBranch === 'junior'" class="badge bg-info text-dark">Active</span>
+                        <div class="decision-branch-card"
+                          :class="{ 'is-active': isFormuleValid && ageBranch === 'junior' }">
+                          <div class="d-flex align-items-center gap-2">
+                            <span class="branch-condition">elif 12 &le; age &le; 17:</span>
+                            <span class="branch-outcome">&rarr; -50%</span>
                           </div>
-                          <div class="branch-outcome">prix_net = brut &times; 0.5 | Junior (12-17 ans) : -50%</div>
+                          <span v-if="isFormuleValid && ageBranch === 'junior'"
+                            class="badge bg-info text-dark">Active</span>
                         </div>
 
-                        <div class="decision-branch-card" :class="{ 'is-active': isFormuleValid && ageBranch === 'senior' }">
-                          <div class="branch-condition">
-                            <span>elif age &ge; 60:</span>
-                            <span v-if="isFormuleValid && ageBranch === 'senior'" class="badge bg-info text-dark">Active</span>
+                        <div class="decision-branch-card"
+                          :class="{ 'is-active': isFormuleValid && ageBranch === 'senior' }">
+                          <div class="d-flex align-items-center gap-2">
+                            <span class="branch-condition">elif age &ge; 60:</span>
+                            <span class="branch-outcome">&rarr; -20%</span>
                           </div>
-                          <div class="branch-outcome">prix_net = brut &times; 0.8 | Senior (&ge; 60 ans) : -20%</div>
+                          <span v-if="isFormuleValid && ageBranch === 'senior'"
+                            class="badge bg-info text-dark">Active</span>
                         </div>
 
-                        <div class="decision-branch-card" :class="{ 'is-active': isFormuleValid && ageBranch === 'adult' }">
-                          <div class="branch-condition">
-                            <span>else:</span>
-                            <span v-if="isFormuleValid && ageBranch === 'adult'" class="badge bg-info text-dark">Active</span>
+                        <div class="decision-branch-card"
+                          :class="{ 'is-active': isFormuleValid && ageBranch === 'adult' }">
+                          <div class="d-flex align-items-center gap-2">
+                            <span class="branch-condition">else:</span>
+                            <span class="branch-outcome">&rarr; Plein tarif</span>
                           </div>
-                          <div class="branch-outcome">prix_net = brut | Adulte (18-59 ans) : Plein tarif</div>
+                          <span v-if="isFormuleValid && ageBranch === 'adult'"
+                            class="badge bg-info text-dark">Active</span>
                         </div>
                       </div>
                     </div>
@@ -359,7 +428,8 @@
                   <!-- BLOC CALCUL -->
                   <div class="col-lg-6">
                     <div class="p-3 bg-light rounded border h-100">
-                      <h6 class="fw-bold text-dark mb-3"><i class="bi bi-calculator text-primary me-2"></i>Détail du calcul :</h6>
+                      <h6 class="fw-bold text-dark mb-3"><i class="bi bi-calculator text-primary me-2"></i>Détail du
+                        calcul :</h6>
 
                       <div class="d-flex justify-content-between align-items-center mb-2 pb-1 border-bottom">
                         <span class="small text-muted">Tarif de base :</span>
@@ -374,24 +444,25 @@
                       <div class="d-flex justify-content-between align-items-center mb-2 pb-1 border-bottom">
                         <span class="small text-muted">Validité :</span>
                         <span class="badge" :class="isFormuleValid ? 'bg-success' : 'bg-danger'">
-                          {{ isFormuleValid ? 'Vrai / True' : 'Faux / False' }}
+                          {{ isFormuleValid ? 'Vrai' : 'Faux' }}
                         </span>
                       </div>
 
                       <div class="d-flex justify-content-between align-items-center mb-2 pb-1 border-bottom">
                         <span class="small text-muted">Prix brut :</span>
-                        <strong class="font-monospace">{{ isFormuleValid ? (prixBrut + '.0 DT') : 'Non calculé' }}</strong>
+                        <strong class="font-monospace">{{ isFormuleValid ? (prixBrut + '.0 DT') : '—' }}</strong>
                       </div>
 
                       <div class="d-flex justify-content-between align-items-center mb-2 pb-1 border-bottom">
-                        <span class="small text-muted">Remise âge :</span>
-                        <span class="badge" :class="reductionBadgeClass">{{ isFormuleValid ? reductionLabel : 'Aucune' }}</span>
+                        <span class="small text-muted">Remise :</span>
+                        <span class="badge" :class="reductionBadgeClass">{{ isFormuleValid ? reductionLabel : '—'
+                          }}</span>
                       </div>
 
                       <div class="d-flex justify-content-between align-items-center pt-2">
-                        <span class="fw-bold text-dark">Montant net à payer :</span>
+                        <span class="fw-bold text-dark">Net à payer :</span>
                         <strong class="fs-5 font-monospace" :class="isFormuleValid ? 'text-success' : 'text-danger'">
-                          {{ isFormuleValid ? prixNetFormatted : 'Erreur formule' }}
+                          {{ isFormuleValid ? prixNetFormatted : 'Erreur' }}
                         </strong>
                       </div>
                     </div>
@@ -404,7 +475,7 @@
                         <span class="terminal-dot dot-red"></span>
                         <span class="terminal-dot dot-yellow"></span>
                         <span class="terminal-dot dot-green"></span>
-                        <span class="text-white-50 small ms-2 font-monospace">Sortie console Python</span>
+                        <span class="text-white-50 small ms-2 font-monospace">Sortie console</span>
                       </div>
                       <div class="terminal-body">{{ terminalOutput }}</div>
                     </div>
@@ -458,60 +529,197 @@
           </div>
 
           <div class="section-body">
+            <!-- INFOGRAPHIE : LES 4 STRUCTURES CONDITIONNELLES -->
+            <div class="card border-0 shadow-sm overflow-hidden mb-4" style="background: #0b1120;">
+              <div
+                class="card-header bg-dark text-white d-flex align-items-center justify-content-between flex-wrap gap-2 border-secondary">
+                <span class="fw-bold"><i class="bi bi-diagram-3-fill text-info me-2"></i>Vue d'ensemble : Les 4
+                  Structures Conditionnelles</span>
+                <span class="badge bg-primary">Organigrammes décisionnels</span>
+              </div>
+              <div class="text-center p-2 bg-dark">
+                <img src="assets/img/structures-conditionnelles.jpg"
+                  alt="Infographie didactique des 4 structures conditionnelles : Forme simple, Forme alternative, Forme généralisée, Choix multiple (Selon / match-case)"
+                  class="img-fluid rounded" style="max-height: 420px; width: 100%; object-fit: contain;">
+              </div>
+              <div class="p-2 px-3 bg-dark bg-opacity-75 border-top border-secondary text-center small text-light">
+                <span class="text-info fw-bold me-2"><i class="bi bi-info-circle me-1"></i>De gauche à droite :</span>
+                1. Forme simple &bull; 2. Forme alternative (if-else) &bull; 3. Forme généralisée (if-elif-else) &bull;
+                4. Choix multiple (Selon / match-case)
+              </div>
+            </div>
+
             <!-- TABLEAU COMPARATIF OFFICIEL DES STRUCTURES CONDITIONNELLES -->
             <div class="table-responsive mb-4">
               <table class="table table-hover align-middle border shadow-sm">
                 <thead class="table-dark">
                   <tr>
-                    <th scope="col" style="width: 25%;">Structure / Opération</th>
-                    <th scope="col" style="width: 35%;">Algorithmique (Norme)</th>
-                    <th scope="col" style="width: 40%;">Python (Conventions 2024-2025)</th>
+                    <th scope="col" style="width: 22%;">Structure / Opération</th>
+                    <th scope="col" style="width: 39%;">Algorithmique</th>
+                    <th scope="col" style="width: 39%;">Python (3.10+)</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td><strong>Forme simple</strong></td>
-                    <td><code>Si Condition Alors<br>&nbsp;&nbsp;Traitement<br>FinSi</code></td>
-                    <td><code>if Condition :<br>&nbsp;&nbsp;&nbsp;&nbsp;Traitement</code></td>
+                    <td class="fw-bold text-dark">Forme simple</td>
+                    <td class="table-code-cell">
+                      <pre><code class="language-algo">Si Condition Alors
+    Traitement
+FinSi</code></pre>
+                    </td>
+                    <td class="table-code-cell">
+                      <pre><code class="language-python">if Condition:
+    Traitement</code></pre>
+                    </td>
                   </tr>
                   <tr>
-                    <td><strong>Forme alternative</strong></td>
-                    <td><code>Si Condition Alors<br>&nbsp;&nbsp;Traitement1<br>Sinon<br>&nbsp;&nbsp;Traitement2<br>FinSi</code></td>
-                    <td><code>if Condition :<br>&nbsp;&nbsp;&nbsp;&nbsp;Traitement1<br>else :<br>&nbsp;&nbsp;&nbsp;&nbsp;Traitement2</code></td>
+                    <td class="fw-bold text-dark">Forme alternative</td>
+                    <td class="table-code-cell">
+                      <pre><code class="language-algo">Si Condition Alors
+    Traitement1
+Sinon
+    Traitement2
+FinSi</code></pre>
+                    </td>
+                    <td class="table-code-cell">
+                      <pre><code class="language-python">if Condition:
+    Traitement1
+else:
+    Traitement2</code></pre>
+                    </td>
                   </tr>
                   <tr>
-                    <td><strong>Forme généralisée</strong></td>
-                    <td><code>Si C1 Alors ...<br>Sinon Si C2 Alors ...<br>Sinon ...<br>FinSi</code></td>
-                    <td><code>if C1 : ...<br>elif C2 : ...<br>else : ...</code></td>
+                    <td class="fw-bold text-dark">Forme généralisée</td>
+                    <td class="table-code-cell">
+                      <pre><code class="language-algo">Si C1 Alors
+    Traitement1
+Sinon Si C2 Alors
+    Traitement2
+Sinon
+    TraitementN
+FinSi</code></pre>
+                    </td>
+                    <td class="table-code-cell">
+                      <pre><code class="language-python">if C1:
+    Traitement1
+elif C2:
+    Traitement2
+else:
+    TraitementN</code></pre>
+                    </td>
                   </tr>
                   <tr>
-                    <td><strong>Choix multiple</strong></td>
-                    <td><code>Selon Sélecteur<br>&nbsp;&nbsp;val1 : T1<br>&nbsp;&nbsp;val2, val3 : T2<br>&nbsp;&nbsp;[Sinon TN]<br>Fin Selon</code></td>
-                    <td><code>match Sélecteur :<br>&nbsp;&nbsp;&nbsp;&nbsp;case val1 : T1<br>&nbsp;&nbsp;&nbsp;&nbsp;case val2 | val3 : T2<br>&nbsp;&nbsp;&nbsp;&nbsp;case _ : TN</code></td>
+                    <td class="fw-bold text-dark">
+                      Choix multiple<br>
+                      <small class="text-muted fw-normal">Valeurs & Intervalles</small>
+                    </td>
+                    <td class="table-code-cell">
+                      <pre><code class="language-algo">Selon Sélecteur
+    val1, val2 : T1
+    v_min .. v_max : T2
+    Sinon
+        TN
+Fin Selon</code></pre>
+                    </td>
+                    <td class="table-code-cell">
+                      <pre><code class="language-python">match Sélecteur:
+    case val1 | val2:
+        T1
+    case s if v_min &lt;= s &lt;= v_max:
+        T2
+    case _:
+        TN</code></pre>
+                    </td>
                   </tr>
                   <tr>
-                    <td><strong>Opérateurs logiques</strong></td>
-                    <td><code>Non</code>, <code>Et</code>, <code>Ou</code></td>
-                    <td><code>not</code>, <code>and</code>, <code>or</code></td>
+                    <td class="fw-bold text-dark">Opérateurs logiques</td>
+                    <td class="table-code-cell">
+                      <pre><code class="language-algo">Non, Et, Ou</code></pre>
+                    </td>
+                    <td class="table-code-cell">
+                      <pre><code class="language-python">not, and, or</code></pre>
+                    </td>
                   </tr>
                   <tr>
-                    <td><strong>Opérateurs de comparaison</strong></td>
-                    <td><code>=</code>, <code>≠</code>, <code>&lt;</code>, <code>&le;</code>, <code>&gt;</code>, <code>&ge;</code>, <code>&isin;</code></td>
-                    <td><code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&le;</code>, <code>&gt;</code>, <code>&ge;</code>, <code>in</code></td>
+                    <td class="fw-bold text-dark">Comparaisons & Appartenance</td>
+                    <td class="table-code-cell">
+                      <pre><code class="language-algo">= , ≠ , &lt; , &le; , &gt; , &ge; , ∈</code></pre>
+                    </td>
+                    <td class="table-code-cell">
+                      <pre><code class="language-python">== , != , &lt; , &le; , &gt; , &ge; , in</code></pre>
+                    </td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
+            <!-- EXEMPLE CONCRET D'INTERVALLE AVEC LA STRUCTURE SELON -->
+            <div class="card border-info shadow-sm mb-4">
+              <div
+                class="card-header bg-info bg-opacity-10 text-dark d-flex align-items-center justify-content-between flex-wrap gap-2">
+                <span class="fw-bold"><i class="bi bi-code-slash text-primary me-2"></i>Exemple d'intervalle dans un
+                  Selon (Tranches de valeurs)</span>
+                <span class="badge bg-primary">Intervalle : <code>..</code></span>
+              </div>
+              <div class="card-body">
+                <p class="small text-muted mb-3">
+                  En algorithmique, un intervalle s'écrit avec deux points <code>borne_min .. borne_max</code> (bornes
+                  incluses).
+                  En Python (<code>match-case</code>), on utilise une <strong>condition de garde</strong>
+                  (<code>case x if ...:</code>).
+                </p>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <div class="fw-bold text-primary small mb-1"><i class="bi bi-journal-code me-1"></i>Algorithmique :
+                    </div>
+                    <div class="table-code-cell">
+                      <pre><code class="language-algo">Selon note
+    0 .. 9 : Écrire("Insuffisant")
+    10 .. 13 : Écrire("Moyen")
+    14 .. 16 : Écrire("Bien")
+    17 .. 20 : Écrire("Très Bien")
+    Sinon
+        Écrire("Note invalide")
+Fin Selon</code></pre>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="fw-bold text-warning small mb-1"><i class="bi bi-filetype-py me-1"></i>Python (3.10+) :
+                    </div>
+                    <div class="table-code-cell">
+                      <pre><code class="language-python">match note:
+    case n if 0 &lt;= n &lt;= 9:
+        print("Insuffisant")
+    case n if 10 &lt;= n &lt;= 13:
+        print("Moyen")
+    case n if 14 &lt;= n &lt;= 16:
+        print("Bien")
+    case n if 17 &lt;= n &lt;= 20:
+        print("Très Bien")
+    case _:
+        print("Note invalide")</code></pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <!-- CARTE DU RAPPEL FONDAMENTAL -->
-            <div class="alert alert-warning border-start border-4 border-warning d-flex align-items-start gap-3 p-3 mb-4">
+            <div
+              class="alert alert-warning border-start border-4 border-warning d-flex align-items-start gap-3 p-3 mb-4">
               <i class="bi bi-exclamation-triangle-fill fs-3 text-warning"></i>
               <div>
-                <h6 class="fw-bold mb-1 text-dark">Rappels didactiques et normatifs majeurs :</h6>
+                <h6 class="fw-bold mb-1 text-dark">À retenir :</h6>
                 <ul class="mb-0 small text-dark ps-3">
-                  <li><strong>Type scalaire pour le <code>Selon</code> :</strong> Le sélecteur doit être impérativement de type <strong>Entier</strong> ou <strong>Caractère</strong>.</li>
-                  <li><strong>Clause par défaut :</strong> En Python <code>match-case</code>, le tiret <code>case _ :</code> équivaut au <code>Sinon</code> du <code>Selon</code>.</li>
-                  <li><strong>Indentation syntaxique :</strong> En Python, l'indentation (4 espaces) remplace les délimiteurs <code>FinSi</code> et <code>Fin Selon</code>.</li>
+                  <li><strong>Selon :</strong> Le sélecteur doit être un <strong>Entier</strong> ou un
+                    <strong>Caractère</strong>.
+                  </li>
+                  <li><strong>Clause par défaut :</strong> <code>case _ :</code> en Python correspond au
+                    <code>Sinon</code> du <code>Selon</code>.
+                  </li>
+                  <li><strong>Indentation :</strong> 4 espaces obligatoires en Python (remplace <code>FinSi</code> /
+                    <code>Fin Selon</code>).
+                  </li>
                 </ul>
               </div>
             </div>
@@ -520,39 +728,40 @@
             <div class="row g-3">
               <div class="col-md-4">
                 <div class="card h-100 border p-3">
-                  <div class="fw-bold text-primary mb-1"><i class="bi bi-check2-all me-1"></i>Test d'égalité : = vs ==</div>
+                  <div class="fw-bold text-primary mb-1"><i class="bi bi-check2-all me-1"></i>Égalité : = vs ==</div>
                   <p class="small text-muted mb-2">
-                    En algo, égalité <code>=</code> (affectation <code>&larr;</code>). En Python, le test d'égalité s'écrit obligatoirement <code>==</code>.
+                    En algo : <code>=</code> (affectation : <code>&larr;</code>). En Python : <code>==</code>
+                    (affectation : <code>=</code>).
                   </p>
-                  <div class="p-2 bg-light font-monospace small rounded">
-                    valide ← (age = 18)<br>
-                    valide = (age == 18)
+                  <div class="card-code-snippet">
+                    <pre><code class="language-algo">valide ← (age = 18)</code></pre>
+                    <pre class="mt-1"><code class="language-python">valide = (age == 18)</code></pre>
                   </div>
                 </div>
               </div>
 
               <div class="col-md-4">
                 <div class="card h-100 border p-3">
-                  <div class="fw-bold text-primary mb-1"><i class="bi bi-pipe me-1"></i>Alternative match-case (|)</div>
+                  <div class="fw-bold text-primary mb-1"><i class="bi bi-pipe me-1"></i>Choix multiple (|)</div>
                   <p class="small text-muted mb-2">
-                    Pour grouper plusieurs valeurs dans un <code>case</code>, on emploie le pipe <code>|</code> (jamais la virgule).
+                    En Python, séparer les options d'un <code>case</code> par <code>|</code> (et non une virgule).
                   </p>
-                  <div class="p-2 bg-light font-monospace small rounded">
-                    case "P" | "p":<br>
-                    <span class="text-danger"># Erreur : case "P", "p":</span>
+                  <div class="card-code-snippet">
+                    <pre><code class="language-python">case "P" | "p":  # Correct</code></pre>
+                    <pre class="mt-1"><code class="language-python"># Erreur : case "P", "p":</code></pre>
                   </div>
                 </div>
               </div>
 
               <div class="col-md-4">
                 <div class="card h-100 border p-3">
-                  <div class="fw-bold text-primary mb-1"><i class="bi bi-arrows-expand me-1"></i>Encadrement numérique</div>
+                  <div class="fw-bold text-primary mb-1"><i class="bi bi-arrows-expand me-1"></i>Encadrement</div>
                   <p class="small text-muted mb-2">
-                    En algo, l'encadrement utilise <code>Et</code>. En Python, la double comparaison chaînée est directe.
+                    En algo : avec <code>Et</code>. En Python : comparaison chaînée directe.
                   </p>
-                  <div class="p-2 bg-light font-monospace small rounded">
-                    (age ≥ 12) Et (age ≤ 17)<br>
-                    12 &lt;= age &lt;= 17
+                  <div class="card-code-snippet">
+                    <pre><code class="language-algo">(age ≥ 12) Et (age ≤ 17)</code></pre>
+                    <pre class="mt-1"><code class="language-python">12 &lt;= age &lt;= 17</code></pre>
                   </div>
                 </div>
               </div>
@@ -563,236 +772,13 @@
       </div>
 
       <!-- ========================================================
-         PHASE 3 : ALGORITHME & PROGRAMME TARIFACCES (25 MIN)
+         PHASE 3 : BILAN & AUTO-ÉVALUATION (5 MIN)
          ======================================================== -->
       <div v-show="currentPhase === 3 || currentPhase === 'all'">
         <section class="section-card">
           <div class="section-header">
             <div class="d-flex align-items-center gap-2">
               <span class="badge bg-primary rounded-pill px-2 py-1">Étape 3</span>
-              <h2 class="h5 mb-0 fw-bold text-dark">Algorithme & Programme TarifAcces</h2>
-            </div>
-            <span class="phase-pill emerald"><i class="bi bi-clock me-1"></i>25 minutes</span>
-          </div>
-
-          <div class="section-body">
-            <!-- CONTRÔLE TAB : ALGORITHME & TDO VS PROGRAMME PYTHON -->
-            <ul class="nav nav-tabs mb-0" id="tabCodeS2" role="tablist">
-              <li class="nav-item" role="presentation">
-                <button class="nav-link active text-primary fw-bold" id="tab-algo-s2-btn" data-bs-toggle="tab"
-                  data-bs-target="#tab-algo-s2" type="button" role="tab" aria-controls="tab-algo-s2"
-                  aria-selected="true">
-                  <i class="bi bi-code-square me-1"></i> Algorithme & T.D.O.
-                </button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button class="nav-link text-warning fw-bold" id="tab-py-s2-btn" data-bs-toggle="tab"
-                  data-bs-target="#tab-py-s2" type="button" role="tab" aria-controls="tab-py-s2"
-                  aria-selected="false">
-                  <i class="bi bi-filetype-py me-1"></i> Programme Python (tarif_acces.py)
-                </button>
-              </li>
-            </ul>
-
-            <div class="tab-content p-3 mb-2" id="tabCodeS2Content">
-              <!-- ONGLET 1 : ALGORITHME & TDO -->
-              <div class="tab-pane fade show active" id="tab-algo-s2" role="tabpanel" aria-labelledby="tab-algo-s2-btn">
-                <div class="row g-4">
-                  <!-- CARTE ALGORITHME -->
-                  <div class="col-lg-7">
-                    <div class="card border h-100 shadow-sm">
-                      <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
-                        <span class="font-monospace fw-bold"><i class="bi bi-code-square me-2 text-info"></i>ALGORITHME TarifAcces</span>
-                        <span class="badge bg-primary">Algorithme Principal</span>
-                      </div>
-                      <div class="card-body p-0">
-                        <pre class="m-0 p-3" style="background-color: #1e1e2e; border-radius: 0 0 var(--radius-sm) var(--radius-sm);"><code class="language-algo">ALGORITHME TarifAcces
-DEBUT
-    Écrire("Donner l'âge du client : ")
-    Lire(age)
-    Écrire("Donner le code de formule (P, M ou T) : ")
-    Lire(formule)
-    
-    supplement ← 0
-    valide ← Vrai
-    
-    Selon formule
-        "P", "p" : supplement ← 5
-        "M", "m" : supplement ← 10
-        "T", "t" : supplement ← 15
-        Sinon
-            valide ← Faux
-    Fin Selon
-    
-    Si Non valide Alors
-        Écrire("Formule invalide !")
-    Sinon
-        prix_brut ← 20 + supplement
-        
-        Si age < 12 Alors
-            prix_net ← 0
-        Sinon Si (age ≥ 12) Et (age ≤ 17) Alors
-            prix_net ← prix_brut * 0.5
-        Sinon Si age ≥ 60 Alors
-            prix_net ← prix_brut * 0.8
-        Sinon
-            prix_net ← prix_brut
-        FinSi
-        
-        Écrire("Montant net à payer : ", prix_net, " DT")
-    FinSi
-FIN</code></pre>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- CARTE T.D.O. -->
-                  <div class="col-lg-5">
-                    <div class="card border h-100 shadow-sm">
-                      <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
-                        <span class="fw-bold"><i class="bi bi-table me-2"></i>T.D.O. Standard</span>
-                        <span class="badge bg-light text-dark">Objets Globaux</span>
-                      </div>
-                      <div class="card-body p-0">
-                        <div class="table-responsive">
-                          <table class="table table-striped table-bordered m-0 align-middle">
-                            <thead class="table-light">
-                              <tr>
-                                <th scope="col" style="width: 50%;">Objet</th>
-                                <th scope="col" style="width: 50%;">Type / Nature</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td><strong class="font-monospace text-primary">age, supplement</strong></td>
-                                <td><span class="badge bg-success">Entier</span></td>
-                              </tr>
-                              <tr>
-                                <td><strong class="font-monospace text-primary">prix_brut, prix_net</strong></td>
-                                <td><span class="badge bg-info text-dark">Réel</span></td>
-                              </tr>
-                              <tr>
-                                <td><strong class="font-monospace text-primary">formule</strong></td>
-                                <td><span class="badge bg-primary">Caractère</span></td>
-                              </tr>
-                              <tr>
-                                <td><strong class="font-monospace text-primary">valide</strong></td>
-                                <td><span class="badge bg-warning text-dark">Booléen</span></td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-
-                        <div class="p-3 bg-light border-top small">
-                          <ul class="text-muted ps-3 mb-0">
-                            <li><strong><code>formule</code> :</strong> Caractère, sélecteur scalaire du <code>Selon</code>.</li>
-                            <li><strong><code>valide</code> :</strong> Booléen (drapeau d'erreur).</li>
-                            <li><strong><code>prix_net</code> :</strong> Réel (résultat avec remises).</li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- ONGLET 2 : PROGRAMME PYTHON & VIGILANCE -->
-              <div class="tab-pane fade" id="tab-py-s2" role="tabpanel" aria-labelledby="tab-py-s2-btn">
-                <div class="row g-4">
-                  <!-- SCRIPT PYTHON -->
-                  <div class="col-lg-7">
-                    <div class="card border h-100 shadow-sm">
-                      <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
-                        <span class="font-monospace fw-bold"><i class="bi bi-file-earmark-code text-warning me-2"></i>tarif_acces.py</span>
-                        <button class="btn btn-sm btn-outline-info" @click="copyPythonCode">
-                          <i class="bi bi-clipboard me-1"></i>{{ copyStatus }}
-                        </button>
-                      </div>
-                      <div class="card-body p-0">
-                        <pre class="m-0 p-3" style="background-color: #1e1e2e; border-radius: 0 0 var(--radius-sm) var(--radius-sm);"><code class="language-python"># Entrées
-age = int(input("Donner l'âge du client : "))
-formule = input("Donner le code de formule (P, M ou T) : ")
-
-# Structure à choix multiples (match / case)
-supplement = 0
-valide = True
-match formule:
-    case "P" | "p":
-        supplement = 5
-    case "M" | "m":
-        supplement = 10
-    case "T" | "t":
-        supplement = 15
-    case _:
-        valide = False
-
-# Traitement conditionnel
-if not valide:
-    print("Formule invalide !")
-else:
-    prix_brut = 20 + supplement
-    if age &lt; 12:
-        prix_net = 0.0
-    elif 12 &lt;= age &lt;= 17:
-        prix_net = prix_brut * 0.5
-    elif age &gt;= 60:
-        prix_net = prix_brut * 0.8
-    else:
-        prix_net = float(prix_brut)
-    print("Montant net à payer :", prix_net, "DT")</code></pre>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- POINTS DE VIGILANCE -->
-                  <div class="col-lg-5">
-                    <div class="card border h-100 shadow-sm">
-                      <div class="card-header bg-danger text-white">
-                        <span class="fw-bold"><i class="bi bi-eye-fill me-2"></i>Points de vigilance</span>
-                      </div>
-                      <div class="card-body small">
-                        <div class="d-flex align-items-start gap-2 mb-3 pb-2 border-bottom">
-                          <i class="bi bi-exclamation-octagon-fill text-danger fs-5"></i>
-                          <div>
-                            <strong>Opérateur pipe <code>|</code> dans <code>case</code> :</strong><br>
-                            <span class="text-muted">Utiliser impérativement <code>case "P" | "p":</code>. La virgule est une faute de syntaxe.</span>
-                          </div>
-                        </div>
-
-                        <div class="d-flex align-items-start gap-2 mb-3 pb-2 border-bottom">
-                          <i class="bi bi-shield-x text-danger fs-5"></i>
-                          <div>
-                            <strong>Égalité (<code>==</code>) vs affectation (<code>=</code>) :</strong><br>
-                            <span class="text-muted">Toujours écrire <code>==</code> dans les conditions booléennes.</span>
-                          </div>
-                        </div>
-
-                        <div class="d-flex align-items-start gap-2">
-                          <i class="bi bi-text-indent-left text-danger fs-5"></i>
-                          <div>
-                            <strong>Indentation des blocs :</strong><br>
-                            <span class="text-muted">4 espaces sous <code>match</code>, sous chaque <code>case</code> et sous <code>if-elif-else</code>.</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </section>
-      </div>
-
-      <!-- ========================================================
-         PHASE 4 : BILAN & AUTO-ÉVALUATION (5 MIN)
-         ======================================================== -->
-      <div v-show="currentPhase === 4 || currentPhase === 'all'">
-        <section class="section-card">
-          <div class="section-header">
-            <div class="d-flex align-items-center gap-2">
-              <span class="badge bg-primary rounded-pill px-2 py-1">Étape 4</span>
               <h2 class="h5 mb-0 fw-bold text-dark">Bilan & Auto-évaluation (Questions flash & Quiz)</h2>
             </div>
             <span class="phase-pill emerald"><i class="bi bi-clock me-1"></i>5 minutes</span>
@@ -800,11 +786,12 @@ else:
 
           <div class="section-body">
             <!-- QUESTIONS FLASH DE CLÔTURE -->
-            <h5 class="fw-bold text-dark mb-3"><i class="bi bi-lightning-charge-fill text-warning me-2"></i>Questions Flash de clôture :</h5>
+            <h5 class="fw-bold text-dark mb-3"><i class="bi bi-lightning-charge-fill text-warning me-2"></i>Questions
+              Flash :</h5>
             <div class="row g-3 mb-4">
               <div v-for="(f, fIdx) in flashQuestions" :key="fIdx" class="col-md-4 col-sm-6">
-                <div class="card h-100 border p-3 cursor-pointer text-center" @click="toggleFlash(f)" style="cursor: pointer;">
-                  <div class="small text-muted text-uppercase fw-bold mb-1">Question didactique</div>
+                <div class="card h-100 border p-3 cursor-pointer text-center" @click="toggleFlash(f)"
+                  style="cursor: pointer;">
                   <div class="fs-6 font-monospace text-primary fw-bold mb-2">{{ f.expr }}</div>
                   <div v-if="!f.isOpen" class="btn btn-sm btn-outline-secondary">
                     <i class="bi bi-eye me-1"></i>Afficher la réponse
@@ -823,12 +810,16 @@ else:
             <!-- QUIZ D'AUTO-ÉVALUATION INTERACTIF -->
             <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
               <div>
-                <h4 class="h5 fw-bold text-dark mb-1"><i class="bi bi-patch-question-fill text-primary me-2"></i>Quiz d'auto-évaluation</h4>
-                <div class="small text-muted">Testez vos acquis sur les structures conditionnelles, match-case et opérateurs logiques.</div>
+                <h4 class="h5 fw-bold text-dark mb-1"><i class="bi bi-patch-question-fill text-primary me-2"></i>Quiz
+                  d'auto-évaluation</h4>
+                <div class="small text-muted">Testez vos acquis sur les conditions, match-case et opérateurs logiques.
+                </div>
               </div>
               <div class="d-flex align-items-center gap-2">
-                <span class="badge bg-primary px-3 py-2 fs-6">Score : {{ quizScore }} / {{ quizQuestions.length }}</span>
-                <button class="btn btn-sm btn-outline-primary" @click="initQuiz" title="Tirer 10 nouvelles questions au sort">
+                <span class="badge bg-primary px-3 py-2 fs-6">Score : {{ quizScore }} / {{ quizQuestions.length
+                  }}</span>
+                <button class="btn btn-sm btn-outline-primary" @click="initQuiz"
+                  title="Tirer 10 nouvelles questions au sort">
                   <i class="bi bi-shuffle me-1"></i> Nouveau tirage
                 </button>
               </div>
@@ -846,7 +837,8 @@ else:
                   <div class="d-flex justify-content-between align-items-center">
                     <span>{{ opt }}</span>
                     <i v-if="q.showAnswer && oIdx === q.correct" class="bi bi-check-circle-fill text-success"></i>
-                    <i v-if="q.showAnswer && q.selected === oIdx && oIdx !== q.correct" class="bi bi-x-circle-fill text-danger"></i>
+                    <i v-if="q.showAnswer && q.selected === oIdx && oIdx !== q.correct"
+                      class="bi bi-x-circle-fill text-danger"></i>
                   </div>
                 </div>
               </div>
@@ -865,7 +857,7 @@ else:
                 <a href="serie02.html" class="btn btn-outline-info btn-sm" target="_blank" rel="noopener noreferrer">
                   <i class="bi bi-journal-check me-1"></i> Série 2 (12 exercices)
                 </a>
-                <a href="seance03.html" class="btn btn-primary-custom btn-sm" target="_blank" rel="noopener noreferrer">
+                <a href="seance03.html" class="btn btn-primary-custom btn-sm">
                   Séance 3 (Boucles) <i class="bi bi-arrow-right ms-1"></i>
                 </a>
               </div>
@@ -887,9 +879,9 @@ else:
         <button class="btn btn-primary-custom" v-if="currentPhase < phases.length" @click="nextPhase">
           Étape suivante : {{ phases[currentPhase].shortTitle }} <i class="bi bi-arrow-right ms-1"></i>
         </button>
-        <button class="btn btn-success" v-else @click="setPhase(1)">
-          <i class="bi bi-arrow-repeat me-1"></i> Recommencer la séance
-        </button>
+        <a href="seance03.html" class="btn btn-success" v-else>
+          Séance 3 (Boucles) <i class="bi bi-arrow-right ms-1"></i>
+        </a>
       </div>
 
     </main>

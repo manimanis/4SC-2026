@@ -15,33 +15,32 @@ createApp({
 
       // Phases d'apprentissage
       phases: [
-        { title: "Situation & Simulateur interactif (Tarif d'accès)", shortTitle: "Situation & Simulateur", duration: "15 min" },
+        { title: "Situation & Simulateur (Tarif d'accès)", shortTitle: "Situation & Simulateur", duration: "15 min" },
         { title: "Structures conditionnelles & Opérateurs", shortTitle: "Conditions & Opérateurs", duration: "15 min" },
-        { title: "Algorithme & Programme TarifAcces", shortTitle: "Algo & Programme", duration: "25 min" },
         { title: "Bilan & Auto-évaluation (Questions flash & Quiz)", shortTitle: "Bilan & Quiz", duration: "5 min" }
       ],
 
-      // Questions orales de réactivation (Phase 1)
+      // Questions orales (Phase 1)
       oralQuestions: [
         {
           id: 1,
-          question: "Quelle structure convient le mieux pour évaluer les tranches d'âge continues ?",
-          algoAns: "La structure conditionnelle généralisée : Si age < 12 Alors ... Sinon Si (age ≥ 12) Et (age ≤ 17) Alors ... Sinon Si age ≥ 60 Alors ... Sinon ... FinSi.",
-          pyAns: "L'instruction if en cascade avec elif et else : if age < 12: ... elif 12 <= age <= 17: ... elif age >= 60: ... else: ...",
+          question: "Quelle structure convient aux tranches d'âge continues ?",
+          algoAns: "Si ... Sinon Si ... Sinon ... FinSi",
+          pyAns: "if ... elif ... else",
           isOpen: false
         },
         {
           id: 2,
-          question: "Quelle structure est la plus adaptée pour tester les valeurs discrètes d'un caractère ?",
-          algoAns: "La structure à choix multiple Selon : Selon formule \"P\", \"p\" : supplement ← 5 ... Sinon valide ← Faux Fin Selon.",
-          pyAns: "L'instruction match-case (Python 3.10+) : match formule: case \"P\" | \"p\": supplement = 5 ... case _: valide = False.",
+          question: "Quelle structure convient aux valeurs discrètes ('P', 'M', 'T') ?",
+          algoAns: "Selon formule ... \"P\", \"p\" : ... Sinon ... Fin Selon",
+          pyAns: "match formule: case 'P' | 'p': ... case _:",
           isOpen: false
         },
         {
           id: 3,
-          question: "Comment regrouper et évaluer des conditions logiques en algorithmique et en Python ?",
-          algoAns: "On utilise les opérateurs logiques normatifs : Et (conjonction), Ou (disjonction) et Non (négation). Exemple : (age ≥ 12) Et (age ≤ 17).",
-          pyAns: "On utilise les mots-clés en minuscules : and, or, not, ou l'encadrement chaîné direct : 12 <= age <= 17.",
+          question: "Comment regrouper des conditions logiques ?",
+          algoAns: "Et, Ou, Non (ex: (age ≥ 12) Et (age ≤ 17))",
+          pyAns: "and, or, not (ou 12 <= age <= 17)",
           isOpen: false
         }
       ],
@@ -54,54 +53,54 @@ createApp({
       // Profils prédéfinis pour le simulateur
       presets: [
         { name: "Enfant Piscine", age: 8, formule: 'P', desc: "8 ans, formule Piscine (gratuité enfant)" },
-        { name: "Junior Muscu", age: 15, formule: 'M', desc: "15 ans, formule Musculation (50% de remise)" },
-        { name: "Adulte Total", age: 28, formule: 'T', desc: "28 ans, formule Totale (tarif plein)" },
-        { name: "Senior Muscu", age: 65, formule: 'm', desc: "65 ans, formule Musculation (20% senior)" },
-        { name: "Formule Invalide", age: 22, formule: 'Z', desc: "Code non répertorié (déclenche case _)" }
+        { name: "Junior Muscu", age: 15, formule: 'M', desc: "15 ans, formule Musculation (-50%)" },
+        { name: "Adulte Total", age: 28, formule: 'T', desc: "28 ans, formule Totale (plein tarif)" },
+        { name: "Senior Muscu", age: 65, formule: 'm', desc: "65 ans, formule Musculation (-20%)" },
+        { name: "Code Invalide", age: 22, formule: 'Z', desc: "Code non reconnu (case _)" }
       ],
 
-      // Questions flash de clôture (Phase 4)
+      // Questions flash (Phase 3)
       flashQuestions: [
         {
-          expr: 'Pourquoi case "P", "p": est-il incorrect en Python ?',
-          resAlgo: 'En algo : "P", "p" : traitement',
-          resPy: 'En Python match-case, on DOIT utiliser le pipe | : case "P" | "p":',
-          type: "Syntaxe match-case",
+          expr: 'case "P", "p": est-il valide en Python ?',
+          resAlgo: 'Algo : "P", "p" : traitement',
+          resPy: 'Non, utiliser le pipe | : case "P" | "p":',
+          type: "match-case",
           isOpen: false
         },
         {
-          expr: 'Peut-on utiliser un réel (float) comme sélecteur dans un Selon ?',
-          resAlgo: 'NON : Le sélecteur doit être un type scalaire (entier ou caractère)',
-          resPy: 'En Python match accepte tout type, mais la norme algorithmique impose un type scalaire',
-          type: "Types scalaires admissibles",
+          expr: 'Peut-on utiliser un réel (float) dans un Selon ?',
+          resAlgo: 'Non : type scalaire (Entier ou Caractère)',
+          resPy: 'En algo, sélecteur scalaire obligatoire',
+          type: "Types scalaires",
           isOpen: false
         },
         {
           expr: 'Que représente le tiret du bas _ dans case _: ?',
-          resAlgo: 'Équivalent au bloc Sinon du Selon',
-          resPy: 'Le motif générique (wildcard) qui intercepte toute valeur non filtrée',
-          type: "Cas par défaut",
+          resAlgo: 'Équivalent au Sinon du Selon',
+          resPy: 'Clause par défaut (wildcard)',
+          type: "Clause par défaut",
           isOpen: false
         },
         {
           expr: 'Différence entre if...if... et if...elif... ?',
-          resAlgo: 'Plusieurs Si indépendants vs une seule structure généralisée Si...Sinon Si',
-          resPy: 'Avec if successifs, tous les blocs sont testés ; avec elif, l\'évaluation s\'arrête dès la 1ère condition vraie',
-          type: "Contrôle de flux conditionnel",
+          resAlgo: 'Si indépendants vs Si généralisé',
+          resPy: 'if successifs testent tout ; elif s\'arrête au premier vrai',
+          type: "Contrôle de flux",
           isOpen: false
         },
         {
-          expr: 'Que vaut l\'expression : (5 > 3) and not (2 == 4) ?',
-          resAlgo: '(5 > 3) Et Non (2 = 4) -> Vrai Et Vrai = Vrai',
+          expr: 'Évaluation : (5 > 3) and not (2 == 4) ?',
+          resAlgo: 'Vrai Et Non(Faux) = Vrai Et Vrai = Vrai',
           resPy: 'True and not False -> True and True -> True',
-          type: "Évaluation logique",
+          type: "Logique booléenne",
           isOpen: false
         },
         {
-          expr: 'Dans le TDO, quel est le type de formule et de prix_net ?',
+          expr: 'Types de formule et prix_net dans le TDO ?',
           resAlgo: 'formule : Caractère | prix_net : Réel',
-          resPy: 'formule -> str | prix_net -> float',
-          type: "T.D.O. Standard",
+          resPy: 'str | float',
+          type: "T.D.O.",
           isOpen: false
         }
       ],
@@ -417,7 +416,10 @@ createApp({
       // Formats acceptés : #phase1, #phase-1, #1, #all
       const match = hash.match(/^#(?:phase-?)?([1-4]|all)/i);
       if (match) {
-        const phase = match[1] === 'all' ? 'all' : parseInt(match[1], 10);
+        let phase = match[1] === 'all' ? 'all' : parseInt(match[1], 10);
+        if (phase !== 'all' && phase > this.phases.length) {
+          phase = this.phases.length;
+        }
         this.currentPhase = phase;
         return true;
       }

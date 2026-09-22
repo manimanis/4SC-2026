@@ -58,11 +58,11 @@
   color: white;
 }
 
-/* VISUALISEUR D'ARBRE DÉCISIONNEL CONDITIONNEL */
+/* VISUALISEUR D'ARBRE DÉCISIONNEL CONDITIONNEL (COMPACT) */
 .decision-flow-container {
   background: #0f172a;
   border-radius: var(--radius-md);
-  padding: 1.25rem;
+  padding: 0.85rem 1rem;
   border: 1px solid #334155;
   box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4);
 }
@@ -73,7 +73,7 @@
   letter-spacing: 0.5px;
   text-transform: uppercase;
   color: #94a3b8;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
   display: flex;
   align-items: center;
   gap: 0.4rem;
@@ -82,51 +82,50 @@
 .flow-branches-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 0.6rem;
+  gap: 0.4rem;
 }
 
 .decision-branch-card {
   background: #1e293b;
-  border: 2px solid #334155;
-  border-radius: var(--radius-sm);
-  padding: 0.65rem 0.85rem;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1.5px solid #334155;
+  border-radius: 6px;
+  padding: 0.35rem 0.65rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   color: #cbd5e1;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
 }
 
 .decision-branch-card.is-active {
   border-color: #38bdf8;
   background: rgba(56, 189, 248, 0.15);
   color: #ffffff;
-  box-shadow: 0 0 15px rgba(56, 189, 248, 0.35);
-  transform: translateY(-2px);
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
 }
 
 .decision-branch-card.is-active.is-error {
   border-color: #f43f5e;
   background: rgba(244, 63, 94, 0.2);
-  box-shadow: 0 0 15px rgba(244, 63, 94, 0.4);
+  box-shadow: 0 0 10px rgba(244, 63, 94, 0.35);
 }
 
 .decision-branch-card.is-active.is-success {
   border-color: #10b981;
   background: rgba(16, 185, 129, 0.18);
-  box-shadow: 0 0 15px rgba(16, 185, 129, 0.35);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
 }
 
 .branch-condition {
   font-family: monospace;
   font-weight: 700;
-  font-size: 0.9rem;
-  margin-bottom: 0.2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  font-size: 0.85rem;
 }
 
 .branch-outcome {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: #94a3b8;
 }
 
@@ -164,4 +163,35 @@
   font-size: 0.75rem;
   padding: 0.2rem 0.5rem;
   border-radius: 999px;
+}
+
+/* BLOCS DE CODE & COLORATION SYNTAXIQUE PHASE 2 */
+.table-code-cell pre {
+  margin: 0;
+  border-radius: 6px;
+  background-color: #282c34;
+  border: 1px solid #3e4451;
+}
+
+.table-code-cell pre code {
+  padding: 0.45rem 0.65rem !important;
+  font-size: 0.84rem;
+  font-family: 'Consolas', 'Courier New', monospace;
+  line-height: 1.4;
+  border-radius: 6px;
+}
+
+.card-code-snippet pre {
+  margin: 0;
+  border-radius: 6px;
+  background-color: #282c34;
+  border: 1px solid #3e4451;
+}
+
+.card-code-snippet pre code {
+  padding: 0.35rem 0.55rem !important;
+  font-size: 0.8rem;
+  font-family: 'Consolas', 'Courier New', monospace;
+  line-height: 1.35;
+  border-radius: 6px;
 }

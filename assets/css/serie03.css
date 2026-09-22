@@ -276,3 +276,22 @@ pre code {
     display: none !important;
   }
 }
+
+/* Simulation interactive inputs & controls */
+.bg-dark input[type="text"] {
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+  border: 1px solid #475569 !important;
+  border-radius: 6px !important;
+  padding: 0.25rem 0.6rem !important;
+  outline: none !important;
+  font-family: inherit !important;
+  font-weight: 600 !important;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.bg-dark input[type="text"]:focus {
+  border-color: #38bdf8 !important;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.3) !important;
+}
+

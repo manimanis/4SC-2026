@@ -13,12 +13,11 @@ createApp({
       currentPhase: 1,
       isMenuOpen: false,
 
-      // Phases d'apprentissage correspondant exactement à la maquette
+      // Phases d'apprentissage (3 phases pédagogiques)
       phases: [
-        { title: "Situation & Simulateur interactif (Analyse d'un nombre)", shortTitle: "Situation & Labo", duration: "10 min" },
-        { title: "Structures itératives & Normes officielles", shortTitle: "Boucles & Normes", duration: "15 min" },
-        { title: "Algorithme & Programme AnalyseNombre", shortTitle: "Algo & Programme", duration: "25 min" },
-        { title: "Bilan & Auto-évaluation (Questions flash & Quiz)", shortTitle: "Bilan & Quiz", duration: "5 min" }
+        { title: "Situation & Simulateur interactif (Analyse d'un nombre)", shortTitle: "Situation & Labo", duration: "15 min" },
+        { title: "Structures itératives & Normes officielles", shortTitle: "Boucles & Normes", duration: "25 min" },
+        { title: "Bilan & Auto-évaluation (Questions flash & Quiz)", shortTitle: "Bilan & Quiz", duration: "15 min" }
       ],
 
       // Questions orales de réactivation (Phase 1)
@@ -48,7 +47,6 @@ createApp({
 
       // Simulateur interactif (Phase 1)
       simN: 28,
-      copyStatus: 'Copier le script Python',
 
       // Profils prédéfinis pour le simulateur
       presets: [
@@ -500,40 +498,6 @@ createApp({
 
     setPreset(pr) {
       this.simN = pr.n;
-    },
-
-    copyPythonCode() {
-      const code = `# 1. Contrôle de saisie émulant 'Répéter ... Jusqu'à' sans break
-n = 0
-while not (2 < n < 100):
-    n = int(input("Donner un entier N (2 à 100) : "))
-
-# 2. Somme des diviseurs avec 'for in range' (borne n incluse dans le range via n)
-somme_div = 0
-for i in range(1, n):
-    if n % i == 0:
-        somme_div = somme_div + i
-est_parfait = (somme_div == n)
-print("Le nombre est-il parfait ? :", est_parfait)
-
-# 3. Divisions successives par 2 avec 'while'
-temp = n
-nb_div2 = 0
-while temp % 2 == 0:
-    temp = temp // 2
-    nb_div2 = nb_div2 + 1
-print("Nombre de divisions par 2 possibles :", nb_div2)`;
-
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(code).then(() => {
-          this.copyStatus = 'Copié avec succès !';
-          setTimeout(() => {
-            this.copyStatus = 'Copier le script Python';
-          }, 2500);
-        });
-      } else {
-        alert("Code copié dans votre presse-papier !");
-      }
     },
 
     // Initialisation et tirage aléatoire du Quiz

@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="assets/css/bootstrap-icons.min.css">
   <link rel="stylesheet" href="assets/css/atom-one-dark.min.css">
   <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/seance03.css">
+  <link rel="stylesheet" href="assets/css/seance03.css?v=2">
 </head>
 
 <body>
@@ -145,13 +145,50 @@
 
           <div class="section-body">
             <!-- ÉNONCÉ DE LA SITUATION-PROBLÈME -->
-            <div class="p-3 rounded border-start border-4 border-primary bg-light mb-3">
-              <div class="d-flex align-items-center gap-2 text-primary fw-bold text-uppercase small mb-2">
-                <i class="bi bi-lightbulb-fill"></i> Énoncé
+            <div class="p-3 rounded border-start border-4 border-primary bg-light mb-4 shadow-sm">
+              <div class="d-flex align-items-center gap-2 text-primary fw-bold text-uppercase small mb-3">
+                <i class="bi bi-lightbulb-fill"></i> Énoncé de la situation-problème : Analyse arithmétique
               </div>
-              <blockquote class="fs-6 text-dark fw-semibold mb-0 fst-italic">
-                « On saisit un entier N strictement compris entre 2 et 100 (la saisie est répétée tant qu'elle n'est pas conforme). On calcule la somme de ses diviseurs stricts pour tester si le nombre est parfait (égal à cette somme). Enfin, on compte combien de divisions successives entières par 2 ce nombre peut subir tant qu'il reste pair. »
-              </blockquote>
+
+              <div class="row align-items-center g-3 mb-3">
+                <div class="col-lg-7">
+                  <p class="fs-6 text-dark fw-semibold mb-2">
+                    Dans le cadre de l'étude des propriétés fondamentales des nombres entiers (notamment exploitées en arithmétique modulaire et en cryptographie), on souhaite concevoir un programme automatisé d'analyse d'un entier positif <code>N</code>.
+                  </p>
+                  <p class="small text-dark mb-2">
+                    Le programme doit réaliser les trois opérations séquentielles suivantes :
+                  </p>
+                  <ol class="small text-dark mb-3 ps-3">
+                    <li class="mb-2">
+                      <strong>Contrôle de saisie sécurisé :</strong> Saisir un entier <code>N</code>. La saisie doit être <strong>obligatoirement répétée tant que</strong> <code>N</code> n'est pas strictement compris entre 2 et 100 (c'est-à-dire <code>2 &lt; N &lt; 100</code>).
+                    </li>
+                    <li class="mb-2">
+                      <strong>Recherche des diviseurs stricts & test du nombre parfait :</strong>
+                      Calculer la somme de tous les diviseurs stricts de <code>N</code> (tous les entiers <code>i</code> de <code>1</code> à <code>N - 1</code> qui divisent <code>N</code>, soit <code>N mod i = 0</code>). Un nombre est dit <strong>parfait</strong> s'il est égal à la somme de ses diviseurs stricts (exemples : <strong>6</strong> car <code>1 + 2 + 3 = 6</code>, ou <strong>28</strong> car <code>1 + 2 + 4 + 7 + 14 = 28</code>).
+                    </li>
+                    <li class="mb-0">
+                      <strong>Divisions successives par 2 (Réduction binaire) :</strong>
+                      Compter combien de divisions entières successives par 2 le nombre <code>N</code> peut subir <strong>tant qu'il reste pair</strong> (<code>temp mod 2 = 0</code>), puis afficher le nombre total de divisions et le dernier quotient impair obtenu.
+                    </li>
+                  </ol>
+                </div>
+
+                <div class="col-lg-5 text-center">
+                  <div class="position-relative rounded overflow-hidden shadow-sm border">
+                    <img src="assets/img/analyse-arithmetique.jpg"
+                      alt="Laboratoire d'Arithmétique et Théorie des Nombres - Analyse d'un nombre et boucles" class="img-fluid rounded"
+                      style="object-fit: cover; max-height: 275px; width: 100%;">
+                    <div class="p-2 bg-dark bg-opacity-75 text-white small position-absolute bottom-0 start-0 end-0 text-center">
+                      <i class="bi bi-cpu-fill text-warning me-1"></i>Laboratoire d'Arithmétique : Analyse de N &amp; Boucles
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-2 bg-white rounded border-start border-3 border-primary small text-dark">
+                <strong><i class="bi bi-check2-circle text-primary me-1"></i>Travail demandé :</strong>
+                Écrire l'algorithme (puis le programme Python correspondant) intitulé <code>AnalyseNombre</code> qui réalise la saisie contrôlée de <code>N</code>, détermine si <code>N</code> est un nombre parfait, et calcule le nombre de divisions entières successives par 2.
+              </div>
             </div>
 
             <!-- SCHÉMA DES TROIS BOUCLES -->
@@ -165,8 +202,8 @@
                   <p class="small text-muted mb-2">
                     <strong>Structure post-test :</strong> <code>Répéter ... Jusqu'à</code>
                   </p>
-                  <div class="p-2 bg-light font-monospace small rounded mb-2">
-                    Jusqu'à (n > 2) Et (n < 100)
+                  <div class="card-code-snippet mb-2">
+                    <pre><code class="language-algo">Jusqu'à (n > 2) Et (n < 100)</code></pre>
                   </div>
                   <div class="small text-muted">
                     Au moins une saisie avant de tester la condition d'arrêt.
@@ -183,8 +220,8 @@
                   <p class="small text-muted mb-2">
                     <strong>Boucle complète :</strong> <code>Pour i de 1 à n - 1</code>
                   </p>
-                  <div class="p-2 bg-light font-monospace small rounded mb-2">
-                    Pour i de 1 à n - 1 Faire
+                  <div class="card-code-snippet mb-2">
+                    <pre><code class="language-algo">Pour i de 1 à n - 1 Faire</code></pre>
                   </div>
                   <div class="small text-muted">
                     Exactement <code>n - 1</code> itérations connues d'avance.
@@ -201,8 +238,8 @@
                   <p class="small text-muted mb-2">
                     <strong>Boucle préalable :</strong> <code>Tant que</code>
                   </p>
-                  <div class="p-2 bg-light font-monospace small rounded mb-2">
-                    Tant que temp Mod 2 = 0 Faire
+                  <div class="card-code-snippet mb-2">
+                    <pre><code class="language-algo">Tant que temp Mod 2 = 0 Faire</code></pre>
                   </div>
                   <div class="small text-muted">
                     Condition de continuation évaluée avant chaque division.
@@ -391,25 +428,58 @@
                 <thead class="table-dark">
                   <tr>
                     <th scope="col" style="width: 22%;">Structure</th>
-                    <th scope="col" style="width: 38%;">Algorithmique (Norme)</th>
-                    <th scope="col" style="width: 40%;">Python (Conventions 2024-2025)</th>
+                    <th scope="col" style="width: 39%;">Algorithmique (Norme)</th>
+                    <th scope="col" style="width: 39%;">Python (Conventions 2024-2025)</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td><strong>Boucle complète</strong></td>
-                    <td><code>Pour i de D à F [Pas = p] Faire<br>&nbsp;&nbsp;Traitement<br>Fin Pour</code></td>
-                    <td><code>for i in range(D, F + 1, p):<br>&nbsp;&nbsp;&nbsp;&nbsp;Traitement</code><br><span class="badge bg-info text-dark mt-1">Borne F+1 exclue en Python</span></td>
+                    <td class="fw-bold text-dark">
+                      Boucle complète<br>
+                      <small class="text-muted fw-normal">Nombre d'itérations connu à l'avance</small>
+                    </td>
+                    <td class="table-code-cell">
+                      <pre><code class="language-algo">Pour i de D à F [Pas = p] Faire
+    Traitement
+Fin Pour</code></pre>
+                    </td>
+                    <td class="table-code-cell">
+                      <pre><code class="language-python">for i in range(D, F + 1, p):
+    Traitement</code></pre>
+                      <span class="badge bg-info text-dark mt-1">Borne F+1 exclue en Python</span>
+                    </td>
                   </tr>
                   <tr>
-                    <td><strong>Boucle préalable</strong></td>
-                    <td><code>Tant que Condition Faire<br>&nbsp;&nbsp;Traitement<br>Fin Tant que</code></td>
-                    <td><code>while Condition:<br>&nbsp;&nbsp;&nbsp;&nbsp;Traitement</code><br><span class="badge bg-secondary mt-1">Condition de maintien</span></td>
+                    <td class="fw-bold text-dark">
+                      Boucle préalable<br>
+                      <small class="text-muted fw-normal">Test avant d'entrer (0 à N fois)</small>
+                    </td>
+                    <td class="table-code-cell">
+                      <pre><code class="language-algo">Tant que Condition Faire
+    Traitement
+Fin Tant que</code></pre>
+                    </td>
+                    <td class="table-code-cell">
+                      <pre><code class="language-python">while Condition:
+    Traitement</code></pre>
+                      <span class="badge bg-secondary mt-1">Condition de maintien (True)</span>
+                    </td>
                   </tr>
                   <tr>
-                    <td><strong>Boucle post-test</strong></td>
-                    <td><code>Répéter<br>&nbsp;&nbsp;Traitement<br>Jusqu'à Condition</code></td>
-                    <td><code>while not (Condition):<br>&nbsp;&nbsp;&nbsp;&nbsp;Traitement</code><br><span class="badge bg-warning text-dark mt-1">Négation de la condition d'arrêt</span></td>
+                    <td class="fw-bold text-dark">
+                      Boucle post-test<br>
+                      <small class="text-muted fw-normal">Exécutée au moins une fois (&ge; 1)</small>
+                    </td>
+                    <td class="table-code-cell">
+                      <pre><code class="language-algo">Répéter
+    Traitement
+Jusqu'à Condition</code></pre>
+                    </td>
+                    <td class="table-code-cell">
+                      <pre><code class="language-python">while not (Condition):
+    Traitement</code></pre>
+                      <span class="badge bg-warning text-dark mt-1">Négation de la condition d'arrêt</span>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -431,39 +501,43 @@
             <!-- ZOOM SUR TROIS POINTS IMPORTANTS -->
             <div class="row g-3">
               <div class="col-md-4">
-                <div class="card h-100 border p-3">
+                <div class="card h-100 border p-3 shadow-sm">
                   <div class="fw-bold text-primary mb-1"><i class="bi bi-slash-circle me-1"></i>Pas négatif dans range</div>
                   <p class="small text-muted mb-2">
                     Pour décrémenter, la borne finale passée à <code>range</code> doit être <code>F - 1</code>.
                   </p>
-                  <div class="p-2 bg-light font-monospace small rounded">
-                    range(10, -1, -2) # de 10 à 0
+                  <div class="card-code-snippet">
+                    <pre><code class="language-python"># Décompte décroissant de 10 à 0
+for i in range(10, -1, -2):
+    print(i)</code></pre>
                   </div>
                 </div>
               </div>
 
               <div class="col-md-4">
-                <div class="card h-100 border p-3">
+                <div class="card h-100 border p-3 shadow-sm">
                   <div class="fw-bold text-primary mb-1"><i class="bi bi-shield-x me-1"></i>Inversion de condition</div>
                   <p class="small text-muted mb-2">
-                    <code>Jusqu'à</code> indique la sortie. En Python, <code>while</code> évalue le maintien.
+                    <code>Jusqu'à</code> indique l'arrêt. En Python, <code>while</code> évalue le maintien.
                   </p>
-                  <div class="p-2 bg-light font-monospace small rounded">
-                    Jusqu'à (n > 2)<br>
-                    while not (n > 2): # ou n &lt;= 2
+                  <div class="card-code-snippet">
+                    <pre><code class="language-python"># Répéter ... Jusqu'à (n > 2)
+while not (n > 2):  # ou while n <= 2:
+    n = int(input("N = "))</code></pre>
                   </div>
                 </div>
               </div>
 
               <div class="col-md-4">
-                <div class="card h-100 border p-3">
+                <div class="card h-100 border p-3 shadow-sm">
                   <div class="fw-bold text-primary mb-1"><i class="bi bi-infinity me-1"></i>Prévention de boucle infinie</div>
                   <p class="small text-muted mb-2">
-                    Une variable intervenant dans la condition doit impérativement être modifiée à chaque itération.
+                    La variable de condition doit impérativement évoluer vers l'arrêt à chaque tour.
                   </p>
-                  <div class="p-2 bg-light font-monospace small rounded">
-                    temp = temp // 2<br>
-                    nb_div2 = nb_div2 + 1
+                  <div class="card-code-snippet">
+                    <pre><code class="language-python">while temp % 2 == 0:
+    temp = temp // 2  # Vers l'arrêt
+    nb_div2 = nb_div2 + 1</code></pre>
                   </div>
                 </div>
               </div>
@@ -474,215 +548,16 @@
       </div>
 
       <!-- ========================================================
-         PHASE 3 : ALGORITHME & PROGRAMME ANALYSENOMBRE (25 MIN)
+         PHASE 3 : BILAN & AUTO-ÉVALUATION (15 MIN)
          ======================================================== -->
       <div v-show="currentPhase === 3 || currentPhase === 'all'">
         <section class="section-card">
           <div class="section-header">
             <div class="d-flex align-items-center gap-2">
               <span class="badge bg-primary rounded-pill px-2 py-1">Étape 3</span>
-              <h2 class="h5 mb-0 fw-bold text-dark">Algorithme & Programme AnalyseNombre</h2>
-            </div>
-            <span class="phase-pill emerald"><i class="bi bi-clock me-1"></i>25 minutes</span>
-          </div>
-
-          <div class="section-body">
-            <!-- CONTRÔLE TAB : ALGORITHME & TDO VS PROGRAMME PYTHON -->
-            <ul class="nav nav-tabs mb-0" id="tabCodeS3" role="tablist">
-              <li class="nav-item" role="presentation">
-                <button class="nav-link active text-primary fw-bold" id="tab-algo-s3-btn" data-bs-toggle="tab"
-                  data-bs-target="#tab-algo-s3" type="button" role="tab" aria-controls="tab-algo-s3"
-                  aria-selected="true">
-                  <i class="bi bi-code-square me-1"></i> Algorithme & T.D.O.
-                </button>
-              </li>
-              <li class="nav-item" role="presentation">
-                <button class="nav-link text-warning fw-bold" id="tab-py-s3-btn" data-bs-toggle="tab"
-                  data-bs-target="#tab-py-s3" type="button" role="tab" aria-controls="tab-py-s3"
-                  aria-selected="false">
-                  <i class="bi bi-filetype-py me-1"></i> Programme Python (analyse_nombre.py)
-                </button>
-              </li>
-            </ul>
-
-            <div class="tab-content p-3 mb-2" id="tabCodeS3Content">
-              <!-- ONGLET 1 : ALGORITHME & TDO -->
-              <div class="tab-pane fade show active" id="tab-algo-s3" role="tabpanel" aria-labelledby="tab-algo-s3-btn">
-                <div class="row g-4">
-                  <!-- CARTE ALGORITHME -->
-                  <div class="col-lg-7">
-                    <div class="card border h-100 shadow-sm">
-                      <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
-                        <span class="font-monospace fw-bold"><i class="bi bi-code-square me-2 text-info"></i>ALGORITHME AnalyseNombre</span>
-                        <span class="badge bg-primary">Algorithme Principal</span>
-                      </div>
-                      <div class="card-body p-0">
-                        <pre class="m-0 p-3" style="background-color: #1e1e2e; border-radius: 0 0 var(--radius-sm) var(--radius-sm);"><code class="language-algo">ALGORITHME AnalyseNombre
-DEBUT
-    // 1. Contrôle de saisie post-test
-    Répéter
-        Écrire("Donner un entier N (2 à 100) : ")
-        Lire(n)
-    Jusqu'à (n > 2) Et (n < 100)
-    
-    // 2. Boucle complète : somme des diviseurs stricts
-    somme_div ← 0
-    Pour i de 1 à n - 1 Faire
-        Si n Mod i = 0 Alors
-            somme_div ← somme_div + i
-        FinSi
-    Fin Pour
-    
-    est_parfait ← (somme_div = n)
-    Écrire("Le nombre est-il parfait ? ", est_parfait)
-    
-    // 3. Boucle préalable : divisions successives par 2
-    temp ← n
-    nb_div2 ← 0
-    Tant que temp Mod 2 = 0 Faire
-        temp ← temp Div 2
-        nb_div2 ← nb_div2 + 1
-    Fin Tant que
-    
-    Écrire("Nombre de divisions par 2 possibles : ", nb_div2)
-FIN</code></pre>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- CARTE T.D.O. -->
-                  <div class="col-lg-5">
-                    <div class="card border h-100 shadow-sm">
-                      <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
-                        <span class="fw-bold"><i class="bi bi-table me-2"></i>T.D.O. Standard</span>
-                        <span class="badge bg-light text-dark">Objets Globaux</span>
-                      </div>
-                      <div class="card-body p-0">
-                        <div class="table-responsive">
-                          <table class="table table-striped table-bordered m-0 align-middle">
-                            <thead class="table-light">
-                              <tr>
-                                <th scope="col" style="width: 50%;">Objet</th>
-                                <th scope="col" style="width: 50%;">Type / Nature</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td><strong class="font-monospace text-primary">n, somme_div, i, temp, nb_div2</strong></td>
-                                <td><span class="badge bg-success">Entier</span></td>
-                              </tr>
-                              <tr>
-                                <td><strong class="font-monospace text-primary">est_parfait</strong></td>
-                                <td><span class="badge bg-warning text-dark">Booléen</span></td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-
-                        <div class="p-3 bg-light border-top small">
-                          <ul class="text-muted ps-3 mb-0">
-                            <li><strong><code>n</code> :</strong> Entier contrôlé dans ]2, 100[.</li>
-                            <li><strong><code>i</code> :</strong> Compteur de boucle <code>Pour</code>.</li>
-                            <li><strong><code>somme_div</code> :</strong> Accumulateur des diviseurs.</li>
-                            <li><strong><code>temp</code> :</strong> Copie de travail de <code>n</code>.</li>
-                            <li><strong><code>nb_div2</code> :</strong> Compteur des divisions par 2.</li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- ONGLET 2 : PROGRAMME PYTHON & VIGILANCE -->
-              <div class="tab-pane fade" id="tab-py-s3" role="tabpanel" aria-labelledby="tab-py-s3-btn">
-                <div class="row g-4">
-                  <!-- SCRIPT PYTHON -->
-                  <div class="col-lg-7">
-                    <div class="card border h-100 shadow-sm">
-                      <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
-                        <span class="font-monospace fw-bold"><i class="bi bi-file-earmark-code text-warning me-2"></i>analyse_nombre.py</span>
-                        <button class="btn btn-sm btn-outline-info" @click="copyPythonCode">
-                          <i class="bi bi-clipboard me-1"></i>{{ copyStatus }}
-                        </button>
-                      </div>
-                      <div class="card-body p-0">
-                        <pre class="m-0 p-3" style="background-color: #1e1e2e; border-radius: 0 0 var(--radius-sm) var(--radius-sm);"><code class="language-python"># 1. Contrôle de saisie émulant 'Répéter ... Jusqu'à' sans break
-n = 0
-while not (2 < n < 100):
-    n = int(input("Donner un entier N (2 à 100) : "))
-
-# 2. Somme des diviseurs avec 'for in range'
-somme_div = 0
-for i in range(1, n):
-    if n % i == 0:
-        somme_div = somme_div + i
-est_parfait = (somme_div == n)
-print("Le nombre est-il parfait ? :", est_parfait)
-
-# 3. Divisions successives par 2 avec 'while'
-temp = n
-nb_div2 = 0
-while temp % 2 == 0:
-    temp = temp // 2
-    nb_div2 = nb_div2 + 1
-print("Nombre de divisions par 2 possibles :", nb_div2)</code></pre>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- POINTS DE VIGILANCE -->
-                  <div class="col-lg-5">
-                    <div class="card border h-100 shadow-sm">
-                      <div class="card-header bg-danger text-white">
-                        <span class="fw-bold"><i class="bi bi-eye-fill me-2"></i>Points de vigilance</span>
-                      </div>
-                      <div class="card-body small">
-                        <div class="d-flex align-items-start gap-2 mb-3 pb-2 border-bottom">
-                          <i class="bi bi-bounding-box text-danger fs-5"></i>
-                          <div>
-                            <strong>Borne dans <code>range(1, n)</code> :</strong><br>
-                            <span class="text-muted">Pour tester jusqu'à <code>n - 1</code>, la borne passée à <code>range</code> est <code>n</code> (car exclue).</span>
-                          </div>
-                        </div>
-
-                        <div class="d-flex align-items-start gap-2 mb-3 pb-2 border-bottom">
-                          <i class="bi bi-slash-square text-danger fs-5"></i>
-                          <div>
-                            <strong>Division entière <code>//</code> :</strong><br>
-                            <span class="text-muted">Utiliser <code>temp = temp // 2</code> pour conserver le type <code>int</code>.</span>
-                          </div>
-                        </div>
-
-                        <div class="d-flex align-items-start gap-2">
-                          <i class="bi bi-x-octagon-fill text-danger fs-5"></i>
-                          <div>
-                            <strong>Interdiction de <code>break</code> :</strong><br>
-                            <span class="text-muted">Pré-initialiser <code>n = 0</code> pour lancer <code>while not (2 &lt; n &lt; 100):</code> sans break.</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </section>
-      </div>
-
-      <!-- ========================================================
-         PHASE 4 : BILAN & AUTO-ÉVALUATION (5 MIN)
-         ======================================================== -->
-      <div v-show="currentPhase === 4 || currentPhase === 'all'">
-        <section class="section-card">
-          <div class="section-header">
-            <div class="d-flex align-items-center gap-2">
-              <span class="badge bg-primary rounded-pill px-2 py-1">Étape 4</span>
               <h2 class="h5 mb-0 fw-bold text-dark">Bilan & Auto-évaluation (Questions flash & Quiz)</h2>
             </div>
-            <span class="phase-pill emerald"><i class="bi bi-clock me-1"></i>5 minutes</span>
+            <span class="phase-pill emerald"><i class="bi bi-clock me-1"></i>15 minutes</span>
           </div>
 
           <div class="section-body">

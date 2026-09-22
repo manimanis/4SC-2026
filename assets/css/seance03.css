@@ -123,3 +123,47 @@
   display: inline-block;
   margin-bottom: 0.25rem;
 }
+
+/* =========================================================
+   BLOCS DE CODE & COLORATION SYNTAXIQUE PHASE 2 (ATOM ONE DARK)
+   ========================================================= */
+.table-code-cell {
+  background-color: #1e1e2e;
+  vertical-align: middle;
+  padding: 0.5rem !important;
+}
+
+.table-code-cell pre {
+  margin: 0;
+  border-radius: 6px;
+  background-color: #282c34 !important;
+  border: 1px solid #3e4451;
+  overflow-x: auto;
+}
+
+.table-code-cell pre code {
+  padding: 0.5rem 0.75rem !important;
+  font-size: 0.86rem;
+  font-family: 'Consolas', 'Courier New', monospace;
+  line-height: 1.45;
+  background: transparent !important;
+  display: block;
+}
+
+.card-code-snippet pre {
+  margin: 0;
+  border-radius: 6px;
+  background-color: #282c34 !important;
+  border: 1px solid #3e4451;
+  overflow-x: auto;
+}
+
+.card-code-snippet pre code {
+  padding: 0.45rem 0.65rem !important;
+  font-size: 0.82rem;
+  font-family: 'Consolas', 'Courier New', monospace;
+  line-height: 1.4;
+  background: transparent !important;
+  display: block;
+}
+

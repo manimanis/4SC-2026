@@ -83,18 +83,24 @@ body {
   border: 1px solid #334155 !important;
   border-radius: 12px !important;
   padding: 6px !important;
-  min-width: 270px;
+  min-width: 320px;
+  max-width: min(540px, 95vw);
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5) !important;
 }
 
 .navbar-custom .dropdown-item {
   color: #cbd5e1 !important;
-  font-size: 0.9rem !important;
+  font-size: 0.88rem !important;
   font-weight: 500;
   padding: 0.55rem 0.85rem !important;
   border-radius: 8px !important;
   margin-bottom: 2px !important;
   transition: all 0.15s ease-in-out;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 0.75rem !important;
+  white-space: normal !important;
 }
 
 .navbar-custom .dropdown-item:last-child {
@@ -110,6 +116,45 @@ body {
   background-color: #2563eb !important;
   color: #ffffff !important;
   font-weight: 600;
+}
+
+.navbar-custom .dropdown-item .dropdown-item-title {
+  flex: 1 1 auto;
+}
+
+/* Cercle indicateur de difficulté dans le menu déroulant (vert, orange, rouge) */
+.navbar-custom .dropdown-item .nav-diff-circle {
+  width: 10px !important;
+  height: 10px !important;
+  min-width: 10px !important;
+  min-height: 10px !important;
+  border-radius: 50% !important;
+  display: inline-block !important;
+  flex-shrink: 0 !important;
+  transition: transform 0.18s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.18s ease-in-out !important;
+}
+
+.navbar-custom .dropdown-item:hover .nav-diff-circle {
+  transform: scale(1.35) !important;
+}
+
+.navbar-custom .dropdown-item .nav-diff-circle.diff-easy {
+  background-color: #10b981 !important; /* Vert */
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.7) !important;
+}
+
+.navbar-custom .dropdown-item .nav-diff-circle.diff-medium {
+  background-color: #f97316 !important; /* Orange */
+  box-shadow: 0 0 6px rgba(249, 115, 22, 0.7) !important;
+}
+
+.navbar-custom .dropdown-item .nav-diff-circle.diff-hard {
+  background-color: #ef4444 !important; /* Rouge */
+  box-shadow: 0 0 6px rgba(239, 68, 68, 0.7) !important;
+}
+
+.navbar-custom .dropdown-item.active .nav-diff-circle {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.85), 0 0 8px rgba(255, 255, 255, 0.6) !important;
 }
 
 .navbar-custom .dropdown-item .badge {

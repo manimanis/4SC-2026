@@ -68,16 +68,48 @@ $(() => {
             const section = $(sect_elem);
             const id = `section-${index + 1}-${section_index + 1}`;
             const a_id = `link-${index + 1}-${section_index + 1}`;
-            const title = section.find('h3').text() || `Page ${section_index + 1}`;
+            const title = section.find('h3').text().replace(/\s+/g, ' ').trim() || `Page ${section_index + 1}`;
             section
               // .attr('id', id)
               .addClass('d-none d-print-block');
+
+            // Extraction de la difficulté de l'exercice (cercle vert, orange ou rouge)
+            let diffLevel = '';
+            let diffTitle = '';
+            const easyBadge = section.find('.badge-difficulty-easy');
+            const mediumBadge = section.find('.badge-difficulty-medium');
+            const hardBadge = section.find('.badge-difficulty-hard');
+
+            if (easyBadge.length) {
+              diffLevel = 'easy';
+              diffTitle = 'Facile';
+            } else if (mediumBadge.length) {
+              diffLevel = 'medium';
+              diffTitle = 'Moyen';
+            } else if (hardBadge.length) {
+              diffLevel = 'hard';
+              diffTitle = 'Difficile';
+            }
+
             const a = $('<a>')
               .attr('href', `#${id}`)
               .attr('id', a_id)
-              .addClass('dropdown-item')
+              .addClass('dropdown-item d-flex align-items-center justify-content-between gap-3');
+
+            $('<span>')
+              .addClass('dropdown-item-title')
               .text(title)
-              .appendTo(sect_list);
+              .appendTo(a);
+
+            if (diffLevel) {
+              $('<span>')
+                .addClass(`nav-diff-circle diff-${diffLevel}`)
+                .attr('title', diffTitle)
+                .attr('aria-label', diffTitle)
+                .appendTo(a);
+            }
+
+            a.appendTo(sect_list);
           });
       }
     });

@@ -141,3 +141,18 @@
   font-weight: 600;
 }
 
+/* 4. FORMULES MATHÉMATIQUES KATEX */
+#katex-distance-formula .katex-display {
+  margin: 0.35rem 0;
+}
+
+#katex-distance-formula .katex {
+  color: #38bdf8;
+  text-shadow: 0 0 12px rgba(56, 189, 248, 0.35);
+}
+
+.katex-formula {
+  font-size: 1.05em;
+  color: #0284c7;
+}
+
