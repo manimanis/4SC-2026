@@ -24,22 +24,22 @@ createApp({
       oralQuestions: [
         {
           id: 1,
-          question: "Pour le contrôle de saisie, pourquoi la structure Répéter ... Jusqu'à est-elle la plus adaptée ?",
-          algoAns: "Car la saisie doit obligatoirement être effectuée au moins une fois avant d'en vérifier la validité (structure post-test).",
-          pyAns: "En Python, on pré-initialise n à 0 et on utilise 'while not (2 < n < 100):' sans jamais employer l'instruction 'break'.",
+          question: "Pour le contrôle de saisie, pourquoi la structure Répéter est-elle la plus adaptée ?",
+          algoAns: "Car la saisie doit obligatoirement être effectuée au moins une fois avant d'en vérifier la validité.",
+          pyAns: "En Python, on effectue la saisie de N au moins une fois. Puis, on utilise 'while not (2 < n < 100):'.",
           isOpen: false
         },
         {
           id: 2,
-          question: "Pour la recherche des diviseurs de 1 à N div 2, pourquoi utilise-t-on la boucle Pour ?",
-          algoAns: "Car le nombre total d'itérations est déterminé et connu à l'avance (exactement n div 2 itérations de 1 à n div 2).",
-          pyAns: "En Python, cela s'exprime par 'for i in range(1, n // 2 + 1):' car la borne supérieure n // 2 + 1 est exclue, ce qui s'arrête exactement à n // 2.",
+          question: "Pour la recherche des diviseurs, pourquoi utilise-t-on la boucle Pour ?",
+          algoAns: "Car le nombre total d'itérations est connu à l'avance (exactement n div 2 itérations).",
+          pyAns: "En Python, cela s'exprime par 'for i in range(1, n // 2 + 1):' car la borne supérieure n // 2 + 1 est exclue.",
           isOpen: false
         },
         {
           id: 3,
-          question: "Pour les divisions successives par 2, quelle structure s'impose ?",
-          algoAns: "La boucle Tant que, car le nombre d'itérations n'est pas prévisible et dépend de la condition de parité à chaque division.",
+          question: "Pour les divisions successives par 2, quelle structure utilise-t-on ?",
+          algoAns: "La boucle Tant que, car le nombre d'itérations dépend de la condition de parité à chaque division.",
           pyAns: "L'instruction 'while temp % 2 == 0:' avec division entière 'temp = temp // 2' et incrémentation de nb_div2.",
           isOpen: false
         }
@@ -47,6 +47,27 @@ createApp({
 
       // Simulateur interactif (Phase 1)
       simN: 28,
+      simMin: -20,
+      simMax: 120,
+
+      // Ticks pour la graduation de N (-20 à 120)
+      simNTicks: [
+        { val: -20, label: "-20", major: true },
+        { val: -10, label: "-10", major: false },
+        { val: 0, label: "0", major: true },
+        { val: 10, label: "10", major: false },
+        { val: 20, label: "20", major: true },
+        { val: 30, label: "30", major: false },
+        { val: 40, label: "40", major: true },
+        { val: 50, label: "50", major: false },
+        { val: 60, label: "60", major: true },
+        { val: 70, label: "70", major: false },
+        { val: 80, label: "80", major: true },
+        { val: 90, label: "90", major: false },
+        { val: 100, label: "100", major: true },
+        { val: 110, label: "110", major: false },
+        { val: 120, label: "120", major: true }
+      ],
 
       // Profils prédéfinis pour le simulateur
       presets: [
@@ -286,6 +307,18 @@ createApp({
     isValidInput() {
       return this.nVal > 2 && this.nVal < 100;
     },
+    zoneInvalidLeftWidth() {
+      const span = this.simMax - this.simMin;
+      return ((2 - this.simMin) / span * 100).toFixed(2) + '%';
+    },
+    zoneValidWidth() {
+      const span = this.simMax - this.simMin;
+      return ((100 - 2) / span * 100).toFixed(2) + '%';
+    },
+    zoneInvalidRightWidth() {
+      const span = this.simMax - this.simMin;
+      return ((this.simMax - 100) / span * 100).toFixed(2) + '%';
+    },
     inputStatusBadge() {
       if (this.isValidInput) {
         return { text: 'Conforme (2 < N < 100)', cls: 'bg-success' };
@@ -503,6 +536,12 @@ createApp({
 
     setPreset(pr) {
       this.simN = pr.n;
+    },
+
+    // Positionnement précis des repères du slider (centre du pouce = 8px)
+    getTickPosition(val) {
+      const ratio = (val - this.simMin) / (this.simMax - this.simMin);
+      return `calc(8px + (100% - 16px) * ${ratio})`;
     },
 
     // Initialisation et tirage aléatoire du Quiz

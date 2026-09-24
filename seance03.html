@@ -157,9 +157,8 @@
               <div class="row align-items-center g-3 mb-3">
                 <div class="col-lg-7">
                   <p class="fs-6 text-dark fw-semibold mb-2">
-                    Dans le cadre de l'étude des propriétés fondamentales des nombres entiers (exploitées notamment en
-                    cryptographie), on souhaite concevoir un programme automatisé d'analyse d'un entier positif
-                    <code>N</code>.
+                    Dans le cadre de l'étude des nombres entiers (exploitées notamment en cryptographie), on souhaite
+                    concevoir un programme automatisé d'analyse d'un entier positif <code>N</code>.
                   </p>
                   <p class="small text-dark mb-2">
                     Ce programme doit réaliser les trois opérations suivantes :
@@ -167,7 +166,7 @@
                   <ol class="small text-dark mb-3 ps-3">
                     <li class="mb-2">
                       <strong>Contrôle de saisie sécurisé :</strong> Saisir un entier <code>N</code> strictement
-                      compris entre 2 et 100 (c'est-à-dire <code>2 &lt; N &lt; 100</code>).
+                      compris entre 2 et 100 (<code>2 &lt; N &lt; 100</code>).
                     </li>
                     <li class="mb-2">
                       <strong>Recherche des diviseurs stricts & test du nombre parfait :</strong>
@@ -179,7 +178,8 @@
                     </li>
                     <li class="mb-0">
                       <strong>Divisions successives par 2 (Réduction binaire) :</strong>
-                      Compter combien de divisions entières successives par 2 le nombre <code>N</code> peut-il subir.
+                      Compter le nombre de divisions entières successives par 2 que le nombre <code>N</code> puisse
+                      subir.
                     </li>
                   </ol>
                 </div>
@@ -215,10 +215,12 @@
                     <h6 class="fw-bold text-dark mb-0">Contrôle de saisie</h6>
                   </div>
                   <p class="small text-muted mb-2">
-                    <strong>Boucle :</strong> <code>Répéter ... Jusqu'à</code>
+                    <strong>Boucle :</strong> <code>Répéter / Jusqu'à</code>
                   </p>
                   <div class="card-code-snippet mb-2">
-                    <pre><code class="language-algo">Jusqu'à (2 &lt; n &lt; 100)</code></pre>
+                    <pre><code class="language-algo">Répéter
+  ... 
+Jusqu'à (2 &lt; n &lt; 100)</code></pre>
                   </div>
                   <div class="small text-muted">
                     Au moins une saisie avant de tester la condition d'arrêt.
@@ -233,10 +235,12 @@
                     <h6 class="fw-bold text-dark mb-0">Somme des diviseurs</h6>
                   </div>
                   <p class="small text-muted mb-2">
-                    <strong>Boucle :</strong> <code>Pour i de 1 à n div 2 Faire</code>
+                    <strong>Boucle :</strong> <code>Pour ... Faire / Fin Pour</code>
                   </p>
                   <div class="card-code-snippet mb-2">
-                    <pre><code class="language-algo">Pour i de 1 à n div 2 Faire</code></pre>
+                    <pre><code class="language-algo">Pour i de 1 à n div 2 Faire
+  ...
+Fin Pour</code></pre>
                   </div>
                   <div class="small text-muted">
                     Exactement <code>n div 2</code> itérations connues d'avance.
@@ -251,10 +255,12 @@
                     <h6 class="fw-bold text-dark mb-0">Divisions par 2</h6>
                   </div>
                   <p class="small text-muted mb-2">
-                    <strong>Boucle :</strong> <code>Tant Que</code>
+                    <strong>Boucle :</strong> <code>Tant Que ... Faire / Fin Tant Que</code>
                   </p>
                   <div class="card-code-snippet mb-2">
-                    <pre><code class="language-algo">Tant Que (temp Mod 2 = 0) Faire</code></pre>
+                    <pre><code class="language-algo">Tant Que (temp Mod 2 = 0) Faire
+  ...
+Fin Tant Que</code></pre>
                   </div>
                   <div class="small text-muted">
                     Condition de continuation évaluée avant chaque division.
@@ -285,9 +291,41 @@
                     </label>
                     <div class="input-group mb-2">
                       <span class="input-group-text font-monospace bg-light">n =</span>
-                      <input type="number" min="0" max="150" class="form-control font-monospace" v-model.number="simN">
+                      <input type="number" :min="simMin" :max="simMax" class="form-control font-monospace" v-model.number="simN">
                     </div>
-                    <input type="range" class="form-range" min="1" max="120" v-model.number="simN">
+                    <div class="range-slider-wrapper">
+                      <input type="range" class="form-range" :min="simMin" :max="simMax" v-model.number="simN" list="simNTicks">
+                      <datalist id="simNTicks">
+                        <option v-for="t in simNTicks" :key="'dl-'+t.val" :value="t.val"></option>
+                      </datalist>
+
+                      <!-- Piste visuelle des zones de conformité : Hors bornes (≤ 2) | Valide (2 < N < 100) | Hors bornes (≥ 100) -->
+                      <div class="range-zone-track" title="Zone de validité du contrôle de saisie : 2 < N < 100">
+                        <div class="range-zone-segment zone-invalid" :style="{ width: zoneInvalidLeftWidth }" title="Hors bornes (N ≤ 2)"></div>
+                        <div class="range-zone-segment zone-valid" :style="{ width: zoneValidWidth }" title="Zone valide : 2 < N < 100"></div>
+                        <div class="range-zone-segment zone-invalid" :style="{ width: zoneInvalidRightWidth }" title="Hors bornes (N ≥ 100)"></div>
+                      </div>
+
+                      <!-- Graduations et repères interactifs -->
+                      <div class="range-ticks-container">
+                        <div v-for="t in simNTicks" :key="'tick-' + t.val"
+                          class="range-tick"
+                          :class="{ 'major': t.major, 'active': nVal === t.val }"
+                          :style="{ left: getTickPosition(t.val) }"
+                          @click="simN = t.val"
+                          :title="'Positionner n = ' + t.val">
+                          <span class="range-tick-notch"></span>
+                          <span class="range-tick-label" v-if="t.major || nVal === t.val">{{ t.label }}</span>
+                        </div>
+                      </div>
+
+                      <!-- Légende synthétique -->
+                      <div class="range-zone-legend">
+                        <span class="legend-invalid"><i class="bi bi-x-circle me-1"></i>≤ 2 (rejeté)</span>
+                        <span class="legend-valid"><i class="bi bi-shield-check me-1"></i>2 &lt; N &lt; 100 (conforme)</span>
+                        <span class="legend-invalid">≥ 100 (rejeté)<i class="bi bi-x-circle ms-1"></i></span>
+                      </div>
+                    </div>
                   </div>
 
                   <div class="col-md-6">
@@ -299,9 +337,6 @@
                           :class="isValidInput ? 'bi-check-circle-fill text-success fs-5' : 'bi-exclamation-triangle-fill text-danger fs-5'"></i>
                         <span class="fw-bold" :class="isValidInput ? 'text-success' : 'text-danger'">
                           {{ isValidInput ? 'Saisie Valide' : 'Saisie Hors Bornes !' }} </span>
-                      </div>
-                      <div class="small text-muted">
-                        {{ isValidInput ? 'La boucle s\'arrête.' : 'La boucle redemande la saisie.' }}
                       </div>
                     </div>
                   </div>
@@ -554,6 +589,7 @@ for i in range(10, -1, -2):
                   </p>
                   <div class="card-code-snippet">
                     <pre><code class="language-python"># Répéter ... Jusqu'à (n > 2)
+n = int(input("N = "))
 while not (n > 2):  # ou while n <= 2:
     n = int(input("N = "))</code></pre>
                   </div>
