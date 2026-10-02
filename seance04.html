@@ -380,15 +380,10 @@
                         <pre class="m-0 p-3" style="background-color: #1e1e2e; border-radius: 0 0 var(--radius-sm) var(--radius-sm);"><code class="language-algo">// 1. Fonction de primalité
 Fonction est_premier (n: Entier) : Booléen
 DEBUT
-    Si n < 2 Alors
-        Retourner Faux
-    FinSi
     i ← 2
-    premier ← Vrai
+    premier ← n &ge; 2
     Tant que (i * i ≤ n) Et (premier) Faire
-        Si n Mod i = 0 Alors
-            premier ← Faux
-        FinSi
+        premier ← (n Mod i) &ne; 0
         i ← i + 1
     Fin Tant que
     Retourner premier
@@ -502,13 +497,10 @@ FIN</code></pre>
                       <div class="card-body p-0">
                         <pre class="m-0 p-3" style="background-color: #1e1e2e; border-radius: 0 0 var(--radius-sm) var(--radius-sm);"><code class="language-python"># 1. Fonction de primalité sans break
 def est_premier(n):
-    if n < 2:
-        return False
     i = 2
-    premier = True
+    premier = n >= 2
     while i * i <= n and premier:
-        if n % i == 0:
-            premier = False
+        premier = (n % i) != 0
         i = i + 1
     return premier
 
@@ -530,11 +522,11 @@ def somme_chiffres(n):
     return s
 
 # --- Programme Principal ---
-a = 0
+a = int(input("Donner un entier A positif : "))
 while not (a > 0):
     a = int(input("Donner un entier A positif : "))
 
-b = 0
+b = int(input("Donner un entier B positif : "))
 while not (b > 0):
     b = int(input("Donner un entier B positif : "))
 

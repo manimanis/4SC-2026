@@ -209,19 +209,19 @@ createApp({
   computed: {
     // État après appel de la procédure de permutation selon le mode choisi
     finalX() {
-      return this.modePassage === 'variable' ? this.simY : this.simX;
+      return this.isSwapped ? this.simY : this.simX;
     },
 
     finalY() {
-      return this.modePassage === 'variable' ? this.simX : this.simY;
+      return this.isSwapped ? this.simX : this.simY;
     },
 
     isSwapped() {
-      return this.modePassage === 'adresse';
+      return this.modePassage === 'adresse' || this.modePassage === 'variable';
     },
 
     terminalOutput() {
-      if (this.modePassage === 'adresse') {
+      if (this.isSwapped) {
         return `>>> # Mode PASSAGE PAR ADRESSE (@x, @y)\n>>> x_init = ${this.simX}, y_init = ${this.simY}\n>>> permuter(x, y) # Modifie directement x et y\n>>> x = ${this.finalX}, y = ${this.finalY} (Permutation RÉUSSIE dans l'appelant)`;
       } else {
         return `>>> # Mode PASSAGE PAR VALEUR (x, y)\n>>> x_init = ${this.simX}, y_init = ${this.simY}\n>>> permuter_valeur(x, y) # Seules les copies locales permutent\n>>> x = ${this.finalX}, y = ${this.finalY} (ÉCHEC : variables de l'appelant INCHANGÉES)`;

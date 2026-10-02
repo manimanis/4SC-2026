@@ -344,41 +344,68 @@ createApp({
     copyPythonCode() {
       const code = `from numpy import array
 
-# 1. Module de saisie de la taille N (contrôle sans break)
+# 1. Module de saisie de la taille N (sans break)
 def saisie_taille(borne_min, borne_max):
     taille = 0
     while not (borne_min <= taille <= borne_max):
         taille = int(input(f"Donner la taille du tableau ({borne_min} à {borne_max}) : "))
     return taille
 
-# 2. Module de remplissage (t est passé par adresse natif)
+# 2. Module de remplissage (t mutable passé par adresse)
 def remplir_tab(t, n):
     for i in range(n):
         t[i] = int(input(f"Donner l'élément t[{i}] : "))
 
-# 3. Module d'affichage (élément par élément, pas de print(t) brut)
+# 3. Module d'affichage (élément par élément)
 def afficher_tab(t, n):
     print("Contenu du tableau :")
     for i in range(n):
         print(f"t[{i}] = {t[i]}")
 
-# 4. Fonction calculant la moyenne (retourne un réel float)
-def calculer_moyenne(t, n):
+# 4. Fonction de calcul de la somme
+def calculer_somme(t, n):
     somme = 0
     for i in range(n):
         somme = somme + t[i]
-    return somme / n
+    return somme
+
+# 5. Fonction de calcul de la moyenne
+def calculer_moyenne(t, n):
+    return calculer_somme(t, n) / n
+
+# 6. Fonction de recherche de la valeur minimale (Min)
+def calculer_min(t, n):
+    min_val = t[0]
+    for i in range(1, n):
+        if t[i] < min_val:
+            min_val = t[i]
+    return min_val
+
+# 7. Fonction de recherche de la valeur maximale (Max)
+def calculer_max(t, n):
+    max_val = t[0]
+    for i in range(1, n):
+        if t[i] > max_val:
+            max_val = t[i]
+    return max_val
 
 # --- Programme Principal ---
-# Déclaration statique du tableau t de 10 entiers
+# Déclaration statique numpy de 10 entiers
 t = array([0] * 10)
 
 n = saisie_taille(3, 10)
 remplir_tab(t, n)
 afficher_tab(t, n)
 
+som = calculer_somme(t, n)
 moy = calculer_moyenne(t, n)
-print(f"Moyenne des éléments = {moy:.2f}")`;
+min_val = calculer_min(t, n)
+max_val = calculer_max(t, n)
+
+print(f"Somme des éléments = {som}")
+print(f"Moyenne des éléments = {moy:.2f}")
+print(f"Valeur minimale (Min) = {min_val}")
+print(f"Valeur maximale (Max) = {max_val}")`;
 
       navigator.clipboard.writeText(code).then(() => {
         this.copyStatus = 'Copié !';

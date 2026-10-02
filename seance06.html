@@ -40,16 +40,15 @@
 
             <!-- MENU DÉROULANT TABLEAUX 1D -->
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle active" href="#" id="menuTableaux"
-                role="button" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle active" href="#" id="menuTableaux" role="button"
+                data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
                 <i class="bi bi-grid-1x2-fill me-1 text-primary"></i>
                 <span>Tableaux 1D</span>
               </a>
               <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end shadow" aria-labelledby="menuTableaux">
                 <li v-for="(p, idx) in phases" :key="'nav-p-' + idx">
                   <a class="dropdown-item d-flex align-items-center justify-content-between py-2"
-                    :class="{ 'active': currentPhase === (idx + 1) }"
-                    :href="'#phase' + (idx + 1)"
+                    :class="{ 'active': currentPhase === (idx + 1) }" :href="'#phase' + (idx + 1)"
                     @click.prevent="setPhase(idx + 1)">
                     <span>
                       <span class="badge rounded-pill me-2"
@@ -74,14 +73,18 @@
         <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
           <span class="badge bg-primary px-3 py-1"><i class="bi bi-grid-1x2 me-1"></i>Axe : Tableaux 1D</span>
           <span class="badge bg-secondary px-2 py-1">Sections Scientifiques</span>
-          <span class="badge bg-info text-dark px-2 py-1"><i class="bi bi-bookmark-check-fill me-1"></i>Conventions 2024-2025</span>
+          <span class="badge bg-info text-dark px-2 py-1"><i class="bi bi-bookmark-check-fill me-1"></i>Conventions
+            2024-2025</span>
         </div>
         <h1 class="hero-title">Séance 6 : Tableaux à une dimension (1D)</h1>
         <div class="objective-box">
           <div class="d-flex align-items-center gap-2">
             <i class="bi bi-bullseye text-info fs-5"></i>
             <span class="small text-light">
-              <strong>Objectifs :</strong> Déclaration algorithmique par T.D.N.T. (<code>Tab = Tableau de N Entier</code>), passage par adresse (<code>@t: Tab</code>), implémentation <code>numpy</code>, parcours indicé (base 0), modules types de saisie, remplissage et affichage élément par élément.
+              <strong>Objectifs :</strong> Déclaration algorithmique par T.D.N.T.
+              (<code>Tab = Tableau de N Entier</code>), passage par adresse (<code>@t: Tab</code>), implémentation
+              <code>numpy</code>, parcours indicé (base 0), modules types de saisie, remplissage et affichage élément
+              par élément.
             </span>
           </div>
         </div>
@@ -95,7 +98,8 @@
       <div class="d-flex align-items-center justify-content-between p-3 bg-white border rounded shadow-sm mb-4">
         <div class="d-flex align-items-center gap-3">
           <span class="badge bg-primary fs-6 px-3 py-2 rounded-pill">
-            <i class="bi bi-layers-fill me-1"></i> Phase {{ currentPhase === 'all' ? 'Toutes' : currentPhase + ' / ' + phases.length }}
+            <i class="bi bi-layers-fill me-1"></i> Phase {{ currentPhase === 'all' ? 'Toutes' : currentPhase + ' / ' +
+            phases.length }}
           </span>
           <div>
             <div class="text-muted small text-uppercase fw-bold">Phase active :</div>
@@ -104,7 +108,8 @@
             </div>
           </div>
         </div>
-        <button class="btn btn-sm btn-outline-secondary" @click="toggleViewMode" :title="currentPhase === 'all' ? 'Mode pas-à-pas' : 'Tout afficher'">
+        <button class="btn btn-sm btn-outline-secondary" @click="toggleViewMode"
+          :title="currentPhase === 'all' ? 'Mode pas-à-pas' : 'Tout afficher'">
           <i class="bi bi-view-stacked me-1"></i> {{ currentPhase === 'all' ? 'Mode pas-à-pas' : 'Tout afficher' }}
         </button>
       </div>
@@ -129,14 +134,17 @@
                 <i class="bi bi-lightbulb-fill"></i> Énoncé
               </div>
               <blockquote class="fs-6 text-dark fw-semibold mb-0 fst-italic">
-                « Saisir un entier N (3 à 10), remplir un tableau statique T de N éléments entiers, calculer la somme, la moyenne et les valeurs extrêmes (Min, Max), puis afficher les éléments un par un. »
+                « Saisir un entier N (3 à 10), remplir un tableau T de N éléments entiers, calculer la somme, la moyenne
+                et les valeurs extrêmes (Min, Max), puis afficher les éléments un par un. »
               </blockquote>
             </div>
 
             <!-- SIMULATEUR INTERACTIF DU TABLEAU 1D -->
             <div class="card border-primary shadow-sm mb-4">
-              <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center flex-wrap gap-2">
-                <span class="fw-bold"><i class="bi bi-play-circle-fill me-2"></i>Laboratoire Interactif : Tableau T[0 .. N-1]</span>
+              <div
+                class="card-header bg-primary text-white d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <span class="fw-bold"><i class="bi bi-play-circle-fill me-2"></i>Laboratoire Interactif : Tableau T[0 ..
+                  N-1]</span>
                 <div class="d-flex align-items-center gap-1 flex-wrap">
                   <span class="small text-white-50 me-1">Presets :</span>
                   <button v-for="pr in presets" :key="pr.name" class="btn btn-xs btn-outline-light py-0 px-2 small"
@@ -165,7 +173,8 @@
                 <!-- BANDE DU TABLEAU 1D (INDICES ET VALEURS) -->
                 <div class="array-visualizer-wrapper mb-4">
                   <div class="small text-muted mb-2 font-monospace">
-                    <i class="bi bi-info-circle me-1"></i>Indices de <code>0</code> à <code>{{ simN - 1 }}</code> (modifiez directement les cases) :
+                    <i class="bi bi-info-circle me-1"></i>Indices de <code>0</code> à <code>{{ simN - 1 }}</code>
+                    (modifiez directement les cases) :
                   </div>
                   <div class="array-strip">
                     <div v-for="(val, idx) in simTab.slice(0, simN)" :key="idx" class="array-slot">
@@ -208,7 +217,8 @@
                     <span class="terminal-dot dot-red"></span>
                     <span class="terminal-dot dot-yellow"></span>
                     <span class="terminal-dot dot-green"></span>
-                    <span class="text-white-50 small ms-2 font-monospace">Affichage Python indicé (for i in range(n))</span>
+                    <span class="text-white-50 small ms-2 font-monospace">Affichage Python indicé (for i in
+                      range(n))</span>
                   </div>
                   <div class="terminal-body">{{ terminalOutput }}</div>
                 </div>
@@ -306,23 +316,28 @@
             <div class="row g-3">
               <div class="col-md-4">
                 <div class="card h-100 border p-3">
-                  <div class="fw-bold text-danger mb-1"><i class="bi bi-x-octagon-fill me-1"></i>Interdiction de print(T)</div>
+                  <div class="fw-bold text-danger mb-1"><i class="bi bi-x-octagon-fill me-1"></i>Interdiction de
+                    print(T)</div>
                   <p class="small text-muted mb-0">
-                    L'affichage d'un tableau en Python doit <strong>obligatoirement</strong> se faire élément par élément via une boucle.
+                    L'affichage d'un tableau en Python doit <strong>obligatoirement</strong> se faire élément par
+                    élément via une boucle.
                   </p>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="card h-100 border p-3">
-                  <div class="fw-bold text-primary mb-1"><i class="bi bi-arrow-left-right me-1"></i>Passage par adresse natif</div>
+                  <div class="fw-bold text-primary mb-1"><i class="bi bi-arrow-left-right me-1"></i>Passage par adresse
+                    natif</div>
                   <p class="small text-muted mb-0">
-                    En Python, les tableaux <code>numpy</code> sont automatiquement transmis par référence (adresse) sans mot-clé spécial.
+                    En Python, les tableaux <code>numpy</code> sont automatiquement transmis par référence (adresse)
+                    sans mot-clé spécial.
                   </p>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="card h-100 border p-3">
-                  <div class="fw-bold text-success mb-1"><i class="bi bi-layers-fill me-1"></i>Homogénéité & Statique</div>
+                  <div class="fw-bold text-success mb-1"><i class="bi bi-layers-fill me-1"></i>Homogénéité & Statique
+                  </div>
                   <p class="small text-muted mb-0">
                     Tous les éléments sont de même type. La dimension maximale allouée est fixée à la création.
                   </p>
@@ -359,8 +374,7 @@
               </li>
               <li class="nav-item" role="presentation">
                 <button class="nav-link text-warning fw-bold" id="tab-py-s6-btn" data-bs-toggle="tab"
-                  data-bs-target="#tab-py-s6" type="button" role="tab" aria-controls="tab-py-s6"
-                  aria-selected="false">
+                  data-bs-target="#tab-py-s6" type="button" role="tab" aria-controls="tab-py-s6" aria-selected="false">
                   <i class="bi bi-filetype-py me-1"></i> Programme Python (tableaux_1d.py)
                 </button>
               </li>
@@ -374,11 +388,13 @@
                   <div class="col-lg-7">
                     <div class="card border h-100 shadow-sm">
                       <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
-                        <span class="font-monospace fw-bold small"><i class="bi bi-code-square me-2 text-info"></i>Solution Modulaire (Tableaux 1D)</span>
+                        <span class="font-monospace fw-bold small"><i
+                            class="bi bi-code-square me-2 text-info"></i>Solution Modulaire (Tableaux 1D)</span>
                         <span class="badge bg-primary">Modules Types</span>
                       </div>
                       <div class="card-body p-0">
-                        <pre class="m-0 p-3" style="background-color: #1e1e2e; border-radius: 0 0 var(--radius-sm) var(--radius-sm);"><code class="language-algo">// 1. Module type de contrôle de la taille
+                        <pre class="m-0 p-3"
+                          style="background-color: #1e1e2e; border-radius: 0 0 var(--radius-sm) var(--radius-sm);"><code class="language-algo">// 1. Module type de contrôle de la taille
 Procédure Saisie_Taille (@n: Entier, min: Entier, max: Entier)
 DEBUT
     Répéter
@@ -405,24 +421,60 @@ DEBUT
     Fin Pour
 FIN
 
-// 4. Fonction de calcul de la moyenne (t: Tab)
-Fonction Calculer_Moyenne (t: Tab, n: Entier) : Réel
+// 4. Fonction de calcul de la somme (t: Tab)
+Fonction calc_Somme (t: Tab, n: Entier) : Entier
 DEBUT
     somme ← 0
     Pour i de 0 à n - 1 Faire
         somme ← somme + t[i]
     Fin Pour
-    Retourner somme / n
+    Retourner somme
 FIN
 
-// 5. Algorithme Principal
+// 5. Fonction de calcul de la moyenne (t: Tab)
+Fonction calc_Moyenne (t: Tab, n: Entier) : Réel
+DEBUT
+    Retourner calc_Somme(t, n) / n
+FIN
+
+// 6. Fonction de recherche de la valeur minimale (Min)
+Fonction calc_Min (t: Tab, n: Entier) : Entier
+DEBUT
+    min_val ← t[0]
+    Pour i de 1 à n - 1 Faire
+        Si t[i] < min_val Alors
+            min_val ← t[i]
+        Fin Si
+    Fin Pour
+    Retourner min_val
+FIN
+
+// 7. Fonction de recherche de la valeur maximale (Max)
+Fonction calc_Max (t: Tab, n: Entier) : Entier
+DEBUT
+    max_val ← t[0]
+    Pour i de 1 à n - 1 Faire
+        Si t[i] > max_val Alors
+            max_val ← t[i]
+        Fin Si
+    Fin Pour
+    Retourner max_val
+FIN
+
+// 8. Algorithme Principal
 ALGORITHME GestionTableau1D
 DEBUT
     Saisie_Taille(n, 3, 10)
     Remplir(t, n)
     Afficher(t, n)
-    moy ← Calculer_Moyenne(t, n)
-    Écrire("Moyenne des éléments = ", moy)
+    som ← calc_Somme(t, n)
+    moy ← calc_Moyenne(t, n)
+    min_val ← calc_Min(t, n)
+    max_val ← calc_Max(t, n)
+    Écrire_nl("Somme des éléments = ", som)
+    Écrire_nl("Moyenne des éléments = ", moy)
+    Écrire_nl("Valeur minimale (Min) = ", min_val)
+    Écrire_nl("Valeur maximale (Max) = ", max_val)
 FIN</code></pre>
                       </div>
                     </div>
@@ -432,46 +484,123 @@ FIN</code></pre>
                   <div class="col-lg-5">
                     <div class="card border h-100 shadow-sm">
                       <div class="card-header bg-secondary text-white">
-                        <span class="fw-bold small"><i class="bi bi-table me-2"></i>Déclarations : T.D.N.T., T.D.O.L. & T.D.O.G.</span>
+                        <span class="fw-bold small"><i class="bi bi-table me-2"></i>Déclarations : T.D.N.T., T.D.O.L. &
+                          T.D.O.G.</span>
                       </div>
                       <div class="card-body p-3 small">
                         <!-- T.D.N.T. -->
                         <h6 class="fw-bold text-primary mb-1">T.D.N.T. (Nouveaux Types)</h6>
                         <table class="table table-bordered table-sm mb-3">
-                          <thead class="table-light"><tr><th>Type</th></tr></thead>
+                          <thead class="table-light">
+                            <tr>
+                              <th>Type</th>
+                            </tr>
+                          </thead>
                           <tbody>
-                            <tr><td><code>Tab = Tableau de 10 Entier</code></td></tr>
+                            <tr>
+                              <td><code>Tab = Tableau de 10 Entier</code></td>
+                            </tr>
                           </tbody>
                         </table>
 
                         <!-- T.D.O.L. Remplir & Afficher -->
                         <h6 class="fw-bold text-primary mb-1">T.D.O.L. (Remplir & Afficher)</h6>
                         <table class="table table-bordered table-sm mb-3">
-                          <thead class="table-light"><tr><th>Objet</th><th>Type / Nature</th></tr></thead>
+                          <thead class="table-light">
+                            <tr>
+                              <th>Objet</th>
+                              <th>Type / Nature</th>
+                            </tr>
+                          </thead>
                           <tbody>
-                            <tr><td><code>i</code></td><td>Entier (compteur de boucle)</td></tr>
+                            <tr>
+                              <td><code>i</code></td>
+                              <td>Entier (compteur de boucle)</td>
+                            </tr>
                           </tbody>
                         </table>
 
-                        <!-- T.D.O.L. Calculer_Moyenne -->
-                        <h6 class="fw-bold text-primary mb-1">T.D.O.L. (Calculer_Moyenne)</h6>
+                        <!-- T.D.O.L. calc_Somme -->
+                        <h6 class="fw-bold text-primary mb-1">T.D.O.L. (calc_Somme)</h6>
                         <table class="table table-bordered table-sm mb-3">
-                          <thead class="table-light"><tr><th>Objet</th><th>Type / Nature</th></tr></thead>
+                          <thead class="table-light">
+                            <tr>
+                              <th>Objet</th>
+                              <th>Type / Nature</th>
+                            </tr>
+                          </thead>
                           <tbody>
-                            <tr><td><code>i, somme</code></td><td>Entier</td></tr>
+                            <tr>
+                              <td><code>i, somme</code></td>
+                              <td>Entier</td>
+                            </tr>
+                          </tbody>
+                        </table>
+
+                        <!-- T.D.O.L. calc_Moyenne -->
+                        <h6 class="fw-bold text-primary mb-1">T.D.O.L. (calc_Moyenne)</h6>
+                        <table class="table table-bordered table-sm mb-3">
+                          <thead class="table-light">
+                            <tr>
+                              <th>Objet</th>
+                              <th>Type / Nature</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td><code>calc_Somme</code></td>
+                              <td>Fonction</td>
+                            </tr>
+                          </tbody>
+                        </table>
+
+                        <!-- T.D.O.L. calc_Min & calc_Max -->
+                        <h6 class="fw-bold text-primary mb-1">T.D.O.L. (calc_Min & calc_Max)</h6>
+                        <table class="table table-bordered table-sm mb-3">
+                          <thead class="table-light">
+                            <tr>
+                              <th>Objet</th>
+                              <th>Type / Nature</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td><code>i, min_val</code> (ou <code>max_val</code>)</td>
+                              <td>Entier</td>
+                            </tr>
                           </tbody>
                         </table>
 
                         <!-- T.D.O.G. Principal -->
                         <h6 class="fw-bold text-dark mb-1">T.D.O.G. (Programme Principal)</h6>
                         <table class="table table-bordered table-sm mb-0">
-                          <thead class="table-light"><tr><th>Objet</th><th>Type / Nature</th></tr></thead>
+                          <thead class="table-light">
+                            <tr>
+                              <th>Objet</th>
+                              <th>Type / Nature</th>
+                            </tr>
+                          </thead>
                           <tbody>
-                            <tr><td><code>t</code></td><td>Tab</td></tr>
-                            <tr><td><code>n</code></td><td>Entier</td></tr>
-                            <tr><td><code>moy</code></td><td>Réel</td></tr>
-                            <tr><td><code>Saisie_Taille, Remplir, Afficher</code></td><td>Procédures</td></tr>
-                            <tr><td><code>Calculer_Moyenne</code></td><td>Fonction</td></tr>
+                            <tr>
+                              <td><code>t</code></td>
+                              <td>Tab</td>
+                            </tr>
+                            <tr>
+                              <td><code>n, som, min_val, max_val</code></td>
+                              <td>Entier</td>
+                            </tr>
+                            <tr>
+                              <td><code>moy</code></td>
+                              <td>Réel</td>
+                            </tr>
+                            <tr>
+                              <td><code>Saisie_Taille, Remplir, Afficher</code></td>
+                              <td>Procédures</td>
+                            </tr>
+                            <tr>
+                              <td><code>calc_Somme, calc_Moyenne, calc_Min, calc_Max</code></td>
+                              <td>Fonctions</td>
+                            </tr>
                           </tbody>
                         </table>
                       </div>
@@ -486,13 +615,15 @@ FIN</code></pre>
                   <div class="col-lg-7">
                     <div class="card border h-100 shadow-sm">
                       <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
-                        <span class="font-monospace fw-bold small text-warning"><i class="bi bi-filetype-py me-2"></i>tableaux_1d.py</span>
+                        <span class="font-monospace fw-bold small text-warning"><i
+                            class="bi bi-filetype-py me-2"></i>tableaux_1d.py</span>
                         <button class="btn btn-sm btn-outline-info" @click="copyPythonCode">
                           <i class="bi bi-clipboard me-1"></i>{{ copyStatus }}
                         </button>
                       </div>
                       <div class="card-body p-0">
-                        <pre class="m-0 p-3" style="background-color: #1e1e2e; border-radius: 0 0 var(--radius-sm) var(--radius-sm);"><code class="language-python">from numpy import array
+                        <pre class="m-0 p-3"
+                          style="background-color: #1e1e2e; border-radius: 0 0 var(--radius-sm) var(--radius-sm);"><code class="language-python">from numpy import array
 
 # 1. Module de saisie de la taille N (sans break)
 def saisie_taille(borne_min, borne_max):
@@ -512,12 +643,32 @@ def afficher_tab(t, n):
     for i in range(n):
         print(f"t[{i}] = {t[i]}")
 
-# 4. Fonction de calcul de la moyenne
-def calculer_moyenne(t, n):
+# 4. Fonction de calcul de la somme
+def calc_somme(t, n):
     somme = 0
     for i in range(n):
         somme = somme + t[i]
-    return somme / n
+    return somme
+
+# 5. Fonction de calcul de la moyenne
+def calc_moyenne(t, n):
+    return calc_somme(t, n) / n
+
+# 6. Fonction de recherche de la valeur minimale (Min)
+def calc_min(t, n):
+    min_val = t[0]
+    for i in range(1, n):
+        if t[i] < min_val:
+            min_val = t[i]
+    return min_val
+
+# 7. Fonction de recherche de la valeur maximale (Max)
+def calc_max(t, n):
+    max_val = t[0]
+    for i in range(1, n):
+        if t[i] > max_val:
+            max_val = t[i]
+    return max_val
 
 # --- Programme Principal ---
 # Déclaration statique numpy de 10 entiers
@@ -527,8 +678,15 @@ n = saisie_taille(3, 10)
 remplir_tab(t, n)
 afficher_tab(t, n)
 
-moy = calculer_moyenne(t, n)
-print(f"Moyenne des éléments = {moy:.2f}")</code></pre>
+som = calc_somme(t, n)
+moy = calc_moyenne(t, n)
+min_val = calc_min(t, n)
+max_val = calc_max(t, n)
+
+print(f"Somme des éléments = {som}")
+print(f"Moyenne des éléments = {moy:.2f}")
+print(f"Valeur minimale (Min) = {min_val}")
+print(f"Valeur maximale (Max) = {max_val}")</code></pre>
                       </div>
                     </div>
                   </div>
@@ -542,16 +700,20 @@ print(f"Moyenne des éléments = {moy:.2f}")</code></pre>
                       <div class="card-body small">
                         <ul class="list-unstyled mb-0">
                           <li class="mb-2 pb-2 border-bottom">
-                            <strong>T.D.N.T. obligatoire :</strong> Le type <code>Tab = Tableau de 10 Entier</code> est déclaré dans le T.D.N.T., puis utilisé dans les en-têtes (<code>@t: Tab</code>).
+                            <strong>T.D.N.T. obligatoire :</strong> Le type <code>Tab = Tableau de 10 Entier</code> est
+                            déclaré dans le T.D.N.T., puis utilisé dans les en-têtes (<code>@t: Tab</code>).
                           </li>
                           <li class="mb-2 pb-2 border-bottom">
-                            <strong>Bibliothèque numpy :</strong> Déclaration obligatoire via <code>from numpy import array</code> et <code>t = array([0] * 10)</code>.
+                            <strong>Bibliothèque numpy :</strong> Déclaration obligatoire via
+                            <code>from numpy import array</code> et <code>t = array([0] * 10)</code>.
                           </li>
                           <li class="mb-2 pb-2 border-bottom">
-                            <strong>Affichage indicé :</strong> Interdiction formelle du <code>print(t)</code> direct ; affichage boucle élément par élément.
+                            <strong>Affichage indicé :</strong> Interdiction formelle du <code>print(t)</code> direct ;
+                            affichage boucle élément par élément.
                           </li>
                           <li>
-                            <strong>Passage par adresse :</strong> En algorithmique via <code>@t: Tab</code>, en Python transmis naturellement par référence d'objet.
+                            <strong>Passage par adresse :</strong> En algorithmique via <code>@t: Tab</code>, en Python
+                            transmis naturellement par référence d'objet.
                           </li>
                         </ul>
                       </div>
@@ -591,8 +753,10 @@ print(f"Moyenne des éléments = {moy:.2f}")</code></pre>
                     <i class="bi" :class="f.isOpen ? 'bi-chevron-up text-primary' : 'bi-chevron-down text-muted'"></i>
                   </div>
                   <div v-if="f.isOpen" class="oral-answer-box mt-2">
-                    <div class="small text-muted mb-1"><span class="badge bg-primary me-1">Algo</span> {{ f.resAlgo }}</div>
-                    <div class="small text-muted"><span class="badge bg-warning text-dark me-1">Python</span> {{ f.resPy }}</div>
+                    <div class="small text-muted mb-1"><span class="badge bg-primary me-1">Algo</span> {{ f.resAlgo }}
+                    </div>
+                    <div class="small text-muted"><span class="badge bg-warning text-dark me-1">Python</span> {{ f.resPy
+                      }}</div>
                   </div>
                 </div>
               </div>
@@ -601,7 +765,8 @@ print(f"Moyenne des éléments = {moy:.2f}")</code></pre>
             <!-- AUTO-ÉVALUATION / QUIZ INTERACTIF (10 QUESTIONS) -->
             <div class="card border shadow-sm">
               <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
-                <span class="fw-bold small"><i class="bi bi-patch-check-fill text-info me-2"></i>Auto-évaluation : Quiz Tableaux 1D (10 questions)</span>
+                <span class="fw-bold small"><i class="bi bi-patch-check-fill text-info me-2"></i>Auto-évaluation : Quiz
+                  Tableaux 1D (10 questions)</span>
                 <div class="d-flex align-items-center gap-2">
                   <span class="badge bg-primary">Score : {{ quizScore }} / {{ quizQuestions.length }}</span>
                   <button class="btn btn-xs btn-outline-light py-0 px-2 small" @click="resetQuiz">Réinitialiser</button>
@@ -626,7 +791,8 @@ print(f"Moyenne des éléments = {moy:.2f}")</code></pre>
                           }" :disabled="q.showAnswer" @click="selectQuizOption(qIdx, oIdx)">
                           <span>{{ opt }}</span>
                           <i v-if="q.showAnswer && oIdx === q.correct" class="bi bi-check-circle-fill text-success"></i>
-                          <i v-if="q.showAnswer && q.selected === oIdx && oIdx !== q.correct" class="bi bi-x-circle-fill text-danger"></i>
+                          <i v-if="q.showAnswer && q.selected === oIdx && oIdx !== q.correct"
+                            class="bi bi-x-circle-fill text-danger"></i>
                         </button>
                       </div>
                       <div v-if="q.showAnswer" class="alert alert-info py-1 px-2 mb-0 small">
@@ -638,7 +804,8 @@ print(f"Moyenne des éléments = {moy:.2f}")</code></pre>
 
                 <!-- CARTE DE FIN -->
                 <div class="p-3 bg-success bg-opacity-10 border border-success rounded mt-4 text-center">
-                  <h6 class="fw-bold text-success mb-1"><i class="bi bi-check-circle-fill me-1"></i>Séance 6 terminée !</h6>
+                  <h6 class="fw-bold text-success mb-1"><i class="bi bi-check-circle-fill me-1"></i>Séance 6 terminée !
+                  </h6>
                   <p class="text-muted small mb-2">Les tableaux à une dimension et les modules types sont maîtrisés.</p>
                   <button class="btn btn-outline-secondary btn-sm" @click="setPhase(1)">
                     <i class="bi bi-arrow-repeat me-1"></i> Recommencer

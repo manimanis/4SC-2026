@@ -8,7 +8,7 @@
 
   <!-- Métadonnées SEO & Description -->
   <meta name="description"
-    content="Séance 5 d'Informatique pour 4ème Année Scientifique (Bac 2026) : Modularité 2, Procédures, passage par valeur vs par variable (@), portée des identificateurs et TDOL.">
+    content="Séance 5 d'Informatique pour 4ème Année Scientifique (Bac 2026) : Modularité 2, Procédures, passage par valeur vs par adresse (@), portée des identificateurs et TDOL.">
 
   <!-- Dépendances locales -->
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -40,16 +40,15 @@
 
             <!-- MENU DÉROULANT PROCÉDURES -->
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle active" href="#" id="menuProcedures"
-                role="button" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle active" href="#" id="menuProcedures" role="button"
+                data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
                 <i class="bi bi-sliders me-1 text-primary"></i>
                 <span>Procédures</span>
               </a>
               <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end shadow" aria-labelledby="menuProcedures">
                 <li v-for="(p, idx) in phases" :key="'nav-p-' + idx">
                   <a class="dropdown-item d-flex align-items-center justify-content-between py-2"
-                    :class="{ 'active': currentPhase === (idx + 1) }"
-                    :href="'#phase' + (idx + 1)"
+                    :class="{ 'active': currentPhase === (idx + 1) }" :href="'#phase' + (idx + 1)"
                     @click.prevent="setPhase(idx + 1)">
                     <span>
                       <span class="badge rounded-pill me-2"
@@ -81,14 +80,17 @@
         <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
           <span class="badge bg-primary px-3 py-1"><i class="bi bi-diagram-3 me-1"></i>Axe : Modularité 2</span>
           <span class="badge bg-secondary px-2 py-1">Sections Scientifiques</span>
-          <span class="badge bg-info text-dark px-2 py-1"><i class="bi bi-bookmark-check-fill me-1"></i>Conventions 2024-2025</span>
+          <span class="badge bg-info text-dark px-2 py-1"><i class="bi bi-bookmark-check-fill me-1"></i>Conventions
+            2024-2025</span>
         </div>
         <h1 class="hero-title">Séance 5 : Modularité 2 — Les Procédures</h1>
         <div class="objective-box">
           <div class="d-flex align-items-center gap-2">
             <i class="bi bi-bullseye text-info fs-5"></i>
             <span class="small text-light">
-              <strong>Objectifs :</strong> Procédures, passage par valeur vs passage par adresse (noté <code>@</code>), portée des identificateurs (locales vs globales), formalisation T.D.O.L. / T.D.O.G. et conventions Python (mot-clé <code>global</code>).
+              <strong>Objectifs :</strong> Procédures, passage par valeur vs passage par adresse (noté <code>@</code>),
+              portée des identificateurs (locales vs globales), formalisation T.D.O.L. / T.D.O.G. et conventions Python
+              (mot-clé <code>global</code>).
             </span>
           </div>
         </div>
@@ -102,7 +104,8 @@
       <div class="d-flex align-items-center justify-content-between p-3 bg-white border rounded shadow-sm mb-4">
         <div class="d-flex align-items-center gap-3">
           <span class="badge bg-primary fs-6 px-3 py-2 rounded-pill">
-            <i class="bi bi-layers-fill me-1"></i> Phase {{ currentPhase === 'all' ? 'Toutes' : currentPhase + ' / ' + phases.length }}
+            <i class="bi bi-layers-fill me-1"></i> Phase {{ currentPhase === 'all' ? 'Toutes' : currentPhase + ' / ' +
+            phases.length }}
           </span>
           <div>
             <div class="text-muted small text-uppercase fw-bold">Phase active :</div>
@@ -111,7 +114,8 @@
             </div>
           </div>
         </div>
-        <button class="btn btn-sm btn-outline-secondary" @click="toggleViewMode" :title="currentPhase === 'all' ? 'Mode pas-à-pas' : 'Tout afficher'">
+        <button class="btn btn-sm btn-outline-secondary" @click="toggleViewMode"
+          :title="currentPhase === 'all' ? 'Mode pas-à-pas' : 'Tout afficher'">
           <i class="bi bi-view-stacked me-1"></i> {{ currentPhase === 'all' ? 'Mode pas-à-pas' : 'Tout afficher' }}
         </button>
       </div>
@@ -136,14 +140,18 @@
                 <i class="bi bi-lightbulb-fill"></i> Énoncé
               </div>
               <blockquote class="fs-6 text-dark fw-semibold mb-0 fst-italic">
-                « Saisir deux entiers X et Y dans [1, 100], permuter leurs valeurs à l'aide d'une procédure dédiée, puis afficher les valeurs avant et après la permutation. Observer l'impact du mode de passage des paramètres. »
+                « Saisir deux entiers X et Y dans [1, 100], permuter leurs valeurs à l'aide d'une procédure dédiée, puis
+                afficher les valeurs avant et après la permutation. Observer l'impact du mode de passage des paramètres.
+                »
               </blockquote>
             </div>
 
             <!-- SIMULATEUR DE PERMUTATION ET CASES MÉMOIRES -->
             <div class="card border-primary shadow-sm mb-4">
-              <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center flex-wrap gap-2">
-                <span class="fw-bold"><i class="bi bi-memory me-2"></i>Simulateur Mémoire : Passage par Valeur vs par Variable (@)</span>
+              <div
+                class="card-header bg-primary text-white d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <span class="fw-bold"><i class="bi bi-memory me-2"></i>Simulateur Mémoire : Passage par Valeur vs par
+                  Adresse (@)</span>
                 <div class="d-flex align-items-center gap-1 flex-wrap">
                   <span class="small text-white-50 me-1">Jeux d'essai :</span>
                   <button v-for="pr in presets" :key="pr.name" class="btn btn-xs btn-outline-light py-0 px-2 small"
@@ -155,17 +163,16 @@
                 <!-- SÉLECTION DU MODE DE PASSAGE -->
                 <div class="row g-3 mb-4">
                   <div class="col-md-6">
-                    <label class="form-label fw-bold text-dark small mb-1">Choisir le mode de passage pour Permuter :</label>
+                    <label class="form-label fw-bold text-dark small mb-1">Choisir le mode de passage pour Permuter
+                      :</label>
                     <div class="mode-toggle-group">
                       <button type="button" class="mode-toggle-btn"
-                        :class="modePassage === 'adresse' ? 'active-mode' : ''"
-                        @click="modePassage = 'adresse'">
+                        :class="modePassage === 'adresse' ? 'active-mode' : ''" @click="modePassage = 'adresse'">
                         <i class="bi bi-check-circle-fill text-success me-1"></i>
                         Par adresse (noté @)
                       </button>
                       <button type="button" class="mode-toggle-btn"
-                        :class="modePassage === 'valeur' ? 'active-mode' : ''"
-                        @click="modePassage = 'valeur'">
+                        :class="modePassage === 'valeur' ? 'active-mode' : ''" @click="modePassage = 'valeur'">
                         <i class="bi bi-x-circle-fill text-danger me-1"></i>
                         Par valeur (copie)
                       </button>
@@ -208,17 +215,17 @@
                   <div class="memory-block">
                     <div class="memory-block-title">
                       <i class="bi bi-cpu text-warning"></i>
-                      <span>2. Pile Locale : Permuter({{ modePassage === 'variable' ? '@a, @b' : 'a, b' }})</span>
+                      <span>2. Pile Locale : Permuter({{ isSwapped ? '@a, @b' : 'a, b' }})</span>
                     </div>
                     <div class="memory-cells-wrapper">
-                      <div class="memory-cell" :class="modePassage === 'variable' ? 'is-modified' : ''">
-                        <span class="cell-addr">{{ modePassage === 'variable' ? 'pointeur sur @0x101' : '@0x201 (copie)' }}</span>
-                        <span class="cell-name">{{ modePassage === 'variable' ? '@a' : 'a' }}</span>
+                      <div class="memory-cell" :class="isSwapped ? 'is-modified' : ''">
+                        <span class="cell-addr">{{ isSwapped ? '@0x101' : '@0x201 (copie)' }}</span>
+                        <span class="cell-name">{{ isSwapped ? '@a' : 'a' }}</span>
                         <span class="cell-value">{{ simY }}</span>
                       </div>
-                      <div class="memory-cell" :class="modePassage === 'variable' ? 'is-modified' : ''">
-                        <span class="cell-addr">{{ modePassage === 'variable' ? 'pointeur sur @0x102' : '@0x202 (copie)' }}</span>
-                        <span class="cell-name">{{ modePassage === 'variable' ? '@b' : 'b' }}</span>
+                      <div class="memory-cell" :class="isSwapped ? 'is-modified' : ''">
+                        <span class="cell-addr">{{ isSwapped ? '@0x102' : '@0x202 (copie)' }}</span>
+                        <span class="cell-name">{{ isSwapped ? '@b' : 'b' }}</span>
                         <span class="cell-value">{{ simX }}</span>
                       </div>
                       <div class="memory-cell">
@@ -251,15 +258,20 @@
                 </div>
 
                 <!-- DIAGNOSTIC PÉDAGOGIQUE -->
-                <div class="p-3 rounded mb-4" :class="isSwapped ? 'bg-success bg-opacity-10 border border-success' : 'bg-danger bg-opacity-10 border border-danger'">
-                  <div class="d-flex align-items-center gap-2 fw-bold" :class="isSwapped ? 'text-success' : 'text-danger'">
+                <div class="p-3 rounded mb-4"
+                  :class="isSwapped ? 'bg-success bg-opacity-10 border border-success' : 'bg-danger bg-opacity-10 border border-danger'">
+                  <div class="d-flex align-items-center gap-2 fw-bold"
+                    :class="isSwapped ? 'text-success' : 'text-danger'">
                     <i class="bi" :class="isSwapped ? 'bi-check-circle-fill' : 'bi-exclamation-triangle-fill'"></i>
-                    <span>{{ isSwapped ? 'Permutation Réussie : Passage par adresse (@) actif' : 'Permutation Échouée : Passage par valeur inopérant' }}</span>
+                    <span>{{ isSwapped ? 'Permutation Réussie' : 'Permutation Échouée' }}</span>
                   </div>
-                  <p class="small mb-0 mt-1 text-dark">
-                    {{ isSwapped 
-                      ? 'Grâce au symbole @, les paramètres formels modifient directement les cases mémoires réelles de X et Y dans le programme appelant.' 
-                      : 'En passage par valeur, seules les copies temporaires (a et b) ont été inversées. Les variables globales X et Y conservent leurs valeurs initiales.' }}
+                  <p class="small mb-0 mt-1 text-dark" v-if="isSwapped">
+                    Grâce au symbole @, les paramètres formels modifient directement les cases mémoires réelles des
+                    variables X et Y dans le programme appelant.
+                  </p>
+                  <p class="small mb-0 mt-1 text-dark" v-if="!isSwapped">
+                    En passage par valeur, seules les copies temporaires (a et b) ont été inversées. Les variables
+                    globales X et Y conservent leurs valeurs initiales.
                   </p>
                 </div>
 
@@ -363,7 +375,8 @@
                     <i class="bi bi-box-arrow-in-right me-1"></i>Passage par valeur (par défaut)
                   </div>
                   <p class="small text-muted mb-2">
-                    Le paramètre effectif transmet une <strong>copie</strong> de sa valeur. La variable de l'appelant reste totalement inchangée.
+                    Le paramètre effectif transmet une <strong>copie</strong> de sa valeur. La variable de l'appelant
+                    reste totalement inchangée.
                   </p>
                   <div class="p-2 bg-light font-monospace small rounded">
                     Procédure Afficher(val: Entier)
@@ -377,7 +390,8 @@
                     <i class="bi bi-arrow-left-right me-1"></i>Passage par adresse (<code>@</code>)
                   </div>
                   <p class="small text-muted mb-2">
-                    Le paramètre formel pointe directement sur la <strong>case mémoire</strong> de la variable effective. Toute modification est répercutée.
+                    Le paramètre formel pointe directement sur la <strong>case mémoire</strong> de la variable
+                    effective. Toute modification est répercutée.
                   </p>
                   <div class="p-2 bg-light font-monospace small rounded">
                     Procédure Permuter(@a: Entier, @b: Entier)
@@ -390,18 +404,22 @@
             <div class="row g-3">
               <div class="col-md-6">
                 <div class="card h-100 border p-3">
-                  <div class="fw-bold text-dark mb-1"><i class="bi bi-tag me-1 text-info"></i>Variable Locale (T.D.O.L.)</div>
+                  <div class="fw-bold text-dark mb-1"><i class="bi bi-tag me-1 text-info"></i>Variable Locale (T.D.O.L.)
+                  </div>
                   <p class="small text-muted mb-0">
-                    Déclarée au sein du sous-programme. Accessible exclusivement dans son bloc d'exécution. Détruite dès la sortie du module.
+                    Déclarée au sein du sous-programme. Accessible exclusivement dans son bloc d'exécution. Détruite dès
+                    la sortie du module.
                   </p>
                 </div>
               </div>
 
               <div class="col-md-6">
                 <div class="card h-100 border p-3">
-                  <div class="fw-bold text-dark mb-1"><i class="bi bi-globe me-1 text-primary"></i>Variable Globale (T.D.O.G.) & mot-clé global</div>
+                  <div class="fw-bold text-dark mb-1"><i class="bi bi-globe me-1 text-primary"></i>Variable Globale
+                    (T.D.O.G.) & mot-clé global</div>
                   <p class="small text-muted mb-0">
-                    Déclarée dans le programme principal. En Python, si une procédure doit modifier une variable simple globale sans retour, elle la déclare via <code>global nom_var</code>.
+                    Déclarée dans le programme principal. En Python, si une procédure doit modifier une variable simple
+                    globale sans retour, elle la déclare via <code>global nom_var</code>.
                   </p>
                 </div>
               </div>
@@ -436,8 +454,7 @@
               </li>
               <li class="nav-item" role="presentation">
                 <button class="nav-link text-warning fw-bold" id="tab-py-s5-btn" data-bs-toggle="tab"
-                  data-bs-target="#tab-py-s5" type="button" role="tab" aria-controls="tab-py-s5"
-                  aria-selected="false">
+                  data-bs-target="#tab-py-s5" type="button" role="tab" aria-controls="tab-py-s5" aria-selected="false">
                   <i class="bi bi-filetype-py me-1"></i> Programme Python (gestion_permutation.py)
                 </button>
               </li>
@@ -451,11 +468,13 @@
                   <div class="col-lg-7">
                     <div class="card border h-100 shadow-sm">
                       <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
-                        <span class="font-monospace fw-bold small"><i class="bi bi-code-square me-2 text-info"></i>Solution Modulaire (Procédures)</span>
+                        <span class="font-monospace fw-bold small"><i
+                            class="bi bi-code-square me-2 text-info"></i>Solution Modulaire (Procédures)</span>
                         <span class="badge bg-primary">Conforme 2024-2025</span>
                       </div>
                       <div class="card-body p-0">
-                        <pre class="m-0 p-3" style="background-color: #1e1e2e; border-radius: 0 0 var(--radius-sm) var(--radius-sm);"><code class="language-algo">// 1. Procédure de saisie contrôlée par variable (@n)
+                        <pre class="m-0 p-3"
+                          style="background-color: #1e1e2e; border-radius: 0 0 var(--radius-sm) var(--radius-sm);"><code class="language-algo">// 1. Procédure de saisie contrôlée par adresse (@n)
 Procédure Saisie (@n: Entier, min: Entier, max: Entier)
 DEBUT
     Répéter
@@ -464,7 +483,7 @@ DEBUT
     Jusqu'à (n ≥ min) Et (n ≤ max)
 FIN
 
-// 2. Procédure de permutation par variable (@a, @b)
+// 2. Procédure de permutation par adresse (@a, @b)
 Procédure Permuter (@a: Entier, @b: Entier)
 DEBUT
     aux ← a
@@ -496,43 +515,78 @@ FIN</code></pre>
                   <div class="col-lg-5">
                     <div class="card border h-100 shadow-sm">
                       <div class="card-header bg-secondary text-white">
-                        <span class="fw-bold small"><i class="bi bi-table me-2"></i>Déclarations : T.D.O.L. & T.D.O.G.</span>
+                        <span class="fw-bold small"><i class="bi bi-table me-2"></i>Déclarations : T.D.O.L. &
+                          T.D.O.G.</span>
                       </div>
                       <div class="card-body p-3 small">
                         <!-- T.D.O.L. Saisie -->
                         <h6 class="fw-bold text-primary mb-1">T.D.O.L. (Saisie)</h6>
                         <table class="table table-bordered table-sm mb-3">
-                          <thead class="table-light"><tr><th>Objet</th><th>Type / Nature</th></tr></thead>
+                          <thead class="table-light">
+                            <tr>
+                              <th>Objet</th>
+                              <th>Type / Nature</th>
+                            </tr>
+                          </thead>
                           <tbody>
-                            <tr><td colspan="2" class="text-muted fst-italic">Néant (aucun objet local supplémentaire)</td></tr>
+                            <tr>
+                              <td colspan="2" class="text-muted fst-italic">Néant (aucun objet local supplémentaire)
+                              </td>
+                            </tr>
                           </tbody>
                         </table>
 
                         <!-- T.D.O.L. Permuter -->
                         <h6 class="fw-bold text-primary mb-1">T.D.O.L. (Permuter)</h6>
                         <table class="table table-bordered table-sm mb-3">
-                          <thead class="table-light"><tr><th>Objet</th><th>Type / Nature</th></tr></thead>
+                          <thead class="table-light">
+                            <tr>
+                              <th>Objet</th>
+                              <th>Type / Nature</th>
+                            </tr>
+                          </thead>
                           <tbody>
-                            <tr><td><code>aux</code></td><td>Entier (variable locale d'échange)</td></tr>
+                            <tr>
+                              <td><code>aux</code></td>
+                              <td>Entier (variable locale d'échange)</td>
+                            </tr>
                           </tbody>
                         </table>
 
                         <!-- T.D.O.L. AfficherCouple -->
                         <h6 class="fw-bold text-primary mb-1">T.D.O.L. (AfficherCouple)</h6>
                         <table class="table table-bordered table-sm mb-3">
-                          <thead class="table-light"><tr><th>Objet</th><th>Type / Nature</th></tr></thead>
+                          <thead class="table-light">
+                            <tr>
+                              <th>Objet</th>
+                              <th>Type / Nature</th>
+                            </tr>
+                          </thead>
                           <tbody>
-                            <tr><td colspan="2" class="text-muted fst-italic">Néant (uniquement paramètres formels)</td></tr>
+                            <tr>
+                              <td colspan="2" class="text-muted fst-italic">Néant (uniquement paramètres formels)</td>
+                            </tr>
                           </tbody>
                         </table>
 
                         <!-- T.D.O.G. Principal -->
                         <h6 class="fw-bold text-dark mb-1">T.D.O.G. (Programme Principal)</h6>
                         <table class="table table-bordered table-sm mb-0">
-                          <thead class="table-light"><tr><th>Objet</th><th>Type / Nature</th></tr></thead>
+                          <thead class="table-light">
+                            <tr>
+                              <th>Objet</th>
+                              <th>Type / Nature</th>
+                            </tr>
+                          </thead>
                           <tbody>
-                            <tr><td><code>x, y</code></td><td>Entier</td></tr>
-                            <tr><td><code>Saisie, Permuter, AfficherCouple</code></td><td>Procédures</td></tr>
+                            <tr>
+                              <td><code>x, y</code></td>
+                              <td>Entier</td>
+                            </tr>
+                            <tr>
+                              <td><code>Saisie, Permuter, AfficherCouple</code></td>
+                              <td>Procédures</td>
+                            </tr>
                           </tbody>
                         </table>
                       </div>
@@ -547,20 +601,22 @@ FIN</code></pre>
                   <div class="col-lg-7">
                     <div class="card border h-100 shadow-sm">
                       <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
-                        <span class="font-monospace fw-bold small text-warning"><i class="bi bi-filetype-py me-2"></i>gestion_permutation.py</span>
+                        <span class="font-monospace fw-bold small text-warning"><i
+                            class="bi bi-filetype-py me-2"></i>gestion_permutation.py</span>
                         <button class="btn btn-sm btn-outline-info" @click="copyPythonCode">
                           <i class="bi bi-clipboard me-1"></i>{{ copyStatus }}
                         </button>
                       </div>
                       <div class="card-body p-0">
-                        <pre class="m-0 p-3" style="background-color: #1e1e2e; border-radius: 0 0 var(--radius-sm) var(--radius-sm);"><code class="language-python"># 1. Procédure de saisie (contrôle sans break)
+                        <pre class="m-0 p-3"
+                          style="background-color: #1e1e2e; border-radius: 0 0 var(--radius-sm) var(--radius-sm);"><code class="language-python"># 1. Procédure de saisie
 def saisie_intervalle(borne_min, borne_max):
     val = 0
     while not (borne_min <= val <= borne_max):
         val = int(input(f"Donner un entier entre {borne_min} et {borne_max} : "))
     return val
 
-# 2. Procédure de permutation via mot-clé global (Convention 2024)
+# 2. Procédure de permutation via mot-clé global
 def permuter():
     global x, y
     aux = x
@@ -591,13 +647,16 @@ afficher_couple("Après permutation", x, y)</code></pre>
                       <div class="card-body small">
                         <ul class="list-unstyled mb-0">
                           <li class="mb-2 pb-2 border-bottom">
-                            <strong>Mot-clé global :</strong> Conformément à la convention d'inspection 2024 (section 7.d), la modification de scalaires globaux en procédure se déclare avec <code>global</code>.
+                            <strong>Mot-clé global :</strong> Conformément à la convention d'inspection 2024 (section
+                            7.d), la modification de scalaires globaux en procédure se déclare avec <code>global</code>.
                           </li>
                           <li class="mb-2 pb-2 border-bottom">
-                            <strong>Paramètre variable (@) :</strong> En algorithmique, le symbole <code>@</code> est obligatoire devant les paramètres formels modifiés.
+                            <strong>Paramètre par adresse (@) :</strong> En algorithmique, le symbole <code>@</code> est
+                            obligatoire devant les paramètres formels modifiés.
                           </li>
                           <li>
-                            <strong>Règle d'appel :</strong> L'appel d'une procédure s'effectue comme une instruction autonome, sans affectation.
+                            <strong>Règle d'appel :</strong> L'appel d'une procédure s'effectue comme une instruction
+                            autonome, sans affectation.
                           </li>
                         </ul>
                       </div>
@@ -636,8 +695,10 @@ afficher_couple("Après permutation", x, y)</code></pre>
                     <i class="bi" :class="f.isOpen ? 'bi-chevron-up text-primary' : 'bi-chevron-down text-muted'"></i>
                   </div>
                   <div v-if="f.isOpen" class="oral-answer-box mt-2">
-                    <div class="small text-muted mb-1"><span class="badge bg-primary me-1">Algo</span> {{ f.resAlgo }}</div>
-                    <div class="small text-muted"><span class="badge bg-warning text-dark me-1">Python</span> {{ f.resPy }}</div>
+                    <div class="small text-muted mb-1"><span class="badge bg-primary me-1">Algo</span> {{ f.resAlgo }}
+                    </div>
+                    <div class="small text-muted"><span class="badge bg-warning text-dark me-1">Python</span> {{ f.resPy
+                      }}</div>
                   </div>
                 </div>
               </div>
@@ -646,7 +707,8 @@ afficher_couple("Après permutation", x, y)</code></pre>
             <!-- AUTO-ÉVALUATION / QUIZ INTERACTIF (10 QUESTIONS) -->
             <div class="card border shadow-sm">
               <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
-                <span class="fw-bold small"><i class="bi bi-patch-check-fill text-info me-2"></i>Auto-évaluation : Quiz Procédures (10 questions)</span>
+                <span class="fw-bold small"><i class="bi bi-patch-check-fill text-info me-2"></i>Auto-évaluation : Quiz
+                  Procédures (10 questions)</span>
                 <div class="d-flex align-items-center gap-2">
                   <span class="badge bg-primary">Score : {{ quizScore }} / {{ quizQuestions.length }}</span>
                   <button class="btn btn-xs btn-outline-light py-0 px-2 small" @click="resetQuiz">Réinitialiser</button>
@@ -671,7 +733,8 @@ afficher_couple("Après permutation", x, y)</code></pre>
                           }" :disabled="q.showAnswer" @click="selectQuizOption(qIdx, oIdx)">
                           <span>{{ opt }}</span>
                           <i v-if="q.showAnswer && oIdx === q.correct" class="bi bi-check-circle-fill text-success"></i>
-                          <i v-if="q.showAnswer && q.selected === oIdx && oIdx !== q.correct" class="bi bi-x-circle-fill text-danger"></i>
+                          <i v-if="q.showAnswer && q.selected === oIdx && oIdx !== q.correct"
+                            class="bi bi-x-circle-fill text-danger"></i>
                         </button>
                       </div>
                       <div v-if="q.showAnswer" class="alert alert-info py-1 px-2 mb-0 small">
@@ -683,8 +746,10 @@ afficher_couple("Après permutation", x, y)</code></pre>
 
                 <!-- CARTE DE FIN -->
                 <div class="p-3 bg-success bg-opacity-10 border border-success rounded mt-4 text-center">
-                  <h6 class="fw-bold text-success mb-1"><i class="bi bi-check-circle-fill me-1"></i>Séance 5 terminée !</h6>
-                  <p class="text-muted small mb-2">Vous maîtrisez désormais les deux piliers de la modularité : Fonctions et Procédures.</p>
+                  <h6 class="fw-bold text-success mb-1"><i class="bi bi-check-circle-fill me-1"></i>Séance 5 terminée !
+                  </h6>
+                  <p class="text-muted small mb-2">Vous maîtrisez désormais les deux piliers de la modularité :
+                    Fonctions et Procédures.</p>
                   <div class="d-flex justify-content-center gap-2 flex-wrap">
                     <button class="btn btn-outline-secondary btn-sm" @click="setPhase(1)">
                       <i class="bi bi-arrow-repeat me-1"></i> Recommencer
