@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Série N°7 : Tableaux à une dimension & Sous-programmes - Informatique 4SC (Bac 2026)</title>
+
+  <!-- Métadonnées SEO & Description -->
+  <meta name="description"
+    content="Série d'exercices N°7 d'Informatique pour 4ème Année Scientifique (Bac 2026) : Tableaux 1D, Déclaration T.D.N.T., passage de tableaux par adresse (@), parcours indicé, modules types de saisie, remplissage, recherche, transformation et fusion en Python numpy.">
+
+  <!-- Dépendances locales -->
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="assets/css/atom-one-dark.min.css">
+  <link rel="stylesheet" href="assets/css/style.css?v=2">
+  <link rel="stylesheet" href="assets/css/katex.min.css">
+  <link rel="stylesheet" href="assets/css/serie07.css?v=3">
+</head>
+
+<body>
+
+  <!-- Header / Navigation -->
+  <header class="modern-header d-print-none sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+      <div class="container-fluid px-md-4">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+          <i class="bi bi-cpu-fill text-primary"></i>
+          <span>Informatique 4<sup>e</sup> SC</span>
+          <span class="brand-badge">Bac 2026</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#aside_navbar"
+          aria-controls="aside_navbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="aside_navbar">
+          <!-- Le menu déroulant des exercices est généré automatiquement par pages.js -->
+        </div>
+        <div class="d-flex align-items-center gap-2 ms-auto mt-2 mt-lg-0">
+          <a href="seance06.html" class="btn btn-outline-info btn-sm rounded-pill px-3 py-1">
+            <i class="bi bi-arrow-left me-1"></i> Séance 6
+          </a>
+          <button id="theme-toggle-btn" class="btn btn-outline-secondary btn-sm rounded-pill px-3 py-1" type="button">
+            🌙 <span class="d-none d-sm-inline ms-1">Mode Sombre</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section text-center d-print-none py-4 mb-3">
+    <div class="container">
+      <div class="d-flex justify-content-center flex-wrap gap-2 mb-2">
+        <span class="badge bg-primary px-3 py-1"><i class="bi bi-grid-1x2 me-1"></i>Axe : Tableaux 1D &amp; Modularité</span>
+        <span class="badge bg-secondary px-2 py-1">Sections : Sc. Expérimentales, Mathématiques &amp; Sc. Techniques</span>
+        <span class="badge bg-info text-dark px-2 py-1"><i class="bi bi-bookmark-check-fill me-1"></i>Conventions 2024-2025</span>
+      </div>
+      <h1 class="hero-title display-6 fw-bold mb-2">Série N°7 : Tableaux 1D &amp; Sous-programmes</h1>
+      <p class="text-muted mb-0">Déclaration T.D.N.T., passage par adresse (<code>@t : Tab</code>), parcours indicé, modules types et implémentation <code>numpy</code>.</p>
+    </div>
+  </section>
+
+  <!-- Contenu principal -->
+  <main class="container my-4">
+    <article>
+      <h2 class="border-bottom pb-2 mb-4">Série N°7 : Tableaux 1D &amp; Sous-programmes</h2>
+
+      <!-- ========================================================
+           EXERCICE 1 : QCM NIVEAU FACILE 1 (10 QUESTIONS)
+           ======================================================== -->
+      <section class="mb-5 exercise-section" data-ex-id="ex1" id="exercice-1">
+        <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+          <h3 class="h4 text-primary m-0">Exercice 1 : QCM Déclarations, Types &amp; Normes Officielles</h3>
+          <span class="badge badge-difficulty-easy rounded-pill px-3 py-2">🟢 Facile</span>
+        </div>
+
+        <!-- Rappel de cours -->
+        <div class="alert alert-light border-start border-primary border-4 shadow-sm my-3 d-print-none">
+          <div class="d-flex align-items-center gap-2 fw-bold text-primary mb-1">
+            💡 <span>Rappel de cours : Les Tableaux 1D et les Conventions Officielles</span>
+          </div>
+          <ul class="mb-0 small text-muted ps-3">
+            <li>Un <strong>tableau à une dimension</strong> est une structure de données statique et homogène : tous ses éléments partagent le même type.</li>
+            <li><strong>Déclaration algorithmique :</strong> Un tableau se déclare obligatoirement en deux temps :
+              <ol class="mb-1">
+                <li>Dans le <strong>T.D.N.T.</strong> : <code>Tab = Tableau de N Type_Élément</code> (ex: <code>Tab = Tableau de 20 Entier</code>).</li>
+                <li>Dans le <strong>T.D.O. / T.D.O.L.</strong> : <code>t : Tab</code>.</li>
+              </ol>
+            </li>
+            <li><strong>En Python 3 :</strong> On importe obligatoirement <code>from numpy import array</code> et on initialise un tableau statique de taille $N$ par : <code>t = array([0] * N)</code> ou <code>array([0.0] * N)</code>.</li>
+            <li><strong>Passage par adresse :</strong> Tout sous-programme qui modifie le contenu d'un tableau (remplissage, permutation, tri) doit le déclarer avec le symbole <code>@</code> en algorithme : <code>Procédure Remplir(@t : Tab, n : Entier)</code>.</li>
+            <li><strong>Affichage officiel :</strong> L'instruction <code>print(t)</code> brut est strictement interdite aux épreuves officielles. L'affichage s'effectue toujours élément par élément via une boucle indicée <code>Pour i de 0 à n - 1 Faire</code>.</li>
+          </ul>
+        </div>
+
+        <p class="fw-bold text-secondary mb-3">Cochez la bonne réponse pour chacune des 10 questions suivantes :</p>
+
+        <!-- Q1 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="2" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 1</h5>
+          <div class="question">
+            <p>Où doit-on définir le type d'un tableau avant de déclarer une variable de ce type en algorithmique ?</p>
+          </div>
+          <ul class="propositions">
+            <li>Directement dans le T.D.O. sans aucun préalable</li>
+            <li>Dans le T.D.N.T. (Tableau de Déclaration des Nouveaux Types) avec la syntaxe <code>Tab = Tableau de N Type</code></li>
+            <li>Uniquement à l'intérieur du corps de la procédure principale</li>
+            <li>Dans les commentaires du programme</li>
+          </ul>
+        </div>
+
+        <!-- Q2 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="1" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 2</h5>
+          <div class="question">
+            <p>Quelle est la syntaxe officielle en Python pour créer un tableau <code>numpy</code> de 15 entiers initialisés à 0 ?</p>
+          </div>
+          <ul class="propositions">
+            <li><code>from numpy import array</code> suivi de <code>t = array([0] * 15)</code></li>
+            <li><code>t = [0] * 15</code> (liste Python standard sans numpy)</li>
+            <li><code>t = table(15)</code></li>
+            <li><code>dim t(15) as integer</code></li>
+          </ul>
+        </div>
+
+        <!-- Q3 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="3" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 3</h5>
+          <div class="question">
+            <p>Pour un tableau $T$ de taille effective $N$ indexé à partir de 0, quel est l'indice du dernier élément valide ?</p>
+          </div>
+          <ul class="propositions">
+            <li>$N$</li>
+            <li>$N + 1$</li>
+            <li>$N - 1$</li>
+            <li>$1$</li>
+          </ul>
+        </div>
+
+        <!-- Q4 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="2" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 4</h5>
+          <div class="question">
+            <p>Que se produit-il en Python si l'on tente d'accéder à <code>t[N]</code> pour un tableau de taille $N$ ?</p>
+          </div>
+          <ul class="propositions">
+            <li>Le programme renvoie 0 automatiquement</li>
+            <li>Une erreur <code>IndexError: index is out of bounds</code> est déclenchée</li>
+            <li>Le tableau s'agrandit automatiquement d'une case</li>
+            <li>La première case <code>t[0]</code> est renvoyée</li>
+          </ul>
+        </div>
+
+        <!-- Q5 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="3" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 5</h5>
+          <div class="question">
+            <p>Quelle est la forme correcte de l'en-tête d'une procédure chargée de remplir un tableau $T$ de $N$ réels ?</p>
+          </div>
+          <ul class="propositions">
+            <li><code>Fonction Remplir(t : Tab, n : Entier) : Tab</code></li>
+            <li><code>Procédure Remplir(t : Tab, @n : Entier)</code></li>
+            <li><code>Procédure Remplir(@t : Tab, n : Entier)</code></li>
+            <li><code>Procédure Remplir(t : Réel, n : Entier)</code></li>
+          </ul>
+        </div>
+
+        <!-- Q6 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="1" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 6</h5>
+          <div class="question">
+            <p>Pourquoi le paramètre <code>t</code> doit-il être précédé de <code>@</code> dans la procédure <code>Remplir(@t : Tab, n : Entier)</code> en algorithmique ?</p>
+          </div>
+          <ul class="propositions">
+            <li>Parce que les modifications apportées aux cases du tableau doivent être répercutées dans la variable appelante (passage par adresse)</li>
+            <li>Pour empêcher l'utilisateur de saisir des valeurs négatives</li>
+            <li>Parce que la taille $N$ est inconnue à la compilation</li>
+            <li>Parce que le symbole @ accélère les calculs arithmétiques</li>
+          </ul>
+        </div>
+
+        <!-- Q7 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="2" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 7</h5>
+          <div class="question">
+            <p>En Python, comment se comporte un tableau <code>numpy</code> passé comme argument à une fonction <code>def remplir(t, n):</code> ?</p>
+          </div>
+          <ul class="propositions">
+            <li>Une copie intégrale est créée, donc les modifications sont perdues à la fin</li>
+            <li>Le tableau est un objet mutable transmis par référence d'objet : ses cases sont modifiées sur place sans mot-clé supplémentaire</li>
+            <li>Une erreur de syntaxe est levée s'il n'y a pas le mot-clé <code>global t</code></li>
+            <li>Le tableau est converti en chaîne de caractères</li>
+          </ul>
+        </div>
+
+        <!-- Q8 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="3" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 8</h5>
+          <div class="question">
+            <p>Selon les conventions officielles du Baccalauréat, comment doit-on afficher les éléments d'un tableau $T$ de taille $N$ ?</p>
+          </div>
+          <ul class="propositions">
+            <li>En écrivant simplement <code>print(t)</code></li>
+            <li>En écrivant <code>Ecrire(t)</code> en algorithmique</li>
+            <li>Élément par élément à l'aide d'une boucle : <code>Pour i de 0 à n - 1 Faire Ecrire(t[i])</code></li>
+            <li>En convertissant le tableau en entier</li>
+          </ul>
+        </div>
+
+        <!-- Q9 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="1" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 9</h5>
+          <div class="question">
+            <p>Quelle structure de contrôle est recommandée pour contraindre la saisie de la taille $N$ ($3 \le N \le 20$) ?</p>
+          </div>
+          <ul class="propositions">
+            <li>Une boucle <code>Répéter ... Jusqu'à (n ≥ 3) Et (n ≤ 20)</code></li>
+            <li>Une simple condition <code>Si n &lt; 3 Alors</code></li>
+            <li>Une boucle <code>Pour i de 3 à 20 Faire</code></li>
+            <li>Une fonction récursive infinie</li>
+          </ul>
+        </div>
+
+        <!-- Q10 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="2" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 10</h5>
+          <div class="question">
+            <p>Quelle affirmation sur la structure d'un tableau 1D (au sens du programme officiel) est <strong>vraie</strong> ?</p>
+          </div>
+          <ul class="propositions">
+            <li>Un tableau peut contenir à la fois un entier, une chaîne et un booléen dans différentes cases</li>
+            <li>Un tableau est homogène : toutes ses cases contiennent obligatoirement des éléments de même type</li>
+            <li>La taille d'un tableau peut augmenter ou diminuer librement au cours de l'exécution grâce à <code>append()</code></li>
+            <li>Les indices d'un tableau peuvent être des nombres réels décimaux</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           EXERCICE 2 : QCM NIVEAU FACILE 2 (10 QUESTIONS)
+           ======================================================== -->
+      <section class="mb-5 exercise-section" data-ex-id="ex2" id="exercice-2">
+        <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+          <h3 class="h4 text-primary m-0">Exercice 2 : QCM Parcours Indicé, Calculs Types &amp; Traitements</h3>
+          <span class="badge badge-difficulty-easy rounded-pill px-3 py-2">🟢 Facile</span>
+        </div>
+
+        <p class="fw-bold text-secondary mb-3">Analysez les algorithmes et portions de code suivants portant sur les parcours types :</p>
+
+        <!-- Q1 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="2" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 1</h5>
+          <div class="question">
+            <p>Pour calculer la somme des éléments d'un tableau $T$ de $N$ entiers, comment doit-on initialiser l'accumulateur <code>somme</code> avant la boucle ?</p>
+          </div>
+          <ul class="propositions">
+            <li><code>somme ← t[0]</code></li>
+            <li><code>somme ← 0</code></li>
+            <li><code>somme ← 1</code></li>
+            <li><code>somme ← n</code></li>
+          </ul>
+        </div>
+
+        <!-- Q2 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="3" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 2</h5>
+          <div class="question">
+            <p>Pour rechercher la valeur minimale d'un tableau $T$ de $N$ entiers, quelle est la bonne méthode d'initialisation de <code>min_val</code> ?</p>
+          </div>
+          <ul class="propositions">
+            <li>Initialiser <code>min_val ← 0</code> puis parcourir de 0 à $N-1$ (ce qui serait faux si tous les éléments sont strictement positifs !)</li>
+            <li>Initialiser <code>min_val ← 999999</code> au hasard</li>
+            <li>Initialiser <code>min_val ← t[0]</code> puis parcourir de $i = 1$ à $N - 1$</li>
+            <li>Initialiser <code>min_val ← t[n - 1]</code> sans faire de boucle</li>
+          </ul>
+        </div>
+
+        <!-- Q3 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="1" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 3</h5>
+          <div class="question">
+            <p>Soit la fonction suivante calculant la moyenne des valeurs d'un tableau :</p>
+            <pre><code class="language-algorithm">Fonction Moyenne(t : Tab, n : Entier) : Réel
+Début
+  Retourner Somme(t, n) / n
+Fin</code></pre>
+            <p>Quel est le mode de passage du paramètre <code>t</code> dans cette fonction ?</p>
+          </div>
+          <ul class="propositions">
+            <li>Passage par valeur (consultation pure du tableau sans modification)</li>
+            <li>Passage par adresse car il y a le symbole @</li>
+            <li>Passage global automatique</li>
+            <li>Passage par référence destructive</li>
+          </ul>
+        </div>
+
+        <!-- Q4 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="2" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 4</h5>
+          <div class="question">
+            <p>Quelle condition permet de vérifier si l'élément <code>t[i]</code> d'un tableau d'entiers est un nombre pair ?</p>
+          </div>
+          <ul class="propositions">
+            <li><code>i Mod 2 = 0</code> (qui teste si l'indice est pair, pas la valeur !)</li>
+            <li><code>t[i] Mod 2 = 0</code></li>
+            <li><code>t[i] Div 2 = 0</code></li>
+            <li><code>t[i] / 2 = 0</code></li>
+          </ul>
+        </div>
+
+        <!-- Q5 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="3" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 5</h5>
+          <div class="question">
+            <p>Comment permuter le contenu de deux cases <code>t[i]</code> et <code>t[j]</code> dans un tableau ?</p>
+          </div>
+          <ul class="propositions">
+            <li><code>t[i] ← t[j] ; t[j] ← t[i]</code> (sans variable intermédiaire, écrasement de t[i])</li>
+            <li><code>t[i] ← aux ; aux ← t[j] ; t[j] ← t[i]</code></li>
+            <li><code>aux ← t[i] ; t[i] ← t[j] ; t[j] ← aux</code></li>
+            <li><code>Permuter(i, j)</code> sans toucher à t</li>
+          </ul>
+        </div>
+
+        <!-- Q6 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="1" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 6</h5>
+          <div class="question">
+            <p>Soit le script Python suivant :</p>
+            <pre><code class="language-python">from numpy import array
+
+def compter_positifs(t, n):
+    c = 0
+    for i in range(n):
+        if t[i] > 0:
+            c = c + 1
+    return c
+
+t = array([12, -4, 0, 7, -9, 15])
+print(compter_positifs(t, 6))</code></pre>
+            <p>Quelle valeur est affichée à l'écran ?</p>
+          </div>
+          <ul class="propositions">
+            <li>3 (les nombres 12, 7 et 15)</li>
+            <li>4 (en comptant le zéro)</li>
+            <li>2</li>
+            <li>6</li>
+          </ul>
+        </div>
+
+        <!-- Q7 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="2" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 7</h5>
+          <div class="question">
+            <p>Dans un sous-programme qui prend un tableau <code>t : Tab</code> et sa taille effective <code>n : Entier</code>, quel rôle joue l'identificateur <code>i</code> dans la boucle <code>Pour i de 0 à n - 1</code> ?</p>
+          </div>
+          <ul class="propositions">
+            <li>C'est une variable globale accessible partout dans le programme</li>
+            <li>C'est une variable locale au sous-programme, servant d'indice compteur, déclarée dans le T.D.O.L. comme Entier</li>
+            <li>C'est une constante définie dans le T.D.N.T.</li>
+            <li>C'est un pointeur mémoire non déclaré</li>
+          </ul>
+        </div>
+
+        <!-- Q8 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="3" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 8</h5>
+          <div class="question">
+            <p>Soit un tableau $T = [5, 10, 15, 20]$. Que vaut l'expression <code>t[t[0] - 4]</code> ?</p>
+          </div>
+          <ul class="propositions">
+            <li>5</li>
+            <li>15</li>
+            <li>10 (car $t[0] = 5$, donc $5 - 4 = 1$, et $t[1] = 10$)</li>
+            <li>20</li>
+          </ul>
+        </div>
+
+        <!-- Q9 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="1" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 9</h5>
+          <div class="question">
+            <p>Pour doubler la valeur de chaque élément d'un tableau sur place, on utilise :</p>
+          </div>
+          <ul class="propositions">
+            <li>Une procédure avec <code>@t : Tab</code> contenant la boucle <code>Pour i de 0 à n - 1 Faire t[i] ← t[i] * 2</code></li>
+            <li>Une fonction retournant un entier <code>somme * 2</code></li>
+            <li>Une affectation simple <code>t ← t * 2</code> en algorithmique standard</li>
+            <li>Une boucle <code>Pour i de 0 à n - 1 Faire i ← i * 2</code></li>
+          </ul>
+        </div>
+
+        <!-- Q10 -->
+        <div class="qcm-exercise no-page-break-inside" data-correct="2" data-scrambled="false" data-tries="2">
+          <h5 class="question-title">Question 10</h5>
+          <div class="question">
+            <p>Quelle est la transcription exacte en Python de la boucle algorithmique <code>Pour i de 0 à n - 1 Faire</code> ?</p>
+          </div>
+          <ul class="propositions">
+            <li><code>for i in range(1, n):</code></li>
+            <li><code>for i in range(n):</code> (qui parcourt bien les entiers de 0 à $n-1$)</li>
+            <li><code>for i in range(0, n + 1):</code></li>
+            <li><code>while i &lt; n - 1:</code></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           EXERCICE 3 : PROBLÈME 1 (FACILE) — STATION MÉTÉOROLOGIQUE
+           ======================================================== -->
+      <section class="mb-5 exercise-section" data-ex-id="ex3" id="exercice-3">
+        <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+          <h3 class="h4 text-primary m-0">Exercice 3 : Station Météorologique &amp; Relevés de Températures (Mixte Mesures &amp; Statistiques)</h3>
+          <span class="badge badge-difficulty-easy rounded-pill px-3 py-2">🟢 Facile</span>
+        </div>
+
+        <div class="row align-items-center mb-3">
+          <div class="col-lg-7">
+            <p>
+              Une station météorologique automatisée enregistre les températures journalières moyennes (en degrés Celsius, réels) d'une région sur une période de $N$ jours consécutifs ($3 \le N \le 31$).
+            </p>
+            <p>
+              L'opérateur de la station a besoin d'un programme modulaire pour :
+            </p>
+            <ul class="ps-3 mb-0">
+              <li>Saisir et valider le nombre effectif de jours $N$.</li>
+              <li>Remplir un tableau de températures $T$ avec des valeurs réalistes comprises entre $-15.0^\circ\text{C}$ et $50.0^\circ\text{C}$.</li>
+              <li>Calculer la température moyenne de la période.</li>
+              <li>Identifier simultanément en un seul parcours la température la plus basse ($T_{min}$) et la plus haute ($T_{max}$).</li>
+              <li>Dénombrer le nombre de jours de gelée ($T[i] \le 0.0^\circ\text{C}$).</li>
+              <li>Afficher le rapport détaillé élément par élément et la synthèse statistique.</li>
+            </ul>
+          </div>
+          <div class="col-lg-5 text-center my-3 my-lg-0">
+            <figure class="figure m-0 d-print-none text-center exercise-figure">
+              <img src="assets/img/serie07/station-meteo.jpg"
+                alt="Tableau de bord numérique d'une station météorologique avec relevés de températures"
+                class="img-fluid rounded-3 shadow-sm border">
+              <figcaption class="figure-caption text-center small mt-1">
+                <i class="bi bi-thermometer-half text-primary me-1"></i>Station météorologique : relevés journaliers, calcul de moyennes et détection des extrêmes
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <p class="mb-2">Le programme doit être décomposé selon les spécifications suivantes :</p>
+        <ul class="ps-3 mb-3">
+          <li>Une procédure <code>Saisie_N(@n : Entier)</code> qui contrôle la saisie de $N$ dans l'intervalle $[3, 31]$.</li>
+          <li>Une procédure <code>Remplir_Temp(@t : TabReels, n : Entier)</code> qui lit les $N$ réels dans $T$ en exigeant que chaque valeur soit dans $[-15.0, 50.0]$.</li>
+          <li>Une fonction <code>Moyenne_Temp(t : TabReels, n : Entier) : Réel</code> qui calcule et retourne la moyenne arithmétique.</li>
+          <li>Une procédure <code>Extremes_Temp(t : TabReels, n : Entier, @t_min : Réel, @t_max : Réel)</code> qui détermine $T_{min}$ et $T_{max}$ en <strong>un seul parcours</strong> de boucle.</li>
+          <li>Une fonction <code>Nb_Jours_Gel(t : TabReels, n : Entier) : Entier</code> qui retourne le nombre de journées où $T[i] \le 0.0$.</li>
+          <li>Une procédure <code>Afficher_Bilan(t : TabReels, n : Entier)</code> qui affiche le relevé jour par jour (ex: <code>"Jour 1 : 12.5 °C"</code>), puis le compte-rendu final (moyenne, minimum, maximum et jours de gel).</li>
+        </ul>
+
+        <div class="card bg-light border-0 shadow-sm p-3 mb-3">
+          <h6 class="fw-bold text-dark mb-1"><i class="bi bi-pencil-square text-primary me-2"></i>Travail demandé :</h6>
+          <ol class="small text-dark mb-0 ps-3">
+            <li>Pourquoi la détermination de $T_{min}$ et $T_{max}$ est-elle confiée à une <strong>procédure</strong> à deux paramètres <code>@t_min</code> et <code>@t_max</code> plutôt qu'à deux fonctions séparées ? Quel est le bénéfice en termes de nombre de parcours du tableau ?</li>
+            <li>Dresser le <strong>T.D.N.T.</strong> global déclarant le type <code>TabReels</code>.</li>
+            <li>Rédiger l'algorithme de la procédure <code>Saisie_N</code> et de la procédure <code>Remplir_Temp</code>.</li>
+            <li>Rédiger l'algorithme de la fonction <code>Moyenne_Temp</code> et de la procédure <code>Extremes_Temp</code> avec son <strong>T.D.O.L.</strong>.</li>
+            <li>Rédiger l'algorithme de la fonction <code>Nb_Jours_Gel</code> et de la procédure <code>Afficher_Bilan</code>.</li>
+            <li>Rédiger l'algorithme du programme principal accompagné de son <strong>T.D.O.G.</strong>.</li>
+            <li>Proposer la transcription intégrale en <code>Python 3</code> en utilisant la bibliothèque <code>numpy</code>.</li>
+          </ol>
+        </div>
+
+        <!-- Indications & Jeux d'essais -->
+        <div class="alert alert-light border-start border-warning border-4 shadow-sm my-3 d-print-none">
+          <div class="fw-bold text-dark mb-2">
+            💡 Conseils méthodologiques &amp; Indices
+          </div>
+          <ul class="mb-2 small text-muted ps-3">
+            <li>Déclaration T.D.N.T. : <code>TabReels = Tableau de 31 Réel</code>.</li>
+            <li>Dans <code>Extremes_Temp</code>, initialiser <code>t_min ← t[0]</code> et <code>t_max ← t[0]</code>, puis lancer la boucle <code>Pour i de 1 à n - 1 Faire</code>. Comparer <code>t[i]</code> avec <code>t_min</code> et <code>t_max</code>.</li>
+            <li>Dans <code>Afficher_Bilan</code>, pour un affichage convivial commençant à 1 pour l'utilisateur, afficher <code>"Jour ", i + 1, " : ", t[i], " °C"</code>.</li>
+            <li>En Python, initialiser le tableau avec <code>t = array([0.0] * 31)</code>.</li>
+          </ul>
+          <div class="p-2 bg-white rounded border small">
+            <strong>Jeux d'essais à vérifier :</strong> ($N = 5$)<br>
+            • $T = [12.5, -3.0, 0.0, 18.2, -1.5]$<br>
+            &nbsp;&nbsp;&rarr; Moyenne : $5.24^\circ\text{C}$<br>
+            &nbsp;&nbsp;&rarr; Minimum ($T_{min}$) : $-3.0^\circ\text{C}$ | Maximum ($T_{max}$) : $18.2^\circ\text{C}$<br>
+            &nbsp;&nbsp;&rarr; Nombre de jours de gel ($T[i] \le 0$) : <strong>3 jours</strong> ($-3.0$, $0.0$, $-1.5$).
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           EXERCICE 4 : PROBLÈME 2 (FACILE) — CONTRÔLE QUALITÉ INDUSTRIEL
+           ======================================================== -->
+      <section class="mb-5 exercise-section" data-ex-id="ex4" id="exercice-4">
+        <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+          <h3 class="h4 text-primary m-0">Exercice 4 : Contrôle Qualité Industriel &amp; Tolérance de Fabrication (Mixte Tolérance Mécanique)</h3>
+          <span class="badge badge-difficulty-easy rounded-pill px-3 py-2">🟢 Facile</span>
+        </div>
+
+        <div class="row align-items-center mb-3">
+          <div class="col-lg-7">
+            <p>
+              Dans une usine d'usinage mécanique de haute précision, un banc de mesure optique enregistre les diamètres effectifs (en millimètres) d'un lot de $N$ pièces cylindriques ($5 \le N \le 50$).
+            </p>
+            <p>
+              Le cahier des charges impose un diamètre nominal de référence $D_{ref} = 25.0\text{ mm}$ avec une tolérance admissible $\Delta = 0.2\text{ mm}$. Une pièce est déclarée <strong>conforme</strong> si son diamètre $d$ vérifie :
+            </p>
+            <div class="formula-box">
+              <div class="small text-muted text-uppercase fw-bold mb-1">
+                <i class="bi bi-rulers me-1 text-primary"></i>Condition de conformité dimensionnelle :
+              </div>
+              $$|d - D_{ref}| \le \Delta \iff (D_{ref} - \Delta) \le d \le (D_{ref} + \Delta)$$
+            </div>
+            <p class="mb-0">
+              Toute pièce hors de cet intervalle $[24.8\text{ mm}, 25.2\text{ mm}]$ est classée comme <strong>rebut</strong>.
+            </p>
+          </div>
+          <div class="col-lg-5 text-center my-3 my-lg-0">
+            <figure class="figure m-0 d-print-none text-center exercise-figure">
+              <img src="assets/img/serie07/controle-qualite.jpg"
+                alt="Contrôle qualité industriel avec micromètre numérique et tolérances"
+                class="img-fluid rounded-3 shadow-sm border">
+              <figcaption class="figure-caption text-center small mt-1">
+                <i class="bi bi-gear-wide-connected text-primary me-1"></i>Contrôle dimensionnel : mesure du diamètre, tolérance $\pm \Delta$ et tri conformes / rebuts
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <p class="mb-2">Le système informatique doit intégrer les sous-programmes suivants :</p>
+        <ul class="ps-3 mb-3">
+          <li>Une procédure <code>Saisie_Taille(@n : Entier)</code> qui garantit $5 \le N \le 50$.</li>
+          <li>Une procédure <code>Remplir_Mesures(@t : TabReels, n : Entier)</code> qui lit les $N$ diamètres mesurés (chaque valeur devant être strictement positive).</li>
+          <li>Une fonction <code>Est_Conforme(val : Réel, ref : Réel, tol : Réel) : Booléen</code> qui renvoie <code>Vrai</code> si $|val - ref| \le tol$ (en utilisant la fonction standard <code>Abs</code>), et <code>Faux</code> sinon.</li>
+          <li>Une procédure <code>Filtrer_Pieces(t : TabReels, n : Entier, ref : Réel, tol : Réel, @nb_ok : Entier, @nb_rebuts : Entier)</code> qui parcourt le tableau et dénombre simultanément les pièces conformes et les rebuts.</li>
+          <li>Une fonction <code>Taux_Conformite(nb_ok : Entier, n : Entier) : Réel</code> qui calcule et retourne le pourcentage de pièces conformes : $\frac{nb\_ok}{n} \times 100$.</li>
+          <li>Une procédure <code>Afficher_Rapport_Qualite(t : TabReels, n : Entier, ref : Réel, tol : Réel)</code> qui affiche pour chaque pièce son numéro, sa mesure, son statut (<code>[CONFORME]</code> ou <code>[REBUT]</code>), puis le taux global de conformité et une décision finale : <code>"Lot Accepté"</code> si le taux $\ge 80\%$, sinon <code>"Lot Refusé"</code>.</li>
+        </ul>
+
+        <div class="card bg-light border-0 shadow-sm p-3 mb-3">
+          <h6 class="fw-bold text-dark mb-1"><i class="bi bi-pencil-square text-primary me-2"></i>Travail demandé :</h6>
+          <ol class="small text-dark mb-0 ps-3">
+            <li>Dresser le <strong>T.D.N.T.</strong> pour le type <code>TabReels = Tableau de 50 Réel</code>.</li>
+            <li>Rédiger l'algorithme de la fonction <code>Est_Conforme</code> en utilisant <code>Abs(val - ref)</code>.</li>
+            <li>Dresser le <strong>T.D.O.L.</strong> et rédiger l'algorithme de la procédure <code>Filtrer_Pieces</code>.</li>
+            <li>Rédiger l'algorithme de la fonction <code>Taux_Conformite</code> et de la procédure <code>Afficher_Rapport_Qualite</code>.</li>
+            <li>Dresser le <strong>T.D.O.G.</strong> et rédiger l'algorithme du programme principal (en fixant $ref = 25.0$ et $tol = 0.2$).</li>
+            <li>Donner la solution complète en <code>Python 3</code> avec <code>numpy</code>.</li>
+          </ol>
+        </div>
+
+        <!-- Indications & Jeux d'essais -->
+        <div class="alert alert-light border-start border-warning border-4 shadow-sm my-3 d-print-none">
+          <div class="fw-bold text-dark mb-2">
+            💡 Conseils méthodologiques &amp; Indices
+          </div>
+          <ul class="mb-2 small text-muted ps-3">
+            <li>La fonction standard <code>Abs(x)</code> retourne la valeur absolue en algorithme (en Python, <code>abs(x)</code>).</li>
+            <li>Dans <code>Filtrer_Pieces</code>, initialiser <code>nb_ok ← 0</code> et <code>nb_rebuts ← 0</code>. Pour chaque élément <code>t[i]</code>, appeler <code>Est_Conforme(t[i], ref, tol)</code>. Si vrai, incrémenter <code>nb_ok</code>, sinon incrémenter <code>nb_rebuts</code>.</li>
+            <li>Attention à la division dans <code>Taux_Conformite</code> : s'assurer du calcul en réel pour éviter la division entière.</li>
+          </ul>
+          <div class="p-2 bg-white rounded border small">
+            <strong>Jeux d'essais à vérifier :</strong> ($N = 6, D_{ref} = 25.0, \Delta = 0.2$)<br>
+            • $T = [25.05, 24.78, 25.19, 25.35, 24.95, 25.00]$<br>
+            &nbsp;&nbsp;&rarr; Pièce 1 ($25.05$) : <strong>[CONFORME]</strong> (écart $0.05 \le 0.2$)<br>
+            &nbsp;&nbsp;&rarr; Pièce 2 ($24.78$) : <strong>[REBUT]</strong> (écart $0.22 > 0.2$)<br>
+            &nbsp;&nbsp;&rarr; Pièce 3 ($25.19$) : <strong>[CONFORME]</strong> | Pièce 4 ($25.35$) : <strong>[REBUT]</strong><br>
+            &nbsp;&nbsp;&rarr; Pièce 5 ($24.95$) : <strong>[CONFORME]</strong> | Pièce 6 ($25.00$) : <strong>[CONFORME]</strong><br>
+            &nbsp;&nbsp;&rarr; Conformes : $4$, Rebuts : $2$ &rarr; Taux : $\mathbf{66.67\%}$ &rarr; <strong>Lot Refusé</strong> (&lt; 80%).
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           EXERCICE 5 : PROBLÈME 3 (MOYEN) — DÉTECTION DE PICS SISMIQUES
+           ======================================================== -->
+      <section class="mb-5 exercise-section" data-ex-id="ex5" id="exercice-5">
+        <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+          <h3 class="h4 text-primary m-0">Exercice 5 : Sismologie &amp; Détection de Pics Sismiques (Mixte Détection Locale &amp; Tableaux Parallèles)</h3>
+          <span class="badge badge-difficulty-medium rounded-pill px-3 py-2">🟠 Intermédiaire</span>
+        </div>
+
+        <div class="row align-items-center mb-3">
+          <div class="col-lg-7">
+            <p>
+              Un observatoire géophysique enregistre les amplitudes d'ondes sismiques à l'aide d'un capteur haute fréquence. Le signal discrétisé est stocké dans un tableau $T$ de $N$ entiers strictement positifs ($3 \le N \le 50$).
+            </p>
+            <p>
+              En traitement de signal, un <strong>pic sismique local</strong> est défini comme une mesure située à l'indice $i$ ($1 \le i \le N - 2$) strictement supérieure à son voisin immédiat de gauche ET à son voisin immédiat de droite :
+            </p>
+            <div class="formula-box">
+              <div class="small text-muted text-uppercase fw-bold mb-1">
+                <i class="bi bi-activity me-1 text-primary"></i>Critère de pic sismique local :
+              </div>
+              $$T[i] &gt; T[i - 1] \quad \text{ET} \quad T[i] &gt; T[i + 1] \quad (\text{pour } 1 \le i \le N - 2)$$
+            </div>
+            <p class="mb-0 small text-muted">
+              <em>Remarque :</em> Les deux extrémités $T[0]$ et $T[N-1]$ ne possèdent qu'un seul voisin et ne peuvent donc jamais être qualifiées de pics stricts.
+            </p>
+          </div>
+          <div class="col-lg-5 text-center my-3 my-lg-0">
+            <figure class="figure m-0 d-print-none text-center exercise-figure">
+              <img src="assets/img/serie07/detection-pics.jpg"
+                alt="Enregistrement sismologique avec détection des pics d'ondes"
+                class="img-fluid rounded-3 shadow-sm border">
+              <figcaption class="figure-caption text-center small mt-1">
+                <i class="bi bi-activity text-primary me-1"></i>Détection de pics locaux : analyse des voisins $T[i-1]$ et $T[i+1]$ et mémorisation indicée
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <p class="mb-2">On désire implémenter la solution modulaire suivante :</p>
+        <ul class="ps-3 mb-3">
+          <li>Une procédure <code>Saisie_N(@n : Entier)</code> pour valider $3 \le N \le 50$.</li>
+          <li>Une procédure <code>Remplir_Signal(@t : TabEntiers, n : Entier)</code> qui lit les $N$ amplitudes entières positives.</li>
+          <li>Une fonction <code>Est_Pic(t : TabEntiers, i : Entier) : Booléen</code> qui prend le tableau et un indice $i$ ($1 \le i \le N - 2$) et teste si $T[i]$ est un pic local.</li>
+          <li>Une fonction <code>Compter_Pics(t : TabEntiers, n : Entier) : Entier</code> qui calcule le nombre total de pics dans le signal.</li>
+          <li>Une procédure <code>Extraire_Pics(t : TabEntiers, n : Entier, @pics : TabEntiers, @pos : TabEntiers, @nb_p : Entier)</code> qui construit deux tableaux parallèles :
+            <ul class="small">
+              <li><code>pics</code> : contient les valeurs d'amplitude de chaque pic détecté.</li>
+              <li><code>pos</code> : contient les indices respectifs $i$ où ces pics apparaissent.</li>
+              <li><code>@nb_p</code> : retourne le nombre effectif de pics insérés dans ces deux tableaux.</li>
+            </ul>
+          </li>
+          <li>Une procédure <code>Afficher_Analyse_Sismique(t : TabEntiers, n : Entier)</code> qui affiche le signal complet, puis les résultats de l'extraction (si aucun pic n'est trouvé, afficher <code>"Signal plat : aucun pic sismique détecté."</code>).</li>
+        </ul>
+
+        <div class="card bg-light border-0 shadow-sm p-3 mb-3">
+          <h6 class="fw-bold text-dark mb-1"><i class="bi bi-pencil-square text-primary me-2"></i>Travail demandé :</h6>
+          <ol class="small text-dark mb-0 ps-3">
+            <li>Pourquoi la boucle de détection des pics doit-elle obligatoirement commencer à l'indice $i = 1$ et s'arrêter à l'indice $i = N - 2$ ? Que se passerait-il si l'on évaluait <code>Est_Pic(t, 0)</code> ou <code>Est_Pic(t, N - 1)</code> ?</li>
+            <li>Dresser le <strong>T.D.N.T.</strong> pour <code>TabEntiers = Tableau de 50 Entier</code>.</li>
+            <li>Rédiger l'algorithme de la fonction <code>Est_Pic(t : TabEntiers, i : Entier) : Booléen</code>.</li>
+            <li>Rédiger l'algorithme de la fonction <code>Compter_Pics</code>.</li>
+            <li>Dresser le <strong>T.D.O.L.</strong> et rédiger l'algorithme de la procédure <code>Extraire_Pics</code>.</li>
+            <li>Rédiger l'algorithme de la procédure <code>Afficher_Analyse_Sismique</code>.</li>
+            <li>Traduire l'ensemble en <code>Python 3</code>.</li>
+          </ol>
+        </div>
+
+        <!-- Indications & Jeux d'essais -->
+        <div class="alert alert-light border-start border-warning border-4 shadow-sm my-3 d-print-none">
+          <div class="fw-bold text-dark mb-2">
+            💡 Conseils méthodologiques &amp; Indices
+          </div>
+          <ul class="mb-2 small text-muted ps-3">
+            <li>Pour éviter un dépassement d'indice (<code>IndexError</code>), la condition $1 \le i \le N - 2$ garantit que $i - 1 \ge 0$ et $i + 1 \le N - 1$.</li>
+            <li>Dans <code>Extraire_Pics</code>, maintenir un curseur <code>nb_p ← 0</code>. Pour chaque $i$ de $1$ à $n - 2$, si <code>Est_Pic(t, i)</code> est vrai, affecter <code>pics[nb_p] ← t[i]</code>, <code>pos[nb_p] ← i</code>, puis incrémenter <code>nb_p ← nb_p + 1</code>.</li>
+            <li>En Python, initialiser <code>pics = array([0] * 50)</code> et <code>pos = array([0] * 50)</code>.</li>
+          </ul>
+          <div class="p-2 bg-white rounded border small">
+            <strong>Jeux d'essais à vérifier :</strong> ($N = 8$)<br>
+            • $T = [10, 45, 20, 20, 85, 30, 95, 40]$<br>
+            &nbsp;&nbsp;&rarr; Indice 1 ($45$) : $45 > 10$ et $45 > 20$ &rarr; <strong>PIC détecté à pos = 1</strong><br>
+            &nbsp;&nbsp;&rarr; Indice 2 ($20$) : $20 \ngtr 45$ &rarr; Non pic<br>
+            &nbsp;&nbsp;&rarr; Indice 4 ($85$) : $85 > 20$ et $85 > 30$ &rarr; <strong>PIC détecté à pos = 4</strong><br>
+            &nbsp;&nbsp;&rarr; Indice 6 ($95$) : $95 > 30$ et $95 > 40$ &rarr; <strong>PIC détecté à pos = 6</strong><br>
+            &nbsp;&nbsp;&rarr; Nombre total de pics : <strong>3</strong><br>
+            &nbsp;&nbsp;&rarr; Tableaux résultats : <code>pics = [45, 85, 95]</code> et <code>pos = [1, 4, 6]</code>.
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           EXERCICE 6 : PROBLÈME 4 (MOYEN) — TRANSFORMATIONS D'UN VECTEUR
+           ======================================================== -->
+      <section class="mb-5 exercise-section" data-ex-id="ex6" id="exercice-6">
+        <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+          <h3 class="h4 text-primary m-0">Exercice 6 : Cryptographie &amp; Transformations d'un Vecteur (Mixte Permutations In-Place)</h3>
+          <span class="badge badge-difficulty-medium rounded-pill px-3 py-2">🟠 Intermédiaire</span>
+        </div>
+
+        <div class="row align-items-center mb-3">
+          <div class="col-lg-7">
+            <p>
+              Dans un protocole expérimental de chiffrement par transposition, un bloc de données est représenté par un tableau $T$ de $N$ entiers ($4 \le N \le 40$), avec $N$ obligatoirement <strong>pair</strong>.
+            </p>
+            <p>
+              Pour rendre les données méconnaissables avant transmission, le vecteur subit une cascade de transformations géométriques <strong>sur place</strong> (in-place, sans tableau auxiliaire) :
+            </p>
+            <ol class="small ps-3 mb-0">
+              <li><strong>Inversion miroir :</strong> Échange des éléments symétriques ($T[0] \leftrightarrow T[N-1]$, $T[1] \leftrightarrow T[N-2]$, etc.).</li>
+              <li><strong>Permutation circulaire droite :</strong> Chaque élément avance d'une case vers la droite ($T[i] \to T[i+1]$), et le dernier élément revient en première case ($T[N-1] \to T[0]$).</li>
+              <li><strong>Échange des deux moitiés :</strong> La première moitié du tableau ($0 \dots \frac{N}{2}-1$) est permutée avec la seconde moitié ($\frac{N}{2} \dots N-1$).</li>
+            </ol>
+          </div>
+          <div class="col-lg-5 text-center my-3 my-lg-0">
+            <figure class="figure m-0 d-print-none text-center exercise-figure">
+              <img src="assets/img/serie07/permutation-vecteur.jpg"
+                alt="Schéma cryptographique de transformation de vecteur et permutation de blocs"
+                class="img-fluid rounded-3 shadow-sm border">
+              <figcaption class="figure-caption text-center small mt-1">
+                <i class="bi bi-shield-shaded text-primary me-1"></i>Transformations in-place : miroir symétrique, rotation circulaire et permutation de sous-blocs
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <p class="mb-2">On demande de modulariser la solution comme suit :</p>
+        <ul class="ps-3 mb-3">
+          <li>Une procédure <code>Saisie_Taille_Paire(@n : Entier)</code> qui exige que $N \in [4, 40]$ et que $N \text{ Mod } 2 = 0$.</li>
+          <li>Une procédure <code>Remplir_Vecteur(@t : Tab, n : Entier)</code> pour saisir les $N$ valeurs.</li>
+          <li>Une procédure élémentaire <code>Permuter_Cases(@t : Tab, i : Entier, j : Entier)</code> qui échange les valeurs de $T[i]$ et $T[j]$.</li>
+          <li>Une procédure <code>Inverser_Miroir(@t : Tab, n : Entier)</code> qui inverse le tableau sur place en effectuant une boucle <code>Pour i de 0 à (n Div 2) - 1</code> et en appelant <code>Permuter_Cases(t, i, n - 1 - i)</code>.</li>
+          <li>Une procédure <code>Rotation_Droite(@t : Tab, n : Entier)</code> qui sauvegarde le dernier élément $T[N-1]$ dans une variable temporaire, décale tous les éléments vers la droite de $N-2$ à $0$, puis place la sauvegarde en $T[0]$.</li>
+          <li>Une procédure <code>Echanger_Moities(@t : Tab, n : Entier)</code> qui échange chaque case $i$ ($0 \le i &lt; \frac{N}{2}$) avec la case $i + \frac{N}{2}$ correspondante.</li>
+          <li>Une procédure <code>Afficher_Vecteur(t : Tab, n : Entier, titre : Chaîne)</code> qui affiche le titre et le contenu du tableau sur une seule ligne.</li>
+        </ul>
+
+        <div class="card bg-light border-0 shadow-sm p-3 mb-3">
+          <h6 class="fw-bold text-dark mb-1"><i class="bi bi-pencil-square text-primary me-2"></i>Travail demandé :</h6>
+          <ol class="small text-dark mb-0 ps-3">
+            <li>Pourquoi la boucle de <code>Inverser_Miroir</code> doit-elle impérativement s'arrêter à <code>(n Div 2) - 1</code> ? Que se passerait-il si elle continuait jusqu'à $n - 1$ ?</li>
+            <li>Dresser le <strong>T.D.N.T.</strong> pour <code>Tab = Tableau de 40 Entier</code>.</li>
+            <li>Rédiger l'algorithme de <code>Permuter_Cases</code> et de <code>Inverser_Miroir</code>.</li>
+            <li>Rédiger l'algorithme de <code>Rotation_Droite</code> en détaillant le sens de parcours du décalage (pourquoi doit-on décaler de droite à gauche et non de gauche à droite ?).</li>
+            <li>Rédiger l'algorithme de <code>Echanger_Moities</code>.</li>
+            <li>Rédiger l'algorithme du programme principal orchestrant les trois transformations successives avec affichage à chaque étape.</li>
+            <li>Traduire le tout en <code>Python 3</code>.</li>
+          </ol>
+        </div>
+
+        <!-- Indications & Jeux d'essais -->
+        <div class="alert alert-light border-start border-warning border-4 shadow-sm my-3 d-print-none">
+          <div class="fw-bold text-dark mb-2">
+            💡 Conseils méthodologiques &amp; Indices
+          </div>
+          <ul class="mb-2 small text-muted ps-3">
+            <li>Dans <code>Inverser_Miroir</code>, si la boucle parcourait jusqu'à $n-1$, chaque élément serait permuté deux fois, restaurant ainsi le tableau d'origine !</li>
+            <li>Dans <code>Rotation_Droite</code>, décaler impérativement en marche arrière : <code>Pour i de n - 1 à 1 (pas de -1) Faire t[i] ← t[i - 1]</code>. Si l'on décalait vers l'avant, la première valeur écraserait toutes les suivantes.</li>
+            <li>Dans <code>Echanger_Moities</code>, le décalage pour la seconde moitié est $m = n \text{ Div } 2$. Échanger <code>Permuter_Cases(t, i, i + m)</code> pour $i$ allant de 0 à $m - 1$.</li>
+          </ul>
+          <div class="p-2 bg-white rounded border small">
+            <strong>Jeux d'essais à vérifier :</strong> ($N = 6$)<br>
+            • Tableau initial : $T = [1, 2, 3, 4, 5, 6]$<br>
+            &nbsp;&nbsp;1. Après <code>Inverser_Miroir</code> : $T = [6, 5, 4, 3, 2, 1]$<br>
+            &nbsp;&nbsp;2. Après <code>Rotation_Droite</code> : $T = [1, 6, 5, 4, 3, 2]$<br>
+            &nbsp;&nbsp;3. Après <code>Echanger_Moities</code> ($m = 3$) :<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$T[0..2] \leftrightarrow T[3..5] \implies T = [4, 3, 2, 1, 6, 5]$.
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           EXERCICE 7 : PROBLÈME 5 (DIFFICILE) — ANALYSE D'ADN
+           ======================================================== -->
+      <section class="mb-5 exercise-section" data-ex-id="ex7" id="exercice-7">
+        <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+          <h3 class="h4 text-primary m-0">Exercice 7 : Bio-informatique &amp; Analyse de Brin d'ADN (Mixte Filtrage &amp; Compression)</h3>
+          <span class="badge badge-difficulty-hard rounded-pill px-3 py-2">🔴 Avancé</span>
+        </div>
+
+        <div class="row align-items-center mb-3">
+          <div class="col-lg-7">
+            <p>
+              Dans une plateforme d'analyse génomique, un fragment de brin d'acide désoxyribonucléique (ADN) est représenté par un tableau de caractères $ADN$ de taille $N$ ($5 \le N \le 60$).
+            </p>
+            <p>
+              Chaque cellule du tableau représente un nucléotide élémentaire et doit impérativement être l'une des 4 bases azotées :
+            </p>
+            <div class="d-flex gap-2 justify-content-center my-2">
+              <span class="badge bg-danger px-3 py-2"><code>'A'</code> : Adénine</span>
+              <span class="badge bg-primary px-3 py-2"><code>'C'</code> : Cytosine</span>
+              <span class="badge bg-warning text-dark px-3 py-2"><code>'G'</code> : Guanine</span>
+              <span class="badge bg-success px-3 py-2"><code>'T'</code> : Thymine</span>
+            </div>
+            <p class="mb-0">
+              Avant de stocker ou d'aligner le brin, le système doit calculer la composition nucléotidique, évaluer le ratio de stabilité thermique ($GC\%$), et générer une <strong>séquence compactée</strong> éliminant les nucléotides répétés consécutivement (ex: <code>['A','A','C','G','G','G','T']</code> $\to$ <code>['A','C','G','T']</code>).
+            </p>
+          </div>
+          <div class="col-lg-5 text-center my-3 my-lg-0">
+            <figure class="figure m-0 d-print-none text-center exercise-figure">
+              <img src="assets/img/serie07/sequence-adn.jpg"
+                alt="Analyse bio-informatique de séquences ADN et composition nucléotidique"
+                class="img-fluid rounded-3 shadow-sm border">
+              <figcaption class="figure-caption text-center small mt-1">
+                <i class="bi bi-diagram-2 text-primary me-1"></i>Séquençage génomique : validation des bases A-C-G-T, ratio GC% et compression sans doublons consécutifs
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <p class="mb-2">La conception impose les modules suivants :</p>
+        <ul class="ps-3 mb-3">
+          <li>Une procédure <code>Saisie_Taille(@n : Entier)</code> avec validation $5 \le N \le 60$.</li>
+          <li>Une fonction <code>Est_Nucleotide(c : Caractère) : Booléen</code> qui renvoie <code>Vrai</code> si $c \in \{'A', 'C', 'G', 'T'\}$ et <code>Faux</code> sinon.</li>
+          <li>Une procédure <code>Remplir_ADN(@adn : TabCar, n : Entier)</code> qui saisit chaque case avec une boucle <code>Répéter ... Jusqu'à Est_Nucleotide(adn[i])</code> pour refuser toute saisie invalide.</li>
+          <li>Une procédure <code>Compter_Bases(adn : TabCar, n : Entier, @nb_a : Entier, @nb_c : Entier, @nb_g : Entier, @nb_t : Entier)</code> qui comptabilise les 4 fréquences en <strong>un unique parcours</strong>.</li>
+          <li>Une fonction <code>Taux_GC(nb_c : Entier, nb_g : Entier, n : Entier) : Réel</code> qui retourne le pourcentage de bases G et C : $\frac{nb\_c + nb\_g}{n} \times 100$.</li>
+          <li>Une procédure <code>Compacter_Sequence(adn : TabCar, n : Entier, @compact : TabCar, @nb_comp : Entier)</code> qui construit le tableau <code>compact</code> ne contenant aucun doublon consécutif et calcule sa taille effective <code>nb_comp</code>.</li>
+          <li>Une procédure <code>Afficher_Sequence(t : TabCar, n : Entier, libelle : Chaîne)</code> qui affiche les nucléotides accolés ou séparés par des tirets.</li>
+        </ul>
+
+        <div class="card bg-light border-0 shadow-sm p-3 mb-3">
+          <h6 class="fw-bold text-dark mb-1"><i class="bi bi-pencil-square text-primary me-2"></i>Travail demandé :</h6>
+          <ol class="small text-dark mb-0 ps-3">
+            <li>Pourquoi la fonction <code>Est_Nucleotide</code> simplifie-t-elle considérablement le contrôle de saisie dans <code>Remplir_ADN</code> ?</li>
+            <li>Dresser le <strong>T.D.N.T.</strong> pour <code>TabCar = Tableau de 60 Caractère</code>.</li>
+            <li>Rédiger l'algorithme de <code>Est_Nucleotide</code> et de <code>Remplir_ADN</code>.</li>
+            <li>Dresser le <strong>T.D.O.L.</strong> et rédiger l'algorithme de la procédure <code>Compter_Bases</code>.</li>
+            <li>Rédiger l'algorithme de la fonction <code>Taux_GC</code>.</li>
+            <li>Rédiger l'algorithme de la procédure <code>Compacter_Sequence</code>. Justifier l'algorithme utilisé pour insérer le premier élément puis tester chaque élément $i$ ($1 \le i &lt; n$) par rapport à son prédécesseur $i-1$.</li>
+            <li>Rédiger l'algorithme principal (avec son <strong>T.D.O.G.</strong>) et fournir l'implémentation <code>Python 3</code> avec <code>numpy</code>.</li>
+          </ol>
+        </div>
+
+        <!-- Indications & Jeux d'essais -->
+        <div class="alert alert-light border-start border-warning border-4 shadow-sm my-3 d-print-none">
+          <div class="fw-bold text-dark mb-2">
+            💡 Conseils méthodologiques &amp; Indices
+          </div>
+          <ul class="mb-2 small text-muted ps-3">
+            <li>Dans <code>Compacter_Sequence</code> : la première base est toujours conservée : <code>compact[0] ← adn[0]</code> et <code>nb_comp ← 1</code>. Pour $i$ allant de 1 à $n-1$, si <code>adn[i] &ne; adn[i-1]</code>, on ajoute à <code>compact[nb_comp] ← adn[i]</code> et on incrémente <code>nb_comp ← nb_comp + 1</code>.</li>
+            <li>En Python, pour un tableau de caractères avec <code>numpy</code>, déclarer : <code>adn = array([''] * 60)</code> ou <code>array([' '] * 60)</code>.</li>
+          </ul>
+          <div class="p-2 bg-white rounded border small">
+            <strong>Jeux d'essais à vérifier :</strong> ($N = 10$)<br>
+            • Séquence saisie : $ADN = ['A', 'A', 'C', 'G', 'G', 'G', 'T', 'T', 'C', 'A']$<br>
+            &nbsp;&nbsp;&rarr; Décompte : $A = 3$, $C = 2$, $G = 3$, $T = 2$<br>
+            &nbsp;&nbsp;&rarr; Taux GC : $\frac{2 + 3}{10} \times 100 = \mathbf{50.0\%}$<br>
+            &nbsp;&nbsp;&rarr; Séquence compactée : $Compact = ['A', 'C', 'G', 'T', 'C', 'A']$ (Taille effective $nb\_comp = 6$).
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================================
+           EXERCICE 8 : PROBLÈME 6 (DIFFICILE) — FUSION ORDONNÉE & STREAMING
+           ======================================================== -->
+      <section class="mb-5 exercise-section" data-ex-id="ex8" id="exercice-8">
+        <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
+          <h3 class="h4 text-primary m-0">Exercice 8 : Fusion Ordonnée de Deux Tableaux &amp; Analyse d'Audience (Mixte Algorithme d'Interclassement)</h3>
+          <span class="badge badge-difficulty-hard rounded-pill px-3 py-2">🔴 Avancé</span>
+        </div>
+
+        <div class="row align-items-center mb-3">
+          <div class="col-lg-7">
+            <p>
+              Une plateforme internationale de diffusion vidéo en streaming héberge deux clusters de serveurs régionaux $S_1$ et $S_2$. Chaque serveur enregistre les identifiants numériques ($ID$) des abonnés actuellement connectés.
+            </p>
+            <p>
+              Chaque serveur maintient sa liste d'abonnés classée par ordre <strong>strictement croissant</strong> :
+            </p>
+            <ul class="ps-3 mb-2">
+              <li>Serveur 1 : Tableau $T_1$ de taille $N_1$ ($2 \le N_1 \le 30$).</li>
+              <li>Serveur 2 : Tableau $T_2$ de taille $N_2$ ($2 \le N_2 \le 30$).</li>
+            </ul>
+            <p class="mb-0">
+              Pour consolider l'audience globale, l'administrateur souhaite :
+            </p>
+            <ol class="small ps-3 mb-0">
+              <li>Saisir chaque tableau en imposant que chaque valeur saisie soit <strong>strictement supérieure</strong> à la précédente ($T[i] > T[i-1]$ pour $i \ge 1$).</li>
+              <li><strong>Fusionner</strong> les deux listes en un troisième tableau $T_3$ de taille $N_3 = N_1 + N_2$ trié par ordre croissant en un seul passage (algorithme d'interclassement linéaire sans aucun tri ultérieur !).</li>
+              <li>Extraire dans un tableau <code>communs</code> les identifiants d'abonnés connectés simultanément sur les deux serveurs (détection des partages de comptes).</li>
+            </ol>
+          </div>
+          <div class="col-lg-5 text-center my-3 my-lg-0">
+            <figure class="figure m-0 d-print-none text-center exercise-figure">
+              <img src="assets/img/serie07/fusion-tableaux.jpg"
+                alt="Architecture de serveurs avec fusion de flux de données triées"
+                class="img-fluid rounded-3 shadow-sm border">
+              <figcaption class="figure-caption text-center small mt-1">
+                <i class="bi bi-hdd-network-fill text-primary me-1"></i>Interclassement de listes ordonnées : algorithme à deux pointeurs $\mathcal{O}(N_1 + N_2)$ et détection d'intersection
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <p class="mb-2">La structure modulaire requise est la suivante :</p>
+        <ul class="ps-3 mb-3">
+          <li>Une procédure <code>Saisie_Taille(@n : Entier, num_serveur : Entier)</code> pour valider $2 \le N \le 30$.</li>
+          <li>Une procédure <code>Remplir_Croissant(@t : Tab, n : Entier)</code> qui saisit la première case $t[0]$, puis pour chaque case $i$ ($1 \le i &lt; n$), boucle jusqu'à ce que $t[i] &gt; t[i-1]$.</li>
+          <li>Une procédure <code>Fusionner(t1 : Tab, n1 : Entier, t2 : Tab, n2 : Entier, @t3 : TabGrand, @n3 : Entier)</code> :
+            <ul class="small">
+              <li>Utilise trois indices : $i$ (curseur sur $T_1$), $j$ (curseur sur $T_2$) et $k$ (curseur sur $T_3$).</li>
+              <li>Tant que $i &lt; n_1$ et $j &lt; n_2$, compare $t_1[i]$ et $t_2[j]$ et insère le plus petit dans $t_3[k]$.</li>
+              <li>Copie ensuite les éléments restants du tableau non encore épuisé.</li>
+              <li>Fixe $n_3 \leftarrow n_1 + n_2$.</li>
+            </ul>
+          </li>
+          <li>Une procédure <code>Trouver_Doublons(t1 : Tab, n1 : Entier, t2 : Tab, n2 : Entier, @communs : Tab, @nb_com : Entier)</code> qui tire parti du tri croissant des deux tableaux pour identifier les valeurs communes en un seul parcours conjoint.</li>
+          <li>Une procédure <code>Afficher_Liste(t : Tab, n : Entier, titre : Chaîne)</code> pour afficher les éléments d'un tableau.</li>
+        </ul>
+
+        <div class="card bg-light border-0 shadow-sm p-3 mb-3">
+          <h6 class="fw-bold text-dark mb-1"><i class="bi bi-pencil-square text-primary me-2"></i>Travail demandé :</h6>
+          <ol class="small text-dark mb-0 ps-3">
+            <li>Pourquoi l'algorithme d'interclassement (fusion) est-il beaucoup plus performant que la concaténation brute des deux tableaux suivie d'un algorithme de tri (comme le tri à bulles ou par sélection) ? Préciser la complexité de cet algorithme.</li>
+            <li>Dresser le <strong>T.D.N.T.</strong> global en déclarant <code>Tab = Tableau de 30 Entier</code> et <code>TabGrand = Tableau de 60 Entier</code>.</li>
+            <li>Rédiger l'algorithme de <code>Remplir_Croissant</code> en explicitant la boucle de contrôle d'ordre strict.</li>
+            <li>Dresser le <strong>T.D.O.L.</strong> et rédiger l'algorithme complet de la procédure <code>Fusionner</code>.</li>
+            <li>Rédiger l'algorithme de la procédure <code>Trouver_Doublons</code>.</li>
+            <li>Dresser le <strong>T.D.O.G.</strong> et rédiger l'algorithme du programme principal.</li>
+            <li>Donner le code source complet en <code>Python 3</code> avec <code>numpy</code>.</li>
+          </ol>
+        </div>
+
+        <!-- Indications & Jeux d'essais -->
+        <div class="alert alert-light border-start border-warning border-4 shadow-sm my-3 d-print-none">
+          <div class="fw-bold text-dark mb-2">
+            💡 Conseils méthodologiques &amp; Indices
+          </div>
+          <ul class="mb-2 small text-muted ps-3">
+            <li>Structure classique de l'interclassement :
+              <pre class="m-0 mt-1 mb-2"><code class="language-algorithm">i ← 0 ; j ← 0 ; k ← 0
+TantQue (i &lt; n1) Et (j &lt; n2) Faire
+  Si t1[i] &le; t2[j] Alors
+    t3[k] ← t1[i] ; i ← i + 1
+  Sinon
+    t3[k] ← t2[j] ; j ← j + 1
+  Fin Si
+  k ← k + 1
+Fin TantQue
+TantQue i &lt; n1 Faire
+  t3[k] ← t1[i] ; i ← i + 1 ; k ← k + 1
+Fin TantQue
+TantQue j &lt; n2 Faire
+  t3[k] ← t2[j] ; j ← j + 1 ; k ← k + 1
+Fin TantQue</code></pre>
+            </li>
+            <li>Pour <code>Trouver_Doublons</code> : si $t_1[i] = t_2[j]$, mémoriser dans <code>communs</code> et avancer les deux curseurs $i$ et $j$. Si $t_1[i] &lt; t_2[j]$, avancer $i$ ; sinon avancer $j$.</li>
+          </ul>
+          <div class="p-2 bg-white rounded border small">
+            <strong>Jeux d'essais à vérifier :</strong><br>
+            • Serveur 1 ($N_1 = 4$) : $T_1 = [102, 108, 115, 120]$<br>
+            • Serveur 2 ($N_2 = 5$) : $T_2 = [105, 108, 112, 120, 130]$<br>
+            &nbsp;&nbsp;&rarr; <strong>Fusion ordonnée $T_3$ ($N_3 = 9$) :</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$[102, 105, 108, 108, 112, 115, 120, 120, 130]$<br>
+            &nbsp;&nbsp;&rarr; <strong>Utilisateurs communs ($nb\_com = 2$) :</strong><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>communs = [108, 120]</code>.
+          </div>
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-custom py-4 text-center mt-5">
+    <div class="container">
+      <div class="mb-2">
+        <span class="fw-bold text-white">Informatique 4<sup>e</sup> Année Scientifique</span>
+        <span class="mx-2 text-white-50">|</span>
+        <span class="text-light">Bac 2026</span>
+      </div>
+      <div class="small text-white-50 mb-3">
+        Conformité pédagogique aux programmes et conventions officielles 2024-2025
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts JS Locaux -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/highlight.min.js"></script>
+  <script src="assets/js/hljs.algorithm.js"></script>
+  <script src="assets/js/clipboard.min.js"></script>
+  <script src="assets/js/main-ui.js?v=2"></script>
+  <script src="assets/js/pages.js"></script>
+  <script src="assets/js/draggable.js?v=2"></script>
+  <script src="assets/js/katex.min.js"></script>
+  <script src="assets/js/auto-render.min.js"></script>
+
+  <!-- Highlighting & Clipboard Setup -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof hljs !== 'undefined') {
+        if (typeof hljs.highlightAll === 'function') {
+          hljs.highlightAll();
+        } else if (typeof hljs.initHighlightingOnLoad === 'function') {
+          hljs.initHighlightingOnLoad();
+        }
+      }
+
+      document.querySelectorAll('.language-algorithm, .language-python').forEach(item => {
+        if (!item.parentElement.querySelector('.bd-clipboard')) {
+          const div = document.createElement('div');
+          div.className = 'bd-clipboard d-print-none';
+          const btn = document.createElement('button');
+          btn.className = 'btn-clipboard';
+          btn.type = 'button';
+          btn.innerHTML = '<i class="bi bi-clipboard me-1"></i> Copier';
+          btn.title = "Copier le code";
+          div.appendChild(btn);
+          item.parentElement.insertBefore(div, item);
+        }
+      });
+    });
+  </script>
+
+  <!-- KaTeX Auto-Render Math Setup -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (typeof renderMathInElement === 'function') {
+        try {
+          renderMathInElement(document.body, {
+            delimiters: [
+              { left: '$$', right: '$$', display: true },
+              { left: '$', right: '$', display: false },
+              { left: '\\(', right: '\\)', display: false },
+              { left: '\\[', right: '\\]', display: true }
+            ],
+            throwOnError: false
+          });
+        } catch (e) {
+          console.error("KaTeX render error:", e);
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>

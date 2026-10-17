@@ -81,6 +81,19 @@ body {
   color: #94a3b8 !important;
 }
 
+[data-theme="dark"] .figure-caption {
+  color: #cbd5e1 !important;
+}
+
+[data-theme="dark"] .figure-caption i,
+[data-theme="dark"] .figure-caption .text-primary {
+  color: #38bdf8 !important;
+}
+
+[data-theme="dark"] .text-primary {
+  color: #38bdf8 !important;
+}
+
 [data-theme="dark"] .exercise-section {
   color: #f8fafc;
 }
