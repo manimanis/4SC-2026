@@ -54,11 +54,14 @@
     <div class="container">
       <div class="d-flex justify-content-center flex-wrap gap-2 mb-2">
         <span class="badge bg-primary px-3 py-1"><i class="bi bi-diagram-3 me-1"></i>Axe : Modularité 2</span>
-        <span class="badge bg-secondary px-2 py-1">Sections : Sc. Expérimentales, Mathématiques &amp; Sc. Techniques</span>
-        <span class="badge bg-info text-dark px-2 py-1"><i class="bi bi-bookmark-check-fill me-1"></i>Conventions 2024-2025</span>
+        <span class="badge bg-secondary px-2 py-1">Sections : Sc. Expérimentales, Mathématiques &amp; Sc.
+          Techniques</span>
+        <span class="badge bg-info text-dark px-2 py-1"><i class="bi bi-bookmark-check-fill me-1"></i>Conventions
+          2024-2025</span>
       </div>
       <h1 class="hero-title display-6 fw-bold mb-2">Série N°6 : Modularité 2 — Les Procédures</h1>
-      <p class="text-muted mb-0">Passage par valeur vs par variable (<code>@</code>), portée des identificateurs, T.D.O.L. et conventions Python (mot-clé <code>global</code>).</p>
+      <p class="text-muted mb-0">Passage par valeur vs par variable (<code>@</code>), portée des identificateurs,
+        T.D.O.L. et conventions Python (mot-clé <code>global</code>).</p>
     </div>
   </section>
 
@@ -82,10 +85,17 @@
             💡 <span>Rappel de cours : La Procédure & les Modes de Passage</span>
           </div>
           <ul class="mb-0 small text-muted ps-3">
-            <li>Une <strong>procédure</strong> est un sous-programme qui effectue des actions ou calcule plusieurs résultats sans renvoyer de valeur unique dans son nom. Elle ne comporte jamais de type de retour dans son en-tête ni d'instruction <code>Retourner</code>.</li>
-            <li>L'appel d'une procédure s'effectue comme une <strong>instruction autonome</strong> : <code>NomProc(arg1, arg2)</code>.</li>
-            <li><strong>Passage par valeur :</strong> transmet une copie de l'argument (paramètre d'entrée). La variable effective reste intacte.</li>
-            <li><strong>Passage par variable / adresse (noté <code>@</code> en algorithme) :</strong> transmet la référence directe de la variable (paramètre de sortie ou d'entrée-sortie). Toute modification est répercutée immédiatement sur la variable appelante.</li>
+            <li>Une <strong>procédure</strong> est un sous-programme qui effectue des actions ou calcule plusieurs
+              résultats sans renvoyer de valeur unique dans son nom. Elle ne comporte jamais de type de retour dans son
+              en-tête ni d'instruction <code>Retourner</code>.</li>
+            <li>L'appel d'une procédure s'effectue comme une <strong>instruction autonome</strong> :
+              <code>NomProc(arg1, arg2)</code>.
+            </li>
+            <li><strong>Passage par valeur :</strong> transmet une copie de l'argument (paramètre d'entrée). La variable
+              effective reste intacte.</li>
+            <li><strong>Passage par variable / adresse (noté <code>@</code> en algorithme) :</strong> transmet la
+              référence directe de la variable (paramètre de sortie ou d'entrée-sortie). Toute modification est
+              répercutée immédiatement sur la variable appelante.</li>
           </ul>
         </div>
 
@@ -95,11 +105,12 @@
         <div class="qcm-exercise no-page-break-inside" data-correct="2" data-scrambled="false" data-tries="2">
           <h5 class="question-title">Question 1</h5>
           <div class="question">
-            <p>Quelle est la différence fondamentale entre une fonction et une procédure en algorithmique ?</p>
+            <p>Quelle est la différence entre une fonction et une procédure en algorithmique ?</p>
           </div>
           <ul class="propositions">
             <li>Une procédure ne peut contenir aucune boucle</li>
-            <li>Une fonction renvoie un résultat unique à travers son nom, tandis qu'une procédure ne renvoie pas de résultat directement par son nom</li>
+            <li>Une fonction doit renvoyer un résultat unique, tandis qu'une procédure ne renvoie pas de résultat direct
+            </li>
             <li>Une procédure ne peut recevoir aucun paramètre</li>
             <li>Une fonction s'exécute toujours plus rapidement qu'une procédure</li>
           </ul>
@@ -109,7 +120,7 @@
         <div class="qcm-exercise no-page-break-inside" data-correct="1" data-scrambled="false" data-tries="2">
           <h5 class="question-title">Question 2</h5>
           <div class="question">
-            <p>Quelle est la syntaxe correcte de l'en-tête d'une procédure affichant les diviseurs d'un entier ?</p>
+            <p>Quelle est l'en-tête correcte d'une procédure affichant les diviseurs d'un entier ?</p>
           </div>
           <ul class="propositions">
             <li>Procédure Afficher_Diviseurs(n : Entier)</li>
@@ -123,7 +134,7 @@
         <div class="qcm-exercise no-page-break-inside" data-correct="3" data-scrambled="false" data-tries="2">
           <h5 class="question-title">Question 3</h5>
           <div class="question">
-            <p>Comment s'effectue l'appel d'une procédure <code>Initialiser(x, y)</code> dans le programme principal ?</p>
+            <p>Comment appeler la procédure <code>Initialiser(x, y)</code> dans le programme principal ?</p>
           </div>
           <ul class="propositions">
             <li>res &larr; Initialiser(x, y)</li>
@@ -137,11 +148,13 @@
         <div class="qcm-exercise no-page-break-inside" data-correct="2" data-scrambled="false" data-tries="2">
           <h5 class="question-title">Question 4</h5>
           <div class="question">
-            <p>Dans l'en-tête <code>Procédure Calcul(a : Entier, @b : Entier)</code>, quel est le mode de passage du paramètre <code>b</code> ?</p>
+            <p>Dans <code>Procédure Calcul(a : Entier, @b : Entier)</code>, quel est le mode de passage du paramètre
+              <code>b</code> ?
+            </p>
           </div>
           <ul class="propositions">
             <li>Passage par valeur</li>
-            <li>Passage par variable (ou par adresse), indiqué par le symbole @</li>
+            <li>Passage par adresse, indiqué par le symbole @</li>
             <li>Passage par constante</li>
             <li>Passage global automatique</li>
           </ul>
@@ -154,7 +167,7 @@
             <p>Lors d'un passage par valeur, si le sous-programme modifie le paramètre formel dans son corps :</p>
           </div>
           <ul class="propositions">
-            <li>Seule la copie locale est modifiée, la variable effective d'origine reste rigoureusement inchangée</li>
+            <li>Seule la copie locale est modifiée, la variable d'origine reste inchangée</li>
             <li>La variable effective dans le programme principal est immédiatement modifiée</li>
             <li>Une erreur d'exécution bloque le programme</li>
             <li>La variable est supprimée de la mémoire</li>
@@ -165,12 +178,13 @@
         <div class="qcm-exercise no-page-break-inside" data-correct="3" data-scrambled="false" data-tries="2">
           <h5 class="question-title">Question 6</h5>
           <div class="question">
-            <p>Quel mode de passage doit obligatoirement être attribué à un paramètre qui doit transmettre un résultat calculé vers le programme appelant ?</p>
+            <p>Quel est le mode de passage adéquat pour un paramètre qui doit transmettre un résultat calculé vers le
+              programme appelant ?</p>
           </div>
           <ul class="propositions">
             <li>Le passage par valeur</li>
             <li>Le passage par constante</li>
-            <li>Le passage par variable (par adresse, noté @)</li>
+            <li>Le passage par par adresse</li>
             <li>Le passage par chaîne</li>
           </ul>
         </div>
@@ -179,11 +193,11 @@
         <div class="qcm-exercise no-page-break-inside" data-correct="2" data-scrambled="false" data-tries="2">
           <h5 class="question-title">Question 7</h5>
           <div class="question">
-            <p>Peut-on utiliser l'instruction <code>Retourner val</code> dans le corps d'une procédure algorithmique ?</p>
+            <p>Peut-on utiliser l'instruction <code>Retourner val</code> dans le corps d'une procédure ?</p>
           </div>
           <ul class="propositions">
             <li>Oui, c'est même obligatoire à la fin de chaque procédure</li>
-            <li>Non, l'instruction Retourner est strictement réservée aux fonctions</li>
+            <li>Non, <code>Retourner</code> est strictement réservée aux fonctions</li>
             <li>Oui, mais uniquement si val est de type entier</li>
             <li>Oui, si la procédure comporte au moins deux paramètres</li>
           </ul>
@@ -193,10 +207,13 @@
         <div class="qcm-exercise no-page-break-inside" data-correct="1" data-scrambled="false" data-tries="2">
           <h5 class="question-title">Question 8</h5>
           <div class="question">
-            <p>Soit l'en-tête <code>Procédure Incrementer(@x : Entier)</code>. Quel appel est <strong>illégal</strong> ?</p>
+            <p>Soit l'en-tête <code>Procédure Incrementer(@x : Entier)</code>. Quel appel est-il
+              <strong>illégal</strong> ?
+            </p>
           </div>
           <ul class="propositions">
-            <li><code>Incrementer(5)</code> (car 5 est une valeur constante, pas une variable capable de recevoir une modification)</li>
+            <li><code>Incrementer(5)</code> (car 5 est une valeur constante, pas une variable capable de recevoir une
+              modification)</li>
             <li><code>Incrementer(compteur)</code> (où compteur est une variable entière)</li>
             <li><code>Incrementer(total)</code> (où total est une variable entière)</li>
             <li><code>Incrementer(n)</code> (où n est un entier)</li>
@@ -207,12 +224,12 @@
         <div class="qcm-exercise no-page-break-inside" data-correct="3" data-scrambled="false" data-tries="2">
           <h5 class="question-title">Question 9</h5>
           <div class="question">
-            <p>Une variable déclarée dans le T.D.O.G. (Objets Globaux) du programme principal :</p>
+            <p>Une variable déclarée dans le T.D.O.G :</p>
           </div>
           <ul class="propositions">
-            <li>N'est accessible que dans le programme principal et interdite dans les procédures</li>
+            <li>N'est accessible que dans le programme principal et inaccessible dans les procédures</li>
             <li>Est détruite dès qu'un sous-programme commence à s'exécuter</li>
-            <li>Est accessible en lecture dans l'ensemble du programme et de ses sous-programmes</li>
+            <li>Est accessible dans l'ensemble du programme et de ses sous-programmes</li>
             <li>Doit obligatoirement être de type réel</li>
           </ul>
         </div>
@@ -221,13 +238,14 @@
         <div class="qcm-exercise no-page-break-inside" data-correct="2" data-scrambled="false" data-tries="2">
           <h5 class="question-title">Question 10</h5>
           <div class="question">
-            <p>En Python 3, les types simples scalaires (int, float, str, bool) sont immuables (inchangeables en place). Pour qu'une procédure modifie directement une variable globale de type int selon les conventions officielles 2024-2025, on déclare dans la fonction :</p>
+            <p>En Python, les types (int, float, str, bool) sont immuables (inchangeables en place). Pour qu'une
+              fonction puisse modifier directement la variable globale <code>X</code>, on doit écrire :</p>
           </div>
           <ul class="propositions">
-            <li><code>local nom_var</code></li>
-            <li><code>global nom_var</code></li>
-            <li><code>pointer nom_var</code></li>
-            <li><code>static nom_var</code></li>
+            <li><code>local X</code></li>
+            <li><code>global X</code></li>
+            <li><code>pointer X</code></li>
+            <li><code>static X</code></li>
           </ul>
         </div>
       </section>
@@ -241,7 +259,8 @@
           <span class="badge badge-difficulty-medium rounded-pill px-3 py-2">🟠 Intermédiaire</span>
         </div>
 
-        <p class="fw-bold text-secondary mb-3">Analysez rigoureusement les algorithmes et traces d'exécution suivants :</p>
+        <p class="fw-bold text-secondary mb-3">Analysez rigoureusement les algorithmes et traces d'exécution suivants :
+        </p>
 
         <!-- Q1 -->
         <div class="qcm-exercise no-page-break-inside" data-correct="1" data-scrambled="false" data-tries="2">
@@ -258,7 +277,9 @@ Fin
 x ← 5
 y ← 5
 Test(x, y)</code></pre>
-            <p>Quelles sont les valeurs finales de <code>x</code> et <code>y</code> après l'exécution de <code>Test(x, y)</code> ?</p>
+            <p>Quelles sont les valeurs finales de <code>x</code> et <code>y</code> après l'exécution de
+              <code>Test(x, y)</code> ?
+            </p>
           </div>
           <ul class="propositions">
             <li>x = 5 et y = 15 (a est par valeur donc x est inchangé ; b est par variable @ donc y est modifié)</li>
@@ -279,11 +300,14 @@ Début
   x ← y
   y ← aux
 Fin</code></pre>
-            <p>Pourquoi les variables du programme appelant ne sont-elles pas échangées après l'appel <code>Permuter(a, b)</code> ?</p>
+            <p>Pourquoi les variables du programme appelant ne sont-elles pas échangées après l'appel
+              <code>Permuter(a, b)</code> ?
+            </p>
           </div>
           <ul class="propositions">
-            <li>Parce que la variable tampon <code>aux</code> est mal orthographiée</li>
-            <li>Parce que <code>x</code> et <code>y</code> sont passés par valeur : seule la copie locale a été permutée, sans affecter <code>a</code> et <code>b</code></li>
+            <li>Parce que la variable <code>aux</code> est mal orthographiée</li>
+            <li>Parce que <code>x</code> et <code>y</code> sont passés par valeur : seule la copie locale a été
+              permutée, sans affecter <code>a</code> et <code>b</code></li>
             <li>Parce que la permutation nécessite obligatoirement 3 paramètres</li>
             <li>Parce qu'il manque l'instruction <code>Retourner</code></li>
           </ul>
@@ -293,7 +317,8 @@ Fin</code></pre>
         <div class="qcm-exercise no-page-break-inside" data-correct="3" data-scrambled="false" data-tries="2">
           <h5 class="question-title">Question 3</h5>
           <div class="question">
-            <p>Pour corriger la procédure de l'exercice précédent et rendre la permutation effective en mémoire, il faut écrire :</p>
+            <p>Pour corriger la procédure de l'exercice précédent et rendre la permutation effective, il faut
+              écrire :</p>
           </div>
           <ul class="propositions">
             <li><code>Procédure Permuter(@x : Entier, y : Entier)</code></li>
@@ -307,7 +332,7 @@ Fin</code></pre>
         <div class="qcm-exercise no-page-break-inside" data-correct="2" data-scrambled="false" data-tries="2">
           <h5 class="question-title">Question 4</h5>
           <div class="question">
-            <p>Soit une procédure de saisie sécurisée :</p>
+            <p>Soit une procédure de saisie :</p>
             <pre><code class="language-algorithm">Procédure Saisie(@n : Entier)
 Début
   Répéter
@@ -319,7 +344,7 @@ Fin</code></pre>
           </div>
           <ul class="propositions">
             <li>Pour que la boucle Répéter puisse s'exécuter</li>
-            <li>Pour transmettre la valeur lue au clavier à la variable effective du programme principal lors du retour</li>
+            <li>Pour transmettre la valeur lue au clavier au programme principal lors du retour</li>
             <li>Pour empêcher la saisie de caractères alphabétiques</li>
             <li>Pour convertir automatiquement <code>n</code> en réel</li>
           </ul>
@@ -334,7 +359,7 @@ Fin</code></pre>
 
 def incrementer():
     global compteur
-    compteur += 1
+    compteur = compteur + 1
 
 incrementer()
 incrementer()
@@ -353,12 +378,14 @@ print(compteur)</code></pre>
         <div class="qcm-exercise no-page-break-inside" data-correct="3" data-scrambled="false" data-tries="2">
           <h5 class="question-title">Question 6</h5>
           <div class="question">
-            <p>En Python, si l'on omet l'instruction <code>global compteur</code> dans la fonction précédente lors d'une affectation <code>compteur += 1</code> :</p>
+            <p>En Python, si l'on omet l'instruction <code>global compteur</code> dans la fonction précédente lors d'une
+              affectation <code>compteur = compteur + 1</code> :</p>
           </div>
           <ul class="propositions">
             <li>Python incrémente automatiquement la variable globale</li>
             <li>Python crée une variable sans valeur</li>
-            <li>Une erreur <code>UnboundLocalError: local variable 'compteur' referenced before assignment</code> est levée</li>
+            <li>Une erreur <code>UnboundLocalError: local variable 'compteur' referenced before assignment</code> est
+              levée</li>
             <li>Le compteur prend la valeur None</li>
           </ul>
         </div>
@@ -367,11 +394,12 @@ print(compteur)</code></pre>
         <div class="qcm-exercise no-page-break-inside" data-correct="2" data-scrambled="false" data-tries="2">
           <h5 class="question-title">Question 7</h5>
           <div class="question">
-            <p>Peut-on appeler une fonction à l'intérieur du corps d'une procédure en algorithmique ?</p>
+            <p>Peut-on appeler une fonction à l'intérieur d'une procédure en algorithmique ?</p>
           </div>
           <ul class="propositions">
             <li>Non, une procédure ne peut jamais faire appel à un autre sous-programme</li>
-            <li>Oui, une procédure peut librement appeler une fonction et utiliser sa valeur de retour dans ses calculs ou conditions</li>
+            <li>Oui, une procédure peut librement appeler une fonction et utiliser sa valeur de retour dans ses calculs
+              ou conditions</li>
             <li>Uniquement si la fonction retourne obligatoirement une valeur entière</li>
             <li>Non, seules les fonctions ont le droit d'appeler d'autres fonctions</li>
           </ul>
@@ -381,7 +409,7 @@ print(compteur)</code></pre>
         <div class="qcm-exercise no-page-break-inside" data-correct="1" data-scrambled="false" data-tries="2">
           <h5 class="question-title">Question 8</h5>
           <div class="question">
-            <p>Soit la procédure suivante calculant simultanément le quotient entier et le reste de deux nombres :</p>
+            <p>Soit la procédure suivante calculant le quotient entier et le reste de deux nombres :</p>
             <pre><code class="language-algorithm">Procédure Division_Euclidienne(a : Entier, b : Entier, @q : Entier, @r : Entier)
 Début
   q ← a Div b
@@ -390,7 +418,8 @@ Fin</code></pre>
             <p>Quels sont respectivement les statuts des paramètres <code>a, b, q, r</code> ?</p>
           </div>
           <ul class="propositions">
-            <li>a et b sont des paramètres d'entrée (par valeur) ; q et r sont des paramètres de sortie (par variable @)</li>
+            <li>a et b sont des paramètres d'entrée (par valeur) ; q et r sont des paramètres de sortie (par adresse @)
+            </li>
             <li>Tous les 4 sont des paramètres de sortie</li>
             <li>a et b sont des paramètres de sortie ; q et r sont des paramètres d'entrée</li>
             <li>Tous les 4 sont des paramètres d'entrée</li>
@@ -405,7 +434,8 @@ Fin</code></pre>
           </div>
           <ul class="propositions">
             <li>L'effacement définitif de la variable du disque dur</li>
-            <li>La déclaration d'une variable locale portant le même identificateur qu'une variable globale, rendant la globale inaccessible dans ce sous-programme</li>
+            <li>La déclaration d'une variable locale portant le même nom qu'une variable globale, rendant la
+              globale inaccessible dans ce sous-programme</li>
             <li>La transformation d'un entier en chaîne secrète</li>
             <li>L'utilisation de tirets bas dans le nom de la variable</li>
           </ul>
@@ -415,12 +445,13 @@ Fin</code></pre>
         <div class="qcm-exercise no-page-break-inside" data-correct="3" data-scrambled="false" data-tries="2">
           <h5 class="question-title">Question 10</h5>
           <div class="question">
-            <p>Dans quel cas de conception la structure <strong>Procédure</strong> est-elle incontournable ?</p>
+            <p>Dans quel cas l'utilisation d'une <strong>Procédure</strong> est-elle incontournable ?</p>
           </div>
           <ul class="propositions">
             <li>Lorsqu'on doit tester si un nombre est pair</li>
             <li>Lorsqu'on effectue un simple calcul d'aire $S = L \times l$</li>
-            <li>Lorsqu'on doit réaliser un traitement produisant plusieurs résultats distincts ou modifiant des variables existantes (saisie, tri, remplissage, échange)</li>
+            <li>Lorsqu'on doit réaliser un traitement produisant plusieurs résultats distincts ou modifiant des
+              variables existantes (saisie, tri, remplissage, échange)</li>
             <li>Lorsqu'on calcule une racine carrée</li>
           </ul>
         </div>
@@ -431,28 +462,43 @@ Fin</code></pre>
            ======================================================== -->
       <section class="mb-5 exercise-section" data-ex-id="ex3" id="exercice-3">
         <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
-          <h3 class="h4 text-primary m-0">Exercice 3 : Horodatage &amp; Décomposition Temporelle (Mixte Chronométrie)</h3>
+          <h3 class="h4 text-primary m-0">Exercice 3 : Horodatage &amp; Décomposition Temporelle (Mixte Chronométrie)
+          </h3>
           <span class="badge badge-difficulty-easy rounded-pill px-3 py-2">🟢 Facile</span>
         </div>
 
         <div class="row align-items-center mb-3">
           <div class="col-lg-7">
             <p>
-              Dans un système de chronométrage sportif ou de supervision réseau, les mesures de durée sont capturées sous la forme d'un nombre total de secondes écoulées (par exemple <code>total_sec = 7543</code> secondes).<br>
-              Pour restituer ce temps sous une forme humaine conventionnelle <code>HH:MM:SS</code> (par exemple <code>"02:05:43"</code>), on souhaite mettre en place une architecture modulaire collaborative combinant fonctions et procédures :
+              Dans un système de chronométrage sportif, les mesures de durée sont capturées sous la forme d'un nombre
+              total de secondes écoulées (par exemple <code>total_sec = 7543</code> secondes).<br>
+              Pour restituer ce temps sous une forme conventionnelle <code>HH:MM:SS</code> (<code>"02:05:43"</code>), on
+              souhaite développer un algorithme modulaire composé de :
             </p>
             <ul class="ps-3 mb-0">
-              <li>Une fonction <code>Formater_2Chiffres(val : Entier) : Chaîne</code> qui prend un entier compris entre 0 et 59 et retourne une chaîne de deux chiffres (en préfixant d'un zéro si nécessaire : $5 \to \text{"05"}$, $42 \to \text{"42"}$).</li>
-              <li>Une procédure <code>Decomposer_Temps(total_sec : Entier, @h : Entier, @m : Entier, @s : Entier)</code> qui extrait simultanément le nombre d'heures, de minutes et de secondes restantes à partir de la durée brute en secondes.</li>
-              <li>Une fonction <code>Formater_Horloge(h : Entier, m : Entier, s : Entier) : Chaîne</code> qui appelle <code>Formater_2Chiffres</code> pour construire et retourner la chaîne finale au format officiel <code>"HH:MM:SS"</code>.</li>
-              <li>Une procédure <code>Afficher_Bilan_Chrono(total_sec : Entier)</code> qui appelle <code>Decomposer_Temps</code> et <code>Formater_Horloge</code>, puis affiche le temps formaté et son détail textuel.</li>
+              <li>Une fonction <code>Formater_2Chiffres(val : Entier):Chaîne</code> qui prend un entier compris entre
+                0 et 59 et retourne une chaîne de deux chiffres (en préfixant d'un zéro si nécessaire : $5 \to
+                \text{"05"}$, $42 \to \text{"42"}$).</li>
+              <li>Une procédure <code>Decomposer_Temps(total_sec : Entier, @h : Entier, @m : Entier, @s : Entier)</code>
+                qui extrait simultanément le nombre d'heures, de minutes et de secondes restantes à partir d'une durée
+                en secondes.</li>
+              <li>Une fonction <code>Formater_Horloge(h : Entier, m : Entier, s : Entier):Chaîne</code> qui appelle
+                <code>Formater_2Chiffres</code> pour construire et retourner la chaîne finale au format
+                <code>"HH:MM:SS"</code>.
+              </li>
+              <li>Une procédure <code>Afficher_Chrono(total_sec : Entier)</code> qui appelle
+                <code>Decomposer_Temps</code> et <code>Formater_Horloge</code>, puis affiche le temps formaté.
+              </li>
             </ul>
           </div>
           <div class="col-lg-5 text-center my-3 my-lg-0">
             <figure class="figure m-0 d-print-none text-center">
-              <img src="assets/img/serie06/horodatage-duree.jpg" alt="Décomposition temporelle d'une durée en heures, minutes et secondes" class="img-fluid rounded-3 shadow-sm border" style="max-height: 250px; width: 100%; object-fit: cover;">
+              <img src="assets/img/serie06/horodatage-duree.jpg"
+                alt="Décomposition temporelle d'une durée en heures, minutes et secondes"
+                class="img-fluid rounded-3 shadow-sm border" style="max-height: 250px; width: 100%; object-fit: cover;">
               <figcaption class="figure-caption text-center small mt-1">
-                <i class="bi bi-clock-history text-primary me-1"></i>Décomposition d'une durée brute en Heures ($h$), Minutes ($m$) et Secondes ($s$)
+                <i class="bi bi-clock-history text-primary me-1"></i>Décomposition d'une durée brute en Heures ($h$),
+                Minutes ($m$) et Secondes ($s$)
               </figcaption>
             </figure>
           </div>
@@ -461,12 +507,12 @@ Fin</code></pre>
         <div class="card bg-light border-0 shadow-sm p-3 mb-3">
           <h6 class="fw-bold text-dark mb-1"><i class="bi bi-pencil-square text-primary me-2"></i>Travail demandé :</h6>
           <ol class="small text-dark mb-0 ps-3">
-            <li>Pourquoi le calcul des composantes temporelles est-il confié à une <strong>procédure</strong> (<code>Decomposer_Temps</code>) plutôt qu'à une simple fonction ?</li>
-            <li>Justifier le mode de passage des paramètres dans <code>Decomposer_Temps</code> : passage par valeur pour <code>total_sec</code>, et passage par variable avec <code>@</code> pour <code>h</code>, <code>m</code> et <code>s</code>.</li>
-            <li>Rédiger l'algorithme de la fonction <code>Formater_2Chiffres(val : Entier) : Chaîne</code>.</li>
-            <li>Dresser le Tableau de Déclaration des Objets Locaux (T.D.O.L.) et rédiger l'algorithme officiel de la procédure <code>Decomposer_Temps</code>.</li>
-            <li>Rédiger l'algorithme de la fonction <code>Formater_Horloge</code> et de la procédure <code>Afficher_Bilan_Chrono</code>.</li>
-            <li>Traduire ces sous-programmes en Python 3 selon les conventions officielles 2024-2025.</li>
+            <li>Rédiger l'algorithme de la fonction <code>Formater_2Chiffres(val : Entier):Chaîne</code>.</li>
+            <li>Rédiger l'algorithme de la procédure <code>Decomposer_Temps</code>.</li>
+            <li>Rédiger l'algorithme de la fonction <code>Formater_Horloge</code> et de la procédure
+              <code>Afficher_Bilan_Chrono</code>.
+            </li>
+            <li>Traduire ces sous-programmes en Python.</li>
           </ol>
         </div>
 
@@ -476,10 +522,15 @@ Fin</code></pre>
             💡 Conseils méthodologiques &amp; Indices
           </div>
           <ul class="mb-2 small text-muted ps-3">
-            <li>Pour décomposer le temps en secondes : $h \leftarrow total\_sec \text{ Div } 3600$, le reste intermédiaire $reste \leftarrow total\_sec \text{ Mod } 3600$, puis $m \leftarrow reste \text{ Div } 60$ et $s \leftarrow reste \text{ Mod } 60$.</li>
-            <li>Pour <code>Formater_2Chiffres</code>, utiliser la fonction standard <code>ConvCh(val)</code> : si $val &lt; 10$, concaténer <code>"0" + ConvCh(val)</code>, sinon retourner <code>ConvCh(val)</code>.</li>
-            <li>Dans <code>Decomposer_Temps</code>, déclarer la variable intermédiaire <code>reste</code> dans le T.D.O.L. de la procédure.</li>
-            <li>En Python, pour simuler la modification de variables scalaires passées en argument, on utilise soit la réaffectation multiple par tuple (ex: <code>h, m, s = decomposer_temps(total_sec)</code>), soit le mot-clé <code>global</code>.</li>
+            <li>Pour décomposer le temps en secondes : $h \leftarrow total\_sec \text{ Div } 3600$, le reste
+              intermédiaire $reste \leftarrow total\_sec \text{ Mod } 3600$, puis $m \leftarrow reste \text{ Div } 60$
+              et $s \leftarrow reste \text{ Mod } 60$.</li>
+            <li>Pour <code>Formater_2Chiffres</code>, utiliser la fonction standard <code>ConvCh(val)</code> : si $val
+              &lt; 10$, concaténer <code>"0" + ConvCh(val)</code>, sinon retourner <code>ConvCh(val)</code>.</li>
+            <li>En Python, pour simuler la modification de variables scalaires passées en argument, on utilise soit la
+              réaffectation multiple par tuple (ex: <code>h, m, s = decomposer_temps(total_sec)</code>), soit le mot-clé
+              <code>global</code>.
+            </li>
           </ul>
           <div class="p-2 bg-white rounded border small">
             <strong>Jeux d'essais à vérifier :</strong><br>
@@ -495,52 +546,76 @@ Fin</code></pre>
            ======================================================== -->
       <section class="mb-5 exercise-section" data-ex-id="ex4" id="exercice-4">
         <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
-          <h3 class="h4 text-primary m-0">Exercice 4 : Sécurité Routière &amp; Distance d'Arrêt (Mixte Cinématique &amp; Diagnostic)</h3>
+          <h3 class="h4 text-primary m-0">Exercice 4 : Sécurité Routière &amp; Distance d'Arrêt (Mixte Cinématique &amp;
+            Diagnostic)</h3>
           <span class="badge badge-difficulty-easy rounded-pill px-3 py-2">🟢 Facile</span>
         </div>
 
         <div class="row align-items-center mb-3">
           <div class="col-lg-7">
             <p>
-              En sécurité routière et en physique appliquée, la distance totale d'arrêt d'un véhicule $D_a$ face à un obstacle imprévu se compose de deux phases successives :
+              En sécurité routière et en physique appliquée, la distance totale d'arrêt d'un véhicule $D_a$ face à un
+              obstacle imprévu se compose de deux phases successives :
             </p>
             <ol class="small ps-3 mb-2">
-              <li><strong>La distance de réaction ($D_r$) :</strong> parcourue à vitesse constante pendant le temps de réflexe du conducteur ($t_r$, estimé à $1.0\text{ s}$ pour un conducteur vigilant). En convertissant la vitesse de km/h en m/s ($v_{ms} = \frac{v}{3.6}$), on a : $D_r = v_{ms} \times t_r$.</li>
-              <li><strong>La distance de freinage ($D_f$) :</strong> décélération active des freins jusqu'à l'arrêt complet selon la pesanteur ($g = 9.81\text{ m/s}^2$) et l'adhérence $\mu$ :
+              <li><strong>La distance de réaction ($D_r$) :</strong> parcourue à vitesse constante pendant le temps de
+                réflexe du conducteur ($t_r$, estimé à $1.0\text{ s}$ pour un conducteur vigilant). En convertissant la
+                vitesse de km/h en m/s ($v_{ms} = \frac{v}{3.6}$), on a : $D_r = v_{ms} \times t_r$.</li>
+              <li><strong>La distance de freinage ($D_f$) :</strong> décélération active des freins jusqu'à l'arrêt
+                complet selon la pesanteur ($g = 9.81\text{ m/s}^2$) et l'adhérence $\mu$ :
                 $$D_f = \frac{v_{ms}^2}{2 \times g \times \mu}$$
-                $\mu = 0.8$ sur route sèche (<code>"Sec"</code>), $\mu = 0.4$ sur route mouillée (<code>"Mouille"</code>), et $\mu = 0.1$ sur route verglacée (<code>"Verglace"</code>).
+                $\mu = 0.8$ sur route sèche (<code>"Sec"</code>), $\mu = 0.4$ sur route mouillée
+                (<code>"Mouille"</code>), et $\mu = 0.1$ sur route verglacée (<code>"Verglace"</code>).
               </li>
             </ol>
             <p class="mb-0">
-              La distance totale d'arrêt vaut la somme des deux distances : $D_a = D_r + D_f$. On souhaite concevoir un module embarqué combinant fonctions et procédures :
+              La distance totale d'arrêt vaut la somme des deux distances : $D_a = D_r + D_f$. On souhaite concevoir un
+              algorithme modulaire comportant :
             </p>
           </div>
           <div class="col-lg-5 text-center my-3 my-lg-0">
             <figure class="figure m-0 d-print-none text-center">
-              <img src="assets/img/serie06/distance-arret-securite.jpg" alt="Cinématique de sécurité routière et distance totale d'arrêt" class="img-fluid rounded-3 shadow-sm border" style="max-height: 250px; width: 100%; object-fit: cover;">
+              <img src="assets/img/serie06/distance-arret-securite.jpg"
+                alt="Cinématique de sécurité routière et distance totale d'arrêt"
+                class="img-fluid rounded-3 shadow-sm border" style="max-height: 250px; width: 100%; object-fit: cover;">
               <figcaption class="figure-caption text-center small mt-1">
-                <i class="bi bi-shield-check text-primary me-1"></i>Distance de réaction ($D_r$), freinage ($D_f$) et arrêt sécurisé face à un obstacle
+                <i class="bi bi-shield-check text-primary me-1"></i>Distance de réaction ($D_r$), freinage ($D_f$) et
+                arrêt sécurisé face à un obstacle
               </figcaption>
             </figure>
           </div>
         </div>
         <ul class="ps-3 mb-3">
-          <li>Une fonction <code>Adherence_Route(etat : Chaîne) : Réel</code> qui reçoit l'état textuel de la route et renvoie le coefficient de frottement $\mu$ correspondant ($0.8$, $0.4$, ou $0.1$ ; $0.5$ par défaut si non reconnu).</li>
-          <li>Une fonction <code>Distance_Freinage(vitesse_kmh : Réel, coef_mu : Réel) : Réel</code> qui calcule et retourne la distance de freinage physique $D_f$ en mètres.</li>
-          <li>Une procédure <code>Calculer_Securite_Arret(vitesse_kmh : Réel, etat_route : Chaîne, temps_reac : Réel, @dist_reac : Réel, @dist_frein : Réel, @dist_arret : Réel)</code> qui calcule simultanément les trois distances ($D_r$, $D_f$ et $D_a = D_r + D_f$) et les restitue via trois paramètres de sortie passés par variable (<code>@</code>).</li>
-          <li>Une fonction <code>Tester_Collision(dist_arret : Réel, dist_obstacle : Réel) : Booléen</code> qui renvoie <code>Vrai</code> si $dist\_arret > dist\_obstacle$ (choc inévitable), et <code>Faux</code> si le véhicule parvient à s'arrêter avant l'obstacle.</li>
-          <li>Une procédure <code>Afficher_Diagnostic_Routier(vitesse_kmh : Réel, etat_route : Chaîne, dist_obstacle : Réel)</code> qui coordonne l'appel aux sous-programmes (en fixant le temps de réaction à $1.0\text{ s}$), puis affiche un compte-rendu clair : distances décomposées, verdict de collision ou d'arrêt sécurisé, et marge restante ou distance manquante.</li>
+          <li>Une fonction <code>Adherence(etat: Chaîne):Réel</code> qui reçoit l'état de la route ("Sec", "Mouillé",
+            "Verglace") et renvoie le coefficient de frottement $\mu$ correspondant ($0.8$, $0.4$, $0.1$ ou $0.5$ si non
+            reconnu).</li>
+          <li>Une fonction <code>Dist_Frein(vitesse_kmh: Réel, coef_mu: Réel):Réel</code> qui calcule la distance
+            de freinage $D_f$ en mètres.</li>
+          <li>Une procédure
+            <code>Calc_Arret(vitesse_kmh: Réel, etat_route: Chaîne, temps_reac: Réel, @dist_reac: Réel, @dist_frein: Réel, @dist_arret: Réel)</code>
+            qui calcule simultanément les trois distances ($D_r$, $D_f$ et $D_a = D_r + D_f$).
+          </li>
+          <li>Une fonction <code>Test_Collision(dist_arret: Réel, dist_obstacle: Réel):Booléen</code> qui renvoie
+            <code>Vrai</code> si $dist\_arret > dist\_obstacle$ (choc inévitable), et <code>Faux</code> si le véhicule
+            parvient à s'arrêter avant l'obstacle.
+          </li>
+          <li>Une procédure <code>Diag_Routier(vitesse_kmh: Réel, etat_route: Chaîne, dist_obstacle: Réel)</code> qui
+            coordonne l'appel aux sous-programmes (en fixant le temps de réaction à $1.0\text{ s}$), puis affiche un
+            compte-rendu clair : distances décomposées, verdict de collision ou d'arrêt sécurisé, et marge restante ou
+            distance manquante.
+          </li>
         </ul>
 
         <div class="card bg-light border-0 shadow-sm p-3 mb-3">
           <h6 class="fw-bold text-dark mb-1"><i class="bi bi-pencil-square text-primary me-2"></i>Travail demandé :</h6>
           <ol class="small text-dark mb-0 ps-3">
-            <li>Pourquoi le calcul simultané des trois composantes ($D_r$, $D_f$, $D_a$) nécessite-t-il l'emploi d'une <strong>procédure</strong> plutôt que d'une fonction unique ?</li>
-            <li>Rédiger l'algorithme de la fonction <code>Adherence_Route(etat : Chaîne) : Réel</code>.</li>
-            <li>Rédiger l'algorithme de la fonction <code>Distance_Freinage(vitesse_kmh : Réel, coef_mu : Réel) : Réel</code>.</li>
-            <li>Dresser le T.D.O.L. et rédiger l'algorithme officiel de la procédure <code>Calculer_Securite_Arret</code> en mettant en œuvre le passage par variable (<code>@</code>).</li>
-            <li>Rédiger l'algorithme de la fonction <code>Tester_Collision</code> et de la procédure <code>Afficher_Diagnostic_Routier</code>.</li>
-            <li>Traduire l'ensemble de l'architecture en Python 3 selon les normes officielles.</li>
+            <li>Rédiger l'algorithme de la fonction <code>Adherence(etat: Chaîne):Réel</code>.</li>
+            <li>Rédiger l'algorithme de la fonction <code>Dist_Frein(vitesse_kmh: Réel, coef_mu: Réel):Réel</code>.</li>
+            <li>Rédiger l'algorithme de la procédure <code>Calc_Arret</code>.</li>
+            <li>Rédiger l'algorithme de la fonction <code>Test_Collision</code> et de la procédure
+              <code>Diag_Routier</code>.
+            </li>
+            <li>Traduire l'ensemble en Python.</li>
           </ol>
         </div>
 
@@ -550,18 +625,20 @@ Fin</code></pre>
             💡 Conseils méthodologiques &amp; Indices
           </div>
           <ul class="mb-2 small text-muted ps-3">
-            <li>Attention à la conversion d'unités : convertir impérativement la vitesse en mètres par seconde ($v_{ms} \leftarrow vitesse\_kmh / 3.6$) avant d'évaluer $D_r = v_{ms} \times temps\_reac$ et $D_f$.</li>
-            <li>Dans <code>Calculer_Securite_Arret</code>, déclarer les variables locales nécessaires ($v_{ms}$ et $mu$) dans le T.D.O.L. de la procédure. Appeler <code>Adherence_Route</code> pour obtenir $\mu$, puis calculer $dist\_frein \leftarrow Distance\_Freinage(vitesse\_kmh, mu)$, et enfin $dist\_arret \leftarrow dist\_reac + dist\_frein$.</li>
-            <li>Dans <code>Afficher_Diagnostic_Routier</code>, si <code>Tester_Collision</code> est <code>Vrai</code>, calculer l'excès de distance $dist\_arret - dist\_obstacle$ pour indiquer l'intensité du choc ; sinon calculer la marge de sécurité $dist\_obstacle - dist\_arret$.</li>
+            <li>Attention à la conversion d'unités : convertir impérativement la vitesse en mètres par seconde ($v_{ms}
+              \leftarrow vitesse\_kmh / 3.6$) avant d'évaluer $D_r = v_{ms} \times temps\_reac$ et $D_f$.</li>
           </ul>
           <div class="p-2 bg-white rounded border small">
             <strong>Jeux d'essais à vérifier :</strong> ($t_r = 1.0\text{ s}$)<br>
             • En ville : $v = 50\text{ km/h}$, route <code>"Sec"</code>, obstacle à $30.0\text{ m}$ :<br>
-            &nbsp;&nbsp;$D_r \approx 13.89\text{ m}$, $D_f \approx 12.29\text{ m}$ &rarr; $D_a \approx 26.18\text{ m}$ &rarr; <strong>Arrêt sécurisé</strong> (marge restante : $3.82\text{ m}$).<br>
+            &nbsp;&nbsp;$D_r \approx 13.89\text{ m}$, $D_f \approx 12.29\text{ m}$ &rarr; $D_a \approx 26.18\text{ m}$
+            &rarr; <strong>Arrêt sécurisé</strong> (marge restante : $3.82\text{ m}$).<br>
             • Sur route : $v = 90\text{ km/h}$, route <code>"Mouille"</code>, obstacle à $80.0\text{ m}$ :<br>
-            &nbsp;&nbsp;$D_r = 25.00\text{ m}$, $D_f \approx 79.64\text{ m}$ &rarr; $D_a \approx 104.64\text{ m}$ &rarr; <strong>Collision inévitable !</strong> (dépassement de $24.64\text{ m}$).<br>
+            &nbsp;&nbsp;$D_r = 25.00\text{ m}$, $D_f \approx 79.64\text{ m}$ &rarr; $D_a \approx 104.64\text{ m}$ &rarr;
+            <strong>Collision inévitable !</strong> (dépassement de $24.64\text{ m}$).<br>
             • Même vitesse ($v = 90\text{ km/h}$), route <code>"Sec"</code>, obstacle à $80.0\text{ m}$ :<br>
-            &nbsp;&nbsp;$D_r = 25.00\text{ m}$, $D_f \approx 39.82\text{ m}$ &rarr; $D_a \approx 64.82\text{ m}$ &rarr; <strong>Arrêt sécurisé</strong> (marge : $15.18\text{ m}$).
+            &nbsp;&nbsp;$D_r = 25.00\text{ m}$, $D_f \approx 39.82\text{ m}$ &rarr; $D_a \approx 64.82\text{ m}$ &rarr;
+            <strong>Arrêt sécurisé</strong> (marge : $15.18\text{ m}$).
           </div>
         </div>
       </section>
@@ -571,45 +648,59 @@ Fin</code></pre>
            ======================================================== -->
       <section class="mb-5 exercise-section" data-ex-id="ex5" id="exercice-5">
         <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
-          <h3 class="h4 text-primary m-0">Exercice 5 : Nettoyage &amp; Normalisation de Chaînes (Mixte Traitement de Texte)</h3>
+          <h3 class="h4 text-primary m-0">Exercice 5 : Nettoyage &amp; Normalisation de Chaînes (Mixte Traitement de
+            Texte)</h3>
           <span class="badge badge-difficulty-medium rounded-pill px-3 py-2">🟠 Intermédiaire</span>
         </div>
 
         <div class="row align-items-center mb-3">
           <div class="col-lg-7">
             <p>
-              Dans les formulaires d'inscription en ligne, les utilisateurs saisissent souvent des identités avec des espacements multiples anarchiques et une alternance désordonnée de majuscules et de minuscules (par exemple : <code>ch = "   mOhaMed   aLi   bEn   sALEM   "</code>).<br>
-              Avant archivage, le système doit <strong>normaliser</strong> cette chaîne sur place (sans utiliser de tableau) : éliminer les espaces superflus, compter le nombre effectif de mots et capitaliser chaque composante (première lettre en majuscule, les autres en minuscule : <code>"Mohamed Ali Ben Salem"</code>).
+              Dans les formulaires d'inscription en ligne, les utilisateurs saisissent souvent des identités avec des
+              espacements multiples anarchiques et une alternance désordonnée de majuscules et de minuscules (par
+              exemple : <code>ch = "   mOhaMed   aLi   bEn   sALEM   "</code>).<br>
+              Avant archivage, le système doit <strong>normaliser</strong> cette chaîne : éliminer les espaces
+              superflus, compter et capitaliser les mots (première lettre en majuscule, les autres en minuscule :
+              <code>"Mohamed Ali Ben Salem"</code>).
             </p>
           </div>
           <div class="col-lg-5 text-center my-3 my-lg-0">
             <figure class="figure m-0 d-print-none text-center">
-              <img src="assets/img/serie06/normalisation-texte.jpg" alt="Normalisation et assainissement d'une chaîne de caractères" class="img-fluid rounded-3 shadow-sm border" style="max-height: 250px; width: 100%; object-fit: cover;">
+              <img src="assets/img/serie06/normalisation-texte.jpg"
+                alt="Normalisation et assainissement d'une chaîne de caractères"
+                class="img-fluid rounded-3 shadow-sm border" style="max-height: 250px; width: 100%; object-fit: cover;">
               <figcaption class="figure-caption text-center small mt-1">
-                <i class="bi bi-spellcheck text-primary me-1"></i>Nettoyage des espaces superflus, casse et comptage des mots sans tableau
+                <i class="bi bi-spellcheck text-primary me-1"></i>Nettoyage des espaces superflus, casse et comptage des
+                mots sans tableau
               </figcaption>
             </figure>
           </div>
         </div>
 
-        <p class="mb-2">Le cahier des charges impose une décomposition modulaire mixte :</p>
+        <p class="mb-2">Le cahier des charges impose une décomposition modulaire du programme :</p>
         <ul class="ps-3 mb-3">
-          <li>Une fonction <code>Est_Espace(c : Caractère) : Booléen</code> qui renvoie <code>Vrai</code> si le caractère <code>c</code> est un espace, et <code>Faux</code> sinon.</li>
-          <li>Une fonction <code>En_Minuscule(c : Caractère) : Caractère</code> qui convertit un caractère majuscule en minuscule en utilisant les codes ASCII (si <code>"A" &le; c &le; "Z"</code> renvoie <code>Chr(Ord(c) + 32)</code>, sinon renvoie <code>c</code>).</li>
-          <li>Une procédure <code>Purger_Espaces(@texte : Chaîne)</code> qui modifie la chaîne <code>texte</code> directement par variable (<code>@</code>) pour supprimer les espaces de tête, les espaces de queue, et réduire toute séquence d'espaces consécutifs à un seul espace.</li>
-          <li>Une procédure <code>Normaliser_Nom(@texte : Chaîne, @nb_mots : Entier)</code> qui appelle <code>Purger_Espaces(texte)</code>, puis parcourt la chaîne assainie pour mettre en majuscule la première lettre de chaque mot, convertir les autres lettres en minuscules, et compter le nombre total de mots (transmis par variable via <code>@nb_mots</code>).</li>
-          <li>Une procédure <code>Afficher_Fiche_Identite(nom_brut : Chaîne)</code> qui prend une chaîne brute, appelle <code>Normaliser_Nom</code>, puis affiche le nom propre épuré ainsi que le nombre de mots identifiés.</li>
+          <li>Une fonction <code>Minus(c: Caractère):Caractère</code> qui convertit un caractère majuscule en
+            minuscule en utilisant les codes ASCII (si <code>"A" &le; c &le; "Z"</code> renvoie
+            <code>Chr(Ord(c) + 32)</code>, sinon renvoie <code>c</code>).
+          </li>
+          <li>Une procédure <code>Purger(@texte : Chaîne)</code> qui supprime les espaces superflus (inutiles) au début,
+            à la fin, et au milieu de la chaîne.</li>
+          <li>Une procédure <code>Normaliser(@texte: Chaîne, @nb_mots: Entier)</code> qui appelle
+            <code>Purger(texte)</code>, puis parcourt la chaîne pour mettre en majuscule la première lettre de chaque
+            mot, convertir les autres lettres en minuscules et compter le nombre total de mots.
+          </li>
+          <li>Une procédure <code>AfficherIdentite(nom_brut: Chaîne)</code> qui le nom propre épuré ainsi que le nombre
+            de mots identifiés.
+          </li>
         </ul>
 
         <div class="card bg-light border-0 shadow-sm p-3 mb-3">
           <h6 class="fw-bold text-dark mb-1"><i class="bi bi-pencil-square text-primary me-2"></i>Travail demandé :</h6>
           <ol class="small text-dark mb-0 ps-3">
-            <li>Pourquoi le paramètre <code>texte</code> dans <code>Purger_Espaces</code> et <code>Normaliser_Nom</code> doit-il impérativement être déclaré avec le symbole <code>@</code> ?</li>
-            <li>Rédiger l'algorithme des fonctions auxiliaires <code>Est_Espace</code> et <code>En_Minuscule</code>.</li>
-            <li>Dresser le T.D.O.L. et rédiger l'algorithme de la procédure <code>Purger_Espaces(@texte : Chaîne)</code>.</li>
-            <li>Rédiger l'algorithme officiel de la procédure <code>Normaliser_Nom(@texte : Chaîne, @nb_mots : Entier)</code>.</li>
-            <li>Rédiger l'algorithme de la procédure d'affichage <code>Afficher_Fiche_Identite</code>.</li>
-            <li>Traduire la solution complète en Python 3 selon les normes officielles.</li>
+            <li>Rédiger l'algorithme de la procédure <code>Purger(@texte : Chaîne)</code>.</li>
+            <li>Rédiger l'algorithme de la procédure <code>Normaliser(@texte: Chaîne, @nb_mots: Entier)</code>.</li>
+            <li>Rédiger l'algorithme de la procédure d'affichage <code>AfficherIdentite</code>.</li>
+            <li>Traduire la solution complète en Python.</li>
           </ol>
         </div>
 
@@ -619,15 +710,15 @@ Fin</code></pre>
             💡 Conseils méthodologiques &amp; Indices
           </div>
           <ul class="mb-2 small text-muted ps-3">
-            <li>Pour <code>Purger_Espaces</code>, accumuler les caractères dans une variable locale <code>propre &larr; ""</code> : ignorer les espaces tant que <code>propre</code> est vide (élimination des espaces de début) ; pour les espaces suivants, n'ajouter l'espace que si le dernier caractère de <code>propre</code> n'est pas déjà un espace. En fin de parcours, si le dernier caractère de <code>propre</code> est un espace, l'éliminer. Terminer par l'affectation par variable : <code>texte &larr; propre</code>.</li>
-            <li>Dans <code>Normaliser_Nom</code>, un caractère <code>texte[i]</code> est l'initiale d'un mot si $i = 0$ ou si le caractère précédent est un espace (<code>texte[i-1] = " "</code>). Si c'est une initiale, le convertir en majuscule via <code>Majus(texte[i])</code> ; sinon le convertir avec <code>En_Minuscule(texte[i])</code>.</li>
-            <li>Le nombre de mots d'une chaîne purgée et non vide est simplement égal au nombre d'espaces simples $+ 1$.</li>
+            <li>Le nombre de mots d'une chaîne purgée et non vide est simplement égal au nombre d'espaces simples $+ 1$.
+            </li>
           </ul>
           <div class="p-2 bg-white rounded border small">
             <strong>Jeux d'essais à vérifier :</strong><br>
             • Pour <code>nom_brut = "   mOhaMed   aLi   bEn   sALEM   "</code> :<br>
             &nbsp;&nbsp;- Après <code>Purger_Espaces</code> : <code>texte = "mOhaMed aLi bEn sALEM"</code><br>
-            &nbsp;&nbsp;- Après <code>Normaliser_Nom</code> : <code>texte = "Mohamed Ali Ben Salem"</code>, <code>nb_mots = 4</code>.<br>
+            &nbsp;&nbsp;- Après <code>Normaliser_Nom</code> : <code>texte = "Mohamed Ali Ben Salem"</code>,
+            <code>nb_mots = 4</code>.<br>
             • Pour <code>nom_brut = "   sara  "</code> &rarr; <code>texte = "Sara"</code>, <code>nb_mots = 1</code>.
           </div>
         </div>
@@ -638,27 +729,36 @@ Fin</code></pre>
            ======================================================== -->
       <section class="mb-5 exercise-section" data-ex-id="ex6" id="exercice-6">
         <div class="d-flex align-items-center justify-content-between border-bottom pb-2 mb-3">
-          <h3 class="h4 text-primary m-0">Exercice 6 : Cybersécurité — Audit &amp; Renforcement de Mot de Passe (Mixte Avancé)</h3>
+          <h3 class="h4 text-primary m-0">Exercice 6 : Cybersécurité — Audit &amp; Renforcement de Mot de Passe (Mixte
+            Avancé)</h3>
           <span class="badge badge-difficulty-hard rounded-pill px-3 py-2">🔴 Avancé</span>
         </div>
 
         <div class="row align-items-center mb-3">
           <div class="col-lg-7">
             <p>
-              La sécurité des accès informatiques repose sur la complexité des mots de passe. Un portail web souhaite intégrer un module autonome d'audit sans faire appel à des structures de tableaux :
+              La sécurité des accès informatiques repose sur la complexité des mots de passe. Un portail web souhaite
+              intégrer un module d'audit :
             </p>
             <ul class="ps-3 mb-0">
-              <li>Attribuer un score pondéré selon 4 catégories (minuscules, majuscules, chiffres, caractères spéciaux).</li>
-              <li>Examiner la chaîne en <strong>un seul parcours</strong> complet et renvoyer 5 indicateurs par variable (<code>@</code>).</li>
-              <li>Classifier le niveau de robustesse (<code>"Très Faible"</code>, <code>"Moyen"</code>, <code>"Robuste"</code>, <code>"Excellent"</code>).</li>
+              <li>Attribuer un score pondéré selon 4 catégories (minuscules, majuscules, chiffres, caractères spéciaux).
+              </li>
+              <li>Examiner la chaîne en <strong>un seul parcours</strong> complet et renvoyer 5 indicateurs par
+                adresse.</li>
+              <li>Classifier le niveau de robustesse (<code>"Très Faible"</code>, <code>"Moyen"</code>,
+                <code>"Robuste"</code>, <code>"Excellent"</code>).
+              </li>
               <li>Renforcer automatiquement le mot de passe sur place s'il est jugé vulnérable.</li>
             </ul>
           </div>
           <div class="col-lg-5 text-center my-3 my-lg-0">
             <figure class="figure m-0 d-print-none text-center">
-              <img src="assets/img/serie06/securite-mot-passe.jpg" alt="Audit de sécurité et renforcement automatique de mot de passe" class="img-fluid rounded-3 shadow-sm border" style="max-height: 250px; width: 100%; object-fit: cover;">
+              <img src="assets/img/serie06/securite-mot-passe.jpg"
+                alt="Audit de sécurité et renforcement automatique de mot de passe"
+                class="img-fluid rounded-3 shadow-sm border" style="max-height: 250px; width: 100%; object-fit: cover;">
               <figcaption class="figure-caption text-center small mt-1">
-                <i class="bi bi-shield-lock-fill text-primary me-1"></i>Audit pondéré, multi-compteurs et renforcement actif d'un mot de passe
+                <i class="bi bi-shield-lock-fill text-primary me-1"></i>Audit pondéré, multi-compteurs et renforcement
+                actif d'un mot de passe
               </figcaption>
             </figure>
           </div>
@@ -666,7 +766,8 @@ Fin</code></pre>
 
         <p class="mb-2">Le module se compose des sous-programmes suivants :</p>
         <ul class="ps-3 mb-3">
-          <li>Une fonction <code>Poids_Caractere(c : Caractère) : Entier</code> qui attribue un score pondéré selon la catégorie du caractère :
+          <li>Une fonction <code>Poids(c: Caractère):Entier</code> qui attribue un score selon la catégorie du caractère
+            :
             <ul>
               <li>Lettre minuscule ($'a' \le c \le 'z'$) : <strong>1 point</strong></li>
               <li>Lettre majuscule ($'A' \le c \le 'Z'$) : <strong>2 points</strong></li>
@@ -675,8 +776,13 @@ Fin</code></pre>
               <li>Tout autre caractère : <strong>0 point</strong></li>
             </ul>
           </li>
-          <li>Une procédure <code>Evaluer_Mot_De_Passe(mdp : Chaîne, @score : Entier, @nb_maj : Entier, @nb_min : Entier, @nb_chiffres : Entier, @nb_speciaux : Entier)</code> qui examine le mot de passe en <strong>un seul parcours</strong> complet de boucle, utilise <code>Poids_Caractere</code> pour cumuler le <code>@score</code> global et comptabilise simultanément les 4 catégories transmises par variable (<code>@</code>).</li>
-          <li>Une fonction <code>Determiner_Niveau(score : Entier, lg : Entier) : Chaîne</code> qui retourne l'appréciation textuelle :
+          <li>Une procédure
+            <code>EvaluerMDP(mdp: Chaîne, @score: Entier, @maj: Entier, @min: Entier, @chiff: Entier, @spec: Entier)</code>
+            qui examine le mot de passe en <strong>un seul parcours</strong> complet, utilise <code>Poids</code> pour
+            cumuler le <code>@score</code> global et comptabilise simultanément les 4 catégories de caractères.
+          </li>
+          <li>Une fonction <code>Niveau(score: Entier, lg: Entier):Chaîne</code> qui retourne une appréciation selon le
+            <code>score</code> et la longueur <code>lg</code> du mot de passe :
             <ul>
               <li>Si $lg &lt; 8$ ou $score &lt; 15$ : <code>"Très Faible"</code></li>
               <li>Sinon si $score &lt; 25$ : <code>"Moyen"</code></li>
@@ -684,26 +790,31 @@ Fin</code></pre>
               <li>Sinon : <code>"Excellent"</code></li>
             </ul>
           </li>
-          <li>Une procédure <code>Renforcer_Mot_De_Passe(@mdp : Chaîne)</code> qui modifie le mot de passe sur place par variable (<code>@</code>) pour corriger ses vulnérabilités :
+          <li>Une procédure <code>Renforcer(@mdp: Chaîne)</code> qui modifie le mot de passe pour corriger ses
+            vulnérabilités :
             <ul>
               <li>S'il ne comporte aucune majuscule, convertit son premier caractère en majuscule.</li>
               <li>S'il ne comporte aucun caractère spécial, lui ajoute le symbole <code>"!"</code> à la fin.</li>
-              <li>Si sa longueur finale reste strictement inférieure à 8 caractères, lui concatène le suffixe <code>"2026"</code>.</li>
+              <li>Si sa longueur finale reste strictement inférieure à 8 caractères, lui concatène <code>"2026"</code>.
+              </li>
             </ul>
           </li>
-          <li>Une procédure <code>Auditer_Securite(mdp : Chaîne)</code> qui appelle <code>Evaluer_Mot_De_Passe</code>, affiche la grille des statistiques et le diagnostic de robustesse. Si le niveau est <code>"Très Faible"</code> ou <code>"Moyen"</code>, elle appelle <code>Renforcer_Mot_De_Passe</code> et affiche la proposition de mot de passe sécurisé.</li>
+          <li>Une procédure <code>Auditer(mdp: Chaîne)</code> qui appelle <code>EvaluerMDP</code>,
+            affiche la grille des statistiques et le diagnostic de robustesse. Si le niveau est
+            <code>"Très Faible"</code> ou <code>"Moyen"</code>, elle appelle <code>Renforcer</code> et
+            affiche la proposition de mot de passe sécurisé.
+          </li>
         </ul>
 
         <div class="card bg-light border-0 shadow-sm p-3 mb-3">
           <h6 class="fw-bold text-dark mb-1"><i class="bi bi-pencil-square text-primary me-2"></i>Travail demandé :</h6>
           <ol class="small text-dark mb-0 ps-3">
-            <li>Pourquoi la procédure <code>Evaluer_Mot_De_Passe</code> comporte-t-elle 5 paramètres précédés du symbole <code>@</code> ? Justifier pourquoi une fonction classique est inadaptée pour cette tâche.</li>
-            <li>Rédiger l'algorithme de la fonction <code>Poids_Caractere(c : Caractère) : Entier</code>.</li>
-            <li>Dresser le T.D.O.L. et rédiger l'algorithme officiel de la procédure <code>Evaluer_Mot_De_Passe</code>.</li>
-            <li>Rédiger l'algorithme de la fonction <code>Determiner_Niveau(score : Entier, lg : Entier) : Chaîne</code>.</li>
-            <li>Rédiger l'algorithme de la procédure <code>Renforcer_Mot_De_Passe(@mdp : Chaîne)</code>.</li>
-            <li>Rédiger l'algorithme de la procédure d'orchestration <code>Auditer_Securite(mdp : Chaîne)</code>.</li>
-            <li>Proposer la transcription intégrale en Python 3 de l'ensemble de l'architecture.</li>
+            <li>Rédiger l'algorithme de la fonction <code>Poids(c: Caractère):Entier</code>.</li>
+            <li>Rédiger l'algorithme de la procédure <code>EvaluerMDP</code>.</li>
+            <li>Rédiger l'algorithme de la fonction <code>Niveau(score: Entier, lg: Entier):Chaîne</code>.</li>
+            <li>Rédiger l'algorithme de la procédure <code>Renforcer(@mdp: Chaîne)</code>.</li>
+            <li>Rédiger l'algorithme de la procédure <code>Auditer(mdp: Chaîne)</code>.</li>
+            <li>Proposer la transcription intégrale en Python de l'ensemble.</li>
           </ol>
         </div>
 
@@ -713,18 +824,21 @@ Fin</code></pre>
             💡 Conseils méthodologiques &amp; Indices
           </div>
           <ul class="mb-2 small text-muted ps-3">
-            <li>Pour tester si <code>c</code> est un caractère spécial, vérifier si sa position dans la chaîne modèle est non nulle : <code>Pos(c, "#@!$%&amp;*?") &ne; -1</code>.</li>
-            <li>Dans <code>Evaluer_Mot_De_Passe</code>, réinitialiser impérativement les 5 paramètres formels à 0 avant la boucle : <code>score &larr; 0</code>, <code>nb_maj &larr; 0</code>, etc. Une unique boucle <code>Pour i de 0 à Long(mdp) - 1</code> cumule le score et incrémente le compteur correspondant.</li>
-            <li>Dans <code>Renforcer_Mot_De_Passe</code>, utiliser <code>Evaluer_Mot_De_Passe</code> pour déterminer les manques, puis modifier <code>@mdp</code> successivement selon les 3 règles de renforcement.</li>
+            <li>Pour tester si <code>c</code> est un caractère spécial, vérifier si sa position dans la chaîne modèle
+              est non nulle : <code>Pos(c, "#@!$%&amp;*?") &ne; -1</code>.</li>
           </ul>
           <div class="p-2 bg-white rounded border small">
             <strong>Jeux d'essais à vérifier :</strong><br>
             • Pour <code>mdp = "secret"</code> ($lg = 6$) :<br>
-            &nbsp;&nbsp;- Décompte : 6 minuscules, 0 majuscule, 0 chiffre, 0 spécial &rarr; $score = 6$ &rarr; Niveau : <code>"Très Faible"</code>.<br>
-            &nbsp;&nbsp;- Après <code>Renforcer_Mot_De_Passe</code> : <code>"Secret!2026"</code> ($lg = 11$, 1 Maj, 1 Spécial, 4 Chiffres &rarr; <code>"Robuste"</code>).<br>
+            &nbsp;&nbsp;- Décompte : 6 minuscules, 0 majuscule, 0 chiffre, 0 spécial &rarr; $score = 6$ &rarr; Niveau :
+            <code>"Très Faible"</code>.<br>
+            &nbsp;&nbsp;- Après <code>Renforcer</code> : <code>"Secret!2026"</code> ($lg = 11$, 1 Maj, 1
+            Spécial, 4 Chiffres &rarr; <code>"Robuste"</code>).<br>
             • Pour <code>mdp = "Bac@2026"</code> ($lg = 8$) :<br>
-            &nbsp;&nbsp;- Décompte : 2 min (2 pts), 1 Maj (2 pts), 4 chiffres (12 pts), 1 spécial (5 pts) &rarr; $score = 21$ &rarr; Niveau : <code>"Moyen"</code>.<br>
-            • Pour <code>mdp = "Admin#Secure2026!"</code> ($lg = 17$) : $score = 46$ &rarr; Niveau : <code>"Excellent"</code>.
+            &nbsp;&nbsp;- Décompte : 2 min (2 pts), 1 Maj (2 pts), 4 chiffres (12 pts), 1 spécial (5 pts) &rarr; $score
+            = 21$ &rarr; Niveau : <code>"Moyen"</code>.<br>
+            • Pour <code>mdp = "Admin#Secure2026!"</code> ($lg = 17$) : $score = 46$ &rarr; Niveau :
+            <code>"Excellent"</code>.
           </div>
         </div>
       </section>
