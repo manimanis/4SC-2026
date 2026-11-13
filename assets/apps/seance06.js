@@ -1,6 +1,6 @@
 /**
  * assets/apps/seance06.js
- * Logique Vue 3 pour la Séance 6 : Tableaux 1D (numpy, parcours indicé & modules types)
+ * Logique Vue 3 pour la Séance 6 : Les Tableaux (numpy, parcours indicé & modules types)
  * Conventions Officielles 2024-2025
  */
 
@@ -14,7 +14,7 @@ createApp({
 
       // 4 Phases conformes à la maquette
       phases: [
-        { title: "Situation & Labo 1D (Tableau à une dimension)", shortTitle: "Situation & Labo 1D", duration: "10 min" },
+        { title: "Tableau à une dimension", shortTitle: "Tableau", duration: "10 min" },
         { title: "Déclaration & Parcours indicé", shortTitle: "Déclaration & Parcours", duration: "15 min" },
         { title: "Algorithme & Programme Python", shortTitle: "Algo & Programme", duration: "25 min" },
         { title: "Bilan & Auto-évaluation (Questions flash & Quiz)", shortTitle: "Bilan & Quiz", duration: "5 min" }
@@ -37,22 +37,22 @@ createApp({
         {
           id: 1,
           question: "Pourquoi les éléments d'un tableau doivent-ils être de même type ?",
-          algoAns: "Un tableau est une structure de données statique et homogène (tous les éléments ont le même type simple).",
-          pyAns: "Implémenté via numpy array qui garantit l'homogénéité en mémoire.",
+          algoAns: "Un tableau est une structure de données statique et homogène tous ses éléments ont un même type.",
+          pyAns: "Implémenté via numpy array qui garantit l'homogénéité.",
           isOpen: false
         },
         {
           id: 2,
-          question: "Pourquoi l'instruction 'print(T)' est-elle formellement interdite en Python ?",
-          algoAns: "La convention officielle exige d'afficher le tableau élément par élément via une boucle indicée.",
+          question: "Pourquoi l'instruction 'print(T)' est-elle interdite en Python ?",
+          algoAns: "La convention exige d'afficher le tableau élément par élément via une boucle indicée.",
           pyAns: "Pour forcer l'usage du parcours indicé 'for i in range(n): print(T[i])'.",
           isOpen: false
         },
         {
           id: 3,
           question: "Pourquoi le module Remplir utilise-t-il le passage par adresse (@t) et le type 'Tab' ?",
-          algoAns: "Le type 'Tab' est déclaré dans le T.D.N.T. Le symbole '@' indique un passage par adresse car les cases du tableau sont modifiées.",
-          pyAns: "En Python, un array numpy est un objet mutable automatiquement passé par adresse (référence).",
+          algoAns: "Le type 'Tab' est déclaré dans le TDNT. Le symbole '@' indique un passage par adresse car les cases du tableau sont modifiées.",
+          pyAns: "En Python, un array numpy est un objet mutable automatiquement passé par adresse.",
           isOpen: false
         }
       ],
@@ -68,16 +68,16 @@ createApp({
         },
         {
           expr: "Comment déclarer le type et l'objet tableau en algorithmique pour 10 entiers ?",
-          resAlgo: "T.D.N.T. : Tab = Tableau de 10 Entier | T.D.O.G. : t : Tab",
-          resPy: "from numpy import array; t = array([0] * 10)",
-          type: "Déclaration T.D.N.T. & numpy",
+          resAlgo: "TDNT : Tab = Tableau de 10 Entier | TDOG : t : Tab",
+          resPy: "from numpy import array; t = array([int()] * 10)",
+          type: "Déclaration TDNT & numpy",
           isOpen: false
         },
         {
-          expr: "Dans le T.D.O.L. de la procédure Remplir, quel objet déclare-t-on ?",
+          expr: "Dans le TDOL de la procédure Remplir, quel objet déclare-t-on ?",
           resAlgo: "i : Entier (compteur de la boucle Pour).",
           resPy: "Variable locale 'i' générée par la boucle for.",
-          type: "T.D.O.L.",
+          type: "TDOL",
           isOpen: false
         },
         {
@@ -92,7 +92,7 @@ createApp({
       // Quiz interactif de 10 questions
       quizQuestions: [
         {
-          question: "Selon les conventions officielles 2024-2025, quelle bibliothèque Python doit être utilisée pour implémenter les tableaux ?",
+          question: "Selon les conventions, quelle bibliothèque Python doit être utilisée pour implémenter les tableaux ?",
           options: [
             "numpy (via 'from numpy import array')",
             "math",
@@ -100,21 +100,21 @@ createApp({
             "random"
           ],
           correct: 0,
-          explanation: "Convention section 3 & 4.b : Les tableaux 1D et 2D sont impérativement implémentés avec la bibliothèque numpy."
+          explanation: "Convention : Les Tableaux sont impérativement implémentés avec la bibliothèque numpy."
         },
         {
-          question: "Dans le cadre de la modularité, comment déclare-t-on un type tableau pour les modules ?",
+          question: "Comment déclare-t-on un type tableau pour les modules ?",
           options: [
-            "Dans le T.D.N.T. : Tab = Tableau de N Entier (puis @t: Tab dans l'entête)",
-            "Dans le T.D.O.L. comme variable locale",
-            "Directement dans l'entête sans T.D.N.T.",
+            "Dans le TDNT : Tab = Tableau de N Entier (puis @t: Tab dans l'entête)",
+            "Dans le TDOL comme variable locale",
+            "Directement dans l'entête sans TDNT",
             "En utilisant le mot-clé global"
           ],
           correct: 0,
-          explanation: "Convention T.D.N.T. : Le nouveau type utilisateur est déclaré dans le Tableau de Déclaration des Nouveaux Types ('Tab = Tableau de N Entier'), puis réutilisé pour typer les paramètres formels (@t: Tab)."
+          explanation: "Convention : Le nouveau type utilisateur est déclaré dans le TDNT ('Tab = Tableau de N Entier'), puis réutilisé pour typer les paramètres formels (@t: Tab)."
         },
         {
-          question: "En Tunisie (Programme 4SC), quel est l'indice du premier élément d'un tableau ?",
+          question: "Quel est l'indice du premier élément d'un tableau ?",
           options: [
             "0",
             "1",
@@ -122,18 +122,18 @@ createApp({
             "N"
           ],
           correct: 0,
-          explanation: "Convention section B.4 : L'accès indicé aux structures de données s'effectue en base 0 (de 0 à N - 1)."
+          explanation: "Convention : L'accès indicé aux structures de données s'effectue en base 0 (de 0 à N - 1)."
         },
         {
           question: "Quelle est la règle officielle concernant l'affichage d'un tableau T en Python ?",
           options: [
-            "L'affichage doit obligatoirement se faire élément par élément via une boucle, l'instruction print(T) étant interdite",
+            "L'affichage doit obligatoirement se faire élément par élément via une boucle",
             "L'instruction print(T) est obligatoire",
             "Les tableaux ne s'affichent jamais",
             "Il faut convertir T en chaîne avec str(T)"
           ],
           correct: 0,
-          explanation: "Convention section 1.b Remarques : 'L'affichage d'un tableau T en Python doit se faire élément par élément et non pas avec l'instruction print(T)'."
+          explanation: "Convention : L'affichage d'un tableau T en Python doit se faire élément par élément et non pas avec l'instruction print(T)."
         },
         {
           question: "En Python, comment les tableaux numpy sont-ils transmis aux fonctions et procédures ?",
@@ -144,7 +144,7 @@ createApp({
             "Uniquement en lecture seule"
           ],
           correct: 0,
-          explanation: "Convention section 7.c : 'En Python, les paramètres de type dictionnaire, tableau (numpy) et fichier sont, par défaut, passés par adresse'."
+          explanation: "Convention : 'En Python, les paramètres de type tableau (numpy) sont, par défaut, passés par adresse."
         },
         {
           question: "Comment traduit-on en Python la boucle de parcours 'Pour i de 0 à n - 1 Faire' ?",
@@ -158,7 +158,7 @@ createApp({
           explanation: "La borne finale de range étant exclue, 'range(n)' génère exactement les entiers de 0 à n - 1."
         },
         {
-          question: "Quelle instruction Python déclare un tableau statique T de 15 réels initialisés à 0.0 ?",
+          question: "Quelle instruction Python déclare un tableau de 15 réels initialisés à 0.0 ?",
           options: [
             "T = array([0.0] * 15) ou T = array([float()] * 15)",
             "T = list(15)",
@@ -166,7 +166,7 @@ createApp({
             "T = array(15)"
           ],
           correct: 0,
-          explanation: "Convention section 4.b : 'T = array([float()] * 15)' ou 'T = array([0.0] * 15)'."
+          explanation: "Convention : 'T = array([float()] * 15)' ou 'T = array([0.0] * 15)'."
         },
         {
           question: "Dans l'entête 'Procédure Remplir(@t: Tab, n: Entier)', que signifie le symbole '@' ?",

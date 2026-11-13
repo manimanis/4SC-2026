@@ -4,11 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Séance 6 : Tableaux 1D (Déclaration, Parcours indicé & Modules types) - 4e SC (Bac 2026)</title>
+  <title>Séance 6 : Les Tableaux (Déclaration, Parcours indicé & Modules types) - 4e SC (Bac 2026)</title>
 
   <!-- Métadonnées SEO & Description -->
   <meta name="description"
-    content="Séance 6 d'Informatique pour 4ème Année Scientifique (Bac 2026) : Tableaux à une dimension, déclaration, parcours indicé, modules types de remplissage et d'affichage, implémentation numpy.">
+    content="Séance 6 d'Informatique pour 4ème Année Scientifique (Bac 2026) : tableaux, déclaration, parcours indicé, modules types de remplissage et d'affichage, implémentation numpy.">
 
   <!-- Dépendances locales -->
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -38,12 +38,12 @@
               <a class="nav-link" href="index.html"><i class="bi bi-house-door me-1"></i> Accueil</a>
             </li>
 
-            <!-- MENU DÉROULANT TABLEAUX 1D -->
+            <!-- MENU DÉROULANT Les Tableaux -->
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle active" href="#" id="menuTableaux" role="button"
                 data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
                 <i class="bi bi-grid-1x2-fill me-1 text-primary"></i>
-                <span>Tableaux 1D</span>
+                <span>Les Tableaux</span>
               </a>
               <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end shadow" aria-labelledby="menuTableaux">
                 <li v-for="(p, idx) in phases" :key="'nav-p-' + idx">
@@ -78,17 +78,17 @@
     <header class="hero-banner">
       <div class="container">
         <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
-          <span class="badge bg-primary px-3 py-1"><i class="bi bi-grid-1x2 me-1"></i>Axe : Tableaux 1D</span>
+          <span class="badge bg-primary px-3 py-1"><i class="bi bi-grid-1x2 me-1"></i>Axe : Les Tableaux</span>
           <span class="badge bg-secondary px-2 py-1">Sections Scientifiques</span>
           <span class="badge bg-info text-dark px-2 py-1"><i class="bi bi-bookmark-check-fill me-1"></i>Conventions
             2024-2025</span>
         </div>
-        <h1 class="hero-title">Séance 6 : Tableaux à une dimension (1D)</h1>
+        <h1 class="hero-title">Séance 6 : Tableaux</h1>
         <div class="objective-box">
           <div class="d-flex align-items-center gap-2">
             <i class="bi bi-bullseye text-info fs-5"></i>
             <span class="small text-light">
-              <strong>Objectifs :</strong> Déclaration algorithmique par T.D.N.T.
+              <strong>Objectifs :</strong> Déclaration algorithmique par TDNT
               (<code>Tab = Tableau de N Entier</code>), passage par adresse (<code>@t: Tab</code>), implémentation
               <code>numpy</code>, parcours indicé (base 0), modules types de saisie, remplissage et affichage élément
               par élément.
@@ -129,7 +129,7 @@
           <div class="section-header">
             <div class="d-flex align-items-center gap-2">
               <span class="badge bg-primary rounded-pill px-2 py-1">Étape 1</span>
-              <h2 class="h5 mb-0 fw-bold text-dark">Situation & Labo 1D : Manipulation indicée</h2>
+              <h2 class="h5 mb-0 fw-bold text-dark">Tableaux : Manipulation indicée</h2>
             </div>
             <span class="phase-pill emerald"><i class="bi bi-clock me-1"></i>10 min</span>
           </div>
@@ -141,8 +141,8 @@
                 <i class="bi bi-lightbulb-fill"></i> Énoncé
               </div>
               <blockquote class="fs-6 text-dark fw-semibold mb-0 fst-italic">
-                « Saisir un entier N (3 à 10), remplir un tableau T de N éléments entiers, calculer la somme, la moyenne
-                et les valeurs extrêmes (Min, Max), puis afficher les éléments un par un. »
+                « Saisir un entier N (3 à 10), remplir un tableau T de N entiers, calculer la somme, la moyenne et les
+                valeurs extrêmes (Min, Max), puis afficher les éléments un par un. »
               </blockquote>
             </div>
 
@@ -282,8 +282,8 @@
                 <thead class="table-dark">
                   <tr>
                     <th scope="col" style="width: 25%;">Opération</th>
-                    <th scope="col" style="width: 38%;">Algorithmique (Norme Officielle)</th>
-                    <th scope="col" style="width: 37%;">Python 3 (numpy)</th>
+                    <th scope="col" style="width: 38%;">Algorithmique</th>
+                    <th scope="col" style="width: 37%;">Python</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -293,17 +293,17 @@
                     <td><code>from numpy import array</code></td>
                   </tr>
                   <tr>
-                    <td><strong>Déclaration 1D (T.D.N.T.)</strong></td>
+                    <td><strong>Déclaration</strong></td>
                     <td>
-                      <div><strong>T.D.N.T. :</strong> <code>Tab = Tableau de N Entier</code></div>
-                      <div><strong>T.D.O. :</strong> <code>t : Tab</code></div>
+                      <div><strong>TDNT :</strong> <code>Tab = Tableau de N Entier</code></div>
+                      <div><strong>TDO :</strong> <code>t : Tab</code></div>
                     </td>
-                    <td><code>t = array([0] * N)</code></td>
+                    <td><code>t = array([int()] * N)</code></td>
                   </tr>
                   <tr>
                     <td><strong>Accès à la case <code>i</code></strong></td>
-                    <td><code>T[i]</code> avec <code>0 ≤ i &lt; n</code></td>
-                    <td><code>T[i]</code> avec <code>0 ≤ i &lt; n</code></td>
+                    <td><code>T[i]</code> avec <code>0 ≤ i &lt; N</code></td>
+                    <td><code>T[i]</code> avec <code>0 ≤ i &lt; N</code></td>
                   </tr>
                   <tr>
                     <td><strong>Parcours complet</strong></td>
@@ -311,7 +311,7 @@
                     <td><code>for i in range(n):</code></td>
                   </tr>
                   <tr>
-                    <td><strong>Affichage officiel</strong></td>
+                    <td><strong>Affichage</strong></td>
                     <td><code>Pour i de 0 à n - 1 Faire Écrire(T[i])</code></td>
                     <td><code>for i in range(n): print(T[i])</code></td>
                   </tr>
@@ -336,8 +336,7 @@
                   <div class="fw-bold text-primary mb-1"><i class="bi bi-arrow-left-right me-1"></i>Passage par adresse
                     natif</div>
                   <p class="small text-muted mb-0">
-                    En Python, les tableaux <code>numpy</code> sont automatiquement transmis par référence (adresse)
-                    sans mot-clé spécial.
+                    En Python, les tableaux <code>numpy</code> sont automatiquement transmis par adresse.
                   </p>
                 </div>
               </div>
@@ -376,7 +375,7 @@
                 <button class="nav-link active text-primary fw-bold" id="tab-algo-s6-btn" data-bs-toggle="tab"
                   data-bs-target="#tab-algo-s6" type="button" role="tab" aria-controls="tab-algo-s6"
                   aria-selected="true">
-                  <i class="bi bi-code-square me-1"></i> Algorithme & T.D.O.L. / T.D.O.G.
+                  <i class="bi bi-code-square me-1"></i> Algorithme & TDOL / TDOG
                 </button>
               </li>
               <li class="nav-item" role="presentation">
@@ -388,7 +387,7 @@
             </ul>
 
             <div class="tab-content p-3 border border-top-0 rounded-bottom mb-0 bg-white" id="tabCodeS6Content">
-              <!-- ONGLET 1 : ALGORITHME & T.D.O.L. -->
+              <!-- ONGLET 1 : ALGORITHME & TDOL -->
               <div class="tab-pane fade show active" id="tab-algo-s6" role="tabpanel" aria-labelledby="tab-algo-s6-btn">
                 <div class="row g-4">
                   <!-- CODE ALGORITHMIQUE COMPLET -->
@@ -396,7 +395,7 @@
                     <div class="card border h-100 shadow-sm">
                       <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
                         <span class="font-monospace fw-bold small"><i
-                            class="bi bi-code-square me-2 text-info"></i>Solution Modulaire (Tableaux 1D)</span>
+                            class="bi bi-code-square me-2 text-info"></i>Solution Modulaire (Les Tableaux)</span>
                         <span class="badge bg-primary">Modules Types</span>
                       </div>
                       <div class="card-body p-0">
@@ -422,9 +421,9 @@ FIN
 // 3. Module type d'affichage élément par élément (t: Tab)
 Procédure Afficher (t: Tab, n: Entier)
 DEBUT
-    Écrire_nl("Contenu du tableau :")
+    Écrire("Contenu du tableau :")
     Pour i de 0 à n - 1 Faire
-        Écrire_nl("t[", i, "] = ", t[i])
+        Écrire("t[", i, "] = ", t[i])
     Fin Pour
 FIN
 
@@ -478,25 +477,24 @@ DEBUT
     moy ← calc_Moyenne(t, n)
     min_val ← calc_Min(t, n)
     max_val ← calc_Max(t, n)
-    Écrire_nl("Somme des éléments = ", som)
-    Écrire_nl("Moyenne des éléments = ", moy)
-    Écrire_nl("Valeur minimale (Min) = ", min_val)
-    Écrire_nl("Valeur maximale (Max) = ", max_val)
+    Écrire("Somme des éléments = ", som)
+    Écrire("Moyenne des éléments = ", moy)
+    Écrire("Valeur minimale (Min) = ", min_val)
+    Écrire("Valeur maximale (Max) = ", max_val)
 FIN</code></pre>
                       </div>
                     </div>
                   </div>
 
-                  <!-- T.D.N.T., T.D.O.L. & T.D.O.G. -->
+                  <!-- TDNT, TDOL & TDOG -->
                   <div class="col-lg-5">
                     <div class="card border h-100 shadow-sm">
                       <div class="card-header bg-secondary text-white">
-                        <span class="fw-bold small"><i class="bi bi-table me-2"></i>Déclarations : T.D.N.T., T.D.O.L. &
-                          T.D.O.G.</span>
+                        <span class="fw-bold small"><i class="bi bi-table me-2"></i>Déclarations : TDNT, TDO</span>
                       </div>
                       <div class="card-body p-3 small">
-                        <!-- T.D.N.T. -->
-                        <h6 class="fw-bold text-primary mb-1">T.D.N.T. (Nouveaux Types)</h6>
+                        <!-- TDNT -->
+                        <h6 class="fw-bold text-primary mb-1">TDNT (Nouveaux Types)</h6>
                         <table class="table table-bordered table-sm mb-3">
                           <thead class="table-light">
                             <tr>
@@ -510,8 +508,8 @@ FIN</code></pre>
                           </tbody>
                         </table>
 
-                        <!-- T.D.O.L. Remplir & Afficher -->
-                        <h6 class="fw-bold text-primary mb-1">T.D.O.L. (Remplir & Afficher)</h6>
+                        <!-- TDOL Remplir & Afficher -->
+                        <h6 class="fw-bold text-primary mb-1">TDOL (Remplir & Afficher)</h6>
                         <table class="table table-bordered table-sm mb-3">
                           <thead class="table-light">
                             <tr>
@@ -522,13 +520,13 @@ FIN</code></pre>
                           <tbody>
                             <tr>
                               <td><code>i</code></td>
-                              <td>Entier (compteur de boucle)</td>
+                              <td>Entier</td>
                             </tr>
                           </tbody>
                         </table>
 
-                        <!-- T.D.O.L. calc_Somme -->
-                        <h6 class="fw-bold text-primary mb-1">T.D.O.L. (calc_Somme)</h6>
+                        <!-- TDOL calc_Somme -->
+                        <h6 class="fw-bold text-primary mb-1">TDOL (calc_Somme)</h6>
                         <table class="table table-bordered table-sm mb-3">
                           <thead class="table-light">
                             <tr>
@@ -544,8 +542,8 @@ FIN</code></pre>
                           </tbody>
                         </table>
 
-                        <!-- T.D.O.L. calc_Moyenne -->
-                        <h6 class="fw-bold text-primary mb-1">T.D.O.L. (calc_Moyenne)</h6>
+                        <!-- TDOL calc_Moyenne -->
+                        <h6 class="fw-bold text-primary mb-1">TDOL (calc_Moyenne)</h6>
                         <table class="table table-bordered table-sm mb-3">
                           <thead class="table-light">
                             <tr>
@@ -561,8 +559,8 @@ FIN</code></pre>
                           </tbody>
                         </table>
 
-                        <!-- T.D.O.L. calc_Min & calc_Max -->
-                        <h6 class="fw-bold text-primary mb-1">T.D.O.L. (calc_Min & calc_Max)</h6>
+                        <!-- TDOL calc_Min & calc_Max -->
+                        <h6 class="fw-bold text-primary mb-1">TDOL (calc_Min & calc_Max)</h6>
                         <table class="table table-bordered table-sm mb-3">
                           <thead class="table-light">
                             <tr>
@@ -578,8 +576,8 @@ FIN</code></pre>
                           </tbody>
                         </table>
 
-                        <!-- T.D.O.G. Principal -->
-                        <h6 class="fw-bold text-dark mb-1">T.D.O.G. (Programme Principal)</h6>
+                        <!-- TDOG Principal -->
+                        <h6 class="fw-bold text-dark mb-1">TDOG (Programme Principal)</h6>
                         <table class="table table-bordered table-sm mb-0">
                           <thead class="table-light">
                             <tr>
@@ -636,19 +634,19 @@ FIN</code></pre>
 def saisie_taille(borne_min, borne_max):
     taille = 0
     while not (borne_min <= taille <= borne_max):
-        taille = int(input(f"Donner la taille du tableau ({borne_min} à {borne_max}) : "))
+        taille = int(input("Donner la taille du tableau (" + str(borne_min) + " à " + str(borne_max) + ") : "))
     return taille
 
 # 2. Module de remplissage (t mutable passé par adresse)
 def remplir_tab(t, n):
     for i in range(n):
-        t[i] = int(input(f"Donner l'élément t[{i}] : "))
+        t[i] = int(input("Donner l'élément t[" + str(i) + "] : "))
 
 # 3. Module d'affichage (élément par élément)
 def afficher_tab(t, n):
     print("Contenu du tableau :")
     for i in range(n):
-        print(f"t[{i}] = {t[i]}")
+        print("t[", i, "] = ", t[i])
 
 # 4. Fonction de calcul de la somme
 def calc_somme(t, n):
@@ -679,7 +677,7 @@ def calc_max(t, n):
 
 # --- Programme Principal ---
 # Déclaration statique numpy de 10 entiers
-t = array([0] * 10)
+t = array([int()] * 10)
 
 n = saisie_taille(3, 10)
 remplir_tab(t, n)
@@ -690,10 +688,10 @@ moy = calc_moyenne(t, n)
 min_val = calc_min(t, n)
 max_val = calc_max(t, n)
 
-print(f"Somme des éléments = {som}")
-print(f"Moyenne des éléments = {moy:.2f}")
-print(f"Valeur minimale (Min) = {min_val}")
-print(f"Valeur maximale (Max) = {max_val}")</code></pre>
+print("Somme des éléments =", som)
+print("Moyenne des éléments =", moy)
+print("Valeur minimale (Min) =", min_val)
+print("Valeur maximale (Max) =", max_val)</code></pre>
                       </div>
                     </div>
                   </div>
@@ -707,8 +705,8 @@ print(f"Valeur maximale (Max) = {max_val}")</code></pre>
                       <div class="card-body small">
                         <ul class="list-unstyled mb-0">
                           <li class="mb-2 pb-2 border-bottom">
-                            <strong>T.D.N.T. obligatoire :</strong> Le type <code>Tab = Tableau de 10 Entier</code> est
-                            déclaré dans le T.D.N.T., puis utilisé dans les en-têtes (<code>@t: Tab</code>).
+                            <strong>TDNT obligatoire :</strong> Le type <code>Tab = Tableau de 10 Entier</code> est
+                            déclaré dans le TDNT, puis utilisé dans les en-têtes (<code>@t: Tab</code>).
                           </li>
                           <li class="mb-2 pb-2 border-bottom">
                             <strong>Bibliothèque numpy :</strong> Déclaration obligatoire via
@@ -773,7 +771,7 @@ print(f"Valeur maximale (Max) = {max_val}")</code></pre>
             <div class="card border shadow-sm">
               <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
                 <span class="fw-bold small"><i class="bi bi-patch-check-fill text-info me-2"></i>Auto-évaluation : Quiz
-                  Tableaux 1D (10 questions)</span>
+                  Les Tableaux (10 questions)</span>
                 <div class="d-flex align-items-center gap-2">
                   <span class="badge bg-primary">Score : {{ quizScore }} / {{ quizQuestions.length }}</span>
                   <button class="btn btn-xs btn-outline-light py-0 px-2 small" @click="resetQuiz">Réinitialiser</button>
@@ -813,7 +811,7 @@ print(f"Valeur maximale (Max) = {max_val}")</code></pre>
                 <div class="p-3 bg-success bg-opacity-10 border border-success rounded mt-4 text-center">
                   <h6 class="fw-bold text-success mb-1"><i class="bi bi-check-circle-fill me-1"></i>Séance 6 terminée !
                   </h6>
-                  <p class="text-muted small mb-2">Les tableaux à une dimension et les modules types sont maîtrisés.</p>
+                  <p class="text-muted small mb-2">Les tableaux et les modules types sont maîtrisés.</p>
                   <div class="d-flex justify-content-center gap-2 mt-2 flex-wrap">
                     <button class="btn btn-outline-secondary btn-sm" @click="setPhase(1)">
                       <i class="bi bi-arrow-repeat me-1"></i> Recommencer
